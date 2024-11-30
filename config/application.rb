@@ -17,9 +17,9 @@ module Myapp
     config.autoload_lib(ignore: %w[assets tasks])
 
     config.generators do |g|
-      g.javascripts false
+      g.skip_routes true
       g.helper false
-      g.test_framework false
+      g.test_framework nil
     end
 
     # Configuration for the application, engines, and railties goes here.
