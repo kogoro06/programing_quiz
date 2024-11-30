@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resource :contacts, only: [ :new, :create ]
   resources :quiz_posts
   get "tags/index"
+  resource :mypage, only: [ :show ]
   resources :questions, only: [ :show ]
   get "questions/result"
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
