@@ -1,7 +1,7 @@
 class MypagesController < ApplicationController
   def show
   end
-  def editt
+  def edit
   end
   def update
   end
