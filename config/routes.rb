@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resource :contacts, only: [ :new, :create ]
   resources :quiz_posts
   get "tags/index"
-  resource :mypage, only: [ :show ]
+  resource :mypage, only: [ :show, :edit, :update ]
   resources :otherspage, only: [ :show ]
   resources :questions, only: [ :show ]
   get "questions/result"
