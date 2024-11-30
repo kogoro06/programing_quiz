@@ -12,4 +12,6 @@ class QuizPostsController < ApplicationController
   end
   def update
   end
+  def bookmarks
+  end
 end

@@ -4,7 +4,12 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   resource :contacts, only: [ :new, :create ]
-  resources :quiz_posts
+  resources :quiz_posts do
+    collection do
+      get :bookmarks
+    end
+  end
+
   get "tags/index"
   resource :mypage, only: [ :show, :edit, :update ]
   resources :otherspage, only: [ :show ]
