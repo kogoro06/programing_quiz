@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users
+  
   get "privacy_policies/index"
   get "terms_of_services/index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
