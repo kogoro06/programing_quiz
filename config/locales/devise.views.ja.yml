@@ -16,7 +16,14 @@ ja:
           attributes:
             email:
               blank: "メールアドレスを入力してください"
+              too_short: "は%{count}文字以上に設定して下さい。"
+              too_long: "は%{count}文字以下に設定して下さい。"
+              invalid: "メールアドレスの形式が正しくありません"
               taken: "このメールアドレスは既に使用されています"
+            name:
+              blank: "ユーザーネームを入力してください"
+              too_short: "ユーザーネームは%{count}文字以上で入力してください"
+              too_long: "ユーザーネームは%{count}文字以下に設定して下さい。"
             password:
               blank: "パスワードを入力してください"
               too_short: "パスワードは%{count}文字以上で入力してください"
