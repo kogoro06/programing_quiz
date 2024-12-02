@@ -72,6 +72,7 @@ ja:
       new:
         title: "ログイン"
         sign_in: "ログイン"
+        show_password_confirmation: "確認用のパスワードを見る"
     shared:
       links:
         back: "戻る"
