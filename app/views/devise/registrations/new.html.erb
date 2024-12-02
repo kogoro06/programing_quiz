@@ -1,4 +1,4 @@
-<h2>Sign up</h2>
+<h2><%= t('.title') %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -13,12 +13,12 @@
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em>(<%= @minimum_password_length %> <%= t('.characters_minimum') %>)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password", id: "password_field" %>
     <div>
       <%= check_box_tag 'show_password', '1', false, onclick: 'togglePasswordVisibility()' %>
-      <%= label_tag 'show_password', 'Show Password' %>
+      <%= label_tag 'show_password', t('devise.registrations.new.show_password') %>
     </div>
   </div>
 
@@ -26,13 +26,13 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password", id: "password_confirmation_field" %>
     <div>
-      <%= check_box_tag 'show_password_confirmation', '1', false, onclick: 'togglePasswordConfirmationVisibility()' %>
-      <%= label_tag 'show_password_confirmation', 'Show Password Confirmation' %>
+      <%= check_box_tag t('.show_password_confirmation'), '1', false, onclick: 'togglePasswordConfirmationVisibility()' %>
+      <%= label_tag 'show_password_confirmation', t('.show_password_confirmation') %>
     </div>
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit t('.sign_up') %>
   </div>
 <% end %>
 
