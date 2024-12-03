@@ -1,0 +1,23 @@
+name: discord-notification
+
+on:
+  pull_request:
+    branches:
+      - stg
+      - develop
+
+jobs:
+  notify:
+    name: Notify Discord
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Discord Notification
+        uses: sarisia/actions-status-discord@v1
+        if: always() # 常に通知を送る
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          name: Discord Notification
+          title: ${{ github.event.pull_request.title || 'No Title' }}
+          description: |
+            Pull Request: ${{ github.event.pull_request.html_url || 'No URL' }}
+            Author: ${{ github.event.pull_request.user.login || 'Unknown Author' }}
