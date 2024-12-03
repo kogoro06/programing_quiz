@@ -3,10 +3,18 @@ module.exports = {
     './app/views/**/*.html.erb',
     './app/helpers/**/*.rb',
     './app/assets/stylesheets/**/*.css',
-    './app/javascript/**/*.js'
+    './app/javascript/**/*.js',
   ],
   theme: {
     extend: {
+      colors: {
+        html: '#FFB27A',
+        css: '#94F2F8',
+        js: '#F9E669',
+        ruby: '#FF9999',
+        git: '#6BF5C7',
+        error: '#E6AFE1',
+      },
       fontFamily: {
         frankfurter: ['"OPTIFrankfurter-Medium"', 'sans-serif'],
         mplus: ['"M PLUS Rounded 1c"', 'sans-serif'],
