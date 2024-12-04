@@ -27,9 +27,9 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   # お問い合わせ、利用規約、プライバシーポリシー
-  get '/contact', to: 'pages#contact', as: 'contact'
-  get '/terms', to: 'pages#terms', as: 'terms'
-  get '/privacy', to: 'pages#privacy', as: 'privacy'
+  get "contact", to: "pages#contact", as: "contact"
+  get "terms", to: "pages#terms", as: "terms"
+  get "privacy", to: "pages#privacy", as: "privacy"
 
   # Defines the root path route ("/")
   root "quiz_posts#index"
