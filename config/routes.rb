@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   end
 
   get "tags/index"
+  get "rankings/index"
   resource :mypage, only: [ :show, :edit, :update ]
   resources :otherspage, only: [ :show ]
   resources :questions, only: [ :show ]
