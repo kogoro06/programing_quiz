@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   get "privacy_policies" => "privacy_policies#index", as: :privacy_policies
-  get "terms_of_services" => "terms_of_services#index",as: :terms_of_services 
+  get "terms_of_services" => "terms_of_services#index", as: :terms_of_services
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
