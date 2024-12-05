@@ -1,4 +1,175 @@
-<h1>(仮)app/views/quiz_posts/index.html.erb</h1>
-<%= button_to 'サインイン', new_user_registration_path, method: :get, class: 'signin-button' %>
-<%= button_to 'ログイン', new_user_session_path, method: :get, class: 'login-button' %>
-<%= button_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'logout-button' %>
+<h1 class="text-primary text-center text-2xl bg-secondary p-6 mt-6">プログラミングで人生の可能性を広げよう！</h1>
+
+<div class="flex gap-1 p-6 mt-6">
+  <div class="w-2/3 pr-4">
+    <div class="bg-secondary p-6 rounded shadow">
+      <h2 class="text-primary font-bold text-xl mb-4 flex items-center">
+        <span class="material-icons leading-none mr-2">
+          lightbulb_outline
+        </span>
+        クイズを解く
+      </h2>
+      <h3 class="text-accent text-lg mb-4">言語別一覧</h3>
+        <div class="bg-base-100 rounded p-4">
+          <div class="flex gap-2">
+            <button class="btn bg-html flex-1 text-lg text-white text-bold text-center text-nowrap">HTML</button>
+            <button class="btn bg-css flex-1 text-lg text-white text-bold text-center text-nowrap">CSS</button>
+            <button class="btn bg-js flex-1 text-lg text-white text-bold text-center text-nowrap">JavaScript</button>
+          </div>
+          <div class="flex gap-2 mt-2">
+            <button class="btn bg-ruby flex-1 text-lg text-white text-bold text-center text-nowrap">Ruby on Rails</button>
+            <button class="btn bg-git flex-1 text-lg text-white text-bold text-center text-nowrap">Git</button>
+            <button class="btn bg-error flex-1 text-lg text-white text-bold text-center text-nowrap">エラー</button>
+          </div>
+        </div>
+
+      <h3 class="text-accent text-lg mt-4">新着クイズ</h3>
+        <div class="bg-base-100 rounded">
+          <div class="flex m-4 gap-4">
+            <div class="bg-secondary rounded p-6 flex-1 mt-4">
+              <p class="text-accent text-lg">クイズタイトル</p>
+              <div class="flex gap-1 items-center">
+                <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary border--300'%>
+                <p>作者のユーザーネーム</p>
+              </div>
+              <button class="btn btn-sm bg-html flex-1 text-sm text-white font-bold text-center text-nowrap mt-2">HTML</button>
+              <div class="card-actions justify-end"></div>
+            </div>
+            <div class="bg-secondary rounded p-6 flex-1 mt-4">
+              <p class="text-accent text-lg">クイズタイトル</p>
+              <div class="flex gap-1 items-center">
+                <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary border--300'%>
+              <p>作者のユーザーネーム</p>
+              </div>
+              <button class="btn btn-sm bg-css flex-1 text-sm text-white font-bold text-center text-nowrap mt-2">CSS</button>
+              <div class="card-actions justify-end"></div>
+            </div>
+          </div>
+          <div class="flex m-4 gap-4">
+            <div class="bg-secondary rounded p-6 flex-1">
+              <p class="text-accent text-lg">クイズタイトル</p>
+              <div class="flex gap-1 items-center">
+                <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary border--300'%>
+              <p>作者のユーザーネーム</p>
+              </div>
+              <button class="btn btn-sm bg-js flex-1 text-sm text-white font-bold text-center text-nowrap mt-2">JavaScript</button>
+              <div class="card-actions justify-end"></div>
+            </div>
+            <div class="bg-secondary rounded p-6 flex-1">
+              <p class="text-accent text-lg">クイズタイトル</p>
+              <div class="flex gap-1 items-center">
+                <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary border--300'%>
+              <p>作者のユーザーネーム</p>
+              </div>
+              <button class="btn btn-sm bg-ruby flex-1 text-sm text-white font-bold text-center text-nowrap mt-2">Ruby on Rails</button>
+              <div class="card-actions justify-end"></div>
+            </div>
+          </div>
+          <div class="flex m-4 gap-4">
+            <div class="bg-secondary rounded p-6 flex-1 mb-4">
+              <p class="text-accent text-lg">クイズタイトル</p>
+              <div class="flex gap-1 items-center">
+                <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary border--300'%>
+              <p>作者のユーザーネーム</p>
+              </div>
+              <button class="btn btn-sm bg-git flex-1 text-sm text-white font-bold text-center text-nowrap mt-2">Git</button>
+              <div class="card-actions justify-end"></div>
+            </div>
+            <div class="bg-secondary rounded p-6 flex-1 mb-4">
+              <p class="text-accent text-lg">クイズタイトル</p>
+              <div class="flex gap-1 items-center">
+                <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary border--300'%>
+              <p>作者のユーザーネーム</p>
+              </div>
+              <button class="btn btn-sm bg-error flex-1 text-sm text-white font-bold text-center text-nowrap mt-2">エラー</button>
+              <div class="card-actions justify-end"></div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="w-1/3 pl-4">
+    <div class="bg-secondary p-4 rounded shadow">
+      <h2 class="text-primary text-xl text-center font-bold p-4 flex items-center justify-center">
+        <span class="material-icons mr-2">
+          add_circle_outline
+        </span>
+        クイズを作る
+      </h2>
+    </div>
+    <div class="bg-secondary p-6 rounded shadow mt-12">
+      <h2 class="text-primary text-xl font-bold mb-2 flex items-center">
+        <span class="material-icons">
+          emoji_events
+        </span>
+        ランキング
+      </h2>
+      <div>
+      <h4 class="text-primary mt-4 mb-2 flex items-center">
+        <span class="material-icons md-36 bg-gradient-to-r from-yellow-300 via-yellow-500 to-yellow-600 text-gradient">
+          military_tech
+        </span>
+        たくさん解かれたクイズ
+      </h4>
+      </div>
+      <div class="bg-base-100 rounded p-6">
+        <p class="text-accent text-lg">クイズタイトル</p>
+        <div class="flex gap-1 items-center">
+          <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary border--300'%>
+          <p>作者のユーザーネーム</p>
+        </div>
+        <button class="btn btn-sm bg-html flex-1 text-sm text-white text-bold text-center text-nowrap mt-2">HTML</button>
+        <button class="btn btn-sm bg-css flex-1 text-sm text-white font-bold text-center text-nowrap mt-2">CSS</button>
+        <div class="card-actions justify-end">
+        </div>
+      </div>
+      <h4 class="text-primary mt-4 mb-2 flex items-center">
+        <span class="material-icons md-36 bg-gradient-to-r from-yellow-300 via-yellow-500 to-yellow-600 text-gradient">
+          military_tech
+        </span>
+        クイズを解いた数が多いユーザー
+      </h4>
+      <div class="bg-base-100 rounded p-6">
+      <div class="flex gap-1 items-center">
+        <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary border--300'%>
+        <p class="text-accent text-lg">ユーザーネーム</p>
+      </div>
+      </div>
+      <h4 class="text-primary mt-4 mb-2 flex items-center">
+        <span class="material-icons md-36 bg-gradient-to-r from-yellow-300 via-yellow-500 to-yellow-600 text-gradient">
+          military_tech
+        </span>
+        レビューが高評価のクイズ
+      </h4>
+      <div class="bg-base-100 rounded p-6">
+        <p class="text-accent text-lg">クイズタイトル</p>
+        <div class="flex gap-1 items-center">
+          <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary border--300'%>
+          <p class="text-sm">作者のユーザーネーム</p>
+        </div>
+        <button class="btn btn-sm bg-git flex-1 text-sm text-white font-bold text-center text-nowrap mt-2">Git</button>
+        <button class="btn btn-sm bg-error flex-1 text-sm text-white font-bold text-center text-nowrap mt-2">エラー</button>
+        <div class="mt-4">
+          <div class="rating rating-md rating-half">
+            <input type="radio" name="rating-10" class="rating-hidden" />
+            <input type="radio" name="rating-10" class="mask mask-star mask-half-1 bg-primary" />
+            <input type="radio" name="rating-10" class="mask mask-star mask-half-2 bg-primary" />
+            <input
+              type="radio"
+              name="rating-10"
+              class="mask mask-star mask-half-1 bg-primary"
+              checked="checked" />
+            <input type="radio" name="rating-10" class="mask mask-star mask-half-2 bg-primary" />
+            <input type="radio" name="rating-10" class="mask mask-star mask-half-1 bg-primary" />
+            <input type="radio" name="rating-10" class="mask mask-star mask-half-2 bg-primary" />
+            <input type="radio" name="rating-10" class="mask mask-star mask-half-1 bg-primary" />
+            <input type="radio" name="rating-10" class="mask mask-star mask-half-2 bg-primary" />
+            <input type="radio" name="rating-10" class="mask mask-star mask-half-1 bg-primary" />
+            <input type="radio" name="rating-10" class="mask mask-star mask-half-2 bg-primary" />
+          </div>
+        </div>
+        <%= image_tag "duck_body.png", class: 'mt-4' %>
+    </div>
+  </div>
+</div>
