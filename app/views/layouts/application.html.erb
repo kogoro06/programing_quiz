@@ -25,7 +25,9 @@
   <body class="font-mplus">
     <%= render 'shared/header' %>
     <%= render 'devise/shared/flash_messages' %>
+    <main>
     <%= yield %>
+    </main>
     <%= render 'shared/footer' %>
   </body>
 </html>

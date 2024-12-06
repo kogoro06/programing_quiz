@@ -1,2 +1,115 @@
-<h1>Rankings#index</h1>
-<p>Find me in app/views/rankings/index.html.erb</p>
+<div class="flex flex-col justify-center items-center mt-6 mb-6 mx-72">
+  <h1 class="text-3xl font-bold text-accent text-center">ランキング</h1>
+</div>
+
+<div class="bg-gray-100 m-8 rounded-lg p-6">
+  <!-- 横並び3分割 -->
+  <div class="flex gap-4">
+    <!-- セクション1 -->
+    <div class="flex-1 rounded-l p-4">
+      <h2 class="text-primary font-bold text-xl mb-6 text-center">
+        たくさん解かれたクイズ
+      </h2>
+      <div class="space-y-4">
+        <% [1, 2, 3, 4, 5].each_with_index do |rank, index| %>
+        <div class="bg-gray-50 rounded-lg p-4 flex items-center shadow" style="height: 90px;">
+          <div class="flex items-center gap-4">
+            <!-- メダルアイコン -->
+            <span class="material-icons md-36 
+              <%= case index
+                  when 0 then 'text-yellow-500' # 金メダル
+                  when 1 then 'text-gray-500'   # 銀メダル
+                  when 2 then 'text-amber-600'  # 銅メダル
+                  else 'text-sky-400'          # その他
+                end %>">
+              military_tech
+            </span>
+            <div class="flex-grow">
+              <p class="text-accent text-lg font-bold">クイズタイトル</p>
+              <div class="flex items-center gap-2">
+                <%= image_tag 'profile_sample.png', class: 'w-8 h-8 rounded-full object-cover border border-primary' %>
+                <p class="text-gray-700">作成者のユーザーネーム</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- セクション2 -->
+    <div class="flex-1 rounded-lg p-4">
+      <h2 class="text-primary font-bold text-xl mb-6 text-center">
+        クイズを解いた数が多いユーザー
+      </h2>
+      <div class="space-y-4">
+        <% [1, 2, 3, 4, 5].each_with_index do |rank, index| %>
+        <div class="bg-gray-50 rounded-lg p-4 flex items-center shadow" style="height: 90px;">
+          <div class="flex items-center gap-4">
+            <!-- メダルアイコン -->
+            <span class="material-icons md-36 
+              <%= case index
+                  when 0 then 'text-yellow-500' # 金メダル
+                  when 1 then 'text-gray-500'   # 銀メダル
+                  when 2 then 'text-amber-600'  # 銅メダル
+                  else 'text-sky-400'          # その他
+                end %>">
+              military_tech
+            </span>
+            <div class="flex-grow">
+              <p class="text-accent text-lg font-bold">ユーザーネーム</p>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- セクション3 -->
+    <div class="flex-1 rounded-lg p-4">
+      <h2 class="text-primary font-bold text-xl mb-6 text-center">
+        レビューが高評価のクイズ
+      </h2>
+      <div class="space-y-4">
+        <% [1, 2, 3, 4, 5].each_with_index do |rank, index| %>
+        <div class="bg-gray-50 rounded-lg p-4 flex items-center shadow" style="height: 90px;">
+          <div class="flex items-center gap-4">
+            <!-- メダルアイコン -->
+            <span class="material-icons md-36 
+              <%= case index
+                  when 0 then 'text-yellow-500' # 金メダル
+                  when 1 then 'text-gray-500'   # 銀メダル
+                  when 2 then 'text-amber-600'  # 銅メダル
+                  else 'text-sky-400'          # その他
+                end %>">
+              military_tech
+            </span>
+            <div class="flex-grow">
+              <p class="text-accent text-lg font-bold">クイズタイトル</p>
+              <div class="flex items-center gap-2">
+                <%= image_tag 'profile_sample.png', class: 'w-8 h-8 rounded-full object-cover border border-primary' %>
+                <p class="text-gray-700">作成者のユーザーネーム</p>
+              </div>
+              <!-- 星評価 -->
+              <div class="text-primary mt-2">
+                <% case rank %>
+                <% when 1 %>
+                  ★★★★★ 
+                <% when 2 %>
+                  ★★★★☆ 
+                <% when 3 %>
+                  ★★★★☆ 
+                <% when 4 %>
+                  ★★★☆☆ 
+                <% when 5 %>
+                  ★★★☆☆ 
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
