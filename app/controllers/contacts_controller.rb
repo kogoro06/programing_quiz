@@ -1,20 +1,20 @@
 class ContactsController < ApplicationController
   def new
-    # ログインユーザーかどうかによって、表示を分ける。
-    # deviseの使い方を調べる
-
-    # ゲストユーザーの場合
+    # ログイン中ユーザーなら、ログイン情報やメールアドレスを渡すよう改修する
     @contact = Contact.new
-    
-    # ログインユーザーの場合
-      # ユーザー情報（ユーザー名とメールアドレス）をインスタンス変数に入れる
-    #@contact = Contact.new
-
   end
 
   def create
-    # これでアクセスできる
-    contact_params
+
+    @contact = Contact.new(contact_params)
+    if @contact.save
+      ContactMailer.send_email_to_manager(@contact).deliver_now
+      flash[:notice] = 'お問い合わせが送信されました。'
+      redirect_to root_path
+    else
+      flash.now[:alert] = '入力内容に不備があります。'
+      render :new, status: :unprocessable_entity
+    end
     
   end
 

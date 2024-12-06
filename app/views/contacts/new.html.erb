@@ -1,7 +1,19 @@
 <h1>(仮)app/views/contacts/new.html.erb</h1>
 
-contactオブジェクトを作ってしまおう。コントローラーでインスタンス変数を定義する。
-一旦、url指定でやる。
+<br>
+<br>
+<br>
+<% if @contact.errors.any? %>
+  <ul>
+    <% @contact.errors.full_messages.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<br>
+<br>
+<br>
 
 <div>
   <%= form_with model: @contact do |f| %>

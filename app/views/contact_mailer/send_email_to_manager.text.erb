@@ -1,9 +1,9 @@
-[ユーザー]から問い合わせがありました。
+ユーザーから問い合わせがありました。
 
 *****
 ＜ユーザー情報＞
-・ユーザー名：[testuser]
-・ユーザーメールアドレス：[test@example.com]
+・ユーザー名：<%= @contact_notification.name %>
+・ユーザーメールアドレス：<%= @contact_notification.email %>
 *****
 
 問い合わせ内容は下記です。
@@ -11,8 +11,8 @@
 
 *****
 ＜お問い合わせ内容＞
-・問い合わせID：[ID]
-・問い合わせ作成日時：[日時]
+・問い合わせID：<%= @contact_notification.id %>
+・問い合わせ作成日時：<%= @contact_notification.created_at %>
 ・件名：<%= @contact_notification.title %>
 ・本文：<%= @contact_notification.text %>
 *****

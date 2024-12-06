@@ -1,0 +1,24 @@
+ja:
+  activerecord:
+    attributes:
+      contact:
+        name: "ニックネーム"
+        email: "メールアドレス"
+        title: "問い合わせタイトル"
+        text: "問い合わせ内容"
+    errors:
+      models:
+        contact:
+          attributes:
+            name:
+              blank: "を入力してください"
+              too_long: "は100文字以内で入力してください"
+            email: 
+              blank: "を入力してください"
+              invalid: "が無効です"
+            title:
+              blank: "を入力してください"
+              too_long: "は100文字以内で入力してください"
+            text:
+              blank: "を入力してください"
+              too_long: "は2000文字以内で入力してください"
