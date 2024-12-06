@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  get "privacy_policies/index"
-  get "terms_of_services/index"
+  get "privacy_policies" => "privacy_policies#index", as: :privacy_policies
+  get "terms_of_services" => "terms_of_services#index", as: :terms_of_services
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   resource :contacts, only: [ :new, :create ]
@@ -12,8 +13,8 @@ Rails.application.routes.draw do
     end
   end
 
-  get "tags/index"
-  get "rankings/index"
+  get "tags" => "tags#index", as: :tags
+  get "rankings" => "rankings#index", as: :rankings
   resource :mypage, only: [ :show, :edit, :update ]
   resources :otherspage, only: [ :show ]
   resources :questions, only: [ :show ]
