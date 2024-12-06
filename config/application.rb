@@ -13,7 +13,7 @@ module Myapp
     config.i18n.default_locale = :ja
 
     # タイムゾーンを日本時間に設定
-    config.time_zone = 'Tokyo'
+    config.time_zone = "Tokyo"
 
     # ActiveRecordで使用するデフォルトタイムゾーンを設定
     config.active_record.default_timezone = :local

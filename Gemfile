@@ -51,7 +51,7 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 
  # Debugger
- gem 'pry'
+ gem "pry"
 end
 
 group :development do
