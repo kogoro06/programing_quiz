@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   def set_user
     @user = current_user
   end
-  
+
   protected
 
   def configure_permitted_parameters
