@@ -1,1 +1,42 @@
 <h1>(仮)app/views/contacts/new.html.erb</h1>
+
+<br>
+<br>
+<br>
+<% if @contact.errors.any? %>
+  <ul>
+    <% @contact.errors.full_messages.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<br>
+<br>
+<br>
+
+<div>
+  <%= form_with model: @contact do |f| %>
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+    <div>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
+    <div>
+      <%= f.label :text %>
+      <%= f.text_field :text %>
+    </div>
+
+    <%= f.submit "送信" %>
+  <% end %>
+</div>
+
+
+*****
