@@ -1,2 +1,271 @@
-<h1>Rankings#index</h1>
-<p>Find me in app/views/rankings/index.html.erb</p>
+<div class="flex flex-col justify-center items-center mt-6 mb-6 mx-72">
+  <h1 class="text-3xl font-bold text-accent text-center">ランキング</h1>
+</div>
+
+<div class="bg-secondary m-8 rounded-lg p-6">
+  <!-- 横並び3分割 -->
+  <div class="flex gap-4">
+    <!-- セクション1 -->
+    <div class="flex-1 rounded-l p-4">
+      <h2 class="text-primary font-bold text-xl mb-6 text-center">
+        たくさん解かれたクイズ
+      </h2>
+      <div class="space-y-4">
+        <!-- 各ランキング -->
+        <div class="bg-base-100 rounded-lg p-4 flex items-center shadow" style="height: 120px;">
+          <div class="flex items-center gap-4">
+            <span class="material-icons md-48 bg-gradient-to-r from-yellow-300 via-yellow-500 to-yellow-600 text-gradient">
+              military_tech
+            </span>
+            <div class="flex-grow">
+              <p class="text-accent text-lg font-bold">クイズタイトル</p>
+              <div class="flex items-center gap-2">
+                <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary' %>
+                <p class="text-sm">ユーザーネーム</p>
+              </div>
+              <div>
+                <button class="btn btn-xs bg-html flex-1  text-white text-bold px-3 mt-2 text-center text-nowrap ">HTML</button>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-base-100 rounded-lg p-4 flex items-center shadow" style="height: 120px;">
+          <div class="flex items-center gap-4">
+            <span class="material-icons md-48 bg-gradient-to-r from-gray-300 via-gray-400 to-gray-500 text-gradient">
+              military_tech
+            </span>
+            <div class="flex-grow">
+              <p class="text-accent text-lg font-bold">クイズタイトル</p>
+              <div class="flex items-center gap-2">
+                <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary' %>
+                <p class="text-sm">ユーザーネーム</p>
+              </div>
+              <button class="btn btn-xs bg-html flex-1  text-white text-bold px-3 mt-2 text-center text-nowrap ">HTML</button>
+            </div>
+          </div>
+        </div>
+        <div class="bg-base-100 rounded-lg p-4 flex items-center shadow" style="height: 120px;">
+          <div class="flex items-center gap-4">
+            <span class="material-icons md-48 bg-gradient-to-r from-amber-500 via-yellow-700 to-yellow-800 text-gradient">
+              military_tech
+            </span>
+            <div class="flex-grow">
+              <p class="text-accent text-lg font-bold">クイズタイトル</p>
+              <div class="flex items-center gap-2">
+                <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary' %>
+                <p class="text-sm">ユーザーネーム</p>
+              </div>
+              <button class="btn btn-xs bg-html flex-1  text-white text-bold px-3 mt-2 text-center text-nowrap ">HTML</button>
+            </div>
+          </div>
+        </div>
+        <div class="bg-base-100 rounded-lg p-4 flex items-center shadow" style="height: 120px;">
+          <div class="flex items-center gap-4">
+            <span class="material-icons md-48 bg-gradient-to-r from-sky-100 via-sky-200 to-sky-300 text-gradient">
+              military_tech
+            </span>
+            <div class="flex-grow">
+              <p class="text-accent text-lg font-bold">クイズタイトル</p>
+              <div class="flex items-center gap-2">
+               <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary' %>
+                <p class="text-sm">ユーザーネーム</p>
+              </div>
+              <button class="btn btn-xs bg-html flex-1  text-white text-bold px-3 mt-2 text-center text-nowrap ">HTML</button>
+            </div>
+          </div>
+        </div>
+        <div class="bg-base-100 rounded-lg p-4 flex items-center shadow" style="height: 120px;">
+          <div class="flex items-center gap-4">
+            <span class="material-icons md-48 bg-gradient-to-r from-sky-100 via-sky-200 to-sky-300 text-gradient">
+              military_tech
+            </span>
+            <div class="flex-grow">
+              <p class="text-accent text-lg font-bold">クイズタイトル</p>
+              <div class="flex items-center gap-2">
+              <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary' %>
+                <p class="text-sm">ユーザーネーム</p>
+              </div>
+              <button class="btn btn-xs bg-html flex-1  text-white text-bold px-3 mt-2 text-center text-nowrap ">HTML</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   <!-- セクション2 -->
+<div class="flex-1 rounded-lg p-4">
+  <h2 class="text-primary font-bold text-xl mb-6 text-center">
+    クイズを解いた数が多いユーザー
+  </h2>
+  <div class="space-y-4">
+    <!-- ランキング1位 -->
+    <div class="bg-base-100 rounded-lg p-4 flex items-center shadow" style="height: 120px;">
+      <div class="flex items-center gap-4">
+        <!-- メダルアイコン -->
+        <span class="material-icons md-48 bg-gradient-to-r from-yellow-300 via-yellow-500 to-yellow-600 text-gradient">
+          military_tech
+        </span>
+        <!-- プロフィール画像 -->
+       <%= image_tag 'profile_sample.png', class: 'w-8 h-8 rounded-full object-cover border border-primary' %>
+        <div class="flex-grow">
+          <p class="text-accent text-lg font-bold">ユーザーネーム</p>
+        </div>
+      </div>
+    </div>
+    <!-- ランキング2位 -->
+    <div class="bg-base-100 rounded-lg p-4 flex items-center shadow" style="height: 120px;">
+      <div class="flex items-center gap-4">
+        <span class="material-icons md-48 bg-gradient-to-r from-gray-300 via-gray-400 to-gray-500 text-gradient">
+          military_tech
+        </span>
+       <%= image_tag 'profile_sample.png', class: 'w-8 h-8 rounded-full object-cover border border-primary' %>
+        <div class="flex-grow">
+          <p class="text-accent text-lg font-bold">ユーザーネーム</p>
+        </div>
+      </div>
+    </div>
+    <!-- ランキング3位 -->
+    <div class="bg-base-100 rounded-lg p-4 flex items-center shadow" style="height: 120px;">
+      <div class="flex items-center gap-4">
+        <span class="material-icons md-48 bg-gradient-to-r from-amber-500 via-yellow-700 to-yellow-800 text-gradient">
+          military_tech
+        </span>
+        <%= image_tag 'profile_sample.png', class: 'w-8 h-8 rounded-full object-cover border border-primary' %>
+        <div class="flex-grow">
+          <p class="text-accent text-lg font-bold">ユーザーネーム</p>
+        </div>
+      </div>
+    </div>
+    <!-- ランキング4位 -->
+    <div class="bg-base-100 rounded-lg p-4 flex items-center shadow" style="height: 120px;">
+      <div class="flex items-center gap-4">
+        <span class="material-icons md-48 bg-gradient-to-r from-sky-100 via-sky-200 to-sky-300 text-gradient">
+          military_tech
+        </span>
+       <%= image_tag 'profile_sample.png', class: 'w-8 h-8 rounded-full object-cover border border-primary' %>
+        <div class="flex-grow">
+          <p class="text-accent text-lg font-bold">ユーザーネーム</p>
+        </div>
+      </div>
+    </div>
+    <!-- ランキング5位 -->
+    <div class="bg-base-100 rounded-lg p-4 flex items-center shadow" style="height: 120px;">
+      <div class="flex items-center gap-4">
+        <span class="material-icons md-48 bg-gradient-to-r from-sky-100 via-sky-200 to-sky-300 text-gradient">
+          military_tech
+        </span>
+       <%= image_tag 'profile_sample.png', class: 'w-8 h-8 rounded-full object-cover border border-primary' %>
+        <div class="flex-grow">
+          <p class="text-accent text-lg font-bold">ユーザーネーム</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <!-- セクション3 -->
+<div class="flex-1 rounded-lg p-4">
+  <h2 class="text-primary font-bold text-xl mb-6 text-center">
+    レビューが高評価のクイズ
+  </h2>
+  <div class="space-y-4">
+    <!-- ランキング1位 -->
+    <div class="bg-base-100 rounded-lg p-4 flex items-center shadow" style="height: 120px;">
+      <div class="flex items-center gap-4">
+        <!-- メダルアイコン -->
+        <span class="material-icons md-48 bg-gradient-to-r from-yellow-300 via-yellow-500 to-yellow-600 text-gradient">
+          military_tech
+        </span>
+        <div class="flex-grow">
+          <p class="text-accent text-lg font-bold">クイズタイトル</p>
+          <div class="flex items-center gap-2">
+            <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary' %>
+            <p class="text-sm">ユーザーネーム</p>
+          </div>
+          <button class="btn btn-xs bg-html flex-1 text-sm text-white font-bold text-center text-nowrap mt-1 ">HTML</button>
+          <!-- 星評価 -->
+          <div class="text-primary">
+            ★★★★★
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ランキング2位 -->
+    <div class="bg-base-100 rounded-lg p-4 flex items-center shadow" style="height: 120px;">
+      <div class="flex items-center gap-4">
+        <span class="material-icons md-48 bg-gradient-to-r from-gray-300 via-gray-400 to-gray-500 text-gradient">
+          military_tech
+        </span>
+        <div class="flex-grow">
+          <p class="text-accent text-lg font-bold">クイズタイトル</p>
+          <div class="flex items-center gap-2">
+            <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary' %>
+            <p class="text-sm">ユーザーネーム</p>
+          </div>
+           <button class="btn btn-xs bg-html flex-1 text-sm text-white font-bold text-center text-nowrap mt-1 ">HTML</button>
+          <div class="text-primary">
+            ★★★★☆
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ランキング3位 -->
+    <div class="bg-base-100 rounded-lg p-4 flex items-center shadow" style="height: 120px;">
+      <div class="flex items-center gap-4">
+        <span class="material-icons md-48 bg-gradient-to-r from-amber-500 via-yellow-700 to-yellow-800 text-gradient">
+          military_tech
+        </span>
+        <div class="flex-grow">
+          <p class="text-accent text-lg font-bold">クイズタイトル</p>
+          <div class="flex items-center gap-2">
+           <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary' %>
+            <p class="text-sm">ユーザーネーム</p>
+          </div>
+           <button class="btn btn-xs bg-html flex-1 text-sm text-white font-bold text-center text-nowrap mt-1 ">HTML</button>
+          <div class="text-primary">
+            ★★★★☆
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ランキング4位 -->
+    <div class="bg-base-100 rounded-lg p-4 flex items-center shadow" style="height: 120px;">
+      <div class="flex items-center gap-4">
+        <span class="material-icons md-48 bg-gradient-to-r from-sky-100 via-sky-200 to-sky-300 text-gradient">
+          military_tech
+        </span>
+        <div class="flex-grow">
+          <p class="text-accent text-lg font-bold">クイズタイトル</p>
+          <div class="flex items-center gap-2">
+           <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary' %>
+            <p class="text-sm">ユーザーネーム</p>
+          </div>
+           <button class="btn btn-xs bg-html flex-1 text-sm text-white font-bold text-center text-nowrap mt-1 ">HTML</button>
+          <div class="text-primary">
+            ★★★☆☆
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ランキング5位 -->
+    <div class="bg-base-100 rounded-lg p-4 flex items-center shadow" style="height: 120px;">
+      <div class="flex items-center gap-4">
+        <span class="material-icons md-48 bg-gradient-to-r from-sky-100 via-sky-200 to-sky-300 text-gradient">
+          military_tech
+        </span>
+        <div class="flex-grow">
+          <p class="text-accent text-lg font-bold">クイズタイトル</p>
+          <div class="flex items-center gap-2">
+            <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary' %>
+            <p class="text-sm">ユーザーネーム</p>
+          </div>
+          <button class="btn btn-xs bg-html flex-1 text-sm text-white font-bold text-center text-nowrap mt-1 ">HTML</button>
+          <div class="text-primary">
+            ★★★☆☆
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
