@@ -1,7 +1,10 @@
 class ContactsController < ApplicationController
   def new
-    # ログイン中ユーザーなら、ログイン情報やメールアドレスを渡すよう改修する
-    @contact = Contact.new
+    if user_signed_in?
+      @contact = Contact.new(name: current_user.name, email: current_user.email)
+    else
+      @contact = Contact.new()
+    end
   end
 
   def create
