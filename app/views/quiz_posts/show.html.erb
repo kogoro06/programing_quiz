@@ -1,1 +1,65 @@
-<h1>(仮)app/views/quiz_posts/show.html.erb</h1>
+<div class="bg-secondary m-12 rounded-lg p-6 max-w-3xl mx-auto">
+  <div class="bg-base-100 p-8 rounded-lg max-w-3xl mx-auto">
+    <div class="flex justify-between items-center">
+      <h1 class="text-3xl text-accent">クイズタイトル</h1>
+      <div class="flex text-primary">
+        <button>
+          <span class="material-icons md-36">
+            edit
+          </span>
+        </button>
+        <button>
+          <span class="material-icons md-36">
+            delete
+          </span>
+        </button>
+        <button>
+          <span class="material-icons md-36">
+            bookmark_border
+          </span>
+        </button>
+      </div>
+    </div>
+    <div class="mt-4">
+      <div class="flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+          <%= image_tag 'profile_sample.png', class: 'w-8 h-8 rounded-full object-cover border border-primary border--300' %>
+          <div class="mt-4">
+            <p class="text-primary">作成者のユーザーネーム</p>
+            <p class="text-sm">2024.11.20</p>
+          </div>
+        </div>
+        <div class="rating rating-md rating-half">
+          <input type="radio" name="rating-10" class="rating-hidden" />
+          <input type="radio" name="rating-10" class="mask mask-star mask-half-1 bg-primary" />
+          <input type="radio" name="rating-10" class="mask mask-star mask-half-2 bg-primary" />
+          <input
+            type="radio"
+            name="rating-10"
+            class="mask mask-star mask-half-1 bg-primary"
+            checked="checked" />
+          <input type="radio" name="rating-10" class="mask mask-star mask-half-2 bg-primary" />
+          <input type="radio" name="rating-10" class="mask mask-star mask-half-1 bg-primary" />
+          <input type="radio" name="rating-10" class="mask mask-star mask-half-2 bg-primary" />
+          <input type="radio" name="rating-10" class="mask mask-star mask-half-1 bg-primary" />
+          <input type="radio" name="rating-10" class="mask mask-star mask-half-2 bg-primary" />
+          <input type="radio" name="rating-10" class="mask mask-star mask-half-1 bg-primary" />
+          <input type="radio" name="rating-10" class="mask mask-star mask-half-2 bg-primary" />
+        </div>
+      </div>
+      <div class="mt-4 flex items-center justify-between">
+        <div>
+          <button class="btn btn-sm bg-html flex-1 text-sm text-white font-bold text-center text-nowrap mt-2">HTML</button>
+          <button class="btn btn-sm bg-css flex-1 text-sm text-white font-bold text-center text-nowrap mt-2 mr-4">CSS</button>
+          <span class="mt-2 text-sm">全10問</span>
+        </div>
+        <div>
+          <button class="bg-secondary hover:opacity-70 mt-2 px-4 py-1 rounded-lg shadow"><i class="fa-brands fa-x-twitter"></i>に共有する</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex justify-center items-center mt-2">
+    <button type="submit" class="text-white bg-accent hover:opacity-70 font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center mt-6">クイズを始める</button>
+  </div>
+</div>
