@@ -1,1 +1,71 @@
-<h1>(仮)app/views/mypages/edit.html.erb</h1>
+<div class="flex flex-col justify-center items-center mt-6 mb-6 mx-72">
+  <h1 class="text-3xl font-bold text-accent text-center">ユーザプロフィール編集</h1>
+</div>
+
+<div class="bg-secondary mx-72 rounded-lg p-6">
+  <div class="space-y-10">
+    <!-- ユーザーネーム -->
+    <div class="bg-base-100 rounded-lg p-4 flex items-center shadow text-primary" style="height: 70px;">
+      <div class="flex-grow">
+        <p class="text-2xl m-2">ユーザーネーム</p>
+      </div>
+    </div>
+
+    <!-- アバター画像 -->
+    <div class="bg-base-100 rounded-lg p-4 flex items-center shadow text-primary" style="height: 70px;">
+      <div class="flex-grow">
+        <p class="text-2xl m-2">アバター画像</p>
+      </div>
+      <div class="bg-gray-100 rounded px-6 py-2 mx-20 text-left text-gray-700" style="width: 600px;">
+        ファイルを選択する
+      </div>
+    </div>
+
+    <!-- 自己紹介文 -->
+    <div class="bg-base-100 rounded-lg p-4 shadow text-primary" style="height: 200px;">
+      <p class="text-2xl mx-2">自己紹介文</p>
+    </div>
+
+    <!-- 勉強している言語 -->
+    <div class="bg-base-100 rounded-lg p-4 flex items-center shadow text-primary" style="height: 70px;">
+      <div class="flex-grow">
+        <p class="text-2xl m-2">勉強している言語</p>
+      </div>
+    </div>
+
+    <!-- Xリンク -->
+    <div class="bg-base-100 rounded-lg p-4 flex items-center shadow text-primary" style="height: 70px;">
+      <div class="flex-grow">
+        <p class="text-2xl m-2">Xリンク</p>
+      </div>
+    </div>
+
+    <!-- Gitリンク -->
+    <div class="bg-base-100 rounded-lg p-4 flex items-center shadow text-primary" style="height: 70px;">
+      <div class="flex-grow">
+        <p class="text-2xl m-2">Gitリンク</p>
+      </div>
+    </div>
+
+<div class="space-y-6 mt-6">
+<div class="relative w-full">
+  <!-- 更新ボタン -->
+  <div class="flex justify-center mt-6">
+    <button class="btn btn-lg text-white bg-accent py-4 px-24 text-3xl font-bold rounded-lg w-3/4">
+      更新する
+    </button>
+  </div>
+
+  <!-- 退会ボタン -->
+  <div class="flex justify-center mt-4">
+    <button class="btn btn-lg text-white bg-primary py-4 px-24 text-3xl font-bold rounded-lg w-3/4">
+      退会する
+    </button>
+  </div>
+
+ <!-- 注意書き -->
+<div style="text-align: right; margin-top: 8px; width: 75%; margin-left: auto; margin-right: auto;">
+  <p class="text-sm text-gray-600">
+    ※退会すると全てのデータが削除されます。
+  </p>
+</div>
