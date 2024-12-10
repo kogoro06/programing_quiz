@@ -1,1 +1,96 @@
-<h1>(仮)app/views/mypages/show.html.erb</h1>
+<div class="bg-gray-50 h-max m-5 p-10 flex flex-col ">
+    <div class="flex flex-col justify-center items-center">
+        <div class="bg-white w-[300px] p-5">
+            <div class="flex space-x-5">
+                <div class="text-center">
+                    <%= image_tag 'profile_sample.png' ,
+                        class: 'w-14 h-14 rounded-full object-cover border border-primary border-300' %>
+                </div>
+
+                <div class="text-accent font-bold">
+                    <p class="text-2xl">ユーザーネーム</p>
+                    <div class="flex text-sm space-x-3">
+                        <p>フォロー</p>
+                        <p>フォロワー</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-center text-[25px] space-x-8 my-5">
+                <i class="fa-brands fa-x-twitter"></i>
+                <i class="fa-brands fa-github"></i>
+            </div>
+
+            <div class="bg-gray-50 text-sm mb-5 p-5 text-primary">
+                <p>
+                    自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介自己紹
+                </p>
+                <p class="mt-5">
+                    HTML CSS Javascript
+                </p>
+            </div>
+
+            <div class="bg-gray-50 text-sm flex justify-center p-2 mb-3 text-primary">
+                <span class="material-icons">
+                    edit
+                </span>
+                <p>編集</p>
+            </div>
+
+            <div class="bg-gray-50 text-sm flex justify-center p-2 text-primary">
+                <span class="material-icons">
+                    workspace_premium
+                </span>
+                <p>バッジ</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ユーザーが投稿した一覧を表示する部分 -->
+    <div class="inline-flex flex-col items-center">
+        <div class="bg-primary w-fit p-3 text-white text-xl my-5 ">
+            ユーザーネームが投稿した一覧
+        </div>
+        <div class="flex flex-wrap gap-3 items-center justify-center">
+            <% [1, 2, 3, 4, 5, 6].each do |quiz| %>
+                <div class="bg-white p-5  w-[45%] max-w-[700px] min-w-[450px]">
+                    <p class="text-2xl p-1 text-accent font-bold">クイズタイトル</p>
+                    <div class="flex items-center justify-between w-full p-1">
+                        <div class="flex items-center space-x-3 text-lg">
+                            <%= image_tag 'profile_sample.png' ,
+                                class: 'w-10 h-10 rounded-full object-cover border border-primary' %>
+                                <p class="block text-primary">ユーザーネーム</p>
+                        </div>
+                        <p class="ml-auto text-primary">作成日</p>
+                    </div>
+                    <div class="flex p-2 items-center space-x-3 justify-between">
+                        <div class="flex space-x-2">
+                            <% ["HTML", "Javascript" , "ruby" , "rails" ].each do |tag| %>
+                                <button
+                                    class="btn-sm bg-html text-lg text-white  text-center whitespace-nowrap rounded-lg">
+                                    <%= tag %>
+                                </button>
+                                <% end %>
+                        </div>
+                        <div class="text-lg whitespace-nowrap text-primary">
+                            全10問
+                        </div>
+                    </div>
+                </div>
+                <% end %>
+        </div>
+    </div>
+
+    <div class="flex justify-center gap-2 my-10">
+        <div class="join mt-6">
+            <button class="join-item btn btn-sm bg-primary text-base-100">
+                < 
+                    <button class="join-item btn btn-sm bg-primary text-base-100">1</button>
+                    <button class="join-item btn btn-sm bg-accent text-base-100">2</button>
+                    <button class="join-item btn btn-sm bg-primary text-base-100 pointer-events-none">...</button>
+                    <button class="join-item btn btn-sm bg-primary text-base-100">9</button>
+                    <button class="join-item btn btn-sm bg-primary text-base-100">10</button>
+                    <button class="join-item btn btn-sm bg-primary text-base-100">></button>
+        </div>
+    </div>
+</div>
