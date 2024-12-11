@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  get "privacy_policies/index"
-  get "terms_of_services/index"
+  devise_for :users
+
+  get "privacy_policies" => "privacy_policies#index", as: :privacy_policies
+  get "terms_of_services" => "terms_of_services#index", as: :terms_of_services
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   resource :contacts, only: [ :new, :create ]
@@ -10,11 +13,15 @@ Rails.application.routes.draw do
     end
   end
 
-  get "tags/index"
+  get "tags" => "tags#index", as: :tags
+  get "rankings" => "rankings#index", as: :rankings
   resource :mypage, only: [ :show, :edit, :update ]
   resources :otherspage, only: [ :show ]
-  resources :questions, only: [ :show ]
-  get "questions/result"
+  resources :questions, only: [ :show ] do
+    collection do
+      get "result"
+    end
+  end
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check

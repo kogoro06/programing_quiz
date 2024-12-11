@@ -1,0 +1,59 @@
+<h2><%= t('.title') %></h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "name" %><br />
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> <%= t('.characters_minimum') %>)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password", id: "password_field" %>
+    <div>
+      <%= check_box_tag 'show_password', '1', false, onclick: 'togglePasswordVisibility()' %>
+      <%= label_tag 'show_password', t('devise.registrations.new.show_password') %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", id: "password_confirmation_field" %>
+    <div>
+      <%= check_box_tag t('.show_password_confirmation'), '1', false, onclick: 'togglePasswordConfirmationVisibility()' %>
+      <%= label_tag 'show_password_confirmation', t('.show_password_confirmation') %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= f.submit t('.sign_up') %>
+  </div>
+<% end %>
+
+<script>
+function togglePasswordVisibility() {
+  const passwordField = document.getElementById("password_field");
+  if (passwordField.type === "password") {
+    passwordField.type = "text";
+  } else {
+    passwordField.type = "password";
+  }
+}
+
+function togglePasswordConfirmationVisibility() {
+  const passwordConfirmationField = document.getElementById("password_confirmation_field");
+  if (passwordConfirmationField.type === "password") {
+    passwordConfirmationField.type = "text";
+  } else {
+    passwordConfirmationField.type = "password";
+  }
+}
+</script>
+
+<%= render "devise/shared/links" %>

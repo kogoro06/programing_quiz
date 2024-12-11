@@ -14,16 +14,21 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <script src="https://kit.fontawesome.com/d01e4a84b1.js" crossorigin="anonymous"></script>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
   </head>
 
   <body class="font-mplus">
     <%= render 'shared/header' %>
+    <%= render 'devise/shared/flash_messages' %>
+    <main>
     <%= yield %>
+    </main>
     <%= render 'shared/footer' %>
   </body>
 </html>
