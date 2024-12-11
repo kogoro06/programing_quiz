@@ -17,9 +17,9 @@ Rails.application.routes.draw do
   get "rankings" => "rankings#index", as: :rankings
   resource :mypage, only: [ :show, :edit, :update ]
   resources :otherspage, only: [ :show ]
-  resources :questions, only: [:show] do
+  resources :questions, only: [ :show ] do
     collection do
-      get 'result'
+      get "result"
     end
   end
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
