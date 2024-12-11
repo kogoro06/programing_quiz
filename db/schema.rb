@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_09_153156) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_11_063107) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,7 +44,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_09_153156) do
   end
 
   create_table "profiles", force: :cascade do |t|
-    t.string "avatar_url"
     t.string "bio"
     t.string "studying_language"
     t.string "github_links"
