@@ -28,6 +28,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_11_043746) do
     t.text "text", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name", null: false
+    t.string "email", null: false
   end
 
   create_table "past_answers", force: :cascade do |t|
