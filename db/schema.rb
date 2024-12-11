@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_09_153156) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_11_043746) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,7 +25,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_09_153156) do
 
   create_table "contacts", force: :cascade do |t|
     t.string "title", null: false
-    t.text "text", null: false
+    t.string "text", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name", null: false
@@ -44,7 +44,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_09_153156) do
   end
 
   create_table "profiles", force: :cascade do |t|
-    t.string "avatar_url"
     t.string "bio"
     t.string "studying_language"
     t.string "github_links"
