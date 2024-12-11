@@ -17,8 +17,11 @@ Rails.application.routes.draw do
   get "rankings" => "rankings#index", as: :rankings
   resource :mypage, only: [ :show, :edit, :update ]
   resources :otherspage, only: [ :show ]
-  resources :questions, only: [ :show ]
-  get "questions/result"
+  resources :questions, only: [ :show ] do
+    collection do
+      get "result"
+    end
+  end
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
