@@ -75,6 +75,8 @@ ja:
         show_password: "パスワードを見る"
         show_password_confirmation: "確認用のパスワードを見る"
         characters_minimum: "文字以上"
+      signed_up: 'アカウント登録が完了しました。'
+      failure: 'アカウントの登録に失敗しました。入力内容を確認してください。'
     sessions:
       new:
         title: "ログイン"
