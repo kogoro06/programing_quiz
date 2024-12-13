@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'registrations' }
 
   get "privacy_policies" => "privacy_policies#index", as: :privacy_policies
   get "terms_of_services" => "terms_of_services#index", as: :terms_of_services
