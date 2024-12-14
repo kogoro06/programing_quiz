@@ -1,16 +1,16 @@
 users = [
   # 管理者１
   {
-  email: "admin_user1@example.com",
-  password: "admin_password",
+  email: Rails.application.credentials.admin_email1,
+  password: Rails.application.credentials.admin_password1,
   name: "admin_user1",
   role: "admin"
   },
 
   # 管理者２
   {
-    email: "admin_user2@example.com",
-    password: "admin_password",
+    email: Rails.application.credentials.admin_email2,
+    password: Rails.application.credentials.admin_password2,
     name: "admin_user2",
     role: "admin"
   },
