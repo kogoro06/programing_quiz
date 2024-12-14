@@ -3,7 +3,7 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, required: true, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
@@ -11,7 +11,7 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> <%= t('.characters_minimum') %>)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password", id: "password_field" %>
+    <%= f.password_field :password, required: true, autocomplete: "new-password", id: "password_field" %>
     <div>
       <%= check_box_tag 'show_password', '1', false, onclick: 'togglePasswordVisibility()' %>
       <%= label_tag 'show_password', t('devise.registrations.new.show_password') %>
