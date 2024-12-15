@@ -27,6 +27,7 @@ ja:
             password:
               blank: "パスワードを入力してください"
               too_short: "パスワードは%{count}文字以上で入力してください"
+              too_long: "パスワードは%{count}文字以内で入力してください"
             password_confirmation:
               confirmation: "パスワード確認が一致しません"
   devise:
