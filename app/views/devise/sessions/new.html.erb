@@ -3,7 +3,7 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, required: true, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
@@ -11,13 +11,17 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> <%= t('.characters_minimum') %>)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password", id: "password_field" %>
+    <%= f.password_field :password, required: true, autocomplete: "new-password", id: "password_field" %>
     <div>
       <%= check_box_tag 'show_password', '1', false, onclick: 'togglePasswordVisibility()' %>
       <%= label_tag 'show_password', t('devise.registrations.new.show_password') %>
     </div>
   </div>
 
+<%
+=begin
+%>
+  # ログイン時にパスワード確認は不要のため、コメントアウト
   <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password", id: "password_confirmation_field" %>
@@ -26,13 +30,23 @@
       <%= label_tag 'show_password_confirmation', t('.show_password_confirmation') %>
     </div>
   </div>
+<%
+=end
+%>
 
+<%
+=begin
+%>
+  # remember_meは一旦使わないため、コメントアウト
   <% if devise_mapping.rememberable? %>
     <div class="field">
       <%= f.check_box :remember_me %>
       <%= f.label :remember_me %>
     </div>
   <% end %>
+<%
+=end
+%>
 
   <div class="actions">
     <%= f.submit t('.sign_in') %>
