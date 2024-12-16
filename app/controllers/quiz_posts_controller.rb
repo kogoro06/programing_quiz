@@ -16,7 +16,7 @@ class QuizPostsController < ApplicationController
     @question = Question.new(question_params)
     if @quiz.save
       # 保存に成功した場合の処理
-      redirect_to quiz_posts_path, notice: 'クイズが作成されました。'
+      redirect_to quiz_posts_path, notice: "クイズが作成されました。"
     else
       # 保存に失敗した場合の処理
       render :new
