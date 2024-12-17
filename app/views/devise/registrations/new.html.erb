@@ -1,46 +1,48 @@
-<div class="bg-white">
-  <div class="flex flex-col justify-center items-center mt-8 mb-8 mx-72">
-    <h1 class="text-4xl font-bold text-accent text-center"><%= t('devise.registrations.new.title') %></h1>
+<div class="bg-white min-h-screen overflow-auto">
+  <div class="flex flex-col justify-center items-center mt-8 mb-8 mx-4 md:mx-24 lg:mx-72">
+    <h1 class="text-3xl md:text-3xl lg:text-4xl font-bold text-accent text-center">
+      <%= t('devise.registrations.new.title') %>
+    </h1>
   </div>
 
   <!-- フォームコンテンツ -->
-  <div class="flex bg-secondary rounded justify-center mx-48 mb-12">
-    <div class="flex flex-col w-full mt-6 mb-6 mx-24 space-y-6">
+  <div class="flex bg-secondary rounded justify-center mx-4 md:mx-12 lg:mx-48 mb-8 md:mb-12">
+    <div class="flex flex-col w-full mt-6 mb-6 mx-4 md:mx-12 lg:mx-24 space-y-6">
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
         <!-- ユーザーネーム入力 -->
-        <div class="mt-8">
-          <%= f.label :name, t('devise.registrations.new.name'), class: 'block mb-2 text-lg text-nowrap font-medium text-primary' %>
-          <%= f.text_field :name, class: 'bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary block p-3.5', placeholder: t('devise.registrations.new.name_placeholder'), autofocus: true, autocomplete: "name" %>
+        <div class="mt-4 md:mt-8">
+          <%= f.label :name, t('devise.registrations.new.name'), class: 'block mb-2 text-sm md:text-lg text-nowrap font-medium text-primary' %>
+          <%= f.text_field :name, class: 'bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary block p-2 md:p-3.5', placeholder: t('devise.registrations.new.name_placeholder'), autofocus: true, autocomplete: "name" %>
         </div>
 
         <!-- メールアドレス入力 -->
-        <div class="mt-8">
-          <%= f.label :email, t('devise.registrations.new.email'), class: 'block mb-2 text-lg text-nowrap font-medium text-primary' %>
-          <%= f.email_field :email, class: 'bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary block p-3.5', placeholder: t('devise.registrations.new.email_placeholder'), autocomplete: "email" %>
+        <div class="mt-4 md:mt-8">
+          <%= f.label :email, t('devise.registrations.new.email'), class: 'block mb-2 text-sm md:text-lg text-nowrap font-medium text-primary' %>
+          <%= f.email_field :email, class: 'bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary block p-2 md:p-3.5', placeholder: t('devise.registrations.new.email_placeholder'), autocomplete: "email" %>
         </div>
 
         <!-- パスワード入力 -->
-        <div class="mt-8">
-          <%= f.label :password, t('devise.registrations.new.password'), class: 'block mb-2 text-lg text-nowrap font-medium text-primary' %>
-          <%= f.password_field :password, class: 'bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary block p-3.5', placeholder: t('devise.registrations.new.password_placeholder'), autocomplete: "new-password", id: "password_field" %>
+        <div class="mt-4 md:mt-8">
+          <%= f.label :password, t('devise.registrations.new.password'), class: 'block mb-2 text-sm md:text-lg text-nowrap font-medium text-primary' %>
+          <%= f.password_field :password, class: 'bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary block p-2 md:p-3.5', placeholder: t('devise.registrations.new.password_placeholder'), autocomplete: "new-password", id: "password_field" %>
         </div>
 
         <!-- パスワード確認入力 -->
-        <div class="mt-8">
-          <%= f.label :password_confirmation, t('devise.registrations.new.password_confirmation'), class: 'block mb-2 text-lg text-nowrap font-medium text-primary' %>
-          <%= f.password_field :password_confirmation, class: 'bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary block p-3.5', placeholder: t('devise.registrations.new.password_placeholder'), autocomplete: "new-password", id: "password_confirmation_field" %>
+        <div class="mt-4 md:mt-8">
+          <%= f.label :password_confirmation, t('devise.registrations.new.password_confirmation'), class: 'block mb-2 text-sm md:text-lg text-nowrap font-medium text-primary' %>
+          <%= f.password_field :password_confirmation, class: 'bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary block p-2 md:p-3.5', placeholder: t('devise.registrations.new.password_placeholder'), autocomplete: "new-password", id: "password_confirmation_field" %>
         </div>
 
         <!-- 登録ボタン -->
-        <div class="mt-8 flex justify-center">
-          <%= f.submit t('devise.registrations.new.register'), class: 'text-white bg-accent hover:opacity-70 font-medium rounded-lg text-lg w-64 px-5 py-2.5 text-center mt-6' %>
+        <div class="mt-8 md:mt-12 flex justify-center">
+          <%= f.submit t('devise.registrations.new.register'), class: 'text-white bg-accent hover:opacity-70 font-medium rounded-lg text-lg w-64 px-5 py-2.5 text-center' %>
         </div>
       <% end %>
 
       <!-- リンク表示 -->
-      <div class="flex flex-col items-center space-y-2 text-lg">
+      <div class="flex flex-col items-center space-y-2 text-sm md:text-lg">
         <%= link_to t('devise.registrations.new.login'), new_user_session_path, class: 'text-primary font-bold hover:text-accent transition duration-300' %>
         <%= link_to t('devise.registrations.new.forgot_password'), new_user_password_path, class: 'text-primary font-bold hover:text-accent transition duration-300' %>
       </div>
