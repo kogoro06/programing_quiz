@@ -1,40 +1,53 @@
-<h2><%= t('.title') %></h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %><br />
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="bg-white">
+  <div class="flex flex-col justify-center items-center mt-8 mb-8 mx-72">
+    <h1 class="text-4xl font-bold text-accent text-center"><%= t('.title') %></h1>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> <%= t('.characters_minimum') %>)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password", id: "password_field" %>
-    <div>
-      <%= check_box_tag 'show_password', '1', false, onclick: 'togglePasswordVisibility()' %>
-      <%= label_tag 'show_password', t('devise.registrations.new.show_password') %>
+  <!-- フォームコンテンツ -->
+  <div class="flex bg-secondary rounded justify-center mx-48 mb-12">
+    <div class="flex flex-col w-full mt-6 mb-6 mx-24 space-y-6">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <!-- ユーザーネーム入力 -->
+        <div class="mt-8">
+          <%= f.label :name, 'ユーザーネーム', class: 'block mb-2 text-lg text-nowrap font-medium text-primary' %>
+          <%= f.text_field :name, class: 'bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary block p-3.5', placeholder: "20文字以内", autofocus: true, autocomplete: "name" %>
+        </div>
+
+        <!-- メールアドレス入力 -->
+        <div class="mt-8">
+          <%= f.label :email, 'メールアドレス', class: 'block mb-2 text-lg text-nowrap font-medium text-primary' %>
+          <%= f.email_field :email, class: 'bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary block p-3.5', placeholder: "example@com", autocomplete: "email" %>
+        </div>
+
+        <!-- パスワード入力 -->
+        <div class="mt-8">
+          <%= f.label :password, 'パスワード', class: 'block mb-2 text-lg text-nowrap font-medium text-primary' %>
+          <%= f.password_field :password, class: 'bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary block p-3.5', placeholder: "6文字以上", autocomplete: "new-password", id: "password_field" %>
+        </div class="mt-8">
+
+        <!-- パスワード確認入力 -->
+        <div class="mt-8">
+          <%= f.label :password_confirmation, 'パスワード確認', class: 'block mb-2 text-lg text-nowrap font-medium text-primary' %>
+          <%= f.password_field :password_confirmation, class: 'bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary block p-3.5', placeholder: "6文字以上", autocomplete: "new-password", id: "password_confirmation_field" %>
+        </div>
+
+        <!-- 登録ボタン -->
+        <div class="mt-8 flex justify-center">
+          <%= f.submit '登録する', class: 'text-white bg-accent hover:opacity-70 font-medium rounded-lg text-lg w-64 px-5 py-2.5 text-center mt-6' %>
+        </div>
+      <% end %>
+
+      <!-- リンク表示 -->
+      <div class="flex flex-col items-center space-y-2 text-lg">
+        <%= link_to 'ログイン', new_user_session_path, class: 'text-primary font-bold hover:text-accent transition duration-300' %>
+        <%= link_to 'パスワードをお忘れの方はこちら', new_user_password_path, class: 'text-primary font-bold hover:text-accent transition duration-300' %>
+      </div>
     </div>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", id: "password_confirmation_field" %>
-    <div>
-      <%= check_box_tag t('.show_password_confirmation'), '1', false, onclick: 'togglePasswordConfirmationVisibility()' %>
-      <%= label_tag 'show_password_confirmation', t('.show_password_confirmation') %>
-    </div>
-  </div>
-
-  <div class="actions">
-    <%= f.submit t('.sign_up') %>
-  </div>
-<% end %>
 
 <script>
 function togglePasswordVisibility() {
