@@ -1,47 +1,74 @@
-<div class="bg-secondary">
-  <div class="ml-5 mx-auto flex justify-between items-center p-4">
-    <div class="flex items-center space-x-4">
-      <%= image_tag 'logo.png', class: 'w-10 h-10' %>
-        <%= link_to 'Programming Question', '/', class: 'text-primary font-bold text-lg font-frankfurter mr-10' %>
-          <form class="flex items-center">
-            <label for="simple-search" class="sr-only">Search</label>
-            <div class="flex items-center gap-4">
-              <div class="relative w-full">
-                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <span class="material-icons text-primary">
-                    search
-                  </span>
-                </div>
-                <input type="text" id="simple-search"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full ps-10 p-2.5"
-                  placeholder="検索" required />
-              </div>
-              <button type="submit" class="btn btn-primary btn-sm hover:opacity-70">
-                検索
-              </button>
-            </div>
-          </form>
-    </div>
-    <div class="flex items-center space-x-4 justify-end">
-      <% if user_signed_in? %>
-        <%= link_to mypage_path do %>
-          <div class="text-center">
-            <%= image_tag 'profile_sample.png', class: 'w-10 h-10 rounded-full object-cover border border-primary' %>
+<div class="bg-white min-h-screen overflow-auto">
+  <div class="flex flex-col justify-center items-center mt-8 mb-8 mx-4 md:mx-24 lg:mx-72">
+    <h1 class="text-3xl md:text-3xl lg:text-4xl font-bold text-accent text-center">
+      <%= t('devise.registrations.new.title') %>
+    </h1>
+  </div>
+
+  <!-- フォームコンテンツ -->
+  <div class="flex bg-secondary rounded justify-center mx-4 md:mx-12 lg:mx-48 mb-8 md:mb-12">
+    <div class="flex flex-col w-full mt-6 mb-6 mx-4 md:mx-12 lg:mx-24 space-y-6">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <!-- ユーザーネーム入力 -->
+        <div class="mt-4 md:mt-8">
+          <%= f.label :name, t('devise.registrations.new.name'), class: 'block mb-2 text-sm md:text-lg text-nowrap font-medium text-primary' %>
+          <%= f.text_field :name, class: 'bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary block p-2 md:p-3.5', placeholder: t('devise.registrations.new.name_placeholder'), required: true, autofocus: true, autocomplete: "name" %>
+        </div>
+
+        <!-- メールアドレス入力 -->
+        <div class="mt-4 md:mt-8">
+          <%= f.label :email, t('devise.registrations.new.email'), class: 'block mb-2 text-sm md:text-lg text-nowrap font-medium text-primary' %>
+          <%= f.email_field :email, class: 'bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary block p-2 md:p-3.5', placeholder: t('devise.registrations.new.email_placeholder'), required: true, autocomplete: "email" %>
+        </div>
+
+        <!-- パスワード入力 -->
+        <div class="mt-4 md:mt-8">
+          <%= f.label :password, t('devise.registrations.new.password'), class: 'block mb-2 text-sm md:text-lg text-nowrap font-medium text-primary' %>
+          <% if @minimum_password_length %>
+            <em class="text-xs text-gray-500">(<%= @minimum_password_length %> <%= t('.characters_minimum') %>)</em>
+          <% end %>
+          <%= f.password_field :password, class: 'bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary block p-2 md:p-3.5', placeholder: t('devise.registrations.new.password_placeholder'), required: true, autocomplete: "new-password", id: "password_field" %>
+          <div class="mt-2">
+            <%= check_box_tag 'show_password', '1', false, onclick: 'togglePasswordVisibility()' %>
+            <%= label_tag 'show_password', t('devise.registrations.new.show_password') %>
           </div>
-        <% end %>
-        <%= link_to bookmarks_quiz_posts_path do %>
-          <span class="material-icons md-36 text-primary">bookmark</span>
-        <% end %>
-        <%= button_to destroy_user_session_path, method: :delete, data: { turbo_method: :delete } do %>
-          <span class="material-icons md-36 text-primary">logout</span>
-        <% end %>
-      <% else %>
-        <div class="space-x-8">
-          <%= link_to 'ログイン', new_user_session_path, class: 'text-primary font-bold text-base md:text-lg tracking-wide hover:opacity-70 transition duration-300' %>
-          <%= link_to '新規登録', new_user_registration_path, class: 'text-primary font-bold text-base md:text-lg tracking-wide hover:opacity-70 transition duration-300' %>
-          <%= link_to 'パスワードリセット', new_user_password_path, class: 'text-primary font-bold text-base md:text-lg tracking-wide hover:opacity-70 transition duration-300' %>
+        </div>
+
+        <!-- パスワード確認入力 -->
+        <div class="mt-4 md:mt-8">
+          <%= f.label :password_confirmation, t('devise.registrations.new.password_confirmation'), class: 'block mb-2 text-sm md:text-lg text-nowrap font-medium text-primary' %>
+          <%= f.password_field :password_confirmation, class: 'bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary block p-2 md:p-3.5', placeholder: t('devise.registrations.new.password_placeholder'), required: true, autocomplete: "new-password", id: "password_confirmation_field" %>
+          <div class="mt-2">
+            <%= check_box_tag 'show_password_confirmation', '1', false, onclick: 'togglePasswordConfirmationVisibility()' %>
+            <%= label_tag 'show_password_confirmation', t('devise.registrations.new.show_password_confirmation') %>
+          </div>
+        </div>
+
+        <!-- 登録ボタン -->
+        <div class="mt-8 md:mt-12 flex justify-center">
+          <%= f.submit t('devise.registrations.new.register'), class: 'text-white bg-accent hover:opacity-70 font-medium rounded-lg text-lg w-64 px-5 py-2.5 text-center' %>
         </div>
       <% end %>
+
+      <!-- リンク表示 -->
+      <div class="flex flex-col items-center space-y-2 text-sm md:text-lg">
+        <%= link_to t('devise.registrations.new.login'), new_user_session_path, class: 'text-primary font-bold hover:text-primary hover:text-opacity-70 transition duration-300' %>
+        <%= link_to t('devise.registrations.new.forgot_password'), new_user_password_path, class: 'text-primary font-bold hover:text-primary hover:text-opacity-70 transition duration-300' %>
+      </div>
     </div>
   </div>
 </div>
+
+<script>
+function togglePasswordVisibility() {
+  const passwordField = document.getElementById("password_field");
+  passwordField.type = passwordField.type === "password" ? "text" : "password";
+}
+
+function togglePasswordConfirmationVisibility() {
+  const passwordConfirmationField = document.getElementById("password_confirmation_field");
+  passwordConfirmationField.type = passwordConfirmationField.type === "password" ? "text" : "password";
+}
+</script>
