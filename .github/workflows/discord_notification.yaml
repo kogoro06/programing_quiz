@@ -7,11 +7,16 @@ on:
       - stg
       - develop
 
+  push:
+    branches:
+      - main
+
 jobs:
   notify:
     name: Notify Discord
     runs-on: ubuntu-20.04
     steps:
+      # Notify when Pull Request is Opened
       - name: Notify on Pull Request Open
         if: github.event.action == 'opened'
         uses: sarisia/actions-status-discord@v1
@@ -23,6 +28,7 @@ jobs:
             Pull Request: ${{ github.event.pull_request.html_url || 'No URL' }}
             Author: ${{ github.event.pull_request.user.login || 'Unknown Author' }}
 
+      # Notify when Pull Request is Closed
       - name: Notify on Pull Request Close
         if: github.event.action == 'closed'
         uses: sarisia/actions-status-discord@v1
@@ -33,3 +39,42 @@ jobs:
           description: |
             Pull Request Closed: ${{ github.event.pull_request.html_url || 'No URL' }}
             Author: ${{ github.event.pull_request.user.login || 'Unknown Author' }}
+
+  deploy-and-notify:
+    name: Render Deploy and Notify
+    runs-on: ubuntu-latest
+    steps:
+      # Deploy to Render
+      - name: Deploy to Render
+        env:
+          deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        run: |
+          curl -s -X POST "$deploy_url"
+
+      # Notify Discord of Render Deployment Success
+      - name: Notify Discord of Render Deployment Success
+        if: success() # Execute only if the previous step succeeds
+        uses: sarisia/actions-status-discord@v1
+        with:
+          webhook: ${{ secrets.RenderDeploySuccess }}
+          name: Render Deployment Notification
+          title: "Render Deployment Success"
+          description: |
+            ✅ Render Deployment was successful!
+            Branch: ${{ github.ref_name }}
+            Commit: ${{ github.sha }}
+            Triggered by: ${{ github.actor }}
+
+      # Notify Discord of Render Deployment Failure
+      - name: Notify Discord of Render Deployment Failure
+        if: failure() # Execute only if the previous step fails
+        uses: sarisia/actions-status-discord@v1
+        with:
+          webhook: ${{ secrets.RenderDeploySuccess }}
+          name: Render Deployment Notification
+          title: "Render Deployment Failed"
+          description: |
+            ❌ Render Deployment failed!
+            Branch: ${{ github.ref_name }}
+            Commit: ${{ github.sha }}
+            Triggered by: ${{ github.actor }}
