@@ -1,3 +1,5 @@
+require "csv"
+
 users = [
   # 管理者１
   {
@@ -43,4 +45,12 @@ users.each do |user_attribute|
 
   # ユーザーがDBにあればユーザー名を出す
   puts "作成済みユーザー：#{user.name}" if user.persisted?
+end
+
+# クイズのダミーデータ生成
+CSV.foreach('db/csv/quizzes.csv', headers: true) do |row|
+  Quiz.find_or_create_by!(author_user_id: row['author_user_id'], title: row['title']) do |quiz|
+    quiz.author_user_id = row['author_user_id']
+    quiz.title = row['title']
+  end
 end
