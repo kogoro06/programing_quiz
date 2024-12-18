@@ -1,8 +1,8 @@
 <div class="bg-secondary">
   <div class="ml-5 mx-auto flex justify-between items-center p-4">
     <div class="flex items-center space-x-4">
-      <%= image_tag 'logo.png' , class: 'w-10 h-10' %>
-        <%= link_to 'Programming Question' , '/' , class: 'text-primary font-bold text-lg font-frankfurter mr-10' %>
+      <%= image_tag 'logo.png', class: 'w-10 h-10' %>
+        <%= link_to 'Programming Question', '/', class: 'text-primary font-bold text-lg font-frankfurter mr-10' %>
           <form class="flex items-center">
             <label for="simple-search" class="sr-only">Search</label>
             <div class="flex items-center gap-4">
@@ -22,32 +22,26 @@
             </div>
           </form>
     </div>
-    
-    <div class="flex items-center space-x-4 jusitify-end">
+    <div class="flex items-center space-x-4 justify-end">
       <% if user_signed_in? %>
         <%= link_to mypage_path do %>
-        <div class="text-center">
-          <%= image_tag 'profile_sample.png' ,
-            class: 'w-10 h-10 rounded-full object-cover border border-primary border--300' %>
-        </div>
-      <% end %>
-        <%= link_to bookmarks_quiz_posts_path  do %>
-          <span class="material-icons md-36 text-primary">
-              bookmark
-          </span>
+          <div class="text-center">
+            <%= image_tag 'profile_sample.png', class: 'w-10 h-10 rounded-full object-cover border border-primary' %>
+          </div>
+        <% end %>
+        <%= link_to bookmarks_quiz_posts_path do %>
+          <span class="material-icons md-36 text-primary">bookmark</span>
         <% end %>
         <%= button_to destroy_user_session_path, method: :delete, data: { turbo_method: :delete } do %>
-          <span class="material-icons md-36 text-primary">
-            logout
-          </span>
+          <span class="material-icons md-36 text-primary">logout</span>
         <% end %>
       <% else %>
-        <%= link_to new_user_session_path do %>
-          <span class="material-icons md-36 text-primary">
-            login
-          </span>
+        <div class="space-x-8">
+          <%= link_to 'ログイン', new_user_session_path, class: 'text-primary font-bold text-base md:text-lg tracking-wide hover:opacity-70 transition duration-300' %>
+          <%= link_to '新規登録', new_user_registration_path, class: 'text-primary font-bold text-base md:text-lg tracking-wide hover:opacity-70 transition duration-300' %>
+          <%= link_to 'パスワードリセット', new_user_password_path, class: 'text-primary font-bold text-base md:text-lg tracking-wide hover:opacity-70 transition duration-300' %>
+        </div>
       <% end %>
-     <% end %>
     </div>
   </div>
 </div>
