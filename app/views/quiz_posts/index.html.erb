@@ -26,8 +26,8 @@
       <h3 class="text-accent text-lg mt-4">新着クイズ</h3>
         <div class="bg-base-100 rounded py-2">
           <div class="grid grid-cols-2 m-4 gap-4">
-            <% 6.times do %>
-              <%= render partial: "quiz_posts/quiz_card" %>
+            <% @newest_quizzes.each do |quiz| %>
+              <%= render partial: "quiz_posts/quiz_card", locals: {quiz: quiz} %>
             <% end %>
           </div>
         </div>
