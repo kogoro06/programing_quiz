@@ -41,7 +41,7 @@ profiles = [
     studying_languages: "html css javascript ruby",
     github_link: "https://github.com/",
     x_link: "https://x.com/home",
-    user_id: 1,
+    user_id: 1
   },
 
   # 管理者ユーザー２
@@ -50,7 +50,7 @@ profiles = [
     studying_languages: "html css javascript ruby",
     github_link: "https://github.com/",
     x_link: "https://x.com/home",
-    user_id: 2,
+    user_id: 2
   },
 
   # 一般ユーザー１
@@ -59,7 +59,7 @@ profiles = [
     studying_languages: "html css javascript ruby",
     github_link: "https://github.com/",
     x_link: "https://x.com/home",
-    user_id: 3,
+    user_id: 3
   },
 
   # 一般ユーザー２
@@ -68,8 +68,8 @@ profiles = [
     studying_languages: "html css javascript ruby",
     github_link: "https://github.com/",
     x_link: "https://x.com/home",
-    user_id: 4,
-  },
+    user_id: 4
+  }
 ]
 
 # emailでユーザーを検索し、存在しない場合は新しく作成
