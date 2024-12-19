@@ -1,57 +1,79 @@
-<h2><%= t('.title') %></h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, required: true, autofocus: true, autocomplete: "email" %>
+<div class="bg-white min-h-screen overflow-auto">
+  <div class="flex flex-col justify-center items-center mt-8 mb-8 mx-4 md:mx-24 lg:mx-72">
+    <h1 class="text-3xl md:text-3xl lg:text-4xl font-bold text-accent text-center">
+      <%= t('.title') %>
+    </h1>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> <%= t('.characters_minimum') %>)</em>
-    <% end %><br />
-    <%= f.password_field :password, required: true, autocomplete: "new-password", id: "password_field" %>
-    <div>
-      <%= check_box_tag 'show_password', '1', false, onclick: 'togglePasswordVisibility()' %>
-      <%= label_tag 'show_password', t('devise.registrations.new.show_password') %>
+  <div class="flex bg-secondary rounded justify-center mx-4 md:mx-12 lg:mx-48 mb-8 md:mb-12">
+    <div class="flex flex-col w-full mt-6 mb-6 mx-4 md:mx-12 lg:mx-24 space-y-6">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="mt-4 md:mt-8">
+          <%= f.label :email, class: 'block mb-2 text-sm md:text-lg text-nowrap font-medium text-primary' %>
+          <%= f.email_field :email, class: 'bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary block p-2 md:p-3.5', placeholder: t('devise.sessions.new.email_placeholder'), required: true, autofocus: true, autocomplete: "email" %>
+        </div>
+
+        <div class="mt-4 md:mt-8">
+          <%= f.label :password, class: 'block mb-2 text-sm md:text-lg text-nowrap font-medium text-primary' %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> <%= t('.characters_minimum') %>)</em>
+          <% end %>
+          <%= f.password_field :password, class: 'bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary block p-2 md:p-3.5', placeholder: t('devise.sessions.new.password_placeholder'), required: true, autocomplete: "new-password", id: "password_field" %>
+          <div>
+            <%#= check_box_tag 'show_password', '1', false, onclick: 'togglePasswordVisibility()' %>
+            <%#= label_tag 'show_password', t('devise.registrations.new.show_password') %>
+          </div>
+        </div>
+
+        <!-- ログイン時にパスワード確認は不要のため、コメントアウト -->
+        <div class="field">
+          <%#= f.label :password_confirmation %>
+          <%#= f.password_field :password_confirmation, autocomplete: "new-password", id: "password_confirmation_field" %>
+          <div>
+            <%#= check_box_tag t('.show_password_confirmation'), '1', false, onclick: 'togglePasswordConfirmationVisibility()' %>
+            <%#= label_tag 'show_password_confirmation', t('.show_password_confirmation') %>
+          </div>
+        </div>
+
+        <!-- remember_meは一旦使わないため、コメントアウト -->
+        <%# if devise_mapping.rememberable? %>
+          <div class="field">
+            <%#= f.check_box :remember_me %>
+            <%#= f.label :remember_me %>
+          </div>
+        <%# end %>
+
+        <div class="mt-8 md:mt-12 flex justify-center">
+          <%= f.submit t('.sign_in'), class: 'text-white bg-accent hover:opacity-70 font-medium rounded-lg text-lg w-64 px-5 py-2.5 text-center' %>
+        </div>
+      <% end %>
+      <div class="divider">または</div>
+
+      <div class="mt-8 md:mt-12 flex justify-center">
+        <button class="gsi-material-button" style="width:255px">
+          <div class="gsi-material-button-state"></div>
+          <div class="gsi-material-button-content-wrapper">
+            <div class="gsi-material-button-icon">
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" xmlns:xlink="http://www.w3.org/1999/xlink" style="display: block;">
+                <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path>
+                <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path>
+                <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path>
+                <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path>
+                <path fill="none" d="M0 0h48v48H0z"></path>
+              </svg>
+            </div>
+            <span class="gsi-material-button-contents">Sign in with Google</span>
+            <span style="display: none;">Sign in with Google</span>
+          </div>
+        </button>
+      </div>
+
+      <div class="flex flex-col items-center space-y-2 text-sm md:text-lg">
+        <%= render "devise/shared/links" %>
+      </div>
     </div>
   </div>
-
-<%
-=begin
-%>
-  # ログイン時にパスワード確認は不要のため、コメントアウト
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", id: "password_confirmation_field" %>
-    <div>
-      <%= check_box_tag t('.show_password_confirmation'), '1', false, onclick: 'togglePasswordConfirmationVisibility()' %>
-      <%= label_tag 'show_password_confirmation', t('.show_password_confirmation') %>
-    </div>
-  </div>
-<%
-=end
-%>
-
-<%
-=begin
-%>
-  # remember_meは一旦使わないため、コメントアウト
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-<%
-=end
-%>
-
-  <div class="actions">
-    <%= f.submit t('.sign_in') %>
-  </div>
-<% end %>
+</div>
 
 <script>
 function togglePasswordVisibility() {
@@ -72,5 +94,3 @@ function togglePasswordConfirmationVisibility() {
   }
 }
 </script>
-
-<%= render "devise/shared/links" %>
