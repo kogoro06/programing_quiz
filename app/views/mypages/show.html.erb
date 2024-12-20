@@ -12,11 +12,13 @@
                 </div>
 
                 <div class="text-accent font-bold">
-                    <p class="text-2xl"><%= @current_user.name %></p>
+                    <p class="text-2xl"><%= @user.name %></p>
+                    <!-- （本リリース）フォロー一覧、フォロワー一覧画面への遷移を実装
                     <div class="flex text-sm space-x-3">
                         <p>フォロー</p>
                         <p>フォロワー</p>
                     </div>
+                    -->
                 </div>
             </div>
 
@@ -26,12 +28,8 @@
             </div>
 
             <div class="bg-gray-50 text-sm mb-5 p-5 text-primary">
-                <p>
-                    <%= @profile.bio %>
-                </p>
-                <p class="mt-5">
-                    <%= @profile.studying_languages %>
-                </p>
+                <p><%= @profile.bio %></p>
+                <p class="mt-5"><%= @profile[:studying_languages] %></p>
             </div>
 
             <div class="bg-gray-50 text-sm flex justify-center p-2 mb-3 text-primary">
@@ -41,12 +39,14 @@
                 <p>編集</p>
             </div>
 
+            <!--# TODO: （本リリース）バッジ画面への遷移を実装
             <div class="bg-gray-50 text-sm flex justify-center p-2 text-primary">
                 <span class="material-icons">
                     workspace_premium
                 </span>
                 <p>バッジ</p>
             </div>
+            -->
         </div>
     </div>
 
@@ -55,19 +55,19 @@
         <div class="flex flex-wrap gap-3 items-center justify-center lg:md:justify-between max-w-[1200px]">
             <div class="w-full">
                 <div class="bg-primary w-fit p-3 text-white text-xl my-5 ">
-                    ユーザーネームが投稿した一覧
+                    <%= @quizzes.first[:author_name] %>が投稿したクイズ一覧
                 </div>
             </div>
-            <% [1, 2, 3, 4, 5, 6].each do |quiz| %>
+            <% @quizzes.each do |quiz| %>
                 <div class="bg-white p-5  w-[45%] max-w-[700px] min-w-[450px]">
-                    <p class="text-2xl p-1 text-accent font-bold">クイズタイトル</p>
+                    <p class="text-2xl p-1 text-accent font-bold"><%= quiz[:title] %></p>
                     <div class="flex items-center justify-between w-full p-1">
                         <div class="flex items-center space-x-3 text-lg">
                             <%= image_tag 'profile_sample.png' ,
                                 class: 'w-10 h-10 rounded-full object-cover border border-primary' %>
-                                <p class="block text-primary">ユーザーネーム</p>
+                                <p class="block text-primary"><%= quiz[:author_name] %></p>
                         </div>
-                        <p class="ml-auto text-primary">作成日</p>
+                        <p class="ml-auto text-primary"><%= quiz[:created_date] %></p>
                     </div>
                     <div class="flex p-2 items-center space-x-3 justify-between">
                         <div class="flex space-x-2">

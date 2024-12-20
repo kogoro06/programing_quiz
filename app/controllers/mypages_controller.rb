@@ -1,16 +1,23 @@
 class MypagesController < ApplicationController
   def show
-    # ログインしてある状態でマイページにアクセスする（ログインしていないとルーティングエラーになる）
-    # （未検証）今の段階では、ログインしていればshowを出すというだけで、他の人のマイページも見れてしまいそう
-    @current_user = current_user
-    # @ = current_user[:id]
+    @user    = User.find(current_user[:id])
     @profile = Profile.find_by(user_id: current_user[:id])
-    # profileモデルができてない
 
-    # 21:19:19 web.1  | [7] pry(#<MypagesController>)> current_user
-# => #<User id: 1, email: [FILTERED], name: "admin_user1", role: "admin", created_at: "2024-12-14 18:02:16.515552000 +0900", updated_at: "2024-12-14 18:02:16.515552000 +0900">
-
+    # 作成日時を日付に変換
+    @quizzes = Quiz.joins(:user)
+                   .select('DATE(quizzes.created_at) as created_date,
+                            quizzes.title,
+                            quizzes.author_user_id,
+                            users.name as author_name')
+                   .where(author_user_id: current_user[:id])
+    
+    # TODO: （たかのタスク）タグ機能実装後、タグの表示を実装する
+    # TODO: （たかのタスク）すーさんに問題数をテーブルに保存してもらえるように依頼する。OKであれば、quizテーブルから問題数を取得する
+    # TODO: （たかのタスク）ページネーションの実装
+    # TODO: （たかのタスク）ビューにもTODOを残せるように実装する
+    # TODO: （たかのタスク）必要なファイルだけコミットするようにする
   end
+
   def edit
   end
   def update
