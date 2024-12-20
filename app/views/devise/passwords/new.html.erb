@@ -1,18 +1,30 @@
-<h2><%= t('.title') %></h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="bg-white min-h-screen overflow-auto">
+  <div class="flex flex-col justify-center items-center mt-8 mb-8 mx-4 md:mx-24 lg:mx-72">
+    <h1 class="text-3xl md:text-3xl lg:text-4xl font-bold text-accent text-center">
+      <%= t('.title') %>
+    </h1>
   </div>
 
-  <div class="actions">
-    <%= f.submit t('.send_me_reset_password_instructions') %>
+  <div class="flex bg-secondary rounded justify-center mx-4 md:mx-12 lg:mx-48 mb-8 md:mb-12">
+    <div class="flex flex-col w-full mt-6 mb-6 mx-4 md:mx-12 lg:mx-24 space-y-6">
+    <p>下記に登録して頂いたメールアドレスにパスワード再設定のご案内メールをお送りいたします。</p>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div class="field">
+          <%= f.label :email, class: 'block mb-2 text-sm md:text-lg text-nowrap font-medium text-primary' %><br />
+          <%= f.email_field :email, class: 'bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary block p-2 md:p-3.5', placeholder: t('devise.sessions.new.email_placeholder'), autofocus: true, autocomplete: "email" %>
+        </div>
+
+         <div class="mt-8 md:mt-12 flex justify-center">
+          <%= f.submit t('.send_me_reset_password_instructions'), class: 'text-white bg-accent hover:opacity-70 font-medium rounded-lg text-lg w-64 px-5 py-2.5 text-center' %>
+        </div>
+      <% end %>
+
+       <div class="flex flex-col items-center space-y-2 text-sm md:text-lg">
+        <%= link_to t('.sign_in'), new_user_session_path, class: 'text-primary font-bold hover:text-primary hover:text-opacity-70 transition duration-300' %>
+        <%= link_to t('.sign_up'), new_user_password_path, class: 'text-primary font-bold hover:text-primary hover:text-opacity-70 transition duration-300' %>
+      </div>
+    </div>
   </div>
-
-  
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
