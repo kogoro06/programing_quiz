@@ -34,6 +34,43 @@ users = [
   }
 ]
 
+profiles = [
+  # 管理者ユーザー１
+  {
+    bio: "管理者ユーザー１の自己紹介",
+    studying_languages: "html css javascript ruby",
+    github_link: "https://github.com/",
+    x_link: "https://x.com/home",
+    user_id: 1
+  },
+
+  # 管理者ユーザー２
+  {
+    bio: "管理者ユーザー２の自己紹介",
+    studying_languages: "html css javascript ruby",
+    github_link: "https://github.com/",
+    x_link: "https://x.com/home",
+    user_id: 2
+  },
+
+  # 一般ユーザー１
+  {
+    bio: "一般ユーザー１の自己紹介",
+    studying_languages: "html css javascript ruby",
+    github_link: "https://github.com/",
+    x_link: "https://x.com/home",
+    user_id: 3
+  },
+
+  # 一般ユーザー２
+  {
+    bio: "一般ユーザー２の自己紹介",
+    studying_languages: "html css javascript ruby",
+    github_link: "https://github.com/",
+    x_link: "https://x.com/home",
+    user_id: 4
+  }
+]
 # emailでユーザーを検索し、存在しない場合は新しく作成
 users.each do |user_attribute|
   user = User.find_or_create_by!(email: user_attribute[:email]) do |u|
@@ -45,6 +82,17 @@ users.each do |user_attribute|
 
   # ユーザーがDBにあればユーザー名を出す
   puts "作成済みユーザー：#{user.name}" if user.persisted?
+end
+
+# Profilesのダミーデータ作成
+profiles.each do |profile_attribute|
+  profile = Profile.find_or_create_by!(user_id: profile_attribute[:user_id]) do |prof|
+    prof.bio                = profile_attribute[:bio]
+    prof.studying_languages = profile_attribute[:studying_language]
+    prof.github_link        = profile_attribute[:github_link]
+    prof.x_link             = profile_attribute[:x_link]
+    prof.user_id            = profile_attribute[:user_id]
+  end
 end
 
 # Quizzesのダミーデータ生成
