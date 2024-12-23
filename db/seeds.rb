@@ -1,3 +1,5 @@
+require "csv"
+
 users = [
   # 管理者１
   {
@@ -39,7 +41,7 @@ profiles = [
     studying_languages: "html css javascript ruby",
     github_link: "https://github.com/",
     x_link: "https://x.com/home",
-    user_id: 1,
+    user_id: 1
   },
 
   # 管理者ユーザー２
@@ -48,7 +50,7 @@ profiles = [
     studying_languages: "html css javascript ruby",
     github_link: "https://github.com/",
     x_link: "https://x.com/home",
-    user_id: 2,
+    user_id: 2
   },
 
   # 一般ユーザー１
@@ -57,7 +59,7 @@ profiles = [
     studying_languages: "html css javascript ruby",
     github_link: "https://github.com/",
     x_link: "https://x.com/home",
-    user_id: 3,
+    user_id: 3
   },
 
   # 一般ユーザー２
@@ -66,10 +68,9 @@ profiles = [
     studying_languages: "html css javascript ruby",
     github_link: "https://github.com/",
     x_link: "https://x.com/home",
-    user_id: 4,
-  },
+    user_id: 4
+  }
 ]
-
 # emailでユーザーを検索し、存在しない場合は新しく作成
 users.each do |user_attribute|
   user = User.find_or_create_by!(email: user_attribute[:email]) do |u|
@@ -83,6 +84,7 @@ users.each do |user_attribute|
   puts "作成済みユーザー：#{user.name}" if user.persisted?
 end
 
+# Profilesのダミーデータ作成
 profiles.each do |profile_attribute|
   profile = Profile.find_or_create_by!(user_id: profile_attribute[:user_id]) do |prof|
     prof.bio                = profile_attribute[:bio]
@@ -92,4 +94,34 @@ profiles.each do |profile_attribute|
     prof.user_id            = profile_attribute[:user_id]
   end
 
+end
+
+# Quizzesのダミーデータ生成
+CSV.foreach('db/csv/dummy_quizzes.csv', headers: true) do |row|
+  Quiz.find_or_create_by!(author_user_id: row['author_user_id'], title: row['title']) do |quiz|
+    quiz.author_user_id = row['author_user_id']
+    quiz.title = row['title']
+  end
+end
+
+# Questionsのダミーデータ生成
+CSV.foreach('db/csv/dummy_questions_and_choices.csv', headers: true) do |row|
+  Question.find_or_create_by!(quiz_id: row['quiz_id'], question: row['question']) do |question|
+    question.quiz_id = row['quiz_id']
+    question.question = row['question']
+    question.correct_answer = row['correct_answer']
+    question.answer_source = row['answer_source']
+    question.explanation = row['explanation']
+  end
+end
+
+# Choicesのダミーデータ作成
+CSV.foreach('db/csv/dummy_questions_and_choices.csv', headers: true) do |row|
+  Choice.find_or_create_by!(question_id: row['question_id'], choice1: row['choice1'], choice2: row['choice2'], choice3: row['choice3'], choice4: row['choice4']) do |choice|
+    choice.question_id = row['question_id']
+    choice.choice1 = row['choice1']
+    choice.choice2 = row['choice2']
+    choice.choice3 = row['choice3']
+    choice.choice4 = row['choice4']
+  end
 end

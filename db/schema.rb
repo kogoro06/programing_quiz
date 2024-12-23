@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_18_135110) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_19_070053) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -94,15 +94,13 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_18_135110) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.bigint "author_user_id", null: false
     t.text "question"
-    t.json "choices", null: false
     t.integer "correct_answer", null: false
     t.string "answer_source"
     t.text "explanation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["author_user_id"], name: "index_questions_on_author_user_id"
+    t.bigint "quiz_id", null: false
   end
 
   create_table "quizzes", force: :cascade do |t|
@@ -162,7 +160,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_18_135110) do
   add_foreign_key "past_answers", "quizzes"
   add_foreign_key "past_answers", "users"
   add_foreign_key "profiles", "users"
-  add_foreign_key "questions", "users", column: "author_user_id"
   add_foreign_key "quizzes", "users", column: "author_user_id"
   add_foreign_key "reviews", "quizzes"
   add_foreign_key "reviews", "users"
