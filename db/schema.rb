@@ -80,7 +80,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_23_123444) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "title"
-    t.integer "questions_count", null: false
+    t.integer "questions_count"
     t.index ["author_user_id"], name: "index_quizzes_on_author_user_id"
   end
 
