@@ -56,9 +56,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_23_123444) do
 
   create_table "profiles", force: :cascade do |t|
     t.string "bio"
-    t.string "studying_language"
-    t.string "github_links"
-    t.string "x_links"
+    t.string "studying_languages"
+    t.string "github_link"
+    t.string "x_link"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
