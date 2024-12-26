@@ -3,9 +3,9 @@ class CreateProfiles < ActiveRecord::Migration[6.1]
     create_table :profiles do |t|
       t.string :avatar_url
       t.string :bio
-      t.string :studying_languages
-      t.string :github_link
-      t.string :x_link
+      t.string :studying_language
+      t.string :github_links
+      t.string :x_links
       t.references :user, null: false, foreign_key: true
 
       t.timestamps
