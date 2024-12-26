@@ -30,11 +30,6 @@ ja:
               too_long: "パスワードは%{count}文字以内で入力してください"
             password_confirmation:
               confirmation: "パスワード確認が一致しません"
-        question:
-          attributes:
-            quiz:
-              required: "クイズは必須項目です"
-              required: "入力は必須です"
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
   devise:

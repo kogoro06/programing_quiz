@@ -1,0 +1,10 @@
+ja:
+  activerecord:
+    errors:
+      models:
+        question:
+          attributes:
+            quiz:
+              required: "クイズは必須項目です"
+      messages:
+        required: "入力は必須です"
