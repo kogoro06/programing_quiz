@@ -4,12 +4,11 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question = Question.find(params[:id]) 
-    @choices = Choice.where(question_id: @question.id) 
+    @question = Question.find(params[:id])
+    @choices = Choice.where(question_id: @question.id)
   end
 
   def create
-    
   end
 
   def create_result
@@ -29,12 +28,11 @@ class QuestionsController < ApplicationController
   end
 
  def result
-  @question = Question.find(params[:id]) 
-  @choices = Choice.where(question_id: @question.id) 
+  @question = Question.find(params[:id])
+  @choices = Choice.where(question_id: @question.id)
   @past_answer = PastAnswer.find_by(question_id: @question.id, user_id: current_user.id)
 
   @next_question = Question.where("id > ? AND quiz_id = ?", @question.id, @question.quiz_id).first
   @has_next_question = @next_question.present?
 end
-
 end
