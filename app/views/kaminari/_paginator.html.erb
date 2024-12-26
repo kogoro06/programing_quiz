@@ -6,22 +6,42 @@
     remote:        data-remote
     paginator:     the paginator that renders the pagination tags inside
 -%>
-<%= paginator.render do -%>
-  <nav class="pagination" role="navigation" aria-label="pager">
-    <%= first_page_tag unless current_page.first? %>
-    <%= prev_page_tag unless current_page.first? %>
-    <% each_page do |page| -%>
-      <% if page.display_tag? -%>
-        <%= page_tag page %>
-      <% elsif !page.was_truncated? -%>
-        <%= gap_tag %>
-      <% end -%>
-    <% end -%>
-    <% unless current_page.out_of_range? %>
-      <%= next_page_tag unless current_page.last? %>
-      <%= last_page_tag unless current_page.last? %>
-    <% end %>
-  </nav>
-<% end -%>
 
+<div class="flex justify-center gap-2 my-10">
+  <div class="join mt-6">
+    <%= paginator.render do -%>
+      <nav class="pagination" role="navigation" aria-label="pager">
+
+        <%# 最初のページへのリンクを生成 %>
+        <%= first_page_tag unless current_page.first? %>
+
+        <%# 前のページへのリンクを生成 %>
+        <%= prev_page_tag unless current_page.first? %>
+
+        <%# 各ページへのリンクを生成 %>
+        <%# 各ページ番号を処理するためのループ %>
+        <% each_page do |page| -%>
+
+          <%# 現在のページ番号が表示されるべきかどうか %>
+          <% if page.display_tag? -%>
+            <%= page_tag page %>
+          
+          <%# ページ番号が省略されているかどうか %>
+          <% elsif !page.was_truncated? -%>
+            <%= gap_tag %>
+          <% end -%>
+        <% end -%>
+        
+        <% unless current_page.out_of_range? %>
+
+          <%# 次のページへのリンクを生成 %>
+          <%= next_page_tag unless current_page.last? %>
+
+          <%# 最後のページへのリンクを生成%>
+          <%= last_page_tag unless current_page.last? %>
+        <% end %>
+      </nav>
+    <% end -%>
+  </div>
+</div>
 

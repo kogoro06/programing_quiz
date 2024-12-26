@@ -7,6 +7,10 @@
     per_page:      number of items to fetch per page
     remote:        data-remote
 -%>
+
+<% class_names = "join-item btn btn-sm text-base-100" %>
+<% page.current? ? class_names += " bg-accent" : class_names += " bg-primary"%>
+
 <span class="page<%= ' current' if page.current? %>">
-  <%= link_to_unless page.current?, page, url, {remote: remote, rel: page.rel} %>
+  <%= link_to page, url, class: class_names, remote: remote, rel: page.rel %>
 </span>
