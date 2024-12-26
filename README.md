@@ -1,28 +1,31 @@
-# README
+# チーム開発の運用
 
-あああ(discord自動化テスト)
+## push 前にやること
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Lint チェック
 
-Things you may want to cover:
+push する前にローカル環境で Lint エラーがないか以下のコマンドを実行して Lint エラーがないことを確認して push ください。
 
-* Ruby version
+```
+docker compose exec web bundle exec rubocop
+```
 
-* System dependencies
+### develop の変更分をローカル環境へ
 
-* Configuration
+自分が develop から作業ブランチを切った後に develop に merge された内容を pull してから push してください。
+作業内容は以下の通りです。(switch は checkout でも可)
 
-* Database creation
+```
+git switch develop
+git pull origin develop
+git switch 作業ブランチ
+git merge develop
+```
 
-* Database initialization
+## プルリクエストについて
 
-* How to run the test suite
+作業者、レビュアー、merge 者の役割は以下の通りです。
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-develop test
+| 作業者                                                       | レビュアー                                                                                                                         | merge 者                                                                                          |
+| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| PR を作成し、レビュアー 2 人から LGTM がもらえるまで作業実施 | PR をレビューして問題なければ LGTM、改善点があればその内容をコメント。また 2 人目の LGTM を出す人は同時に develop ブランチへ merge | develop ブランチが問題なければ mian ブランチへ merge を行う。その際に該当箇所の作業ブランチを削除 |
