@@ -30,8 +30,8 @@ ja:
               too_long: "パスワードは%{count}文字以内で入力してください"
             password_confirmation:
               confirmation: "パスワード確認が一致しません"
-            messages:
-              record_invalid: "バリデーションに失敗しました: %{errors}"
+      messages:
+        record_invalid: "バリデーションに失敗しました: %{errors}"
   devise:
     confirmations:
       new:
