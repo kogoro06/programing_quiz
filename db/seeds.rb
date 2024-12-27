@@ -132,3 +132,11 @@ CSV.foreach('db/csv/tags.csv', headers: true) do |row|
     tag.color = row['color']
   end
 end
+
+# TagQuizzesのダミーデータ作成
+CSV.foreach('db/csv/tag_quizzes.csv', headers: true) do |row|
+  TagQuiz.find_or_create_by!(quiz_id: row['quiz_id'], tag_id: row['tag_id']) do |tag_quiz|
+    tag_quiz.quiz_id = row['quiz_id']
+    tag_quiz.tag_id = row['tag_id']
+  end
+end
