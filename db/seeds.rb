@@ -124,3 +124,11 @@ CSV.foreach('db/csv/dummy_questions_and_choices.csv', headers: true) do |row|
     choice.choice4 = row['choice4']
   end
 end
+
+# Tagsのダミーデータ作成
+CSV.foreach('db/csv/tags.csv', headers: true) do |row|
+  Tag.find_or_create_by!(name: row['name']) do |tag|
+    tag.name = row['name']
+    tag.color = row['color']
+  end
+end
