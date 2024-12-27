@@ -10,7 +10,9 @@
     </div>
     <div class="flex justify-between space-x-2">
       <%= render partial: "tags/buttons/tags", locals: { tags: tags } %>
-      <p class="text-primary text-sm">全10問</p>
+      <p class="text-primary text-sm">
+        全<%= quiz.questions_count %>問
+      </p>
     </div>
   </div>
 </div>
