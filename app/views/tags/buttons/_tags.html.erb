@@ -1,0 +1,5 @@
+<div class="flex gap-2">
+  <% tags.each do |tag| %>
+    <%= render partial: "tags/buttons/tag", locals: { tag: tag } %>
+  <% end %>
+</div>
