@@ -1,17 +1,15 @@
 <div class="bg-base-100 rounded-lg p-6 flex items-center shadow w-full max-w-2xl">
   <div class="flex flex-col w-full space-y-4">
-    <p class="text-accent text-lg font-bold">クイズタイトル</p>
+    <p class="text-accent text-lg font-bold"><%= quiz.title %></p>
     <div class="flex justify-between items-center">
       <div class="flex items-center gap-2">
         <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary' %>
-        <p class="text-sm">ユーザーネーム</p>
+        <p class="text-sm"><%= quiz.user.name %></p>
       </div>
-      <p class="text-primary text-sm">2024.11.20</p>
+      <p class="text-primary text-sm"><%= quiz.created_at.strftime('%Y/%m/%d') %></p>
     </div>
     <div class="flex justify-between space-x-2">
-      <div class="flex gap-2">
-        <button class="btn btn-xs bg-html text-white text-bold px-3 text-center text-nowrap">HTML</button>
-      </div>
+      <%= render partial: "tags/buttons/tags", locals: { tags: tags } %>
       <p class="text-primary text-sm">全10問</p>
     </div>
   </div>
