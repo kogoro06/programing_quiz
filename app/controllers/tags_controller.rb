@@ -3,5 +3,6 @@ class TagsController < ApplicationController
   end
 
   def show
+    @quizzes = Tag.find(params[:id]).quizzes.eager_load(:user, :tags)
   end
 end
