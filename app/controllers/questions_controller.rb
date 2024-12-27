@@ -4,8 +4,14 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question = Question.find(params[:id])
-    @choices = Choice.where(question_id: @question.id)
+    begin
+      @question = Question.find(params[:id])
+      @choices = Choice.where(question_id: @question.id)
+    rescue ActiveRecord::RecordNotFound => e
+      Rails.logger.error("Question not found: #{e.message}")
+      flash[:alert] = "指定された質問が見つかりませんでした。"
+      redirect_to root_path
+    end
   end
 
   def create
@@ -27,12 +33,17 @@ class QuestionsController < ApplicationController
     )
   end
 
- def result
-  @question = Question.find(params[:id])
-  @choices = Choice.where(question_id: @question.id)
-  @past_answer = PastAnswer.find_by(question_id: @question.id, user_id: current_user.id)
+  def result
+    @question = Question.find(params[:id])
+    @choices = Choice.where(question_id: @question.id)
 
-  @next_question = Question.where("id > ? AND quiz_id = ?", @question.id, @question.quiz_id).first
-  @has_next_question = @next_question.present?
-end
+    @past_answer = PastAnswer.find_by(question_id: @question.id, user_id: current_user.id)
+    unless @past_answer
+      flash[:alert] = "回答履歴が見つかりませんでした。"
+      redirect_to root_path and return
+    end
+
+    @next_question = Question.where("id > ? AND quiz_id = ?", @question.id, @question.quiz_id).first
+    @has_next_question = @next_question.present?
+  end
 end
