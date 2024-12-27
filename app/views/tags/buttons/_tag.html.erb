@@ -1,3 +1,3 @@
-<button class="btn btn-xs bg-html text-white text-bold px-3 text-center text-nowrap">
+<%= link_to tag_path(tag.id),  class: "btn btn-xs bg-html text-white text-bold px-3 text-center text-nowrap" do %>
   <%= tag.name %>
-</button>
+<% end %>
