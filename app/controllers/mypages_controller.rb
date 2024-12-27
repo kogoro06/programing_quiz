@@ -18,7 +18,7 @@ class MypagesController < ApplicationController
       @quizzes = Quiz.eager_load(:user).all
       @newest_quizzes = @quizzes.order(created_at: :desc).first(6)
       flash.now[:alert] = "ログインしてください"
-      render template: "quiz_posts/index" , status: :unprocessable_entity
+      render template: "quiz_posts/index", status: :unprocessable_entity
     end
   end
 
