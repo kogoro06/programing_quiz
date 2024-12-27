@@ -1,6 +1,6 @@
 class QuizPostsController < ApplicationController
   def index
-    @quizzes = Quiz.eager_load(:user).all
+    @quizzes = Quiz.eager_load(:user, :tags).all
     @newest_quizzes = @quizzes.order(created_at: :desc).first(6)
   end
 
