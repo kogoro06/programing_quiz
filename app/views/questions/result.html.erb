@@ -74,6 +74,16 @@
             <p class="text-accent text-center">解説用画像</p>
           </div>
   
+          
+          <% if @has_next_question %>
+          <div class="flex justify-center items-center mt-12 space-x-4">
+            <%= link_to question_path(@next_question),
+            class: "text-white bg-accent hover:opacity-70 rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 flex items-center justify-center gap-2" do %>
+            <span class="material-icons">chevron_right</span>
+            次の問題へ
+            <% end %>
+          </div>
+          <% else %>
           <div class="mt-12 p-8 bg-accent bg-opacity-30 rounded">
             <p class="text-primary text-xl">この問題はどうでしたか？</p>
             <p class="text-xs">レビュー投稿しても自身のユーザーネームは公開されません！</p>
@@ -96,16 +106,6 @@
               </button>
             </div>
           </div>
-  
-          <% if @has_next_question %>
-            <div class="flex justify-center items-center mt-12 space-x-4">
-              <%= link_to question_path(@next_question),
-                class: "text-white bg-accent hover:opacity-70 rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 flex items-center justify-center gap-2" do %>
-                <span class="material-icons">chevron_right</span>
-                 次の問題へ
-              <% end %>
-            </div>
-          <% else %>
           <div class="flex justify-center items-center mt-12 space-x-4">
             <%= link_to "/", class: "text-white bg-accent hover:opacity-70 rounded-lg text-lg px-5 py-2.5 flex items-center justify-center gap-2 w-64" do %>
               <span class="material-icons">chevron_right</span>
