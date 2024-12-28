@@ -1,0 +1,21 @@
+ja:
+  activerecord:
+    attributes:
+      profile:
+        name: "ユーザーネーム"
+        bio: "自己紹介文"
+        studying_languages: "勉強している言語"
+        x_link: "Xリンク"
+        github_link: "GitHubリンク"
+        update: "更新する"
+        destroy: "退会する"
+  activemodel:
+    errors:
+      models:
+        user_profile_form:
+          attributes:
+            name:
+              too_short: "ユーザーネームは1～20文字の範囲内で記入してください"
+          blank: "不正な更新です"
+      messages:
+        blank: "メッセージがブランクです"
