@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :set_user_profile_form, only: [:edit, :update]
+  before_action :set_user_profile_form, only: [ :edit, :update ]
 
   def show
     begin
@@ -29,7 +29,7 @@ class ProfilesController < ApplicationController
 
   def update
     if @user_profile_form.save(user_profile_form_params)
-      redirect_to edit_user_profile_path(current_user[:id]), flash: {notice: "プロフィールを更新しました"}
+      redirect_to edit_user_profile_path(current_user[:id]), flash: { notice: "プロフィールを更新しました" }
     else
       flash[:alert] = "更新に失敗しました"
       render :edit, status: :unprocessable_entity

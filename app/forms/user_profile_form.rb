@@ -19,7 +19,7 @@ class UserProfileForm
 
   attr_accessor :user, :profile
   # userとprofileのモデルのインスタンスを初期化
-  def initialize(user, profile, params={})
+  def initialize(user, profile, params = {})
     # 親クラスの初期化を行う
     super(params)
 
