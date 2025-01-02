@@ -80,7 +80,7 @@ users.each do |user_attribute|
     u.role     = user_attribute[:role]
   end
 
-  # ユーザーがDBにあればユーザー名を出す
+  # ユーザーがテーブルにあればユーザー名を出す
   puts "作成済みユーザー：#{user.name}" if user.persisted?
 end
 
@@ -88,7 +88,7 @@ end
 profiles.each do |profile_attribute|
   profile = Profile.find_or_create_by!(user_id: profile_attribute[:user_id]) do |prof|
     prof.bio                = profile_attribute[:bio]
-    prof.studying_languages = profile_attribute[:studying_language]
+    prof.studying_languages = profile_attribute[:studying_languages]
     prof.github_link        = profile_attribute[:github_link]
     prof.x_link             = profile_attribute[:x_link]
     prof.user_id            = profile_attribute[:user_id]
@@ -100,6 +100,7 @@ CSV.foreach('db/csv/dummy_quizzes.csv', headers: true) do |row|
   Quiz.find_or_create_by!(author_user_id: row['author_user_id'], title: row['title']) do |quiz|
     quiz.author_user_id = row['author_user_id']
     quiz.title = row['title']
+    quiz.questions_count = row['questions_count']
   end
 end
 
