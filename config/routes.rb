@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   end
 
   get "tags" => "tags#index", as: :tags
+  get "badges" => "badges#index", as: :badges
   get "rankings" => "rankings#index", as: :rankings
   get "following" => "following#index", as: :following
   resource :mypage, only: [ :show, :edit, :update ]
