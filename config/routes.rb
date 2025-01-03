@@ -13,6 +13,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :users do
+    get :followers
+  end
+
   get "tags" => "tags#index", as: :tags
   get "rankings" => "rankings#index", as: :rankings
   get "following" => "following#index", as: :following
