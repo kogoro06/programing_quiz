@@ -1,105 +1,148 @@
-<div class="bg-white">
-  <div class="flex flex-col justify-center items-center mt-6 mb-6 mx-72">
-    <h1 class="text-3xl font-bold text-accent text-center">新規クイズ作成</h1>
-    <p class="text-sm text-primary ml-auto text-right">あとXX問作成です！</p>
-  </div>
+<%= form_with model: @quiz, url: quiz_posts_path, local: true do |form| %>
+  <div class="bg-white">
+    <div class="flex flex-col justify-center items-center mt-6 mb-6 mx-72">
+      <h1 class="text-3xl font-bold text-accent text-center">新規クイズ作成</h1>
+      <p class="text-sm text-primary ml-auto text-right">あとXX問作成です！</p>
+    </div>
 
-  <div class="flex bg-secondary rounded justify-center mx-48 mb-12">
-    <div class="flex flex-col w-full mt-6 mb-6 mx-24">
-      <div class="space-y-4">
-        <div class="flex flex-col bg-white rounded p-6">
-          <h2 class="block mb-2 text-lg text-nowrap font-medium text-primary">クイズ集タイトル</h2>
-          <input type="text" class="bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5" required />
-        </div>
-        <div class="bg-white rounded p-6 mb-6">
-          <label for="タグ" class="block mb-2 text-lg font-medium text-primary">クイズ集タグ</label>
-          <div class="flex justify-between space-x-2">
-            <button class="btn bg-html flex-1 text-lg text-white text-bold text-center text-nowrap">HTML</button>
-            <button class="btn bg-css flex-1 text-lg text-white text-bold text-center text-nowrap">CSS</button>
-            <button class="btn bg-js flex-1 text-lg text-white text-bold text-center text-nowrap">JavaScript</button>
-            <button class="btn bg-ruby flex-1 text-lg text-white text-bold text-center text-nowrap">Ruby on Rails</button>
-            <button class="btn bg-git flex-1 text-lg text-white text-bold text-center text-nowrap">Git</button>
-            <button class="btn bg-error flex-1 text-lg text-white text-bold text-center text-nowrap">エラー</button>
+    <div class="flex bg-secondary rounded justify-center mx-48 mb-12">
+      <div class="flex flex-col w-full mt-6 mb-6 mx-24">
+        <div class="space-y-4">
+          <div class="flex flex-col bg-white rounded p-6">
+            <%= form.label :title, "クイズ集タイトル", class: "block mb-2 text-lg text-nowrap font-medium text-primary" %>
+            <%= form.text_field :title, class: "bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5", required: true %>
+            <!--
+            <h2 class="block mb-2 text-lg text-nowrap font-medium text-primary">クイズ集タイトル</h2>
+            <input type="text" class="bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5" required />
+            -->
           </div>
-        </div>
-        <div class="divider"></div>
-        <div class="flex flex-col bg-white rounded p-6">
-          <h2 class="block mb-2 text-lg text-nowrap font-medium text-primary">問題文</h2>
-          <input type="text" class="bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5 h-20"  required />
-        </div>
-        <div class="bg-white rounded p-6">
-          <div class="flex justify-between space-x-4 mb-6">
-            <div class="w-1/2">
-              <label for="回答1" class="block mb-2 text-lg font-medium text-primary">選択肢1</label>
-              <input type="text" class="bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary p-2.5" required />
-            </div>
-            <div class="w-1/2">
-              <label for="回答2" class="block mb-2 text-lg font-medium text-primary">選択肢2</label>
-              <input type="text" class="bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary p-2.5" required />
+          <div class="bg-white rounded p-6 mb-6">
+            <label for="タグ" class="block mb-2 text-lg font-medium text-primary">クイズ集タグ</label>
+            <div class="flex justify-between space-x-2">
+              <button class="btn bg-html flex-1 text-lg text-white text-bold text-center text-nowrap">HTML</button>
+              <button class="btn bg-css flex-1 text-lg text-white text-bold text-center text-nowrap">CSS</button>
+              <button class="btn bg-js flex-1 text-lg text-white text-bold text-center text-nowrap">JavaScript</button>
+              <button class="btn bg-ruby flex-1 text-lg text-white text-bold text-center text-nowrap">Ruby on Rails</button>
+              <button class="btn bg-git flex-1 text-lg text-white text-bold text-center text-nowrap">Git</button>
+              <button class="btn bg-error flex-1 text-lg text-white text-bold text-center text-nowrap">エラー</button>
             </div>
           </div>
-          <div class="flex justify-between space-x-4 mt-4">
-            <div class="w-1/2">
-              <label for="回答3" class="block mb-2 text-lg font-medium text-primary">選択肢3</label>
-              <input type="text" class="bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary p-2.5" required />
+          <div class="divider"></div>
+          <%= form.fields_for :questions do |q_form| %>
+            <div class="flex flex-col bg-white rounded p-6">
+              <%= q_form.label :question, "問題文", class: "block mb-2 text-lg text-nowrap font-medium text-primary" %>
+              <%= q_form.text_area :question, class: "bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5 h-20", required: true %>
+              <!--
+              <h2 class="block mb-2 text-lg text-nowrap font-medium text-primary">問題文</h2>
+              <input type="text" class="bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5 h-20"  required />
+              -->
             </div>
-            <div class="w-1/2">
-              <label for="回答4" class="block mb-2 text-lg font-medium text-primary">選択肢4</label>
-              <input type="text" class="bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary p-2.5" required />
+            <div class="bg-white rounded p-6">
+              <div class="flex justify-between space-x-4 mb-6">
+                <%= q_form.fields_for :choices do |c_form| %>
+                  <div class="w-1/2">
+                    <%= c_form.label :choice1, "選択肢1", class: "block mb-2 text-lg font-medium text-primary" %>
+                    <%= c_form.text_area :choice1, class: "bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary p-2.5", required: true %> 
+                    <!--
+                    <label for="回答1" class="block mb-2 text-lg font-medium text-primary">選択肢1</label>
+                    <input type="text" class="bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary p-2.5" required />
+                    -->
+                  </div>
+                  <div class="w-1/2">
+                    <%= c_form.label :choice2, "選択肢2", class: "block mb-2 text-lg font-medium text-primary" %>
+                    <%= c_form.text_area :choice2, class: "bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary p-2.5", required: true %>
+                    <!--
+                    <label for="回答2" class="block mb-2 text-lg font-medium text-primary">選択肢2</label>
+                    <input type="text" class="bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary p-2.5" required />
+                    -->
+                  </div>
+                  <div class="w-1/2">
+                    <%= c_form.label :choice3, "選択肢3", class: "block mb-2 text-lg font-medium text-primary" %>
+                    <%= c_form.text_area :choice3, class: "bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary p-2.5", required: true %>
+                    <!--
+                    <label for="回答3" class="block mb-2 text-lg font-medium text-primary">選択肢3</label>
+                    <input type="text" class="bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary p-2.5" required />
+                    -->
+                  </div>
+                  <div class="w-1/2">
+                    <%= c_form.label :choice4, "選択肢4", class: "block mb-2 text-lg font-medium text-primary" %>
+                    <%= c_form.text_area :choice4, class: "bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary p-2.5", required: true %>
+                    <!--
+                    <label for="回答4" class="block mb-2 text-lg font-medium text-primary">選択肢4</label>
+                    <input type="text" class="bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary p-2.5" required />
+                    -->
+                  </div>
+                <% end %>
+              </div>
+            </div>
+            <div class="bg-white rounded p-6">
+              <div class="flex flex-col justify-start">
+                <h2 class="block mb-2 text-lg text-nowrap font-medium text-primary">正解</h2>
+                <%= q_form.select :correct_answer, 
+                  [["選択肢1", 1], ["選択肢2", 2], ["選択肢3", 3], ["選択肢4", 4]], 
+                  { prompt: "正解の選択肢を選ぶ" }, 
+                  { class: "select select-bordered w-1/2" } %>
+                <!-- 
+                <select class="select select-bordered w-1/2">
+                  <option disabled selected>正解の選択肢を選ぶ</option>
+                  <option>選択肢1</option>
+                  <option>選択肢2</option>
+                  <option>選択肢3</option>
+                  <option>選択肢4</option>
+                </select>
+                -->
+              </div>
+            </div>
+            <div class="flex flex-col bg-white rounded p-6">
+              <%= q_form.label :explanation, "解説文", class: "block mb-2 text-lg text-nowrap font-medium text-primary" %>
+              <%= q_form.text_area :explanation, class: "bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5 h-20", required: true %>
+              <!--
+              <h2 class="block mb-2 text-lg text-nowrap font-medium text-primary">解説文</h2>
+              <input type="text" class="bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5 h-20"  required />
+              -->
+            </div>
+            <div class="flex flex-col bg-white rounded p-6">
+              <%= q_form.label :answer_source, "クイズ作成時の参考資料（URL）", class: "block mb-2 text-lg text-nowrap font-medium text-primary" %>
+              <%= q_form.text_field :answer_source, class: "bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5", required: true %>
+              <!--
+              <h2 class="block mb-2 text-lg text-nowrap font-medium text-primary">クイズ作成時の参考資料（URL）</h2>
+              <input type="text" class="bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5" required />
+              -->
+            </div>
+            <div class="flex items-center bg-white rounded p-6 gap-8">
+              <h2 class="block text-lg text-nowrap font-medium text-primary">問題用 画像アップロード</h2>
+              <input
+              type="file"
+              class="file-input file-input-bordered file-input-primary file-input-sm w-full" />
+            </div>
+            <div class="flex items-center bg-white rounded p-6 gap-8">
+              <h2 class="block text-lg text-nowrap font-medium text-primary">回答用 画像アップロード</h2>
+              <input
+              type="file"
+              class="file-input file-input-bordered file-input-primary file-input-sm w-full" />
+            </div>
+          <% end %>
+          <!-- ページネーション -->
+          <div class="flex justify-center gap-2">
+            <div class="join mt-6">
+              <button class="join-item btn btn-sm bg-primary text-base-100">1</button>
+              <button class="join-item btn btn-sm bg-accent text-base-100">2</button>
+              <button class="join-item btn btn-sm bg-primary text-base-100">3</button>
+              <button class="join-item btn btn-sm bg-primary text-base-100">4</button>
+              <button class="join-item btn btn-sm bg-primary text-base-100">5</button>
+              <button class="join-item btn btn-sm bg-primary text-base-100">6</button>
+              <button class="join-item btn btn-sm bg-primary text-base-100">7</button>
+              <button class="join-item btn btn-sm bg-primary text-base-100">8</button>
+              <button class="join-item btn btn-sm bg-primary text-base-100">9</button>
+              <button class="join-item btn btn-sm bg-primary text-base-100">10</button>
             </div>
           </div>
-        </div>
-        <div class="bg-white rounded p-6">
-          <div class="flex flex-col justify-start">
-            <h2 class="block mb-2 text-lg text-nowrap font-medium text-primary">正解</h2>
-            <select class="select select-bordered w-1/2">
-              <option disabled selected>正解の選択肢を選ぶ</option>
-              <option>選択肢1</option>
-              <option>選択肢2</option>
-              <option>選択肢3</option>
-              <option>選択肢4</option>
-            </select>
+          <div class="flex justify-center">
+            <%= form.submit "登録する", class: "text-white bg-accent hover:opacity-70 font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center mt-6" %>
+            <!-- <button type="submit" class="text-white bg-accent hover:opacity-70 font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center mt-6">登録する</button> -->
           </div>
-        </div>
-        <div class="flex flex-col bg-white rounded p-6">
-          <h2 class="block mb-2 text-lg text-nowrap font-medium text-primary">解説文</h2>
-          <input type="text" class="bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5 h-20"  required />
-        </div>
-        <div class="flex flex-col bg-white rounded p-6">
-          <h2 class="block mb-2 text-lg text-nowrap font-medium text-primary">クイズ作成時の参考資料（URL）</h2>
-          <input type="text" class="bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5" required />
-        </div>
-        <div class="flex items-center bg-white rounded p-6 gap-8">
-          <h2 class="block text-lg text-nowrap font-medium text-primary">問題用 画像アップロード</h2>
-          <input
-          type="file"
-          class="file-input file-input-bordered file-input-primary file-input-sm w-full" />
-        </div>
-        <div class="flex items-center bg-white rounded p-6 gap-8">
-          <h2 class="block text-lg text-nowrap font-medium text-primary">回答用 画像アップロード</h2>
-          <input
-          type="file"
-          class="file-input file-input-bordered file-input-primary file-input-sm w-full" />
-        </div>
-        <!-- ページネーション -->
-        <div class="flex justify-center gap-2">
-          <div class="join mt-6">
-            <button class="join-item btn btn-sm bg-primary text-base-100">1</button>
-            <button class="join-item btn btn-sm bg-accent text-base-100">2</button>
-            <button class="join-item btn btn-sm bg-primary text-base-100">3</button>
-            <button class="join-item btn btn-sm bg-primary text-base-100">4</button>
-            <button class="join-item btn btn-sm bg-primary text-base-100">5</button>
-            <button class="join-item btn btn-sm bg-primary text-base-100">6</button>
-            <button class="join-item btn btn-sm bg-primary text-base-100">7</button>
-            <button class="join-item btn btn-sm bg-primary text-base-100">8</button>
-            <button class="join-item btn btn-sm bg-primary text-base-100">9</button>
-            <button class="join-item btn btn-sm bg-primary text-base-100">10</button>
-          </div>
-        </div>
-        <div class="flex justify-center">
-          <button type="submit" class="text-white bg-accent hover:opacity-70 font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center mt-6">登録する</button>
         </div>
       </div>
     </div>
   </div>
-</div>
+<% end %>

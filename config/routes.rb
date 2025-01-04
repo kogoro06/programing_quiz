@@ -7,9 +7,12 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   resource :contacts, only: [ :new, :create ]
+  resources :quizzes
   resources :quiz_posts do
     collection do
       get :bookmarks
+      get :new
+      post :create
     end
   end
 

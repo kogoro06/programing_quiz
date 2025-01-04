@@ -1,46 +1,48 @@
 class QuizPostsController < ApplicationController
-  def index
-    @quizzes = Quiz.eager_load(:user).all
-    @newest_quizzes = @quizzes.order(created_at: :desc).first(6)
-  end
+  before_action :authenticate_user! # ログイン必須
 
-  def show
-  end
-
+  # 新規投稿ページを表示
   def new
     @quiz = Quiz.new
-    @question = Question.new
+    # 空のquestionsとchoicesをビルドしてフォームで扱えるようにする
+    
+    question = @quiz.questions.build
+    question.choices.build # 1回だけchoicesを作成
   end
 
+  # クイズを作成して保存
   def create
-    Rails.logger.debug "Received params: #{params.inspect}"
-    @quiz = Quiz.new(quiz_params)
-    @question = Question.new(question_params)
+      @quiz = Quiz.new(quiz_params.merge(author_user_id: current_user.id))
     if @quiz.save
-      # 保存に成功した場合の処理
-      redirect_to quiz_posts_path, notice: "クイズが作成されました。"
+      redirect_to quiz_path(@quiz), notice: 'クイズを投稿しました！'
     else
-      # 保存に失敗した場合の処理
+      flash.now[:alert] = 'クイズの投稿に失敗しました。'
       render :new
     end
-  end
-
-  def edit
-  end
-
-  def update
-  end
-
-  def bookmarks
   end
 
   private
 
   def quiz_params
-    params.require(:quiz).permit(:title)
-  end
-
-  def question_params
-    params.require(:question).permit(:question)
+    params.require(:quiz).permit(
+      :title,
+      :author_user_id,
+      questions_attributes: [
+        :id,
+        :question,
+        :correct_answer,
+        :answer_source,
+        :explanation,
+        :_destroy,
+        choices_attributes: [
+          :id,
+          :choice1,
+          :choice2,
+          :choice3,
+          :choice4,
+          :_destroy
+        ]
+      ]
+    )
   end
 end
