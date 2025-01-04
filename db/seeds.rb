@@ -125,3 +125,19 @@ CSV.foreach('db/csv/dummy_questions_and_choices.csv', headers: true) do |row|
     choice.choice4 = row['choice4']
   end
 end
+
+# Tagsのダミーデータ作成
+CSV.foreach('db/csv/tags.csv', headers: true) do |row|
+  Tag.find_or_create_by!(name: row['name']) do |tag|
+    tag.name = row['name']
+    tag.color = row['color']
+  end
+end
+
+# TagQuizzesのダミーデータ作成
+CSV.foreach('db/csv/tag_quizzes.csv', headers: true) do |row|
+  TagQuiz.find_or_create_by!(quiz_id: row['quiz_id'], tag_id: row['tag_id']) do |tag_quiz|
+    tag_quiz.quiz_id = row['quiz_id']
+    tag_quiz.tag_id = row['tag_id']
+  end
+end

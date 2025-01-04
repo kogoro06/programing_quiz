@@ -13,7 +13,8 @@ Rails.application.routes.draw do
     end
   end
 
-  get "tags" => "tags#index", as: :tags
+  resources :tags, only: [ :index, :show ]
+
   get "rankings" => "rankings#index", as: :rankings
   get "following" => "following#index", as: :following
   resource :mypage, only: [ :show, :edit, :update ]
