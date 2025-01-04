@@ -1,5 +1,5 @@
 <div class="flex flex-col mt-6 m-8">
-  <div class="flex justify-center w-full mb-6">
+  <div class="flex justify-center w-full ">
     <!-- プルダウンメニュー -->
     <select id="tag-select" class="w-1/4 h-12 text-3xl text-white font-bold text-center text-nowrap rounded-lg flex items-center justify-center bg-html">
       <option value="/tags/1" data-color="bg-html">HTML</option>
@@ -36,9 +36,11 @@
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("turbo:load", () => {
   const tagSelect = document.getElementById('tag-select');
   const quizContent = document.getElementById('quiz_content');
+
+  if (!tagSelect || !quizContent) return;
 
   // **1. ページ読み込み時に現在のタグIDに基づいて選択状態を設定**
   const currentPath = window.location.pathname; // 現在のパスを取得
@@ -67,7 +69,7 @@
 
     if (selectedValue.startsWith('/tags/')) {
       // ページ遷移（tags/:id）
-      window.location.href = selectedValue;
+      Turbo.visit(selectedValue, { action: "replace" });
     } else {
       // 非同期で `#quiz_content` を更新
       fetch(`/tags/${selectedValue}.json`, {
