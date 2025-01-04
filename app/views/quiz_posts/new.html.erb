@@ -2,20 +2,22 @@
   <div class="bg-white">
     <div class="flex flex-col justify-center items-center mt-6 mb-6 mx-72">
       <h1 class="text-3xl font-bold text-accent text-center">新規クイズ作成</h1>
-      <p class="text-sm text-primary ml-auto text-right">あとXX問作成です！</p>
+      <p class="text-sm text-primary ml-auto text-right">あと<%= @page == 1 ? 10 : (10 - (@page - 1)) %>問作成できます</p>
     </div>
 
     <div class="flex bg-secondary rounded justify-center mx-48 mb-12">
       <div class="flex flex-col w-full mt-6 mb-6 mx-24">
         <div class="space-y-4">
-          <div class="flex flex-col bg-white rounded p-6">
-            <%= form.label :title, "クイズ集タイトル", class: "block mb-2 text-lg text-nowrap font-medium text-primary" %>
-            <%= form.text_field :title, class: "bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5", required: true %>
-            <!--
-            <h2 class="block mb-2 text-lg text-nowrap font-medium text-primary">クイズ集タイトル</h2>
-            <input type="text" class="bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5" required />
-            -->
-          </div>
+          <% if @page == 1 %>
+            <div class="flex flex-col bg-white rounded p-6">
+              <%= form.label :title, "クイズ集タイトル", class: "block mb-2 text-lg text-nowrap font-medium text-primary" %>
+              <%= form.text_field :title, class: "bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5", required: true %>
+              <!--
+              <h2 class="block mb-2 text-lg text-nowrap font-medium text-primary">クイズ集タイトル</h2>
+              <input type="text" class="bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5" required />
+              -->
+            </div>
+          <% end %>
           <div class="bg-white rounded p-6 mb-6">
             <label for="タグ" class="block mb-2 text-lg font-medium text-primary">クイズ集タグ</label>
             <div class="flex justify-between space-x-2">
@@ -28,10 +30,10 @@
             </div>
           </div>
           <div class="divider"></div>
-          <%= form.fields_for :questions do |q_form| %>
+          <%= form.fields_for :questions, @current_question do |q_form| %>
             <div class="flex flex-col bg-white rounded p-6">
               <%= q_form.label :question, "問題文", class: "block mb-2 text-lg text-nowrap font-medium text-primary" %>
-              <%= q_form.text_area :question, class: "bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5 h-20", required: true %>
+              <%= q_form.text_area :question, class: "bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5 h-20", required: (@page == 1) %>
               <!--
               <h2 class="block mb-2 text-lg text-nowrap font-medium text-primary">問題文</h2>
               <input type="text" class="bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5 h-20"  required />
@@ -42,7 +44,7 @@
                 <%= q_form.fields_for :choices do |c_form| %>
                   <div class="w-1/2">
                     <%= c_form.label :choice1, "選択肢1", class: "block mb-2 text-lg font-medium text-primary" %>
-                    <%= c_form.text_area :choice1, class: "bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary p-2.5", required: true %> 
+                    <%= c_form.text_area :choice1, class: "bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary p-2.5", required: (@page == 1) %> 
                     <!--
                     <label for="回答1" class="block mb-2 text-lg font-medium text-primary">選択肢1</label>
                     <input type="text" class="bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary p-2.5" required />
@@ -50,7 +52,7 @@
                   </div>
                   <div class="w-1/2">
                     <%= c_form.label :choice2, "選択肢2", class: "block mb-2 text-lg font-medium text-primary" %>
-                    <%= c_form.text_area :choice2, class: "bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary p-2.5", required: true %>
+                    <%= c_form.text_area :choice2, class: "bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary p-2.5", required: (@page == 1) %>
                     <!--
                     <label for="回答2" class="block mb-2 text-lg font-medium text-primary">選択肢2</label>
                     <input type="text" class="bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary p-2.5" required />
@@ -58,7 +60,7 @@
                   </div>
                   <div class="w-1/2">
                     <%= c_form.label :choice3, "選択肢3", class: "block mb-2 text-lg font-medium text-primary" %>
-                    <%= c_form.text_area :choice3, class: "bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary p-2.5", required: true %>
+                    <%= c_form.text_area :choice3, class: "bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary p-2.5", required: (@page == 1) %>
                     <!--
                     <label for="回答3" class="block mb-2 text-lg font-medium text-primary">選択肢3</label>
                     <input type="text" class="bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary p-2.5" required />
@@ -66,7 +68,7 @@
                   </div>
                   <div class="w-1/2">
                     <%= c_form.label :choice4, "選択肢4", class: "block mb-2 text-lg font-medium text-primary" %>
-                    <%= c_form.text_area :choice4, class: "bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary p-2.5", required: true %>
+                    <%= c_form.text_area :choice4, class: "bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary p-2.5", required: (@page == 1) %>
                     <!--
                     <label for="回答4" class="block mb-2 text-lg font-medium text-primary">選択肢4</label>
                     <input type="text" class="bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary p-2.5" required />
@@ -95,7 +97,7 @@
             </div>
             <div class="flex flex-col bg-white rounded p-6">
               <%= q_form.label :explanation, "解説文", class: "block mb-2 text-lg text-nowrap font-medium text-primary" %>
-              <%= q_form.text_area :explanation, class: "bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5 h-20", required: true %>
+              <%= q_form.text_area :explanation, class: "bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5 h-20", required: (@page == 1) %>
               <!--
               <h2 class="block mb-2 text-lg text-nowrap font-medium text-primary">解説文</h2>
               <input type="text" class="bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5 h-20"  required />
@@ -103,7 +105,7 @@
             </div>
             <div class="flex flex-col bg-white rounded p-6">
               <%= q_form.label :answer_source, "クイズ作成時の参考資料（URL）", class: "block mb-2 text-lg text-nowrap font-medium text-primary" %>
-              <%= q_form.text_field :answer_source, class: "bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5", required: true %>
+              <%= q_form.text_field :answer_source, class: "bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5", required: (@page == 1) %>
               <!--
               <h2 class="block mb-2 text-lg text-nowrap font-medium text-primary">クイズ作成時の参考資料（URL）</h2>
               <input type="text" class="bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5" required />
@@ -137,9 +139,16 @@
               <button class="join-item btn btn-sm bg-primary text-base-100">10</button>
             </div>
           </div>
-          <div class="flex justify-center">
-            <%= form.submit "登録する", class: "text-white bg-accent hover:opacity-70 font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center mt-6" %>
-            <!-- <button type="submit" class="text-white bg-accent hover:opacity-70 font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center mt-6">登録する</button> -->
+          <!-- ページネーション -->
+          <div class="flex justify-center gap-2 mt-4">
+            <% 1.upto(10) do |i| %>
+              <%= link_to i, new_quiz_post_path(page: i), class: "btn #{i == @page ? 'bg-accent text-white' : 'bg-primary text-base-100'}" %>
+            <% end %>
+          </div>
+
+          <!-- フォーム送信ボタン -->
+          <div class="flex justify-center mt-6">
+            <%= form.submit "登録する", class: "text-white bg-accent hover:opacity-70 font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center" %>
           </div>
         </div>
       </div>
