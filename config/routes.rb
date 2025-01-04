@@ -19,7 +19,8 @@ Rails.application.routes.draw do
   resource :mypage, only: [ :show, :edit, :update ]
   resource :otherspage, only: [ :show ]
   resources :questions, only: [ :show ] do
-    collection do
+    member do
+      post "create_result"
       get "result"
     end
   end
