@@ -1,18 +1,16 @@
 <div class="flex flex-col mt-6 m-8">
-  <div class="flex flex-col mt-6 m-8">
   <div class="flex justify-center w-full mb-6">
     <!-- プルダウンメニュー -->
     <select id="tag-select" class="w-1/4 h-12 text-3xl text-white font-bold text-center text-nowrap rounded-lg flex items-center justify-center bg-html">
-      <option value="html" data-color="bg-html">HTML</option>
-      <option value="css" data-color="bg-css">CSS</option>
-      <option value="js" data-color="bg-js">JavaScript</option>
-      <option value="ruby" data-color="bg-ruby">Ruby on Rails</option>
-      <option value="git" data-color="bg-git">Git</option>
-      <option value="error" data-color="bg-error">エラー</option>
+      <option value="/tags/1" data-color="bg-html">HTML</option>
+      <option value="/tags/2" data-color="bg-css">CSS</option>
+      <option value="/tags/3" data-color="bg-js">JavaScript</option>
+      <option value="/tags/4" data-color="bg-ruby">Ruby on Rails</option>
+      <option value="/tags/5" data-color="bg-git">Git</option>
+      <option value="/tags/6" data-color="bg-error">エラー</option>
     </select>
   </div>
 </div>
-
 
   <div id="quiz_content" class="bg-secondary rounded-lg p-6">
     <div class="rounded-lg p-4">
@@ -38,20 +36,58 @@
 </div>
 
 <script>
-  document.getElementById('tag-select').addEventListener('change', function() {
-    // 選択されたオプションを取得
+  document.addEventListener("DOMContentLoaded", () => {
+  const tagSelect = document.getElementById('tag-select');
+  const quizContent = document.getElementById('quiz_content');
+
+  // **1. ページ読み込み時に現在のタグIDに基づいて選択状態を設定**
+  const currentPath = window.location.pathname; // 現在のパスを取得
+  const currentTagId = currentPath.match(/\/tags\/(\d+)/)?.[1]; // `/tags/:id`からIDを抽出
+
+  if (currentTagId) {
+    const selectedOption = [...tagSelect.options].find(opt => opt.value === `/tags/${currentTagId}`);
+    if (selectedOption) {
+      selectedOption.selected = true; // 選択状態をセット
+      const bgColor = selectedOption.getAttribute('data-color');
+      tagSelect.className = `w-1/4 h-12 text-3xl text-white font-bold text-center text-nowrap rounded-lg flex items-center justify-center ${bgColor}`;
+    }
+  }
+
+  // **2. 背景色変更機能**
+  tagSelect.addEventListener('change', function() {
     const selectedOption = this.options[this.selectedIndex];
-    
-    // 選択されたオプションのdata-color属性を取得
     const bgColor = selectedOption.getAttribute('data-color');
-
-    // 背景色を変更したい要素を取得（ここではselect要素の背景を変更する例）
-    const tagSelect = document.getElementById('tag-select');
-    const quizContent = document.getElementById('quiz_content');
-
-    const selectedValue = tagSelect.value;
-    quizContent.textContent = selectedValue + ' - ' + quizContent.textContent;
-    // クラス名を変更して背景色を変更する
-    tagSelect.className = `w-1/4 h-12 text-3xl text-white font-bold text-center text-nowrap rounded-lg flex items-center justify-center ${bgColor}`;
+    this.className = `w-1/4 h-12 text-3xl text-white font-bold text-center text-nowrap rounded-lg flex items-center justify-center ${bgColor}`;
   });
+
+  // **3. タグに基づいてコンテンツ更新**
+  tagSelect.addEventListener('change', function() {
+    const selectedOption = this.options[this.selectedIndex];
+    const selectedValue = selectedOption.value;
+
+    if (selectedValue.startsWith('/tags/')) {
+      // ページ遷移（tags/:id）
+      window.location.href = selectedValue;
+    } else {
+      // 非同期で `#quiz_content` を更新
+      fetch(`/tags/${selectedValue}.json`, {
+        headers: {
+          "X-Requested-With": "XMLHttpRequest"
+        }
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        quizContent.innerHTML = data.quizzes_html;
+      })
+      .catch(error => {
+        console.error("Error fetching quiz content:", error);
+      });
+    }
+  });
+});
 </script>
