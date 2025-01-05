@@ -1,5 +1,13 @@
 class QuizPostsController < ApplicationController
   before_action :authenticate_user!
+  def index
+    @quizzes = Quiz.eager_load(:user, :tags).all
+    @tags = Tag.all
+    @newest_quizzes = @quizzes.order(created_at: :desc).first(6)
+  end
+
+  def show
+  end
 
   def new
     @quiz = Quiz.new

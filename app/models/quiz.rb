@@ -3,6 +3,9 @@ class Quiz < ApplicationRecord
   has_many :questions
   accepts_nested_attributes_for :questions, allow_destroy: true
 
+  has_many :tag_quizzes, dependent: :destroy
+  has_many :tags, through: :tag_quizzes
+
   validates :title, presence: true
   validate :at_least_one_question
 
@@ -13,4 +16,5 @@ class Quiz < ApplicationRecord
       errors.add(:questions, "クイズには少なくとも1問の有効な質問が必要です")
     end
   end
+  
 end

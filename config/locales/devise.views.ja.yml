@@ -30,6 +30,8 @@ ja:
               too_long: "パスワードは%{count}文字以内で入力してください"
             password_confirmation:
               confirmation: "パスワード確認が一致しません"
+      messages:
+        record_invalid: "バリデーションに失敗しました: %{errors}"
   devise:
     confirmations:
       new:
@@ -108,3 +110,4 @@ ja:
       new:
         title: "アカウントロック解除"
         resend_unlock_instructions: "アカウントの凍結解除方法を再送する"
+        

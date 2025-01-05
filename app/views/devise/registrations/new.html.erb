@@ -26,9 +26,6 @@
         <!-- パスワード入力 -->
         <div class="mt-4 md:mt-8">
           <%= f.label :password, t('devise.registrations.new.password'), class: 'block mb-2 text-sm md:text-lg text-nowrap font-medium text-primary' %>
-          <% if @minimum_password_length %>
-            <em class="text-xs text-gray-500">(<%= @minimum_password_length %> <%= t('.characters_minimum') %>)</em>
-          <% end %>
           <%= f.password_field :password, class: 'bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary block p-2 md:p-3.5', placeholder: t('devise.registrations.new.password_placeholder'), required: true, autocomplete: "new-password", id: "password_field" %>
           <div class="mt-2">
             <%= check_box_tag 'show_password', '1', false, onclick: 'togglePasswordVisibility()' %>
@@ -54,8 +51,7 @@
 
       <!-- リンク表示 -->
       <div class="flex flex-col items-center space-y-2 text-sm md:text-lg">
-        <%= link_to t('devise.registrations.new.login'), new_user_session_path, class: 'text-primary font-bold hover:text-primary hover:text-opacity-70 transition duration-300' %>
-        <%= link_to t('devise.registrations.new.forgot_password'), new_user_password_path, class: 'text-primary font-bold hover:text-primary hover:text-opacity-70 transition duration-300' %>
+        <%= render "devise/shared/links" %>
       </div>
     </div>
   </div>

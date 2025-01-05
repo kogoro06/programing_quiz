@@ -80,18 +80,27 @@ users.each do |user_attribute|
     u.role     = user_attribute[:role]
   end
 
-  # ユーザーがDBにあればユーザー名を出す
+  # ユーザーがテーブルにあればユーザー名を出す
   puts "作成済みユーザー：#{user.name}" if user.persisted?
 end
 
 # Profilesのダミーデータ作成
-
+profiles.each do |profile_attribute|
+  profile = Profile.find_or_create_by!(user_id: profile_attribute[:user_id]) do |prof|
+    prof.bio                = profile_attribute[:bio]
+    prof.studying_languages = profile_attribute[:studying_languages]
+    prof.github_link        = profile_attribute[:github_link]
+    prof.x_link             = profile_attribute[:x_link]
+    prof.user_id            = profile_attribute[:user_id]
+  end
+end
 
 # Quizzesのダミーデータ生成
 CSV.foreach('db/csv/dummy_quizzes.csv', headers: true) do |row|
   Quiz.find_or_create_by!(author_user_id: row['author_user_id'], title: row['title']) do |quiz|
     quiz.author_user_id = row['author_user_id']
     quiz.title = row['title']
+    quiz.questions_count = row['questions_count']
   end
 end
 
@@ -114,5 +123,21 @@ CSV.foreach('db/csv/dummy_questions_and_choices.csv', headers: true) do |row|
     choice.choice2 = row['choice2']
     choice.choice3 = row['choice3']
     choice.choice4 = row['choice4']
+  end
+end
+
+# Tagsのダミーデータ作成
+CSV.foreach('db/csv/tags.csv', headers: true) do |row|
+  Tag.find_or_create_by!(name: row['name']) do |tag|
+    tag.name = row['name']
+    tag.color = row['color']
+  end
+end
+
+# TagQuizzesのダミーデータ作成
+CSV.foreach('db/csv/tag_quizzes.csv', headers: true) do |row|
+  TagQuiz.find_or_create_by!(quiz_id: row['quiz_id'], tag_id: row['tag_id']) do |tag_quiz|
+    tag_quiz.quiz_id = row['quiz_id']
+    tag_quiz.tag_id = row['tag_id']
   end
 end
