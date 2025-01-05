@@ -13,7 +13,7 @@ class Quiz < ApplicationRecord
 
   def at_least_one_question
     if questions.reject { |q| q.question.blank? && q.correct_answer.blank? }.empty?
-      errors.add(:questions, "クイズには少なくとも1問の有効な質問が必要です")
+      errors.add(:questions, "クイズ集は1問から登録できます")
     end
   end
 end
