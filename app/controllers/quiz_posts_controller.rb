@@ -8,12 +8,6 @@ class QuizPostsController < ApplicationController
       question = @quiz.questions.build
       question.choices.build # 1回だけchoicesを作成
     end
-
-    # 現在のページ番号を取得（デフォルトは1ページ目）
-    @page = (params[:page] || 1).to_i
-
-    # 対象の質問だけを取り出してレンダリング用に設定
-    @current_question = @quiz.questions[@page - 1]
   end
 
   def create
@@ -40,6 +34,8 @@ class QuizPostsController < ApplicationController
         :answer_source,
         :explanation,
         :_destroy,
+        :question_image,
+        :explanation_image,
         choices_attributes: [
           :id,
           :choice1,

@@ -1,6 +1,8 @@
 class Question < ApplicationRecord
   belongs_to :quiz, counter_cache: true
   has_many :choices
+  has_one_attached :question_image
+  has_one_attached :explanation_image
   accepts_nested_attributes_for :choices, allow_destroy: true
 
   # 入力があればバリデーションを実行
