@@ -8,9 +8,11 @@ Rails.application.routes.draw do
 
   resource :contacts, only: [ :new, :create ]
   resources :quizzes
-  resources :quiz_posts, only: [ :new, :create ] do
+  resources :quiz_posts do
     collection do
       get :bookmarks
+      get :new
+      post :create
     end
   end
 
