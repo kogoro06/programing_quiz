@@ -30,7 +30,7 @@ class QuizPostsController < ApplicationController
     @quiz.questions = @quiz.questions.select { |q| q.question.present? }
 
     if @quiz.save
-      redirect_to quiz_path(@quiz), notice: 'クイズを投稿しました！'
+      redirect_to quiz_path(@quiz), notice: "クイズを投稿しました！"
     else
       if current_user.admin?
         30.times do

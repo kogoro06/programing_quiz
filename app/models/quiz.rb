@@ -16,5 +16,4 @@ class Quiz < ApplicationRecord
       errors.add(:questions, "クイズには少なくとも1問の有効な質問が必要です")
     end
   end
-  
 end

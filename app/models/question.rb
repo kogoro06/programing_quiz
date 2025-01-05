@@ -8,7 +8,7 @@ class Question < ApplicationRecord
   # 入力があればバリデーションを実行
   validates :question, presence: true, if: :required_question?
   validate :validate_correct_answer_and_choices
-  
+
 
 
   def required_question?
