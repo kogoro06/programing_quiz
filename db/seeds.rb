@@ -85,15 +85,7 @@ users.each do |user_attribute|
 end
 
 # Profilesのダミーデータ作成
-profiles.each do |profile_attribute|
-  profile = Profile.find_or_create_by!(user_id: profile_attribute[:user_id]) do |prof|
-    prof.bio                = profile_attribute[:bio]
-    prof.studying_languages = profile_attribute[:studying_language]
-    prof.github_link        = profile_attribute[:github_link]
-    prof.x_link             = profile_attribute[:x_link]
-    prof.user_id            = profile_attribute[:user_id]
-  end
-end
+
 
 # Quizzesのダミーデータ生成
 CSV.foreach('db/csv/dummy_quizzes.csv', headers: true) do |row|
