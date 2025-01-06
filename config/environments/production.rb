@@ -104,16 +104,17 @@ Rails.application.configure do
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 
 
-  host = "programing-quiz-1.onrender.com"
-  config.action_mailer.default_url_options = { host: host, protocol: "https" }
+  config.action_mailer.default_url_options = { host: "programing-quiz-1.onrender.com", protocol: "https" }
   config.action_mailer.raise_delivery_errors = true
+
   config.action_mailer.delivery_method = :smtp
+  
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 587,
-    domain: "gmail.com",
-    user_name:            ENV["GMAIL_USERNAME"],
-    password:             ENV["GMAIL_PASSWORD"],
+    domain: "programing-quiz-1.onrender.com",
+    user_name: Rails.application.credentials.application_email,
+    password: Rails.application.credentials.application_email_password,
     authentication: "plain",
     enable_starttls_auto: true
   }
