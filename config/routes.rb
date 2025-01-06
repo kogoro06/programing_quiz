@@ -13,7 +13,8 @@ Rails.application.routes.draw do
     end
   end
 
-  get "tags" => "tags#index", as: :tags
+  resources :tags, only: [ :index, :show ]
+
   get "rankings" => "rankings#index", as: :rankings
   get "following" => "following#index", as: :following
   resources :users do
@@ -21,7 +22,8 @@ Rails.application.routes.draw do
   end
   resource :otherspage, only: [ :show ]
   resources :questions, only: [ :show ] do
-    collection do
+    member do
+      post "create_result"
       get "result"
     end
   end
