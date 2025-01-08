@@ -2,7 +2,6 @@ class QuestionsController < ApplicationController
   before_action :authenticate_user!, except: [ :new, :show ] # ログインが必要なアクションを設定
 
   def new
-    @question = Question.new
   end
 
   def show
