@@ -4,6 +4,7 @@ class QuizPostsController < ApplicationController
     @quizzes = Quiz.eager_load(:user, :tags).all
     @tags = Tag.all
     @newest_quizzes = @quizzes.order(created_at: :desc).first(6)
+    @current_user = current_user
   end
 
   def show
