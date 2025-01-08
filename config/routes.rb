@@ -13,14 +13,17 @@ Rails.application.routes.draw do
     end
   end
 
-  get "tags" => "tags#index", as: :tags
+  resources :tags, only: [:show ]
   get "badges" => "badges#index", as: :badges
+
   get "rankings" => "rankings#index", as: :rankings
   get "following" => "following#index", as: :following
+  get "followers" => "followers#index", as: :followers
   resource :mypage, only: [ :show, :edit, :update ]
   resource :otherspage, only: [ :show ]
   resources :questions, only: [ :show ] do
-    collection do
+    member do
+      post "create_result"
       get "result"
     end
   end
