@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :users do
     resource :profile
   end
+  get "followers" => "followers#index", as: :followers
   resource :otherspage, only: [ :show ]
   resources :questions, only: [ :show ] do
     member do
