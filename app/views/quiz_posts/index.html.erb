@@ -11,12 +11,15 @@
       </h2>
       <h3 class="text-accent text-lg mb-4">言語別一覧</h3>
         <div class="bg-base-100 rounded p-4">
-          <div class="grid grid-cols-3">
-            <% @tags.each do |tag| %>
-              <%= link_to tag_path(tag.id), class: "btn bg-html flex-1 text-lg text-white text-bold text-center text-nowrap my-1" do %>
-                <%= tag.name %>
-              <% end %>
-            <% end %>
+          <div class="flex gap-2">
+            <button class="btn bg-html flex-1 text-lg text-white text-bold text-center text-nowrap">HTML</button>
+            <button class="btn bg-css flex-1 text-lg text-white text-bold text-center text-nowrap">CSS</button>
+            <button class="btn bg-js flex-1 text-lg text-white text-bold text-center text-nowrap">JavaScript</button>
+          </div>
+          <div class="flex gap-2 mt-2">
+            <button class="btn bg-ruby flex-1 text-lg text-white text-bold text-center text-nowrap">Ruby on Rails</button>
+            <button class="btn bg-git flex-1 text-lg text-white text-bold text-center text-nowrap">Git</button>
+            <button class="btn bg-error flex-1 text-lg text-white text-bold text-center text-nowrap">エラー</button>
           </div>
         </div>
 
@@ -34,10 +37,12 @@
   <div class="w-1/3 pl-4">
     <div class="bg-secondary p-4 rounded shadow">
       <h2 class="text-primary text-xl text-center font-bold p-4 flex items-center justify-center">
-        <span class="material-icons mr-2">
-          add_circle_outline
-        </span>
-        クイズを作る
+        <%= link_to class: 'text-primary flex items-center', to: new_quiz_post_path do %>
+          <span class="material-icons mr-2">
+            add_circle_outline
+          </span>
+          クイズを作る
+        <% end %>
       </h2>
     </div>
     <div class="bg-secondary p-6 rounded shadow mt-12">

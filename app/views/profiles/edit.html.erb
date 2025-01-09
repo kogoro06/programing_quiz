@@ -1,0 +1,75 @@
+<div class="bg-white">
+  <div class="flex flex-col justify-center items-center mt-6 mb-6 mx-72">
+    <h1 class="text-3xl font-bold text-accent text-center">ユーザープロフィール編集</h1>
+  </div>
+
+  <%= form_with(model: @user_profile_form, url: user_profile_path, local: true, data: {turbo: false}, method: :patch)  do |f| %>
+      <% if @user.errors.any? %>
+        <ul>
+          <% @user.errors.full_messages.each do |error| %>
+            <li><%= error %></li>
+          <% end %>
+        </ul>
+      <% end %>
+      <% if @profile.errors.any? %>
+        <ul>
+          <% @profile.errors.full_messages.each do |error| %>
+            <li><%= error %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    <div class="flex bg-secondary rounded justify-center mx-48 mb-12">
+      <div class="flex flex-col w-full mt-6 mb-6 mx-24">
+        <div class="space-y-4">
+          <div class="flex flex-col bg-white rounded p-6">
+            <%= f.label(t("activerecord.attributes.profile.name"), class: "block mb-2 text-lg text-nowrap font-medium text-primary") %>
+            <%= f.text_field(:name, class: "bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5")  %>
+          </div>
+
+          <div class="flex items-center bg-white rounded p-6 gap-8">
+              <h2 class="block text-lg text-nowrap font-medium text-primary">アバター画像</h2>
+              <input type="file" class="file-input file-input-bordered file-input-primary file-input-sm w-full" />
+          </div>
+
+          <div class="flex flex-col bg-white rounded p-6">
+            <%= f.label(t("activerecord.attributes.profile.bio"), class: "block mb-2 text-lg text-nowrap font-medium text-primary") %>
+            <%= f.text_field(:bio, class: "bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5 h-20") %>
+          </div>
+
+          <div class="flex flex-col bg-white rounded p-6">
+            <%= f.label(t("activerecord.attributes.profile.studying_languages"), class: "block mb-2 text-lg text-nowrap font-medium text-primary") %>
+            <%= f.text_field(:studying_languages, class: "bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5") %>
+          </div>
+
+          <div class="flex flex-col bg-white rounded p-6">
+            <%= f.label(t("activerecord.attributes.profile.x_link"), class: "block mb-2 text-lg text-nowrap font-medium text-primary") %>
+            <%= f.text_field(:x_link, class: "bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5") %>
+          </div>
+
+          <div class="flex flex-col bg-white rounded p-6">
+            <%= f.label(t("activerecord.attributes.profile.github_link"), class: "block mb-2 text-lg text-nowrap font-medium text-primary") %>
+            <%= f.text_field(:github_link, class: "bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5") %>
+          </div>
+
+          <!-- 更新ボタン -->
+          <div class="flex justify-center mt-12">
+            <%= f.submit(t("activerecord.attributes.profile.update"), class: "btn btn-lg text-white text-center bg-accent text-3xl font-bold rounded-lg w-3/4 h-20") %>
+          </div>
+
+          <!-- 退会ボタン -->
+          <div class="flex justify-center mt-4">
+            <%= f.submit(t("activerecord.attributes.profile.destroy"), class: "btn btn-lg text-white text-center bg-primary text-2xl font-bold rounded-lg w-3/4 h-16") %>
+          </div>
+          
+          <!-- 注意文 -->
+          <div class="text-right mt-2 w-3/4 mx-auto">
+              <p class="text-sm text-gray-600">
+                  ※退会すると全てのデータが削除されます。
+              </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %> 
+</div>
+

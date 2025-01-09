@@ -7,18 +7,24 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   resource :contacts, only: [ :new, :create ]
+  resources :quizzes
   resources :quiz_posts do
     collection do
       get :bookmarks
+      get :new
+      post :create
     end
   end
 
-  resources :tags, only: [ :index, :show ]
+  resources :tags, only: [:show ]
+  get "badges" => "badges#index", as: :badges
 
   get "rankings" => "rankings#index", as: :rankings
   get "following" => "following#index", as: :following
+  resources :users do
+    resource :profile
+  end
   get "followers" => "followers#index", as: :followers
-  resource :mypage, only: [ :show, :edit, :update ]
   resource :otherspage, only: [ :show ]
   resources :questions, only: [ :show ] do
     member do
