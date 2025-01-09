@@ -8,6 +8,7 @@ class QuizPostsController < ApplicationController
   end
 
   def show
+    @quiz = Quiz.find(params[:id])
   end
 
   def new
