@@ -1,7 +1,10 @@
 class QuizPostsController < ApplicationController
+  before_action :authenticate_user!
   def index
-    @quizzes = Quiz.eager_load(:user).all
+    @quizzes = Quiz.eager_load(:user, :tags).all
+    @tags = Tag.all
     @newest_quizzes = @quizzes.order(created_at: :desc).first(6)
+    @current_user = current_user
   end
 
   def show
@@ -9,38 +12,65 @@ class QuizPostsController < ApplicationController
 
   def new
     @quiz = Quiz.new
-    @question = Question.new
-  end
-
-  def create
-    Rails.logger.debug "Received params: #{params.inspect}"
-    @quiz = Quiz.new(quiz_params)
-    @question = Question.new(question_params)
-    if @quiz.save
-      # 保存に成功した場合の処理
-      redirect_to quiz_posts_path, notice: "クイズが作成されました。"
+    if current_user.admin?
+      30.times do
+        question = @quiz.questions.build
+        question.choices.build # 1回だけchoicesを作成
+      end
     else
-      # 保存に失敗した場合の処理
-      render :new
+      10.times do
+        question = @quiz.questions.build
+        question.choices.build # 1回だけchoicesを作成
+      end
     end
   end
 
-  def edit
-  end
+  def create
+    @quiz = Quiz.new(quiz_params.merge(author_user_id: current_user.id))
 
-  def update
-  end
+    @quiz.questions = @quiz.questions.select { |q| q.question.present? }
 
-  def bookmarks
+    if @quiz.save
+      redirect_to quiz_path(@quiz), notice: "クイズを投稿しました！"
+    else
+      if current_user.admin?
+        30.times do
+          question = @quiz.questions.build
+          question.choices.build # 1回だけchoicesを作成
+        end
+      else
+        10.times do
+          question = @quiz.questions.build
+          question.choices.build # 1回だけchoicesを作成
+        end
+      end
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
 
   def quiz_params
-    params.require(:quiz).permit(:title)
-  end
-
-  def question_params
-    params.require(:question).permit(:question)
+    params.require(:quiz).permit(
+      :title,
+      questions_attributes: [
+        :id,
+        :question,
+        :correct_answer,
+        :answer_source,
+        :explanation,
+        :_destroy,
+        :question_image,
+        :explanation_image,
+        choices_attributes: [
+          :id,
+          :choice1,
+          :choice2,
+          :choice3,
+          :choice4,
+          :_destroy
+        ]
+      ]
+    )
   end
 end

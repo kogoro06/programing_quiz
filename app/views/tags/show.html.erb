@@ -1,0 +1,37 @@
+<div class="flex flex-col mt-6 m-8">
+  <div class="flex justify-center w-full ">
+    <!-- プルダウンメニュー -->
+    <select id="tag-select" class="custom-select w-1/4 h-12 text-3xl text-white font-bold text-center text-nowrap rounded-lg flex items-center justify-center bg-html">
+      <option value="/tags/1" data-color="bg-html">HTML</option>
+      <option value="/tags/2" data-color="bg-css">CSS</option>
+      <option value="/tags/3" data-color="bg-js">JavaScript</option>
+      <option value="/tags/4" data-color="bg-ruby">Ruby on Rails</option>
+      <option value="/tags/5" data-color="bg-git">Git</option>
+      <option value="/tags/6" data-color="bg-error">エラー</option>
+    </select>
+  </div>
+</div>
+
+  <div id="quiz_content" class="bg-secondary rounded-lg p-6">
+    <div class="rounded-lg p-4">
+      <div class="flex flex-wrap justify-start gap-6">
+        <% @quizzes.each do |quiz| %>
+          <%= render partial: "quizzes/lg_card", locals: { quiz: quiz, tags: quiz.tags} %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <!-- ページネーション -->
+  <div class="flex justify-center gap-2">
+    <div class="join mt-6">
+      <button class="join-item btn btn-sm bg-primary text-base-100"><</button>
+      <button class="join-item btn btn-sm bg-primary text-base-100">1</button>
+      <button class="join-item btn btn-sm bg-accent text-base-100">2</button>
+      <button class="join-item btn btn-sm bg-primary text-base-100 pointer-events-none">...</button>
+      <button class="join-item btn btn-sm bg-primary text-base-100">9</button>
+      <button class="join-item btn btn-sm bg-primary text-base-100">10</button>
+      <button class="join-item btn btn-sm bg-primary text-base-100">></button>
+    </div>
+  </div>
+</div>
+

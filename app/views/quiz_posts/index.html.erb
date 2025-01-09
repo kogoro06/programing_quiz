@@ -37,10 +37,12 @@
   <div class="w-1/3 pl-4">
     <div class="bg-secondary p-4 rounded shadow">
       <h2 class="text-primary text-xl text-center font-bold p-4 flex items-center justify-center">
-        <span class="material-icons mr-2">
-          add_circle_outline
-        </span>
-        クイズを作る
+        <%= link_to class: 'text-primary flex items-center', to: new_quiz_post_path do %>
+          <span class="material-icons mr-2">
+            add_circle_outline
+          </span>
+          クイズを作る
+        <% end %>
       </h2>
     </div>
     <div class="bg-secondary p-6 rounded shadow mt-12">
