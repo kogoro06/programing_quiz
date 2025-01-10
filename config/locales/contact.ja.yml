@@ -2,7 +2,7 @@ ja:
   activerecord:
     attributes:
       contact:
-        name: "ニックネーム"
+        name: "ユーザーネーム"
         email: "メールアドレス"
         title: "問い合わせタイトル"
         text: "問い合わせ内容"
