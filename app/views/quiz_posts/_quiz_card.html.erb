@@ -1,7 +1,9 @@
 <div class="bg-secondary grid-item rounded p-6 flex-1 my-1">
-  <p class="text-accent text-lg">
-    <%= quiz.title %>
-  </p>
+  <%= link_to quiz_path(quiz), class: "text-accent text-lg" do %>
+    <p class="text-accent text-lg font-bold">
+      <%= quiz.title %>
+    </p>
+  <% end %>
   <div>
     <%= link_to user_profile_path(quiz.user.id), class: "flex gap-1 items-center" do %>
       <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary border--300'%>
