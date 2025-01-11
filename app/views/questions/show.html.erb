@@ -2,14 +2,17 @@
   <div class="bg-base-100 p-8 rounded-lg max-w-3xl mx-auto">
 
     <div class="flex items-center">
-      <h1 class="text-3xl text-accent mr-4">クイズタイトル</h1>
+      <h1 class="text-3xl text-accent mr-4"> <%= @quiz.title %></h1>
     </div>
-    <button class="btn btn-sm bg-html text-sm text-white font-bold text-center text-nowrap mt-2">HTML</button>
-    <button class="btn btn-sm bg-css text-sm text-white font-bold text-center text-nowrap mt-2 ml-2">CSS</button>
+    <div class="flex gap-2 mt-2">
+      <% @quiz.tags.each do |tag| %>
+        <span class="btn btn-sm <%= tag.data_color %> text-sm text-white font-bold text-center text-nowrap">
+          <%= tag.name %>
+        </span>
+      <% end %>
+    </div>
+
     <h2 class="mt-12 text-accent">問題</h2>
-    <p class="text-sm max-w-2xl mx-auto">
-      <%= @question.question %>
-    </p>
 
     <%= form_with url: create_result_question_path(@question), method: :post, local: true,id: "quiz-form",remote: true, data: { turbo: false } do |form| %>
     <%= form.hidden_field :question_id, value: @question.id %>

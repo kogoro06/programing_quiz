@@ -7,6 +7,7 @@ class QuestionsController < ApplicationController
   def show
     begin
       @question = Question.find(params[:id])
+      @quiz = @question.quiz
       @choices = Choice.where(question_id: @question.id)
     rescue ActiveRecord::RecordNotFound => e
       Rails.logger.error("Question not found: #{e.message}")
@@ -36,6 +37,7 @@ class QuestionsController < ApplicationController
 
   def result
     @question = Question.find(params[:id])
+    @quiz = @question.quiz
     @choices = Choice.where(question_id: @question.id)
 
     @past_answer = PastAnswer.find_by(question_id: @question.id, user_id: current_user.id)
