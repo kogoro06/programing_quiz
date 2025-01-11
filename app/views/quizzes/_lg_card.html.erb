@@ -11,7 +11,7 @@
       <p class="text-primary text-sm"><%= quiz.created_at.strftime('%Y/%m/%d') %></p>
     </div>
     <div class="flex justify-between space-x-2">
-      <%= render partial: "tags/buttons/tags", locals: { tags: tags } %>
+      <%= render partial: "tags/buttons/tags", locals: { tags: quiz.tags } %>
       <p class="text-primary text-sm">
         全<%= quiz.questions_count %>問
       </p>

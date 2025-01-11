@@ -16,7 +16,7 @@
     <div class="rounded-lg p-4">
       <div class="flex flex-wrap justify-start gap-6">
         <% @quizzes.each do |quiz| %>
-          <%= render partial: "quizzes/lg_card", locals: { quiz: quiz, tags: quiz.tags} %>
+          <%= render partial: "quizzes/lg_card", locals: { quiz: quiz } %>
         <% end %>
       </div>
     </div>
