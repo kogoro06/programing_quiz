@@ -45,6 +45,13 @@
       </div>
       <% end %>
 
+      <div>
+        <% if @question.question_image.attached? %>
+        <h2 class="mt-12 text-accent">問題画像</h2>
+          <%= image_tag @question.question_image, class: 'w-full h-auto rounded mt-2' %>
+        <% end %>
+      </div>
+
       <div class="relative flex items-center w-full mt-16 mb-8">
         <div class="absolute left-1/2 transform -translate-x-1/2" id="result-container">
           <%= form.submit "回答する",id: "submit-btn", class: "text-white bg-accent hover:opacity-70 rounded-lg text-lg px-5 py-2.5 flex items-center justify-center gap-2" %>

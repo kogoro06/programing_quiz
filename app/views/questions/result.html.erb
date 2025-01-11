@@ -65,6 +65,19 @@
           <p class="text-sm link">
             <% @question.answer_source %>
           </p>
+          <div>
+            <% if @question.question_image.attached? %>
+              <h2 class="mt-12 text-accent">問題画像</h2>
+              <%= image_tag @question.question_image, class: 'w-full h-auto rounded mt-2' %>
+            <% end %>
+          </div>
+
+          <div>
+            <% if @question.explanation_image.attached? %>
+            <h2 class="mt-12 text-accent">解説画像</h2>
+              <%= image_tag @question.question_image, class: 'w-full h-auto rounded mt-2' %>
+            <% end %>
+          </div>
           <% if @has_next_question %>
           <div class="flex justify-center items-center mt-12 space-x-4">
             <%= link_to question_path(@next_question),
