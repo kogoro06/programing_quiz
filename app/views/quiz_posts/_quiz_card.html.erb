@@ -2,9 +2,11 @@
   <p class="text-accent text-lg">
     <%= quiz.title %>
   </p>
-  <div class="flex gap-1 items-center">
-    <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary border--300'%>
-    <p>作者のユーザーネーム</p>
+  <div>
+    <%= link_to user_profile_path(quiz.user.id), class: "flex gap-1 items-center" do %>
+      <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary border--300'%>
+      <p><%= quiz.user.name %></p>
+    <% end %>
   </div>
   <div class="flex mt-2">
     <%= render partial: "tags/buttons/tags", locals: { tags: quiz.tags } %>

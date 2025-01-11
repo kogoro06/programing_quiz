@@ -2,9 +2,11 @@
   <div class="flex flex-col w-full space-y-4">
     <p class="text-accent text-lg font-bold"><%= quiz.title %></p>
     <div class="flex justify-between items-center">
-      <div class="flex items-center gap-2">
-        <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary' %>
-        <p class="text-sm"><%= quiz.user.name %></p>
+      <div class="">
+        <%= link_to user_profile_path(quiz.user.id), class: "flex items-center gap-2" do %>
+          <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary' %>
+          <p class="text-sm"><%= quiz.user.name %></p>
+        <% end %>
       </div>
       <p class="text-primary text-sm"><%= quiz.created_at.strftime('%Y/%m/%d') %></p>
     </div>
