@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :tags, only: [ :index, :show ]
+  resources :tags, only: [:show ]
   get "badges" => "badges#index", as: :badges
 
   get "rankings" => "rankings#index", as: :rankings
