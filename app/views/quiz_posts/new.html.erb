@@ -25,12 +25,19 @@
           <div class="bg-white rounded p-6 mb-6">
             <label for="タグ" class="block mb-2 text-lg font-medium text-primary">クイズ集タグ</label>
             <div class="flex justify-between space-x-2">
-              <button class="btn bg-html flex-1 text-lg text-white text-bold text-center text-nowrap">HTML</button>
-              <button class="btn bg-css flex-1 text-lg text-white text-bold text-center text-nowrap">CSS</button>
-              <button class="btn bg-js flex-1 text-lg text-white text-bold text-center text-nowrap">JavaScript</button>
-              <button class="btn bg-ruby flex-1 text-lg text-white text-bold text-center text-nowrap">Ruby on Rails</button>
-              <button class="btn bg-git flex-1 text-lg text-white text-bold text-center text-nowrap">Git</button>
-              <button class="btn bg-error flex-1 text-lg text-white text-bold text-center text-nowrap">エラー</button>
+              <% @tags.each do |tag| %>
+                <label 
+                  class="tag-label btn flex-1 text-lg text-white text-bold text-center text-nowrap cursor-pointer <%= tag.data_color %>" 
+                  data-color="<%= tag.data_color %>">
+                  <input 
+                    type="checkbox" 
+                    name="quiz[tag_ids][]"
+                    value="<%= tag.id %>" 
+                    class="tag-checkbox hidden"
+                    <%= 'checked' if @quiz.tag_ids.include?(tag.id) %> >
+                  <%= tag.name %>
+                </label>
+              <% end %>
             </div>
           </div>
           <div class="divider"></div>
