@@ -1,1 +1,4 @@
-<%= render partial: "quizzes/lg_card", locals: { quiz: @quiz } %>
+<div class="p-10">
+  <%= render partial: "quizzes/lg_card", locals: { quiz: @quiz } %>
+  <%= link_to "クイズを解く", question_path(@quiz.questions.first), class: "btn bg-html text-white text-bold px-3 text-center text-nowrap my-5", data: { turbo_method: "get", turbo_confirm: "クイズを開始します。よろしいですか？" } %>
+</div>
