@@ -19,11 +19,11 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-    @user= User.find(params[:user_id])
     user_inspections(@user)
   end
 
   def update
+    user_inspections(@user)
     if @user_profile_form.save(user_profile_form_params)
       redirect_to user_profile_path(current_user[:id]), flash: { notice: "プロフィールを更新しました" }
     else
