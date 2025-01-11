@@ -14,12 +14,13 @@ class ProfilesController < ApplicationController
                   .where(author_user_id: current_user[:id])
                   .page(params[:page])
                   .per(6)
-    # FIXME: トップページと重複しているので後日リファクタリングする
     @quizzes = Quiz.eager_load(:user).where(author_user_id: @user.id).page(params[:page]).per(6)
     @newest_quizzes = @quizzes.order(created_at: :desc).first(6)
   end
 
   def edit
+    @user= User.find(params[:user_id])
+    user_inspections(@user)
   end
 
   def update
@@ -41,5 +42,11 @@ class ProfilesController < ApplicationController
     @user = User.find(params[:user_id])
     @profile = @user.profile
     @user_profile_form = UserProfileForm.new(@user, @profile)
+  end
+
+  def user_inspections(user)
+    if current_user != user
+      redirect_to user_profile_path(user), flash: { alert: "他のユーザーのプロフィールは編集できません" }
+    end
   end
 end
