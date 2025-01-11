@@ -11,7 +11,7 @@ class ProfilesController < ApplicationController
                             quizzes.author_user_id,
                             quizzes.questions_count as questions_count,
                             users.name as author_name')
-                  .where(author_user_id: current_user[:id])
+                  .where(author_user_id: @user.id)
                   .page(params[:page])
                   .per(6)
     @quizzes = Quiz.eager_load(:user).where(author_user_id: @user.id).page(params[:page]).per(6)
