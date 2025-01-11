@@ -12,14 +12,14 @@
       <h3 class="text-accent text-lg mb-4">言語別一覧</h3>
         <div class="bg-base-100 rounded p-4">
           <div class="flex gap-2">
-            <button class="btn bg-html flex-1 text-lg text-white text-bold text-center text-nowrap">HTML</button>
-            <button class="btn bg-css flex-1 text-lg text-white text-bold text-center text-nowrap">CSS</button>
-            <button class="btn bg-js flex-1 text-lg text-white text-bold text-center text-nowrap">JavaScript</button>
+            <%= link_to "HTML", tag_path(id: 1), class: "btn bg-html flex-1 text-lg text-white text-bold text-center text-nowrap" %>
+            <%= link_to "CSS", tag_path(id: 2), class: "btn bg-css flex-1 text-lg text-white text-bold text-center text-nowrap" %>
+            <%= link_to "JavaScript", tag_path(id: 3), class: "btn bg-js flex-1 text-lg text-white text-bold text-center text-nowrap" %>
           </div>
           <div class="flex gap-2 mt-2">
-            <button class="btn bg-ruby flex-1 text-lg text-white text-bold text-center text-nowrap">Ruby on Rails</button>
-            <button class="btn bg-git flex-1 text-lg text-white text-bold text-center text-nowrap">Git</button>
-            <button class="btn bg-error flex-1 text-lg text-white text-bold text-center text-nowrap">エラー</button>
+            <%= link_to "Ruby", tag_path(id: 4), class: "btn bg-ruby flex-1 text-lg text-white text-bold text-center text-nowrap" %>
+            <%= link_to "Git", tag_path(id: 5), class: "btn bg-git flex-1 text-lg text-white text-bold text-center text-nowrap" %>
+            <%= link_to "Error", tag_path(id: 6), class: "btn bg-error flex-1 text-lg text-white text-bold text-center text-nowrap" %>
           </div>
         </div>
 
