@@ -3,7 +3,7 @@
     <h1 class="text-3xl font-bold text-accent text-center">ユーザープロフィール編集</h1>
   </div>
 
-  <%= form_with(model: @user_profile_form, url: user_profile_path, local: true, data: {turbo: false}, method: :patch)  do |f| %>
+  <%= form_with(model: @user_profile_form, url: user_profile_path, local: true, data: {turbo: false}, method: :patch, multipart: true)  do |f| %>
       <% if @user.errors.any? %>
         <ul>
           <% @user.errors.full_messages.each do |error| %>
@@ -28,7 +28,7 @@
 
           <div class="flex items-center bg-white rounded p-6 gap-8">
               <h2 class="block text-lg text-nowrap font-medium text-primary">アバター画像</h2>
-              <input type="file" class="file-input file-input-bordered file-input-primary file-input-sm w-full" />
+              <%= f.file_field :user_icon, class: "file-input file-input-bordered file-input-primary file-input-sm w-full" %>
           </div>
 
           <div class="flex flex-col bg-white rounded p-6">

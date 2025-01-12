@@ -9,6 +9,7 @@ class UserProfileForm
   attribute :x_link,             :string
   attribute :user_id,            :string
   attribute :name,               :string
+  attribute :user_icon
 
   # バリデーション
   validates :bio,                length: { maximum: 250 }
@@ -51,6 +52,9 @@ class UserProfileForm
         github_link: user_profile_form_params[:github_link],
         x_link: user_profile_form_params[:x_link]
       )
+       if user_profile_form_params[:user_icon].present?
+        @profile.user_icon.attach(user_profile_form_params[:user_icon])
+      end
     end
     true
   rescue ActiveRecord::RecordInvalid => e
