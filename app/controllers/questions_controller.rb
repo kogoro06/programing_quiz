@@ -8,6 +8,7 @@ class QuestionsController < ApplicationController
     begin
       @question = Question.find(params[:id])
       @choices = Choice.where(question_id: @question.id)
+      @quiz = @question.quiz
     rescue ActiveRecord::RecordNotFound => e
       Rails.logger.error("Question not found: #{e.message}")
       flash[:alert] = "指定された質問が見つかりませんでした。"
@@ -37,6 +38,7 @@ class QuestionsController < ApplicationController
   def result
     @question = Question.find(params[:id])
     @choices = Choice.where(question_id: @question.id)
+    @quiz = @question.quiz
 
     @past_answer = PastAnswer.find_by(question_id: @question.id, user_id: current_user.id)
     unless @past_answer
