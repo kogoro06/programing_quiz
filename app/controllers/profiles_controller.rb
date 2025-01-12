@@ -13,7 +13,7 @@ class ProfilesController < ApplicationController
 
     @quizzes = Quiz.joins(:user) # INNER JOIN で users テーブルを含める
                    .includes(:tags) # タグを事前ロード
-                   .select('quizzes.*, DATE(quizzes.created_at) as created_date, users.name as author_name')
+                   .select("quizzes.*, DATE(quizzes.created_at) as created_date, users.name as author_name")
                    .where(author_user_id: current_user.id)
                    .order(created_at: :desc)
                    .page(params[:page])

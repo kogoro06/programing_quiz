@@ -54,7 +54,7 @@ class UserProfileForm
       )
        if user_profile_form_params[:user_icon].present?
         @profile.user_icon.attach(user_profile_form_params[:user_icon])
-      end
+       end
     end
     true
   rescue ActiveRecord::RecordInvalid => e
