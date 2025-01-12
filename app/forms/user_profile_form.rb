@@ -9,6 +9,7 @@ class UserProfileForm
   attribute :x_link,             :string
   attribute :user_id,            :string
   attribute :name,               :string
+  attribute :user_icon           # ActiveStorageの添付ファイル用
 
   # バリデーション
   validates :bio,                length: { maximum: 250 }
@@ -37,7 +38,7 @@ class UserProfileForm
   end
 
   def save(user_profile_form_params)
-    return set_error_and_return_false("Validation faild") unless valid?
+    return set_error_and_return_false("Validation failed") unless valid?
 
     # パラメータ確認
     Rails.logger.debug "Received params in profile updating: #{user_profile_form_params.inspect}"
@@ -51,6 +52,10 @@ class UserProfileForm
         github_link: user_profile_form_params[:github_link],
         x_link: user_profile_form_params[:x_link]
       )
+      # user_iconが存在する場合にのみ更新
+      if user_profile_form_params[:user_icon].present?
+        @profile.user_icon.attach(user_profile_form_params[:user_icon])
+      end
     end
     true
   rescue ActiveRecord::RecordInvalid => e

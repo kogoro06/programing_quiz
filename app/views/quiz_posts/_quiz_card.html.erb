@@ -3,8 +3,12 @@
     <%= quiz.title %>
   </p>
   <div class="flex gap-1 items-center">
-    <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary border--300'%>
-    <p>作者のユーザーネーム</p>
+    <% if quiz.user&.profile&.user_icon&.attached? %>
+      <%= image_tag quiz.user.profile.user_icon, class: 'w-6 h-6 rounded-full object-cover border border-primary border--300' %>
+    <% else %>
+      <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary border--300' %>
+    <% end %>
+    <p><%= quiz.user&.name || "作者不明" %></p>
   </div>
   <div class="flex mt-2">
     <%= render partial: "tags/buttons/tags", locals: { tags: quiz.tags } %>
