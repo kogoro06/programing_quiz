@@ -8,11 +8,17 @@
             edit
           </span>
         </button>
-        <button>
-          <span class="material-icons md-36">
-            delete
-          </span>
-        </button>
+        <div class="flex text-primary space-x-4">
+          <% if @quiz_post.author_user_id == current_user.id || current_user.admin? %>
+            <%= button_to @quiz_post, 
+            method: :delete, 
+            data: { confirm: "本当に削除しますか？" } do %>
+              <span class="material-icons md-36" >
+                delete
+              </span>
+            <% end %>
+          <% end %>
+        </div>
         <button>
           <span class="material-icons md-36">
             bookmark_border
@@ -51,7 +57,7 @@
         <div>
           <button class="btn btn-sm bg-html flex-1 text-sm text-white font-bold text-center text-nowrap mt-2">HTML</button>
           <button class="btn btn-sm bg-css flex-1 text-sm text-white font-bold text-center text-nowrap mt-2 mr-4">CSS</button>
-          <span class="mt-2 text-sm"><%= @quiz_post.questions_count %></span>
+          <span class="mt-2 text-sm">全 <%= @quiz_post.questions_count %> 門</span>
         </div>
         <div>
           <button class="bg-secondary hover:opacity-70 mt-2 px-4 py-1 rounded-lg shadow"><i class="fa-brands fa-x-twitter"></i>に共有する</button>

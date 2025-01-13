@@ -7,10 +7,6 @@ class QuizPostsController < ApplicationController
     @current_user = current_user
   end
 
-  def show
-    @quiz_post = Quiz.find(params[:id])
-  end
-
   def new
     @quiz = Quiz.new
     if current_user.admin?
@@ -47,6 +43,10 @@ class QuizPostsController < ApplicationController
       end
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def show
+    @quiz_post = Quiz.find(params[:id])
   end
 
   private
