@@ -11,8 +11,7 @@
         <div class="flex text-primary space-x-4">
           <% if @quiz_post.author_user_id == current_user.id || current_user.admin? %>
             <%= button_to @quiz_post, 
-            method: :delete, 
-            data: { confirm: "本当に削除しますか？" } do %>
+            method: :delete do %>
               <span class="material-icons md-36" >
                 delete
               </span>
