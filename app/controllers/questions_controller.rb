@@ -7,6 +7,7 @@ class QuestionsController < ApplicationController
   def show
     begin
       @question = Question.find(params[:id])
+      @quiz = @question.quiz
       @choices = Choice.where(question_id: @question.id)
       @quiz = @question.quiz
     rescue ActiveRecord::RecordNotFound => e
@@ -37,6 +38,7 @@ class QuestionsController < ApplicationController
 
   def result
     @question = Question.find(params[:id])
+    @quiz = @question.quiz
     @choices = Choice.where(question_id: @question.id)
     @quiz = @question.quiz
 
