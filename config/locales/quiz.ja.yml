@@ -1,0 +1,22 @@
+ja:
+  errors:
+    blank: "未入力があります:"
+  quiz_posts:
+    new:
+      title: "新規クイズ作成"
+      create_limit: "10問作成できます"
+      quizes_title: "クイズ集タイトル"
+      quizes_tags: "クイズ集タグ"
+      question: "問題文"
+      choices:
+        1: "選択肢1"
+        2: "選択肢2"
+        3: "選択肢3"
+        4: "選択肢4"
+      answer: "正解"
+      choice_corrected_answer: "正解の選択肢を選ぶ"
+      explanation: "解説文"
+      answer_source: "クイズ作成時の参考資料（URL）"
+      questions_image: "問題画像 画像アップロード"
+      explanation_image: "回答用 画像アップロード"
+      submit: "登録する"
