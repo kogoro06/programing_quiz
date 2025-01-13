@@ -3,7 +3,7 @@ class QuizPostsController < ApplicationController
   def index
     @quizzes = Quiz.eager_load(:user, :tags).all
     @tags = Tag.all
-    @newest_quizzes = @quizzes.order(created_at: :desc).first(6)
+    @newest_quizzes = Quiz.includes(:tags).order(created_at: :desc).first(6)
     @current_user = current_user
   end
 
@@ -12,6 +12,7 @@ class QuizPostsController < ApplicationController
 
   def new
     @quiz = Quiz.new
+    @tags=Tag.all
     if current_user.admin?
       30.times do
         question = @quiz.questions.build
@@ -46,6 +47,7 @@ class QuizPostsController < ApplicationController
       end
       render :new, status: :unprocessable_entity
     end
+    Rails.logger.info "Received tag_ids: #{params[:quiz][:tag_ids]}"
   end
 
   private
@@ -53,6 +55,7 @@ class QuizPostsController < ApplicationController
   def quiz_params
     params.require(:quiz).permit(
       :title,
+      tag_ids: [],
       questions_attributes: [
         :id,
         :question,
