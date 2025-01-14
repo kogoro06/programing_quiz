@@ -2,3 +2,4 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 import "./controllers/tag_selector"
+import "./controllers/tag_checkbox_handler"

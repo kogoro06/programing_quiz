@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   resources :quiz_posts do
     collection do
       get :bookmarks
-      get :new
       post :create
     end
   end
