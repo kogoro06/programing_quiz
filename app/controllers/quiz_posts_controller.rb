@@ -8,6 +8,8 @@ class QuizPostsController < ApplicationController
   end
 
   def show
+    @quiz = Quiz.includes(:tags, :questions).find(params[:id])
+    @tags = Tag.all
   end
 
   def new

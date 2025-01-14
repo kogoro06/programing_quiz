@@ -1,7 +1,7 @@
 <div class="bg-secondary m-12 rounded-lg p-6 max-w-3xl mx-auto">
   <div class="bg-base-100 p-8 rounded-lg max-w-3xl mx-auto">
     <div class="flex justify-between items-center">
-      <h1 class="text-3xl text-accent">クイズタイトル</h1>
+      <h1 class="text-3xl text-accent"><%= @quiz.title %></h1>
       <div class="flex text-primary">
         <button>
           <span class="material-icons md-36">
@@ -23,10 +23,10 @@
     <div class="mt-4">
       <div class="flex justify-between items-center">
         <div class="flex items-center space-x-2">
-          <%= image_tag 'profile_sample.png', class: 'w-8 h-8 rounded-full object-cover border border-primary border--300' %>
+          <%= image_tag @quiz.user.profile&.user_icon&.attached? ? @quiz.user.profile.user_icon : 'profile_sample.png', class: 'w-8 h-8 rounded-full object-cover border border-primary' %>
           <div class="mt-4">
-            <p class="text-primary">作成者のユーザーネーム</p>
-            <p class="text-sm">2024.11.20</p>
+            <p class="text-primary"><%= @quiz.user.name %></p>
+            <p class="text-sm"><%= @quiz.created_at.strftime('%Y.%m.%d') %></p>
           </div>
         </div>
         <div class="rating rating-md rating-half">
@@ -49,9 +49,17 @@
       </div>
       <div class="mt-4 flex items-center justify-between">
         <div>
-          <button class="btn btn-sm bg-html flex-1 text-sm text-white font-bold text-center text-nowrap mt-2">HTML</button>
-          <button class="btn btn-sm bg-css flex-1 text-sm text-white font-bold text-center text-nowrap mt-2 mr-4">CSS</button>
-          <span class="mt-2 text-sm">全10問</span>
+          <% if @quiz.tags.any? %>
+            <% @quiz.tags.each do |tag| %>
+              <!-- タグボタン (色を動的に反映) -->
+            <%= link_to tag_path(tag.id), class: "btn btn-sm text-white font-bold px-6 py-2 text-md text-center text-nowrap #{tag.data_color}" do %>
+              <%= tag.name %>
+            <% end %>
+            <% end %> <!-- この end を追加 -->
+          <% else %>
+            <p class="text-gray-500 text-sm">タグはありません。</p>
+          <% end %>
+          <span class="mt-2 text-sm">全<%= @quiz.questions.count %>問</span>
         </div>
         <div>
           <button class="bg-secondary hover:opacity-70 mt-2 px-4 py-1 rounded-lg shadow"><i class="fa-brands fa-x-twitter"></i>に共有する</button>
