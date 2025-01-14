@@ -62,10 +62,6 @@
               <i class="fa-brands fa-x-twitter"></i>に共有する
             </button>
           <% end %>
-          <% ogp_url = images_ogp_path(text: @quiz.title, questions_count: @quiz.questions_count) %>
-          <%= link_to ogp_url, target: "_blank", data: { toggle: "tooltip", placement: "bottom" }, title: "OGPを生成" do %>
-            <button class="bg-secondary hover:opacity-70 mt-2 px-4 py-1 rounded-lg shadow">OGPを生成</button>
-          <% end %>
         </div>
       </div>
     </div>

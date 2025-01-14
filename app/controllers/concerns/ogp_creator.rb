@@ -1,8 +1,8 @@
 class OgpCreator
-  require 'mini_magick'
-  BASE_IMAGE_PATH = './app/assets/images/proque_ogp1.png'
-  GRAVITY = 'center'
-  FONT = './app/assets/fonts/M_PLUS_Rounded_1c/MPLUSRounded1c-Black.ttf'
+  require "mini_magick"
+  BASE_IMAGE_PATH = "./app/assets/images/proque_ogp1.png"
+  GRAVITY = "center"
+  FONT = "./app/assets/fonts/M_PLUS_Rounded_1c/MPLUSRounded1c-Black.ttf"
   FONT_SIZE = 100
   INDENTION_COUNT = 30 # 1行の文字数
   ROW_LIMIT = 8
@@ -15,7 +15,7 @@ class OgpCreator
     image = MiniMagick::Image.open(BASE_IMAGE_PATH)
     image.combine_options do |config|
       config.font FONT
-      config.fill 'black'
+      config.fill "black"
       config.gravity GRAVITY
       config.pointsize FONT_SIZE
 
