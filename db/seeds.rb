@@ -162,7 +162,8 @@ end
 # Tagsのダミーデータ作成
 CSV.foreach('db/csv/tags.csv', headers: true) do |row|
   Tag.create!(
-    name: row['name']
+    name: row['name'],
+    color: row['color']
   )
 end
 
