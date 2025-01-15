@@ -95,13 +95,11 @@ profiles.each do |profile_attribute|
   end
 end
 
-# バリデーションを一時的に無効化
-Quiz.class_eval do
-  _validate_callbacks.clear
-end
-
-Question.class_eval do
-  _validate_callbacks.clear
+# 全てのモデルのバリデーションを一時的に無効化
+[Quiz, Question, Choice, Tag, TagQuiz].each do |model|
+  model.class_eval do
+    _validate_callbacks.clear
+  end
 end
 
 # Quizzes、Questions、Choicesを同時に作成
@@ -161,22 +159,28 @@ quiz_data.each do |quiz_id, quiz_attrs|
   end
 end
 
-# バリデーションを再度有効化
-load Rails.root.join('app/models/quiz.rb')
-load Rails.root.join('app/models/question.rb')
-
 # Tagsのダミーデータ作成
 CSV.foreach('db/csv/tags.csv', headers: true) do |row|
-  Tag.find_or_create_by!(name: row['name']) do |tag|
-    tag.name = row['name']
-    tag.color = row['color']
-  end
+  Tag.create!(
+    name: row['name']
+  )
 end
 
 # TagQuizzesのダミーデータ作成
 CSV.foreach('db/csv/tag_quizzes.csv', headers: true) do |row|
-  TagQuiz.find_or_create_by!(quiz_id: row['quiz_id'], tag_id: row['tag_id']) do |tag_quiz|
-    tag_quiz.quiz_id = row['quiz_id']
-    tag_quiz.tag_id = row['tag_id']
-  end
+  TagQuiz.create!(
+    tag_id: row['tag_id'],
+    quiz_id: row['quiz_id']
+  )
+end
+
+# バリデーションを再度有効化
+[
+  'app/models/quiz.rb',
+  'app/models/question.rb',
+  'app/models/choice.rb',
+  'app/models/tag.rb',
+  'app/models/tag_quiz.rb'
+].each do |model_path|
+  load Rails.root.join(model_path)
 end
