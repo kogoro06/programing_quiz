@@ -1,13 +1,13 @@
 class Question < ApplicationRecord
   belongs_to :quiz, counter_cache: true
-  has_many :choices
-  has_one_attached :question_image
-  has_one_attached :explanation_image
+  has_many :choices, dependent: :destroy
+  has_one_attached :question_image, dependent: :destroy
+  has_one_attached :explanation_image, dependent: :destroy
   accepts_nested_attributes_for :choices, allow_destroy: true
 
   # 入力があればバリデーションを実行
   validates :question, presence: true, if: :required_question?
-  validate :validate_correct_answer_and_choices
+  # validate :validate_correct_answer_and_choices
 
 
 

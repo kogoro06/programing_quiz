@@ -15,6 +15,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :admin do
+    resources :quiz_posts, only: [ :show, :destroy ]
+  end
+
   resources :tags, only: [ :show ]
   get "badges" => "badges#index", as: :badges
 
