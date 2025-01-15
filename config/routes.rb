@@ -11,12 +11,15 @@ Rails.application.routes.draw do
   resources :quiz_posts do
     collection do
       get :bookmarks
-      get :new
       post :create
     end
   end
 
-  resources :tags, only: [:show ]
+  namespace :admin do
+    resources :quiz_posts, only: [ :show, :destroy ]
+  end
+
+  resources :tags, only: [ :show ]
   get "badges" => "badges#index", as: :badges
 
   get "rankings" => "rankings#index", as: :rankings

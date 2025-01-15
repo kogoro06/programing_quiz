@@ -2,3 +2,6 @@ ja:
   following:
     index:
       title: "フォロー 一覧"
+  followers:
+    index:
+      title: "フォロワー 一覧"

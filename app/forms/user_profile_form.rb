@@ -9,7 +9,8 @@ class UserProfileForm
   attribute :x_link,             :string
   attribute :user_id,            :string
   attribute :name,               :string
-  attribute :user_icon           # ActiveStorageの添付ファイル用
+  attribute :user_icon
+
 
   # バリデーション
   validates :bio,                length: { maximum: 250 }
