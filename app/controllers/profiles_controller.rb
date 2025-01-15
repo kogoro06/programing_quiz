@@ -19,6 +19,14 @@ class ProfilesController < ApplicationController
     @newest_quizzes = @quizzes.order(created_at: :desc).first(6)
   end
 
+    @quizzes = Quiz.joins(:user) # INNER JOIN で users テーブルを含める
+                   .includes(:tags) # タグを事前ロード
+                   .select("quizzes.*, DATE(quizzes.created_at) as created_date, users.name as author_name")
+                   .where(author_user_id: current_user.id)
+                   .order(created_at: :desc)
+                   .page(params[:page])
+                   .per(6)
+  end
   def edit
     user_inspections(@user)
   end
@@ -36,7 +44,7 @@ class ProfilesController < ApplicationController
   private
 
   def user_profile_form_params
-    params.require(:user_profile_form).permit(:bio, :studying_languages, :x_link, :github_link, :name)
+    params.require(:user_profile_form).permit(:bio, :studying_languages, :x_link, :github_link, :name, :user_icon)
   end
 
   def set_user_profile_form
