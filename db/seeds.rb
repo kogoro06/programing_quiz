@@ -112,14 +112,14 @@ CSV.foreach('db/csv/dummy_questions_and_choices.csv', headers: true) do |row|
       q.author_user_id = quiz_data[row['quiz_id']][:author_user_id]
       q.questions_count = quiz_data[row['quiz_id']][:questions_count]
     end
-    
+
     # Questionの作成（Quizに紐付け）
     question = quiz.questions.find_or_create_by!(question: row['question']) do |q|
       q.correct_answer = row['correct_answer']
       q.answer_source = row['answer_source']
       q.explanation = row['explanation']
     end
-    
+
     # Choiceの作成（Questionに紐付け）
     Choice.find_or_create_by!(question_id: question.id) do |choice|
       choice.choice1 = row['choice1']
