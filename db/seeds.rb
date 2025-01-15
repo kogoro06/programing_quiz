@@ -116,7 +116,7 @@ questions_data = []
 
 # まず全てのデータを読み込む
 CSV.foreach('db/csv/dummy_quizzes.csv', headers: true) do |row|
-  quiz_data[row['id'].to_i] = {  # quiz_idを整数に変換
+  quiz_data[row['quiz_id'].to_i] = {  
     title: row['title'],
     author_user_id: row['author_user_id'],
     questions_count: row['questions_count']
@@ -125,7 +125,7 @@ end
 
 CSV.foreach('db/csv/dummy_questions_and_choices.csv', headers: true) do |row|
   questions_data << {
-    quiz_id: row['quiz_id'].to_i,  # quiz_idを整数に変換
+    quiz_id: row['quiz_id'].to_i,  
     question: row['question'],
     correct_answer: row['correct_answer'],
     answer_source: row['answer_source'],
@@ -141,7 +141,7 @@ end
 quiz_data.each do |quiz_id, quiz_attrs|
   Quiz.transaction do
     quiz = Quiz.create!(
-      id: quiz_id,  # quiz_idを明示的に指定
+      id: quiz_id,
       title: quiz_attrs[:title],
       author_user_id: quiz_attrs[:author_user_id],
       questions_count: quiz_attrs[:questions_count]
@@ -171,8 +171,8 @@ end
 # TagQuizzesのダミーデータ作成（Quizの作成後に実行）
 CSV.foreach('db/csv/tag_quizzes.csv', headers: true) do |row|
   TagQuiz.create!(
-    tag_id: row['tag_id'].to_i,  # tag_idを整数に変換
-    quiz_id: row['quiz_id'].to_i  # quiz_idを整数に変換
+    tag_id: row['tag_id'].to_i,  
+    quiz_id: row['quiz_id'].to_i  
   )
 end
 
