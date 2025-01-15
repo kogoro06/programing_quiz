@@ -95,6 +95,15 @@ profiles.each do |profile_attribute|
   end
 end
 
+# バリデーションを一時的に無効化
+Quiz.class_eval do
+  _validate_callbacks.clear
+end
+
+Question.class_eval do
+  _validate_callbacks.clear
+end
+
 # Quizzes、Questions、Choicesを同時に作成
 quiz_data = {}
 questions_data = []
@@ -125,39 +134,36 @@ end
 # データを作成
 quiz_data.each do |quiz_id, quiz_attrs|
   Quiz.transaction do
-    # まずユーザーを取得
-    user = User.find_by(id: quiz_attrs[:author_user_id])
-    next unless user  # ユーザーが見つからない場合はスキップ
-
-    # Quizの作成
-    quiz = Quiz.new(
+    quiz = Quiz.create!(
       title: quiz_attrs[:title],
-      author_user_id: user.id,
+      author_user_id: quiz_attrs[:author_user_id],
       questions_count: quiz_attrs[:questions_count]
     )
 
     # このQuizに関連するQuestionsとChoicesを作成
     related_questions = questions_data.select { |q| q[:quiz_id] == quiz_id }
     related_questions.each do |q_data|
-      question = quiz.questions.build(
+      question = quiz.questions.create!(
         question: q_data[:question],
         correct_answer: q_data[:correct_answer],
         answer_source: q_data[:answer_source],
         explanation: q_data[:explanation]
       )
 
-      question.build_choice(
+      Choice.create!(
+        question_id: question.id,
         choice1: q_data[:choice1],
         choice2: q_data[:choice2],
         choice3: q_data[:choice3],
         choice4: q_data[:choice4]
       )
     end
-
-    # 全てのデータを一度に保存
-    quiz.save!
   end
 end
+
+# バリデーションを再度有効化
+load Rails.root.join('app/models/quiz.rb')
+load Rails.root.join('app/models/question.rb')
 
 # Tagsのダミーデータ作成
 CSV.foreach('db/csv/tags.csv', headers: true) do |row|
