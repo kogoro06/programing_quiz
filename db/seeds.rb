@@ -71,6 +71,7 @@ profiles = [
     user_id: 4
   }
 ]
+
 # emailでユーザーを検索し、存在しない場合は新しく作成
 users.each do |user_attribute|
   user = User.find_or_create_by!(email: user_attribute[:email]) do |u|
@@ -116,7 +117,7 @@ questions_data = []
 
 # まず全てのデータを読み込む
 CSV.foreach('db/csv/dummy_quizzes.csv', headers: true) do |row|
-  quiz_data[row['quiz_id'].to_i] = {  
+  quiz_data[row['quiz_id'].to_i] = {  # quiz_idカラムを参照
     title: row['title'],
     author_user_id: row['author_user_id'],
     questions_count: row['questions_count']
