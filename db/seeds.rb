@@ -1,5 +1,13 @@
 require "csv"
 
+# データベースをリセット
+puts "データベースをリセットします..."
+[ Quiz, Question, Choice, Tag, TagQuiz ].each do |model|
+  model.delete_all
+  # PostgreSQLのシーケンスをリセット
+  ActiveRecord::Base.connection.reset_pk_sequence!(model.table_name)
+end
+
 users = [
   # 管理者１
   {
@@ -97,7 +105,7 @@ profiles.each do |profile_attribute|
 end
 
 # 全てのモデルのバリデーションを一時的に無効化
-[Quiz, Question, Choice, Tag, TagQuiz].each do |model|
+[ Quiz, Question, Choice, Tag, TagQuiz ].each do |model|
   model.class_eval do
     _validate_callbacks.clear
   end
@@ -126,7 +134,7 @@ end
 
 CSV.foreach('db/csv/dummy_questions_and_choices.csv', headers: true) do |row|
   questions_data << {
-    quiz_id: row['quiz_id'].to_i,  
+    quiz_id: row['quiz_id'].to_i,
     question: row['question'],
     correct_answer: row['correct_answer'],
     answer_source: row['answer_source'],
@@ -172,8 +180,8 @@ end
 # TagQuizzesのダミーデータ作成（Quizの作成後に実行）
 CSV.foreach('db/csv/tag_quizzes.csv', headers: true) do |row|
   TagQuiz.create!(
-    tag_id: row['tag_id'].to_i,  
-    quiz_id: row['quiz_id'].to_i  
+    tag_id: row['tag_id'].to_i,
+    quiz_id: row['quiz_id'].to_i
   )
 end
 
