@@ -141,6 +141,7 @@ end
 quiz_data.each do |quiz_id, quiz_attrs|
   Quiz.transaction do
     quiz = Quiz.create!(
+      id: quiz_id,  # quiz_idを明示的に指定
       title: quiz_attrs[:title],
       author_user_id: quiz_attrs[:author_user_id],
       questions_count: quiz_attrs[:questions_count]
