@@ -96,35 +96,61 @@ profiles.each do |profile_attribute|
 end
 
 # Quizzes、Questions、Choicesを同時に作成
+quiz_data = {}
+questions_data = []
+
+# まず全てのデータを読み込む
 CSV.foreach('db/csv/dummy_quizzes.csv', headers: true) do |row|
+  quiz_data[row['id']] = {
+    title: row['title'],
+    author_user_id: row['author_user_id'],
+    questions_count: row['questions_count']
+  }
+end
+
+CSV.foreach('db/csv/dummy_questions_and_choices.csv', headers: true) do |row|
+  questions_data << {
+    quiz_id: row['quiz_id'],
+    question: row['question'],
+    correct_answer: row['correct_answer'],
+    answer_source: row['answer_source'],
+    explanation: row['explanation'],
+    choice1: row['choice1'],
+    choice2: row['choice2'],
+    choice3: row['choice3'],
+    choice4: row['choice4']
+  }
+end
+
+# データを作成
+quiz_data.each do |quiz_id, quiz_attrs|
   Quiz.transaction do
     # まずユーザーを取得
-    user = User.find_by(id: row['author_user_id'])
+    user = User.find_by(id: quiz_attrs[:author_user_id])
     next unless user  # ユーザーが見つからない場合はスキップ
 
     # Quizの作成
     quiz = Quiz.new(
-      title: row['title'],
+      title: quiz_attrs[:title],
       author_user_id: user.id,
-      questions_count: row['questions_count']
+      questions_count: quiz_attrs[:questions_count]
     )
 
-    # Questionとそれに紐づくChoiceを作成
-    CSV.foreach('db/csv/dummy_questions_and_choices.csv', headers: true) do |q_row|
-      next unless q_row['quiz_id'].to_s == row['id'].to_s
-
+    # このQuizに関連するQuestionsとChoicesを作成
+    related_questions = questions_data.select { |q| q[:quiz_id] == quiz_id }
+    related_questions.each do |q_data|
       question = quiz.questions.build(
-        question: q_row['question'],
-        correct_answer: q_row['correct_answer'],
-        answer_source: q_row['answer_source'],
-        explanation: q_row['explanation']
+        question: q_data[:question],
+        correct_answer: q_data[:correct_answer],
+        answer_source: q_data[:answer_source],
+        explanation: q_data[:explanation]
       )
 
       question.build_choice(
-        choice1: q_row['choice1'],
-        choice2: q_row['choice2'],
-        choice3: q_row['choice3'],
-        choice4: q_row['choice4']
+        choice1: q_data[:choice1],
+        choice2: q_data[:choice2],
+        choice3: q_data[:choice3],
+        choice4: q_data[:choice4]
       )
     end
 
