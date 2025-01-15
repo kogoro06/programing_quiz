@@ -96,21 +96,12 @@ profiles.each do |profile_attribute|
 end
 
 # Quizzes、Questions、Choicesを同時に作成
-quiz_data = {}
-CSV.foreach('db/csv/dummy_quizzes.csv', headers: true) do |row|
-  quiz_data[row['id']] = {
-    author_user_id: row['author_user_id'],
-    title: row['title'],
-    questions_count: row['questions_count']
-  }
-end
-
 CSV.foreach('db/csv/dummy_questions_and_choices.csv', headers: true) do |row|
   Quiz.transaction do
     # Quizの作成または取得
-    quiz = Quiz.find_or_create_by!(title: quiz_data[row['quiz_id']][:title]) do |q|
-      q.author_user_id = quiz_data[row['quiz_id']][:author_user_id]
-      q.questions_count = quiz_data[row['quiz_id']][:questions_count]
+    quiz = Quiz.find_or_create_by!(title: row['title']) do |q|
+      q.author_user_id = row['author_user_id']
+      q.questions_count = 0  # 質問数は後で更新される
     end
 
     # Questionの作成（Quizに紐付け）
