@@ -96,28 +96,40 @@ profiles.each do |profile_attribute|
 end
 
 # Quizzes、Questions、Choicesを同時に作成
-CSV.foreach('db/csv/dummy_questions_and_choices.csv', headers: true) do |row|
+CSV.foreach('db/csv/dummy_quizzes.csv', headers: true) do |row|
   Quiz.transaction do
-    # Quizの作成または取得
-    quiz = Quiz.find_or_create_by!(title: row['title']) do |q|
-      q.author_user_id = row['author_user_id']
-      q.questions_count = 0  # 質問数は後で更新される
+    # まずユーザーを取得
+    user = User.find_by(id: row['author_user_id'])
+    next unless user  # ユーザーが見つからない場合はスキップ
+
+    # Quizの作成
+    quiz = Quiz.new(
+      title: row['title'],
+      author_user_id: user.id,
+      questions_count: row['questions_count']
+    )
+
+    # Questionとそれに紐づくChoiceを作成
+    CSV.foreach('db/csv/dummy_questions_and_choices.csv', headers: true) do |q_row|
+      next unless q_row['quiz_id'].to_s == row['id'].to_s
+
+      question = quiz.questions.build(
+        question: q_row['question'],
+        correct_answer: q_row['correct_answer'],
+        answer_source: q_row['answer_source'],
+        explanation: q_row['explanation']
+      )
+
+      question.build_choice(
+        choice1: q_row['choice1'],
+        choice2: q_row['choice2'],
+        choice3: q_row['choice3'],
+        choice4: q_row['choice4']
+      )
     end
 
-    # Questionの作成（Quizに紐付け）
-    question = quiz.questions.find_or_create_by!(question: row['question']) do |q|
-      q.correct_answer = row['correct_answer']
-      q.answer_source = row['answer_source']
-      q.explanation = row['explanation']
-    end
-
-    # Choiceの作成（Questionに紐付け）
-    Choice.find_or_create_by!(question_id: question.id) do |choice|
-      choice.choice1 = row['choice1']
-      choice.choice2 = row['choice2']
-      choice.choice3 = row['choice3']
-      choice.choice4 = row['choice4']
-    end
+    # 全てのデータを一度に保存
+    quiz.save!
   end
 end
 
