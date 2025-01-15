@@ -1,17 +1,5 @@
 require "csv"
 
-# バリデーションを一時的に無効化
-[ Quiz, Question, Choice, Tag, TagQuiz ].each do |model|
-  model.class_eval do
-    # バリデーションを一時的に無効化
-    _validate_callbacks.clear
-    # 外部キー制約も一時的に無効化
-    if respond_to?(:belongs_to_required_by_default)
-      self.belongs_to_required_by_default = false
-    end
-  end
-end
-
 users = [
   # 管理者１
   {
@@ -83,7 +71,6 @@ profiles = [
     user_id: 4
   }
 ]
-
 # emailでユーザーを検索し、存在しない場合は新しく作成
 users.each do |user_attribute|
   user = User.find_or_create_by!(email: user_attribute[:email]) do |u|
@@ -109,56 +96,48 @@ profiles.each do |profile_attribute|
 end
 
 # Quizzesのダミーデータ生成
-quiz_data = {}
 CSV.foreach('db/csv/dummy_quizzes.csv', headers: true) do |row|
-  quiz_data[row['quiz_id'].to_i] = {
-    title: row['title'],
-    author_user_id: row['author_user_id'],
-    questions_count: row['questions_count']
-  }
+  Quiz.find_or_create_by!(author_user_id: row['author_user_id'], title: row['title']) do |quiz|
+    quiz.author_user_id = row['author_user_id']
+    quiz.title = row['title']
+    quiz.questions_count = row['questions_count']
+  end
 end
 
 # Questionsのダミーデータ生成
-questions_data = []
 CSV.foreach('db/csv/dummy_questions_and_choices.csv', headers: true) do |row|
-  questions_data << {
-    quiz_id: row['quiz_id'].to_i,
-    question: row['question'],
-    correct_answer: row['correct_answer'],
-    answer_source: row['answer_source'],
-    explanation: row['explanation']
-  }
+  Question.find_or_create_by!(quiz_id: row['quiz_id'], question: row['question']) do |question|
+    question.quiz_id = row['quiz_id']
+    question.question = row['question']
+    question.correct_answer = row['correct_answer']
+    question.answer_source = row['answer_source']
+    question.explanation = row['explanation']
+  end
 end
 
 # Choicesのダミーデータ作成
-choices_data = []
 CSV.foreach('db/csv/dummy_questions_and_choices.csv', headers: true) do |row|
-  choices_data << {
-    question_id: row['question_id'].to_i,
-    choice1: row['choice1'],
-    choice2: row['choice2'],
-    choice3: row['choice3'],
-    choice4: row['choice4']
-  }
+  Choice.find_or_create_by!(question_id: row['question_id'], choice1: row['choice1'], choice2: row['choice2'], choice3: row['choice3'], choice4: row['choice4']) do |choice|
+    choice.question_id = row['question_id']
+    choice.choice1 = row['choice1']
+    choice.choice2 = row['choice2']
+    choice.choice3 = row['choice3']
+    choice.choice4 = row['choice4']
+  end
 end
 
 # Tagsのダミーデータ作成
 CSV.foreach('db/csv/tags.csv', headers: true) do |row|
-  Tag.create!(
-    name: row['name'],
-    color: row['color']
-  )
+  Tag.find_or_create_by!(name: row['name']) do |tag|
+    tag.name = row['name']
+    tag.color = row['color']
+  end
 end
 
 # TagQuizzesのダミーデータ作成
 CSV.foreach('db/csv/tag_quizzes.csv', headers: true) do |row|
-  TagQuiz.create!(
-    tag_id: row['tag_id'].to_i,
-    quiz_id: row['quiz_id'].to_i
-  )
-end
-
-# バリデーションを元に戻す
-[ Quiz, Question, Choice, Tag, TagQuiz ].each do |model|
-  model.reset_callbacks(:validate)
+  TagQuiz.find_or_create_by!(quiz_id: row['quiz_id'], tag_id: row['tag_id']) do |tag_quiz|
+    tag_quiz.quiz_id = row['quiz_id']
+    tag_quiz.tag_id = row['tag_id']
+  end
 end
