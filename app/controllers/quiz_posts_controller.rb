@@ -52,10 +52,6 @@ class QuizPostsController < ApplicationController
     Rails.logger.info "Received tag_ids: #{params[:quiz][:tag_ids]}"
   end
 
-  def show
-    @quiz= Quiz.find(params[:id])
-  end
-
   private
 
   def quiz_params
