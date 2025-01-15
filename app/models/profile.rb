@@ -1,5 +1,6 @@
 class Profile < ApplicationRecord
   has_one :user
+  has_one_attached :user_icon
 
   validates :bio, length: { maximum: 250 }
   validates :studying_languages, length: { maximum: 250 }
