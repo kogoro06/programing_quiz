@@ -7,9 +7,6 @@ class QuizPostsController < ApplicationController
     @current_user = current_user
   end
 
-  def show
-  end
-
   def new
     @quiz = Quiz.new
     @tags=Tag.all
@@ -48,6 +45,10 @@ class QuizPostsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
     Rails.logger.info "Received tag_ids: #{params[:quiz][:tag_ids]}"
+  end
+
+  def show
+    @quiz_post = Quiz.find(params[:id])
   end
 
   private
