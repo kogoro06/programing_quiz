@@ -95,34 +95,38 @@ profiles.each do |profile_attribute|
   end
 end
 
-# Quizzesのダミーデータ生成
+# Quizzes、Questions、Choicesを同時に作成
+quiz_data = {}
 CSV.foreach('db/csv/dummy_quizzes.csv', headers: true) do |row|
-  Quiz.find_or_create_by!(author_user_id: row['author_user_id'], title: row['title']) do |quiz|
-    quiz.author_user_id = row['author_user_id']
-    quiz.title = row['title']
-    quiz.questions_count = row['questions_count']
-  end
+  quiz_data[row['id']] = {
+    author_user_id: row['author_user_id'],
+    title: row['title'],
+    questions_count: row['questions_count']
+  }
 end
 
-# Questionsのダミーデータ生成
 CSV.foreach('db/csv/dummy_questions_and_choices.csv', headers: true) do |row|
-  Question.find_or_create_by!(quiz_id: row['quiz_id'], question: row['question']) do |question|
-    question.quiz_id = row['quiz_id']
-    question.question = row['question']
-    question.correct_answer = row['correct_answer']
-    question.answer_source = row['answer_source']
-    question.explanation = row['explanation']
-  end
-end
-
-# Choicesのダミーデータ作成
-CSV.foreach('db/csv/dummy_questions_and_choices.csv', headers: true) do |row|
-  Choice.find_or_create_by!(question_id: row['question_id'], choice1: row['choice1'], choice2: row['choice2'], choice3: row['choice3'], choice4: row['choice4']) do |choice|
-    choice.question_id = row['question_id']
-    choice.choice1 = row['choice1']
-    choice.choice2 = row['choice2']
-    choice.choice3 = row['choice3']
-    choice.choice4 = row['choice4']
+  Quiz.transaction do
+    # Quizの作成または取得
+    quiz = Quiz.find_or_create_by!(title: quiz_data[row['quiz_id']][:title]) do |q|
+      q.author_user_id = quiz_data[row['quiz_id']][:author_user_id]
+      q.questions_count = quiz_data[row['quiz_id']][:questions_count]
+    end
+    
+    # Questionの作成（Quizに紐付け）
+    question = quiz.questions.find_or_create_by!(question: row['question']) do |q|
+      q.correct_answer = row['correct_answer']
+      q.answer_source = row['answer_source']
+      q.explanation = row['explanation']
+    end
+    
+    # Choiceの作成（Questionに紐付け）
+    Choice.find_or_create_by!(question_id: question.id) do |choice|
+      choice.choice1 = row['choice1']
+      choice.choice2 = row['choice2']
+      choice.choice3 = row['choice3']
+      choice.choice4 = row['choice4']
+    end
   end
 end
 
