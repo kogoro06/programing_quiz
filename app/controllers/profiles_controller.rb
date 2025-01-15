@@ -19,14 +19,6 @@ class ProfilesController < ApplicationController
     @newest_quizzes = @quizzes.order(created_at: :desc).first(6)
   end
 
-    @quizzes = Quiz.joins(:user) # INNER JOIN で users テーブルを含める
-                   .includes(:tags) # タグを事前ロード
-                   .select("quizzes.*, DATE(quizzes.created_at) as created_date, users.name as author_name")
-                   .where(author_user_id: current_user.id)
-                   .order(created_at: :desc)
-                   .page(params[:page])
-                   .per(6)
-  end
   def edit
     user_inspections(@user)
   end
