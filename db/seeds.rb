@@ -102,6 +102,14 @@ end
   end
 end
 
+# Tagsのダミーデータ作成
+CSV.foreach('db/csv/tags.csv', headers: true) do |row|
+  Tag.create!(
+    name: row['name'],
+    color: row['color']
+  )
+end
+
 # Quizzes、Questions、Choicesを同時に作成
 quiz_data = {}
 questions_data = []
@@ -159,15 +167,7 @@ quiz_data.each do |quiz_id, quiz_attrs|
   end
 end
 
-# Tagsのダミーデータ作成
-CSV.foreach('db/csv/tags.csv', headers: true) do |row|
-  Tag.create!(
-    name: row['name'],
-    color: row['color']
-  )
-end
-
-# TagQuizzesのダミーデータ作成
+# TagQuizzesのダミーデータ作成（Quizの作成後に実行）
 CSV.foreach('db/csv/tag_quizzes.csv', headers: true) do |row|
   TagQuiz.create!(
     tag_id: row['tag_id'],
