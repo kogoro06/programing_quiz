@@ -7,7 +7,7 @@ class Quiz < ApplicationRecord
   has_many :tags, through: :tag_quizzes
 
   validates :title, presence: true
-  validate :at_least_one_question
+  # validate :at_least_one_question
 
   private
 
