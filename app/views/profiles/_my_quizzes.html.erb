@@ -1,34 +1,17 @@
 <div class="flex flex-wrap gap-3 items-center justify-center lg:md:justify-between max-w-[1200px]">
+  <% if @quizzes.any? %>
     <div class="w-full">
-        <div class="bg-primary w-fit p-3 text-white text-xl my-5 ">
-            <%= quizzes.first[:author_name] %>が投稿したクイズ一覧
-        </div>
+      <div class="bg-primary w-fit p-3 text-white text-xl my-5">
+        <%= @user.name %>が投稿したクイズ一覧
+      </div>
     </div>
-    <% quizzes.each do |quiz| %>
-        <div class="bg-white p-5  w-[45%] max-w-[700px] min-w-[450px]">
-            <p class="text-2xl p-1 text-accent font-bold"><%= quiz[:title] %></p>
-            <div class="flex items-center justify-between w-full p-1">
-                <div class="flex items-center space-x-3 text-lg">
-                    <%= image_tag 'profile_sample.png' ,
-                        class: 'w-10 h-10 rounded-full object-cover border border-primary' %>
-                        <p class="block text-primary"><%= quiz[:author_name] %></p>
-                </div>
-                <p class="ml-auto text-primary"><%= quiz[:created_date] %></p>
-            </div>
-            <div class="flex p-2 items-center space-x-3 justify-between">
-                <div class="flex space-x-2">
-                    <% ["HTML", "Javascript" , "ruby" , "rails" ].each do |tag| %>
-                        <button
-                            class="btn-sm bg-html text-lg text-white  text-center whitespace-nowrap rounded-lg">
-                            <%= tag %>
-                        </button>
-                        <% end %>
-                </div>
-                <div class="text-lg whitespace-nowrap text-primary">
-                    全<%= quiz[:questions_count] %>問
-                </div>
-            </div>
-        </div>
-        <% end %>
+    <% @quizzes.each do |quiz| %>
+      <%= render partial: "quizzes/lg_card", locals: { quiz: quiz } %>
+    <% end %>
+  <% else %>
+    <div class="w-full">
+      <p class="text-gray-500 text-lg">まだクイズが投稿されていません。</p>
+    </div>
+  <% end %>
 </div>
-<%= paginate quizzes %>
+<%= paginate @quizzes %>

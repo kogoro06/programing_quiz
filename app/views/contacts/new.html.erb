@@ -1,6 +1,6 @@
 <div class="bg-white">
   <div class="flex flex-col justify-center items-center mt-6 mb-6 mx-72">
-    <h1 class="text-3xl font-bold text-accent text-center">お問い合わせ</h1>
+    <h1 class="text-3xl font-bold text-accent text-center"><%= t('.title') %></h1>
   </div>
 
   <% if @contact.errors.any? %>
@@ -17,26 +17,26 @@
         <%= form_with model: @contact do |f| %>
           <div class="flex flex-col bg-white rounded p-6">
             <%= f.label :name, class: 'block mb-2 text-lg text-nowrap font-medium text-primary' %>
-            <%= f.text_field :name, class: 'bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary block p-2.5', placeholder: "20文字以内", required: true %>
+            <%= f.text_field :name, class: 'bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary block p-2.5', placeholder: t('.name_placeholder') , required: true %>
           </div>
           <div class="flex flex-col bg-white rounded p-6">
             <%= f.label :email, class: 'block mb-2 text-lg text-nowrap font-medium text-primary' %>
-            <%= f.text_field :email, class: 'bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary block p-2.5', placeholder: "example＠com", required: true %>
+            <%= f.text_field :email, class: 'bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary block p-2.5', placeholder: t('.email_placeholder'), required: true %>
           </div>
           <div class="flex flex-col bg-white rounded p-6">
             <%= f.label :title, class: 'block mb-2 text-lg text-nowrap font-medium text-primary' %>
-            <%= f.text_field :title, class: 'bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary block p-2.5', placeholder: "100文字以内", required: true %>
+            <%= f.text_field :title, class: 'bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary block p-2.5', placeholder: t('.title_placeholder'), required: true %>
           </div>
           <div class="flex flex-col bg-white rounded p-6">
             <%= f.label :text, class: 'block mb-2 text-lg text-nowrap font-medium text-primary' %>
             <%= f.text_area :text,
                 class: 'bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary block p-2.5',
-                placeholder: "2000文字以内",
+                placeholder: t('.text_placeholder'),
                 required: true,
                 rows: 5 %>
           </div>
           <div class="flex justify-center">
-          <%= f.submit "送信する", class: 'text-white bg-accent hover:opacity-70 font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center mt-6' %>
+          <%= f.submit t('.submit'), class: 'text-white bg-accent hover:opacity-70 font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center mt-6' %>
           </div>
         <% end %>
       </div>

@@ -13,7 +13,7 @@ ja:
             name:
               blank: "を入力してください"
               too_long: "は100文字以内で入力してください"
-            email: 
+            email:
               blank: "を入力してください"
               invalid: "が無効です"
             title:
@@ -22,3 +22,11 @@ ja:
             text:
               blank: "を入力してください"
               too_long: "は2000文字以内で入力してください"
+  contacts:
+    new:
+      title: "お問い合わせ"
+      name_placeholder: "20文字以内"
+      email_placeholder: "example＠com"
+      title_placeholder: "100文字以内"
+      text_placeholder: "2000文字以内"
+      submit: "送信する"

@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :authenticate_user!, except: [ :new, :show ] # ログインが必要なアクションを設定
+  before_action :authenticate_user!, except: [ :new ] # ログインが必要なアクションを設定
 
   def new
   end
@@ -7,6 +7,7 @@ class QuestionsController < ApplicationController
   def show
     begin
       @question = Question.find(params[:id])
+      @quiz = @question.quiz
       @choices = Choice.where(question_id: @question.id)
       @quiz = @question.quiz
     rescue ActiveRecord::RecordNotFound => e
@@ -37,6 +38,7 @@ class QuestionsController < ApplicationController
 
   def result
     @question = Question.find(params[:id])
+    @quiz = @question.quiz
     @choices = Choice.where(question_id: @question.id)
     @quiz = @question.quiz
 
