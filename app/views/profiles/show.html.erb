@@ -30,10 +30,12 @@
                 <p class="mt-5"><%= @profile[:studying_languages] %></p>
             </div>
 
-            <div class="bg-gray-50 text-sm flex justify-center p-2 mb-3 text-primary">
-                <span class="material-icons">edit</span>
-                <%= link_to("編集", edit_user_profile_path)%>
-            </div>
+            <% if @user == current_user %>
+                <div class="bg-gray-50 text-sm flex justify-center p-2 mb-3 text-primary">
+                    <span class="material-icons">edit</span>
+                    <%= link_to("編集", edit_user_profile_path)%>
+                </div>
+            <% end %>
 
             <!--# TODO: （本リリース）バッジ画面への遷移を実装
             <div class="bg-gray-50 text-sm flex justify-center p-2 text-primary">

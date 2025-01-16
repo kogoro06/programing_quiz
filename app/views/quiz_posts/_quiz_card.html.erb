@@ -1,11 +1,19 @@
 <div class="bg-secondary grid-item rounded p-6 flex-1 my-1">
   <p class="text-accent text-lg">
-    <%= quiz.title %>
+    <%= link_to quiz.title, quiz_post_path(quiz.id) %>
   </p>
+ <!-- 作成者情報 -->
   <div class="flex gap-1 items-center">
-    <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary border--300' %>
-    <p><%= quiz.user&.name || "作者不明" %></p>
+    <% if quiz.user&.profile&.user_icon&.attached? %>
+      <%= image_tag quiz.user.profile.user_icon, class: 'w-6 h-6 rounded-full object-cover border border-primary border--300' %>
+    <% else %>
+      <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary border--300' %>
+    <% end %>
+    <%= link_to user_profile_path(quiz.user.id), class: "flex items-center gap-2" do %>
+      <p><%= quiz.user&.name || "作者不明" %></p>
+    <% end %>
   </div>
+  <!-- タグと日付 -->
   <div class="flex mt-2">
     <%= render partial: "tags/buttons/tags", locals: { tags: quiz.tags } %>
     <p class="ml-2"><%= quiz.created_at.strftime('%Y/%m/%d') %></p>

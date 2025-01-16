@@ -1,5 +1,6 @@
 class QuizPostsController < ApplicationController
   before_action :authenticate_user!
+  skip_before_action :authenticate_user!, only: [ :index ]
   def index
     @quizzes = Quiz.eager_load(:user, :tags).all
     @tags = Tag.all
@@ -8,7 +9,8 @@ class QuizPostsController < ApplicationController
   end
 
   def show
-    @quiz = Quiz.find(params[:id])
+    @quiz = Quiz.includes(:tags, :questions).find(params[:id])
+    @tags = Tag.all
   end
 
   def new
