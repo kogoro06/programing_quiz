@@ -5,18 +5,7 @@ class ProfilesController < ApplicationController
   def show
     @user    = User.find(params[:user_id])
     @profile = Profile.find_by!(user_id: @user.id)
-    # 作成日時を日付に変換
-    @quizzes = Quiz.joins(:user)
-                  .select('DATE(quizzes.created_at) as created_date,
-                            quizzes.title,
-                            quizzes.author_user_id,
-                            quizzes.questions_count as questions_count,
-                            users.name as author_name')
-                  .where(author_user_id: @user.id)
-                  .page(params[:page])
-                  .per(6)
     @quizzes = Quiz.eager_load(:user).where(author_user_id: @user.id).page(params[:page]).per(6)
-    @newest_quizzes = @quizzes.order(created_at: :desc).first(6)
   end
 
   def edit
