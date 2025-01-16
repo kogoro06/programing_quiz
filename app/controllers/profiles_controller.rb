@@ -1,28 +1,19 @@
 class ProfilesController < ApplicationController
+  before_action :authenticate_user!, only: [ :edit, :update ]
   before_action :set_user_profile_form, only: [ :edit, :update ]
 
   def show
-    @user = current_user
-    @profile = Profile.find_or_create_by(user_id: current_user.id) do |profile|
-      # デフォルト値を設定（必要に応じて変更）
-      profile.bio = "まだ自己紹介がありません。"
-      profile.studying_languages = "未設定"
-      profile.github_link = "https://github.com/"
-      profile.x_link = "https://x.com/"
-    end
-
-    @quizzes = Quiz.joins(:user) # INNER JOIN で users テーブルを含める
-                   .includes(:tags) # タグを事前ロード
-                   .select("quizzes.*, DATE(quizzes.created_at) as created_date, users.name as author_name")
-                   .where(author_user_id: current_user.id)
-                   .order(created_at: :desc)
-                   .page(params[:page])
-                   .per(6)
+    @user    = User.find(params[:user_id])
+    @profile = Profile.find_by!(user_id: @user.id)
+    @quizzes = Quiz.eager_load(:user).where(author_user_id: @user.id).page(params[:page]).per(6)
   end
+
   def edit
+    user_inspections(@user)
   end
 
   def update
+    user_inspections(@user)
     if @user_profile_form.save(user_profile_form_params)
       redirect_to user_profile_path(current_user[:id]), flash: { notice: "プロフィールを更新しました" }
     else
@@ -41,5 +32,11 @@ class ProfilesController < ApplicationController
     @user = User.find(params[:user_id])
     @profile = @user.profile
     @user_profile_form = UserProfileForm.new(@user, @profile)
+  end
+
+  def user_inspections(user)
+    if current_user != user
+      redirect_to user_profile_path(user), flash: { alert: "他のユーザーのプロフィールは編集できません" }
+    end
   end
 end
