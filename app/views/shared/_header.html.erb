@@ -24,7 +24,7 @@
     </div>
     <div class="flex items-center space-x-4 justify-end">
       <% if user_signed_in? %>
-        <%= link_to user_profile_path(@current_user[:id]) do %>
+        <%= link_to user_profile_path(current_user.id) do %>
           <div class="text-center">
             <%= image_tag 'profile_sample.png', class: 'w-10 h-10 rounded-full object-cover border border-primary' %>
           </div>
