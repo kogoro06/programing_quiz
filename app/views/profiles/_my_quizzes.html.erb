@@ -5,9 +5,11 @@
         <%= @user.name %>が投稿したクイズ一覧
       </div>
     </div>
-    <% @quizzes.each do |quiz| %>
-      <%= render partial: "quizzes/lg_card", locals: { quiz: quiz } %>
-    <% end %>
+    <div class="grid grid-cols-2 gap-4 w-full">
+      <% @quizzes.each do |quiz| %>
+        <%= render partial: "quizzes/lg_card", locals: { quiz: quiz } %>
+      <% end %>
+    </div>
   <% else %>
     <div class="w-full">
       <p class="text-gray-500 text-lg">まだクイズが投稿されていません。</p>
