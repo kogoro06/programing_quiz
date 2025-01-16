@@ -11,9 +11,9 @@
           <% end %>
         </ul>
       <% end %>
-      <% if @profile.errors.any? %>
+      <% if @profile_form.errors.any? %>
         <ul>
-          <% @profile.errors.full_messages.each do |error| %>
+          <% @profile_form.errors.full_messages.each do |error| %>
             <li><%= error %></li>
           <% end %>
         </ul>

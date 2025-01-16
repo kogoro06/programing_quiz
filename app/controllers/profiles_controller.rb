@@ -1,15 +1,19 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!, only: [ :edit, :update ]
   before_action :set_user_profile_form, only: [ :edit, :update ]
+  before_action :set_user
 
   def show
-    @user    = User.find(params[:user_id])
-    @profile = Profile.find_by!(user_id: @user.id)
-    @quizzes = Quiz.eager_load(:user).where(author_user_id: @user.id).page(params[:page]).per(6)
+    @profile = @user.profile
+    if @profile.nil? || @profile.new_record?
+      redirect_to edit_user_profile_path(@user), alert: "プロフィールを編集してください。"
+    else
+      @quizzes = Quiz.eager_load(:user).where(author_user_id: @user.id).page(params[:page]).per(6)
+    end
   end
 
   def edit
-    user_inspections(@user)
+    @profile_form = UserProfileForm.new(@user, @user.profile || @user.build_profile)
   end
 
   def update
@@ -38,5 +42,9 @@ class ProfilesController < ApplicationController
     if current_user != user
       redirect_to user_profile_path(user), flash: { alert: "他のユーザーのプロフィールは編集できません" }
     end
+  end
+
+  def set_user
+    @user = User.find(params[:user_id])
   end
 end
