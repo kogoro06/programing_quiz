@@ -109,11 +109,10 @@ end
 puts "\n=== Creating Quiz Data ==="
 # Quizzesのダミーデータ生成
 puts "\nCreating Quizzes..."
-CSV.foreach('db/csv/dummy_quizzes.csv', headers: true) do |row|
+CSV.foreach('db/csv/Quizzes.csv', headers: true) do |row|
   Quiz.find_or_create_by(id: row['quiz_id']) do |q|
     q.author_user_id = row['author_user_id']
     q.title = row['title']
-    q.questions_count = row['questions_count']
     q.save(validate: false)
   end
   print "."
@@ -121,7 +120,7 @@ end
 
 # Questions と Choices のダミーデータ生成
 puts "\nCreating Questions and Choices..."
-CSV.foreach('db/csv/dummy_questions_and_choices.csv', headers: true) do |row|
+CSV.foreach('db/csv/Questions.csv', headers: true) do |row|
   question = Question.find_or_create_by(id: row['question_id']) do |q|
     q.quiz_id = row['quiz_id']
     q.question = row['question']
@@ -132,6 +131,7 @@ CSV.foreach('db/csv/dummy_questions_and_choices.csv', headers: true) do |row|
   end
 
   Choice.find_or_create_by(question_id: question.id) do |c|
+    c.question_id = question.id
     c.choice1 = row['choice1']
     c.choice2 = row['choice2']
     c.choice3 = row['choice3']
@@ -143,7 +143,7 @@ end
 
 # TagQuizzesのダミーデータ作成
 puts "\nCreating TagQuizzes..."
-CSV.foreach('db/csv/tag_quizzes.csv', headers: true) do |row|
+CSV.foreach('db/csv/Quizzes.csv', headers: true) do |row|
   TagQuiz.find_or_create_by!(quiz_id: row['quiz_id'], tag_id: row['tag_id'])
   print "."
 end
