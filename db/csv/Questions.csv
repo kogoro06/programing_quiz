@@ -1,4 +1,4 @@
-question_id,quiz_id,question,choice1,choice2,choice3,choice4,correct_answer,explanation,answer_source
+quiz_id,question_id,question,choice1,choice2,choice3,choice4,correct_answer,explanation,answer_source
 1,1,<!DOCTYPE html>の役割は？,この後に記載する内容がHTML文書であることを示す,最適なHTMLバージョンに自動的に切り替える,使用するHTMLのバージョンを宣言する,ページの読み込み速度を高速化する,3,記載する内容がHTML文書であることを示すのはhtmlタグです。,https://qiita.com/y-wanida/items/db7ddfcc9b974feb0884
 1,2,文字コードの指定で正しいのは？,"<meta charset=""utf-5"" />","<meta charset=""utf-7"" />","<meta charset=""utf-4"" />","<meta charset=""utf-8"" />",4,UTF-8 (UCS Transformation Format 8) は World Wide Web において最も一般的な文字エンコーディングです。UTF-7はかつて使用されていましたが、安全性や互換性の問題から現在は推奨されていません。UTF-5とUTF-4は実在しません。,https://developer.mozilla.org/ja/docs/Glossary/UTF-8
 1,3,"<ul>, <ol>, <li>の役割の正しい組み合わせは？",<ul>は順序なしリスト要素、<ol>は順序付きリスト要素、<li>はリスト項目要素,<ul>はリスト項目要素、<ol>は順序なしリスト要素、<li>は順序付きリスト要素,<ul>と<ol>は順序付きリスト要素、<li>は順序なしリスト要素,<ul>は順序付きリスト要素、<ol>は順序なしリスト要素、<li>はリスト項目要素,1,"<ul>は順序なしリストを表し、一般的に行頭記号を伴うリストとして表示されます。
