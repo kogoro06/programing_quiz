@@ -17,3 +17,7 @@
 .text-gradient {
   @apply text-transparent bg-clip-text;
 }
+
+.footer {
+  margin-top: auto;
+}
