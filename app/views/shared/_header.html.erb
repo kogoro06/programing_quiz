@@ -24,11 +24,15 @@
     </div>
     <div class="flex items-center space-x-4 justify-end">
       <% if user_signed_in? %>
-        <%= link_to user_profile_path(@current_user[:id]) do %>
+        <%= link_to user_profile_path(current_user.id) do %>
           <div class="text-center">
-            <%= image_tag 'profile_sample.png', class: 'w-10 h-10 rounded-full object-cover border border-primary' %>
-          </div>
-        <% end %>
+          <% if @profile.present? && @profile.user_icon.attached? %>
+            <%= image_tag @profile.user_icon, class: 'w-10 h-10 rounded-full object-cover border border-primary border-300' %>
+          <% else %>
+            <%= image_tag 'profile_sample.png', class: 'w-10 h10 rounded-full object-cover border border-primary border-300' %>
+          <% end %>
+        </div>
+      <% end %>
         <%= link_to bookmarks_quiz_posts_path do %>
           <span class="material-icons md-36 text-primary">bookmark</span>
         <% end %>

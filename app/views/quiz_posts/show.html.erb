@@ -1,3 +1,10 @@
+<div class="bg-white min-h-screen overflow-auto">
+  <div class="flex flex-col justify-center items-center mt-8 mb-8 mx-4 md:mx-24 lg:mx-72">
+    <h1 class="text-3xl md:text-3xl lg:text-4xl font-bold text-accent text-center">
+      <% content_for(:title, "#{@quiz.title}") %>
+    </h1>
+  </div>
+
 <div class="bg-secondary m-12 rounded-lg p-6 max-w-3xl mx-auto">
   <div class="bg-base-100 p-8 rounded-lg max-w-3xl mx-auto">
     <div class="flex justify-between items-center">
@@ -54,9 +61,14 @@
       </div>
       <div class="mt-4 flex items-center justify-between">
         <div>
-          <button class="btn btn-sm bg-html flex-1 text-sm text-white font-bold text-center text-nowrap mt-2">HTML</button>
-          <button class="btn btn-sm bg-css flex-1 text-sm text-white font-bold text-center text-nowrap mt-2 mr-4">CSS</button>
-          <span class="mt-2 text-sm">全 <%= @quiz.questions_count %> 門</span>
+          <div class="flex gap-4 items-center">
+            <% @quiz.tags.each do |tag| %>
+              <%= link_to tag_path(tag.id), class: "btn btn-sm text-sm text-white font-bold text-center text-nowrap mt-2 #{tag.data_color}" do %>
+                <%= tag.name %>
+              <% end %>
+            <% end %>
+             <span class="mt-2 text-sm">全 <%= @quiz.questions_count %> 問</span>
+          </div>
         </div>
         <div>
           <button class="bg-secondary hover:opacity-70 mt-2 px-4 py-1 rounded-lg shadow"><i class="fa-brands fa-x-twitter"></i>に共有する</button>
@@ -65,6 +77,8 @@
     </div>
   </div>
   <div class="flex justify-center items-center mt-2">
-    <button type="submit" class="text-white bg-accent hover:opacity-70 font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center mt-6">クイズを始める</button>
+    <%= link_to 'クイズを始める', question_path(@quiz.questions.first), class: 'text-white bg-accent hover:opacity-70 font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center mt-6' %>
   </div>
 </div>
+
+
