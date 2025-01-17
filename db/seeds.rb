@@ -96,6 +96,16 @@ profiles.each do |profile_attribute|
   print "."
 end
 
+puts "\nCreating Tags..."
+# Tagsのダミーデータ作成
+CSV.foreach('db/csv/tags.csv', headers: true) do |row|
+  tag = Tag.find_or_create_by!(id: row['tag_id']) do |t|
+    t.name = row['name']
+    t.color = row['color']
+  end
+  print "."
+end
+
 puts "\n=== Creating Quiz Data ==="
 # Quizzesのダミーデータ生成
 puts "\nCreating Quizzes..."
@@ -128,18 +138,6 @@ CSV.foreach('db/csv/dummy_questions_and_choices.csv', headers: true) do |row|
     c.choice4 = row['choice4']
     c.save(validate: false)
   end
-  print "."
-end
-
-# Tagsのダミーデータ作成
-puts "\nCreating Tags..."
-tag_data = {}
-CSV.foreach('db/csv/tags.csv', headers: true) do |row|
-  tag = Tag.find_or_create_by!(id: row['tag_id']) do |t|
-    t.name = row['name']
-    t.color = row['color']
-  end
-  tag_data[row['name']] = tag
   print "."
 end
 
