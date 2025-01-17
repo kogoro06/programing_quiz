@@ -97,59 +97,57 @@ profiles.each do |profile_attribute|
 end
 
 puts "\n=== Creating Quiz Data ==="
-ActiveRecord::Base.transaction do
-  # Quizzesのダミーデータ生成
-  puts "\nCreating Quizzes..."
-  CSV.foreach('db/csv/dummy_quizzes.csv', headers: true) do |row|
-    Quiz.find_or_create_by(id: row['quiz_id']) do |q|
-      q.author_user_id = row['author_user_id']
-      q.title = row['title']
-      q.questions_count = row['questions_count']
-      q.save(validate: false)
-    end
-    print "."
+# Quizzesのダミーデータ生成
+puts "\nCreating Quizzes..."
+CSV.foreach('db/csv/dummy_quizzes.csv', headers: true) do |row|
+  Quiz.find_or_create_by(id: row['quiz_id']) do |q|
+    q.author_user_id = row['author_user_id']
+    q.title = row['title']
+    q.questions_count = row['questions_count']
+    q.save(validate: false)
+  end
+  print "."
+end
+
+# Questions と Choices のダミーデータ生成
+puts "\nCreating Questions and Choices..."
+CSV.foreach('db/csv/dummy_questions_and_choices.csv', headers: true) do |row|
+  question = Question.find_or_create_by(id: row['question_id']) do |q|
+    q.quiz_id = row['quiz_id']
+    q.question = row['question']
+    q.correct_answer = row['correct_answer']
+    q.answer_source = row['answer_source']
+    q.explanation = row['explanation']
+    q.save(validate: false)
   end
 
-  # Questions と Choices のダミーデータ生成
-  puts "\nCreating Questions and Choices..."
-  CSV.foreach('db/csv/dummy_questions_and_choices.csv', headers: true) do |row|
-    question = Question.find_or_create_by(id: row['question_id']) do |q|
-      q.quiz_id = row['quiz_id']
-      q.question = row['question']
-      q.correct_answer = row['correct_answer']
-      q.answer_source = row['answer_source']
-      q.explanation = row['explanation']
-      q.save(validate: false)
-    end
-
-    Choice.find_or_create_by(question_id: question.id) do |c|
-      c.choice1 = row['choice1']
-      c.choice2 = row['choice2']
-      c.choice3 = row['choice3']
-      c.choice4 = row['choice4']
-      c.save(validate: false)
-    end
-    print "."
+  Choice.find_or_create_by(question_id: question.id) do |c|
+    c.choice1 = row['choice1']
+    c.choice2 = row['choice2']
+    c.choice3 = row['choice3']
+    c.choice4 = row['choice4']
+    c.save(validate: false)
   end
+  print "."
+end
 
-  # Tagsのダミーデータ作成
-  puts "\nCreating Tags..."
-  tag_data = {}
-  CSV.foreach('db/csv/tags.csv', headers: true) do |row|
-    tag = Tag.find_or_create_by!(id: row['tag_id']) do |t|
-      t.name = row['name']
-      t.color = row['color']
-    end
-    tag_data[row['name']] = tag
-    print "."
+# Tagsのダミーデータ作成
+puts "\nCreating Tags..."
+tag_data = {}
+CSV.foreach('db/csv/tags.csv', headers: true) do |row|
+  tag = Tag.find_or_create_by!(id: row['tag_id']) do |t|
+    t.name = row['name']
+    t.color = row['color']
   end
+  tag_data[row['name']] = tag
+  print "."
+end
 
-  # TagQuizzesのダミーデータ作成
-  puts "\nCreating TagQuizzes..."
-  CSV.foreach('db/csv/tag_quizzes.csv', headers: true) do |row|
-    TagQuiz.find_or_create_by!(quiz_id: row['quiz_id'], tag_id: row['tag_id'])
-    print "."
-  end
+# TagQuizzesのダミーデータ作成
+puts "\nCreating TagQuizzes..."
+CSV.foreach('db/csv/tag_quizzes.csv', headers: true) do |row|
+  TagQuiz.find_or_create_by!(quiz_id: row['quiz_id'], tag_id: row['tag_id'])
+  print "."
 end
 
 puts "\nSeeding completed! 🎉"
