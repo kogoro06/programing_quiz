@@ -1,7 +1,6 @@
 class QuizPostsController < ApplicationController
   before_action :authenticate_user!
   skip_before_action :authenticate_user!, only: [ :index ]
-  #before_action :set_tags, only: %i[new create]
 
   def index
     @quizzes = Quiz.eager_load(:user, :tags).all
@@ -57,9 +56,6 @@ class QuizPostsController < ApplicationController
   end
 
   private
-  #def set_tags
-    #@tags = Tag.all
-  #end
 
   def quiz_params
     params.require(:quiz).permit(
