@@ -2,22 +2,17 @@ ja:
   activerecord:
     models:
       quiz: "クイズ"
-      questions: "問題文"
+      question: "問題"
       tag: "タグ"
-      choices: "選択肢"
-      correct answer: "選択肢"
     attributes:
       quiz:
         title: "タイトル"
         tags: "タグ"
-        question: "問題文"
-        choices: "選択肢"
-        correct answer: "選択肢"
       question:
         question: "問題文"
         correct_answer: "正解"
         choices: "選択肢"
-        correct answer: "選択肢"
+
     errors:
       models:
         quiz:
