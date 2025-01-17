@@ -18,6 +18,11 @@
   @apply text-transparent bg-clip-text;
 }
 
-.footer {
-  margin-top: auto;
+.wrap{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.footer{
+    margin-top: auto;
 }
