@@ -1,6 +1,8 @@
 class QuizPostsController < ApplicationController
   before_action :authenticate_user!
   skip_before_action :authenticate_user!, only: [ :index ]
+  before_action :set_tags, only: %i[new create]
+
   def index
     @quizzes = Quiz.eager_load(:user, :tags).all
     @tags = Tag.all
@@ -35,7 +37,7 @@ class QuizPostsController < ApplicationController
     @quiz.questions = @quiz.questions.select { |q| q.question.present? }
 
     if @quiz.save
-      redirect_to quiz_path(@quiz), notice: "クイズを投稿しました！"
+      redirect_to quiz_post_path(@quiz), notice: "クイズを投稿しました！"
     else
       if current_user.admin?
         30.times do
@@ -54,6 +56,9 @@ class QuizPostsController < ApplicationController
   end
 
   private
+  def set_tags
+    @tags = Tag.all
+  end
 
   def quiz_params
     params.require(:quiz).permit(

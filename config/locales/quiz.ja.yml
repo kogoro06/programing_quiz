@@ -1,8 +1,31 @@
 ja:
-  errors:
-    blank: "未入力があります:"
+  activerecord:
+    models:
+      quiz: "クイズ"
+      questions: "問題文"
+      tag: "タグ"
+    attributes:
+      quiz:
+        title: "タイトル"
+        tags: "タグ"
+        questions: "問題文"
+      question:
+        question: "問題文"
+        correct_answer: "正解"
+        choices: "選択肢"
+    errors:
+      models:
+        quiz:
+          attributes:
+            title:
+              blank: "を入力してください"
+            tags:
+              blank: "を選択してください"
+
+        blank: "未入力があります:"
   quiz_posts:
     new:
+      errors_blank: "入力内容を確認してください"
       title: "新規クイズ作成"
       create_limit: "10問作成できます"
       quizes_title: "クイズ集タイトル"
