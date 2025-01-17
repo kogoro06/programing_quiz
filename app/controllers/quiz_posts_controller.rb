@@ -32,6 +32,7 @@ class QuizPostsController < ApplicationController
   end
 
   def create
+    @tags=Tag.all
     @quiz = Quiz.new(quiz_params.merge(author_user_id: current_user.id))
 
     @quiz.questions = @quiz.questions.select { |q| q.question.present? }
