@@ -10,7 +10,7 @@ ja:
       quiz:
         title: "タイトル"
         tags: "タグ"
-        questions: "問題文"
+        question: "問題文"
         choices: "選択肢"
         correct answer: "選択肢"
       question:
@@ -26,6 +26,14 @@ ja:
               blank: "を入力してください"
             tags:
               blank: "を選択してください"
+        question:
+          attributes:
+            question:
+              blank: "を入力してください"
+            correct_answer:
+              blank: "を選択してください"
+            choices:
+              blank: "をすべて入力してください"
 
         blank: "未入力があります:"
   quiz_posts:
