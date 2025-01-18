@@ -9,6 +9,7 @@ class QuestionsController < ApplicationController
       @question = Question.find(params[:id])
       @quiz = @question.quiz
       @choices = Choice.where(question_id: @question.id)
+      choices_adjust(@choices)
       @quiz = @question.quiz
     rescue ActiveRecord::RecordNotFound => e
       Rails.logger.error("Question not found: #{e.message}")
@@ -58,6 +59,15 @@ class QuestionsController < ApplicationController
     unless user_signed_in? # ユーザーがログインしているかを確認
       flash[:alert] = "ログインが必要です。"
       redirect_to new_user_session_path
+    end
+  end
+
+  def choices_adjust(choices)
+    choices.each do |choice|
+      choice.choice1.gsub!("<", "＜").gsub!(">", "＞")
+      choice.choice2.gsub!("<", "＜").gsub!(">", "＞")
+      choice.choice3.gsub!("<", "＜").gsub!(">", "＞")
+      choice.choice4.gsub!("<", "＜").gsub!(">", "＞")
     end
   end
 end
