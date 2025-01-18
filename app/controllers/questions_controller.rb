@@ -31,7 +31,7 @@ class QuestionsController < ApplicationController
     question_id: @question.id,
     user_id: current_user.id
   )
-  
+
   if past_answer.update(
     answer_content: user_answer,
     answer_result: is_correct
