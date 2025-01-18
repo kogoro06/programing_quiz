@@ -120,6 +120,4 @@ Rails.application.configure do
   }
 
   config.action_mailer.perform_caching = false
-
- config.GA_MEASUREMENT_ID = Rails.application.credentials.dig(:google_analytics, :measurement_id)
 end

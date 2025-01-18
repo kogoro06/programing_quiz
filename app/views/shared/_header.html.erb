@@ -3,6 +3,7 @@
     <div class="flex items-center space-x-4">
       <%= image_tag 'logo.png', class: 'w-10 h-10' %>
         <%= link_to 'Programming Question', '/', class: 'text-primary font-bold text-lg font-frankfurter mr-10' %>
+          <!--（本リリース）検索機能
           <form class="flex items-center">
             <label for="simple-search" class="sr-only">Search</label>
             <div class="flex items-center gap-4">
@@ -21,17 +22,24 @@
               </button>
             </div>
           </form>
+          -->
     </div>
     <div class="flex items-center space-x-4 justify-end">
       <% if user_signed_in? %>
-        <%= link_to user_profile_path(@current_user[:id]) do %>
+        <%= link_to user_profile_path(current_user.id) do %>
           <div class="text-center">
-            <%= image_tag 'profile_sample.png', class: 'w-10 h-10 rounded-full object-cover border border-primary' %>
-          </div>
-        <% end %>
+          <% if @profile.present? && @profile.user_icon.attached? %>
+            <%= image_tag @profile.user_icon, class: 'w-10 h-10 rounded-full object-cover border border-primary border-300' %>
+          <% else %>
+            <%= image_tag 'profile_sample.png', class: 'w-10 h10 rounded-full object-cover border border-primary border-300' %>
+          <% end %>
+        </div>
+      <% end %>
+      <!--(本リリース)ブックマーク機能
         <%= link_to bookmarks_quiz_posts_path do %>
           <span class="material-icons md-36 text-primary">bookmark</span>
         <% end %>
+      -->
         <%= button_to destroy_user_session_path, method: :delete, data: { turbo_method: :delete } do %>
           <span class="material-icons md-36 text-primary">logout</span>
         <% end %>
@@ -39,7 +47,9 @@
         <div class="space-x-8">
           <%= link_to 'ログイン', new_user_session_path, class: 'text-primary font-bold text-base md:text-lg tracking-wide hover:opacity-70 transition duration-300' %>
           <%= link_to '新規登録', new_user_registration_path, class: 'text-primary font-bold text-base md:text-lg tracking-wide hover:opacity-70 transition duration-300' %>
+           <!--(本リリース)パスワードリセット機能
           <%= link_to 'パスワードリセット', new_user_password_path, class: 'text-primary font-bold text-base md:text-lg tracking-wide hover:opacity-70 transition duration-300' %>
+           -->
         </div>
       <% end %>
     </div>

@@ -20,21 +20,20 @@ class UserProfileForm
 
   attr_accessor :user, :profile
   # userとprofileのモデルのインスタンスを初期化
-  def initialize(user, profile, params = {})
+  def initialize(user, profile = nil)
     # 親クラスの初期化を行う
-    super(params)
+    super()
 
     # モデルのインスタンスを初期化
     @user = user
-    @profile = profile
+    @profile = profile || user.build_profile
 
     # 各入力項目を初期化
-    Rails.logger.debug "Received params in profile edit initialize: #{params.inspect}"
     self.name = @user.name
-    self.bio = @profile.bio
-    self.studying_languages = @profile.studying_languages
-    self.x_link = @profile.x_link
-    self.github_link = @profile.github_link
+    self.bio = @profile.bio || ""
+    self.studying_languages = @profile.studying_languages || ""
+    self.x_link = @profile.x_link || ""
+    self.github_link = @profile.github_link || ""
   end
 
   def save(user_profile_form_params)

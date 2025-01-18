@@ -1,12 +1,19 @@
 <div class="bg-base-100 rounded-lg p-6 flex items-center shadow w-full max-w-2xl">
   <div class="flex flex-col w-full space-y-4">
+    <!-- クイズタイトル -->
     <%= link_to quiz_post_path(quiz), class: "flex items-center gap-2" do %>
       <p class="text-accent text-lg font-bold"><%= quiz.title %></p>
     <% end %>
+
+    <!-- 作成者情報 -->
     <div class="flex justify-between items-center">
       <div class="">
         <%= link_to user_profile_path(quiz.user.id), class: "flex items-center gap-2" do %>
-          <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary' %>
+          <% if quiz.user.profile&.user_icon&.attached? %>
+            <%= image_tag quiz.user.profile.user_icon, class: 'w-6 h-6 rounded-full object-cover border border-primary' %>
+          <% else %>
+            <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary' %>
+          <% end %>
           <p class="text-sm"><%= quiz.user.name %></p>
         <% end %>
       </div>
