@@ -27,13 +27,17 @@
         gtag('js', new Date());
         gtag('config', 'G-2RYGKZ2QNP');
       </script>
+      <!-- Google Analytics 終了 -->
+
+    <!-- OGP用の記述 -->
+    <%= display_meta_tags %>
   </head>
 
   <body class="font-mplus">
     <%= render 'shared/header' %>
-    <%= render 'devise/shared/flash_messages' %>
-    <main class="pt-24">
-    <%= yield %>
+    <main class="pt-20">
+      <%= render 'devise/shared/flash_messages' %>
+      <%= yield %>
     </main>
     <%= render 'shared/footer' %>
   </body>
