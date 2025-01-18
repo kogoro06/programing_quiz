@@ -34,7 +34,7 @@
       </p>
       <% @choices.each_with_index do |choice, index| %>
         <div class="mt-12 flex gap-2 justify-center max-w-2xl mx-auto">
-          <button class="btn flex-1 bg-secondary text-sm font-bold text-center text-nowrap mt-2 py-2 px-4">
+          <button class="flex-1 bg-secondary text-sm font-bold text-center mt-2 py-2 px-4 w-[49%]">
             <% if 1==@question.correct_answer %>
               <i class="fa-regular fa-circle text-md text-red-500"></i>
               <% else %>
@@ -42,7 +42,7 @@
                 <% end %>
                   <%= choice.choice1 %>
           </button>
-          <button class="btn flex-1 bg-secondary text-sm font-bold text-center text-nowrap mt-2 py-2 px-4">
+          <button class="flex-1 bg-secondary text-sm font-bold text-center mt-2 py-2 px-4 w-[49%]">
             <% if 2==@question.correct_answer %>
               <i class="fa-regular fa-circle text-md text-red-500"></i>
               <% else %>
@@ -52,7 +52,7 @@
           </button>
         </div>
         <div class="mt-2 flex gap-2 justify-center max-w-2xl mx-auto">
-          <button class="btn flex-1 bg-secondary text-sm font-bold text-center text-nowrap mt-2 py-2 px-4">
+          <button class="flex-1 bg-secondary text-sm font-bold text-center mt-2 py-2 px-4 w-[49%]">
             <% if 3==@question.correct_answer %>
               <i class="fa-regular fa-circle text-md text-red-500"></i>
               <% else %>
@@ -60,7 +60,7 @@
                 <% end %>
                   <%= choice.choice3 %>
           </button>
-          <button class="btn flex-1 bg-secondary text-sm font-bold text-center text-nowrap mt-2 py-2 px-4">
+          <button class="flex-1 bg-secondary text-sm font-bold text-center mt-2 py-2 px-4 w-[49%]">
             <% if 4==@question.correct_answer %>
               <i class="fa-regular fa-circle text-md text-red-500"></i>
               <% else %>
@@ -76,7 +76,7 @@
           </p>
           <h2 class="mt-12 text-accent">クイズ作成時の参考資料（URL）</h2>
           <p class="text-sm link">
-            <%= @question.answer_source %>
+            <%= link_to @question.answer_source, @question.answer_source %>
           </p>
           <div>
             <% if @question.question_image.attached? %>
