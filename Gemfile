@@ -40,6 +40,8 @@ gem "bootsnap", require: false
 
 gem "dotenv-rails"
 gem "kaminari"
+gem "mini_magick"
+gem "meta-tags", require: "meta_tags"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
