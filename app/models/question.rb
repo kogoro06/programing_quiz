@@ -2,7 +2,7 @@ class Question < ApplicationRecord
   belongs_to :quiz, counter_cache: true
   has_many :choices, dependent: :destroy
   has_one_attached :question_image, dependent: :destroy
-  has_one_attached :explanation_image, dependent: :destroy
+  has_one_attached :explanation_image, dependent: :nullify
   accepts_nested_attributes_for :choices, allow_destroy: true
   has_many :past_answers, dependent: :destroy
 
