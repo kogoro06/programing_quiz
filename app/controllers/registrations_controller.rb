@@ -6,4 +6,11 @@ class RegistrationsController < Devise::RegistrationsController
       end
     end
   end
+
+  protected
+
+  # ユーザー登録後のリダイレクト先を指定（親クラスにも同じ名前のメソッド名があり、ここでオーバーライドしている）
+  def after_sign_up_path_for(resource)
+    edit_user_profile_path(resource)
+  end
 end
