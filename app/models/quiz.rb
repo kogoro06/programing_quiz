@@ -8,12 +8,13 @@ class Quiz < ApplicationRecord
 
   validates :title, presence: true
   validate :at_least_one_question
+  validates :tags, presence: true
 
   private
 
   def at_least_one_question
     if questions.reject { |q| q.question.blank? && q.correct_answer.blank? }.empty?
-      errors.add(:questions, "クイズ集は1問から登録できます")
+      errors.add(:questions, "は1問から登録できます")
     end
   end
 end

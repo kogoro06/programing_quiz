@@ -20,12 +20,12 @@ class Question < ApplicationRecord
     if question.present?
       # correct_answerが入力されていない場合のエラーメッセージ
       if correct_answer.blank?
-        errors.add(:correct_answer, "正解を入力してください")
+        errors.add(:correct_answer, "を入力してください")
       end
 
       # choicesがすべて入力されていない場合のエラーメッセージ
       if choices.blank? || choices.any? { |choice| choice.choice1.blank? || choice.choice2.blank? || choice.choice3.blank? || choice.choice4.blank? }
-        errors.add(:choices, "選択肢をすべて入力してください")
+        errors.add(:choices, "をすべて入力してください")
       end
     end
   end
