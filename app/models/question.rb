@@ -4,6 +4,7 @@ class Question < ApplicationRecord
   has_one_attached :question_image, dependent: :destroy
   has_one_attached :explanation_image, dependent: :destroy
   accepts_nested_attributes_for :choices, allow_destroy: true
+  has_many :past_answers, dependent: :destroy
 
   # 入力があればバリデーションを実行
   validates :question, presence: true, if: :required_question?
