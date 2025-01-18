@@ -64,10 +64,18 @@ class QuestionsController < ApplicationController
 
   def choices_adjust(choices)
     choices.each do |choice|
-      choice.choice1.gsub!("<", "＜").gsub!(">", "＞")
-      choice.choice2.gsub!("<", "＜").gsub!(">", "＞")
-      choice.choice3.gsub!("<", "＜").gsub!(">", "＞")
-      choice.choice4.gsub!("<", "＜").gsub!(">", "＞")
+      if choice.choice1.include?("<")
+        choice.choice1.gsub!("<", "＜").gsub!(">", "＞")
+      end
+      if choice.choice2.include?("<")
+        choice.choice2.gsub!("<", "＜").gsub!(">", "＞")
+      end
+      if choice.choice3.include?("<")
+        choice.choice3.gsub!("<", "＜").gsub!(">", "＞")
+      end
+      if choice.choice4.include?("<")
+        choice.choice4.gsub!("<", "＜").gsub!(">", "＞")
+      end
     end
   end
 end
