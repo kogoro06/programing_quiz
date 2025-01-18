@@ -19,6 +19,9 @@
     </div>
 
     <h2 class="mt-12 text-accent">問題</h2>
+    <p class="text-sm max-w-2xl mx-auto">
+      <%= @question.question %>
+    </p>
 
     <%= form_with url: create_result_question_path(@question), method: :post, local: true,id: "quiz-form",remote: true, data: { turbo: false } do |form| %>
     <%= form.hidden_field :question_id, value: @question.id %>
