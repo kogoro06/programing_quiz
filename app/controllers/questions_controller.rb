@@ -22,20 +22,28 @@ class QuestionsController < ApplicationController
   end
 
   def create_result
-    @question = Question.find(params[:question_id])
-    user_answer = params[:answer]
-    correct_answer = @question.correct_answer
-    is_correct = (user_answer.to_s == correct_answer.to_s)
+  @question = Question.find(params[:question_id])
+  user_answer = params[:answer]
+  correct_answer = @question.correct_answer
+  is_correct = (user_answer.to_s == correct_answer.to_s)
 
-    past_answer = PastAnswer.find_or_initialize_by(
-      question_id: @question.id,
-      user_id: current_user.id
-    )
-    past_answer.update!(
-      answer_content: user_answer,
-      answer_result: is_correct
-    )
+  past_answer = PastAnswer.find_or_initialize_by(
+    question_id: @question.id,
+    user_id: current_user.id
+  )
+  
+  if past_answer.update(
+    answer_content: user_answer,
+    answer_result: is_correct
+  )
+    Rails.logger.info("PastAnswer saved successfully: #{past_answer.inspect}")
+  else
+    Rails.logger.error("Failed to save PastAnswer: #{past_answer.errors.full_messages.join(', ')}")
+    flash[:alert] = "回答の保存に失敗しました。"
+    redirect_to root_path and return
   end
+end
+
 
   def result
     @question = Question.find(params[:id])
