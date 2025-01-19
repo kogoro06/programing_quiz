@@ -35,9 +35,10 @@ ja:
     new:
       errors_blank: "入力内容を確認してください"
       title: "新規クイズ作成"
-      create_limit: "10問作成できます"
+      create_limit: "1問~10問作成できます"
       quizes_title: "クイズ集タイトル"
       quizes_tags: "クイズ集タグ"
+      tags_annotation: "※ エラータグのみ複数選択が可能です。他のタグを選択後、エラータグを選択してください。"
       question: "問題文"
       choices:
         1: "選択肢1"
