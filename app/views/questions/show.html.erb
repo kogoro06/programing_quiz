@@ -79,46 +79,52 @@
   document.addEventListener("turbo:load", () => {
     const form = document.getElementById("quiz-form");
     if (!form) return;
-
+  
     const submitBtn = document.getElementById("submit-btn");
     const resultContainer = document.getElementById("result-container");
-
+  
     form.addEventListener("submit", (e) => {
       submitBtn.disabled = true;
       submitBtn.style.display = "none";
-
+  
       const correctAnswer = document.getElementById("correct_answer").textContent.trim();
       const selectedAnswer = form.querySelector("input[name='answer']:checked");
-
+  
       if (!selectedAnswer) {
         alert("選択肢を選んでください。");
+        submitBtn.disabled = false; 
+        submitBtn.style.display = "block";
         return;
       }
-
+  
       const selectedValue = selectedAnswer.value;
-
+  
       const choice1 = document.getElementById("1");
       const choice2 = document.getElementById("2");
       const choice3 = document.getElementById("3");
       const choice4 = document.getElementById("4");
-
+  
       const choices = [choice1, choice2, choice3, choice4];
-
+  
       choices.forEach((choice, index) => {
         const choiceValue = (index + 1).toString();
-
+  
         if (choiceValue === correctAnswer) {
           choice.innerHTML = `<i class="fa-regular fa-circle text-md text-red-500"></i> ${choice.textContent}`;
         } else {
           choice.innerHTML = `<i class="fa-solid fa-x text-md text-blue-500"></i> ${choice.textContent}`;
         }
       });
-
-      const explanationLink = document.createElement("a");
-      explanationLink.href = `<%= result_question_path(@question) %>`;
-      explanationLink.className = "text-accent text-lg hover:opacity-70";
-      explanationLink.textContent = "解説ページを見る";
-      resultContainer.appendChild(explanationLink);
+  
+      if (!document.getElementById("explanation-link")) {
+        const explanationLink = document.createElement("a");
+        explanationLink.href = `<%= result_question_path(@question) %>`;
+        explanationLink.className = "text-accent text-lg hover:opacity-70";
+        explanationLink.textContent = "解説ページを見る";
+        explanationLink.id = "explanation-link"; 
+        resultContainer.appendChild(explanationLink);
+      }
     });
   });
+  
 </script>
