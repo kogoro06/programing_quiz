@@ -78,7 +78,7 @@
         </div>
         <div>
           <% prepare_meta_tags(@quiz) %>
-          <% twitter_share_url = "https://twitter.com/share?url=#{CGI.escape(quiz_url(@quiz))}" %>
+          <% twitter_share_url = "https://twitter.com/share?url=#{CGI.escape(quiz_post_url(@quiz))}" %>
           <%= link_to twitter_share_url, target: "_blank", data: { toggle: "tooltip", placement: "bottom" }, title: "Xでシェア" do %>
             <button class="bg-secondary hover:opacity-70 mt-2 px-4 py-1 rounded-lg shadow">
               <i class="fa-brands fa-x-twitter"></i>に共有する
