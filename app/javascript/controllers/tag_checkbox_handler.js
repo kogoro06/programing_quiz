@@ -17,10 +17,10 @@ document.addEventListener("turbo:load", () => {
         const isErrorTag = checkbox.value === "6"; // エラータグのIDが "6" と仮定
         const otherSelectedTags = Array.from(tagCheckboxes).filter((cb) => cb.checked && cb !== checkbox);
   
-        if (!checkbox.checked && !isErrorTag && otherSelectedTags.length > 0) {
-          // 他のタグがすでに選択されている場合
+        if (!checkbox.checked && !isErrorTag && 
+            otherSelectedTags.some(tag => tag.value !== "6" && tag.checked)) {
           alert("エラータグ以外は同時に選択できません。");
-          return; // 処理を中断
+          return;
         }
   
         // 現在のタグの選択状態を切り替え
