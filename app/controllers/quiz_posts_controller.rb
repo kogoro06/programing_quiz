@@ -21,6 +21,7 @@ class QuizPostsController < ApplicationController
     set_meta_tags(
       title: @quiz.title,
       description: "Programming Questionはプログラミングのクイズを投稿・共有できるサイトです。",
+      image: image_url,
       og: {
           site_name: "Programming Question",
           title: @quiz.title,
