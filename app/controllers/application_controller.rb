@@ -7,13 +7,13 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def prepare_meta_tags(quiz)
-    image_url = "#{request.base_url}/images/ogp.png?text=#{CGI.escape(quiz.title)}&questions_count=#{quiz.questions_count}&tags=#{CGI.escape(quiz.tags.pluck(:name).join(','))}",
-    quiz_url = url_for(controller: "quiz_posts", action: "show", id: quiz.id, only_path: false),
+    # 画像のテキストは、クイズのタイトル、問題数、タグを使う
+    image_url = "#{request.base_url}/images/ogp.png?text=#{CGI.escape(quiz.title)}&questions_count=#{quiz.questions_count}&tags=#{CGI.escape(quiz.tags.pluck(:name).join(','))}"
+    quiz_url = url_for(controller: "quiz_posts", action: "show", id: quiz.id, only_path: false)
 
     set_meta_tags(
       title: quiz.title,
       description: "Programming Questionはプログラミングのクイズを投稿・共有できるサイトです。",
-      # 画像のテキストは、クイズのタイトル、問題数、タグを使う
       og: {
           site_name: "Programming Question",
           title: quiz.title,
