@@ -12,6 +12,8 @@ class QuizPostsController < ApplicationController
   def show
     @quiz = Quiz.includes(:tags, :questions).find(params[:id])
     @tags = Tag.all
+    # メタタグの設定
+    prepare_meta_tags(@quiz)
   end
 
   def new

@@ -46,6 +46,8 @@ end
 
 
   def result
+    # メタタグの設定
+    prepare_meta_tags(@quiz)
     @question = Question.find(params[:id])
     @quiz = @question.quiz
     @choices = Choice.where(question_id: @question.id)
