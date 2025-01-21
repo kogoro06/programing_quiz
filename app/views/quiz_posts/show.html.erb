@@ -39,7 +39,9 @@
     <div class="mt-4">
       <div class="flex justify-between items-center">
         <div class="flex items-center space-x-2">
-          <%= image_tag @quiz.user.profile&.user_icon&.attached? ? @quiz.user.profile.user_icon : 'profile_sample.png', class: 'w-8 h-8 rounded-full object-cover border border-primary' %>
+          <%= link_to user_profile_path(@quiz.user.id) do %>
+            <%= image_tag @quiz.user.profile&.user_icon&.attached? ? @quiz.user.profile.user_icon : 'profile_sample.png', class: 'w-8 h-8 rounded-full object-cover border border-primary' %>
+          <% end %>
           <div class="mt-4">
             <p class="text-primary"><%= @quiz.user.name %></p>
             <p class="text-sm"><%= @quiz.created_at.strftime("%Y-%m-%d") %></p>
