@@ -4,10 +4,12 @@
   </p>
  <!-- 作成者情報 -->
   <div class="flex gap-1 items-center">
-    <% if quiz.user&.profile&.user_icon&.attached? %>
-      <%= image_tag quiz.user.profile.user_icon, class: 'w-6 h-6 rounded-full object-cover border border-primary border--300' %>
-    <% else %>
-      <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary border--300' %>
+    <%= link_to user_profile_path(quiz.user.id), class: "flex items-center gap-2" do %>
+      <% if quiz.user&.profile&.user_icon&.attached? %>
+        <%= image_tag quiz.user.profile.user_icon, class: 'w-6 h-6 rounded-full object-cover border border-primary border--300' %>
+      <% else %>
+        <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary border--300' %>
+      <% end %>
     <% end %>
     <%= link_to user_profile_path(quiz.user.id), class: "flex items-center gap-2" do %>
       <p><%= quiz.user&.name || "作者不明" %></p>
