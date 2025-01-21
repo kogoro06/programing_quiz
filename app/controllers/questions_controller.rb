@@ -7,6 +7,7 @@ class QuestionsController < ApplicationController
   def show
     begin
       @question = Question.find(params[:id])
+      puts params[:id]
       @quiz = @question.quiz
       @choices = Choice.where(question_id: @question.id)
       choices_adjust(@choices)
@@ -57,7 +58,7 @@ end
       redirect_to root_path and return
     end
 
-    @next_question = Question.where("id > ? AND quiz_id = ?", @question.id, @question.quiz_id).first
+    @next_question = Question.where("id > ? AND quiz_id = ?", @question.id, @quiz.id).order(:id).first
     @has_next_question = @next_question.present?
 
     # メタタグの設定

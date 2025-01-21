@@ -76,7 +76,7 @@
           </p>
           <h2 class="mt-12 text-accent">クイズ作成時の参考資料（URL）</h2>
           <p class="text-sm link">
-            <%= link_to @question.answer_source, @question.answer_source %>
+            <%= link_to @question.answer_source.truncate(50), @question.answer_source %>
           </p>
           <div>
             <% if @question.question_image.attached? %>

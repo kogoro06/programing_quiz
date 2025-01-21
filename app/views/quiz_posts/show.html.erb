@@ -43,7 +43,9 @@
             <%= image_tag @quiz.user.profile&.user_icon&.attached? ? @quiz.user.profile.user_icon : 'profile_sample.png', class: 'w-8 h-8 rounded-full object-cover border border-primary' %>
           <% end %>
           <div class="mt-4">
-            <p class="text-primary"><%= @quiz.user.name %></p>
+            <%= link_to user_profile_path(@quiz.user.id) do %>
+              <p class="text-primary"><%= @quiz.user.name %></p>
+            <% end %>
             <p class="text-sm"><%= @quiz.created_at.strftime("%Y-%m-%d") %></p>
           </div>
         </div>
@@ -90,6 +92,6 @@
     </div>
   </div>
   <div class="flex justify-center items-center mt-2">
-    <%= link_to 'クイズを始める', question_path(@quiz.questions.first), class: 'text-white bg-accent hover:opacity-70 font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center mt-6' %>
+    <%= link_to 'クイズを始める', question_path(@quiz.questions.order(:id).first), class: 'text-white bg-accent hover:opacity-70 font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center mt-6' %>
   </div>
 </div>
