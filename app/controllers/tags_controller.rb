@@ -7,7 +7,7 @@ class TagsController < ApplicationController
 
   def show
     @quizzes = @tag.quizzes.eager_load(:user, :tags)
-                   .select('quizzes.created_at, quizzes.title, quizzes.author_user_id, quizzes.questions_count, users.name as author_name')
+                   .select("quizzes.created_at, quizzes.title, quizzes.author_user_id, quizzes.questions_count, users.name as author_name")
                    .order(created_at: :desc)
                    .page(params[:page])
                    .per(6)
