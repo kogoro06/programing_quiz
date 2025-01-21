@@ -10,14 +10,16 @@
     <div class="flex justify-between items-center">
       <h1 class="text-3xl text-accent"><%= @quiz.title %></h1>
       <div class="flex text-primary">
+      <!--(本リリース)クイズ編集ページ
         <button>
           <span class="material-icons md-36">
             edit
           </span>
         </button>
+      -->
         <div class="flex text-primary space-x-4">
           <% if @quiz.author_user_id == current_user.id || current_user.admin? %>
-            <%= button_to @quiz, 
+            <%= button_to @quiz,
             method: :delete do %>
               <span class="material-icons md-36" >
                 delete
@@ -25,11 +27,13 @@
             <% end %>
           <% end %>
         </div>
+        <!--(本リリース)ブックマーク機能
         <button>
           <span class="material-icons md-36">
             bookmark_border
           </span>
         </button>
+        -->
       </div>
     </div>
     <div class="mt-4">
@@ -41,6 +45,7 @@
             <p class="text-sm"><%= @quiz.created_at.strftime("%Y-%m-%d") %></p>
           </div>
         </div>
+        <!--(本リリース)レビュー機能
         <div class="rating rating-md rating-half">
           <input type="radio" name="rating-10" class="rating-hidden" />
           <input type="radio" name="rating-10" class="mask mask-star mask-half-1 bg-primary" />
@@ -58,6 +63,7 @@
           <input type="radio" name="rating-10" class="mask mask-star mask-half-1 bg-primary" />
           <input type="radio" name="rating-10" class="mask mask-star mask-half-2 bg-primary" />
         </div>
+        -->
       </div>
       <div class="mt-4 flex items-center justify-between">
         <div>
@@ -71,7 +77,13 @@
           </div>
         </div>
         <div>
-          <button class="bg-secondary hover:opacity-70 mt-2 px-4 py-1 rounded-lg shadow"><i class="fa-brands fa-x-twitter"></i>に共有する</button>
+          <% prepare_meta_tags(@quiz) %>
+          <% twitter_share_url = "https://twitter.com/share?url=#{CGI.escape(quiz_url(@quiz))}" %>
+          <%= link_to twitter_share_url, target: "_blank", data: { toggle: "tooltip", placement: "bottom" }, title: "Xでシェア" do %>
+            <button class="bg-secondary hover:opacity-70 mt-2 px-4 py-1 rounded-lg shadow">
+              <i class="fa-brands fa-x-twitter"></i>に共有する
+            </button> 
+          <% end %>
         </div>
       </div>
     </div>
@@ -80,5 +92,3 @@
     <%= link_to 'クイズを始める', question_path(@quiz.questions.first), class: 'text-white bg-accent hover:opacity-70 font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center mt-6' %>
   </div>
 </div>
-
-

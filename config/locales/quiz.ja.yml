@@ -1,12 +1,45 @@
 ja:
-  errors:
-    blank: "未入力があります:"
+  activerecord:
+    models:
+      quiz: "クイズ"
+      question: "問題"
+      tag: "タグ"
+    attributes:
+      quiz:
+        title: "タイトル"
+        tags: "タグ"
+      question:
+        question: "問題文"
+        correct_answer: "正解"
+        choices: "選択肢"
+
+    errors:
+      models:
+        quiz:
+          attributes:
+            title:
+              blank: "を入力してください"
+            tags:
+              blank: "を選択してください"
+        question:
+          attributes:
+            question:
+              blank: "を入力してください"
+            correct_answer:
+              blank: "を選択してください"
+            choices:
+              blank: "をすべて入力してください"
+
+        blank: "未入力があります:"
   quiz_posts:
     new:
+      errors_blank: "入力内容を確認してください"
       title: "新規クイズ作成"
-      create_limit: "10問作成できます"
+      create_limit: "1問~10問作成できます"
+      create_necessary: "*は必須項目です"
       quizes_title: "クイズ集タイトル"
       quizes_tags: "クイズ集タグ"
+      tags_annotation: "※ エラータグのみ他タグと組み合わせた選択が可能です。"
       question: "問題文"
       choices:
         1: "選択肢1"
@@ -17,6 +50,6 @@ ja:
       choice_corrected_answer: "正解の選択肢を選ぶ"
       explanation: "解説文"
       answer_source: "クイズ作成時の参考資料（URL）"
-      questions_image: "問題画像 画像アップロード"
+      questions_image: "問題用 画像アップロード"
       explanation_image: "回答用 画像アップロード"
       submit: "登録する"
