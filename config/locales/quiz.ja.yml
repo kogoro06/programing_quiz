@@ -50,6 +50,6 @@ ja:
       choice_corrected_answer: "正解の選択肢を選ぶ"
       explanation: "解説文"
       answer_source: "クイズ作成時の参考資料（URL）"
-      questions_image: "問題画像 画像アップロード"
+      questions_image: "問題用 画像アップロード"
       explanation_image: "回答用 画像アップロード"
       submit: "登録する"
