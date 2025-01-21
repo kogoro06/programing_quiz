@@ -28,8 +28,8 @@
       <% if user_signed_in? %>
         <%= link_to user_profile_path(current_user.id) do %>
           <div class="text-center">
-          <% if @profile.present? && @profile.user_icon.attached? %>
-            <%= image_tag @profile.user_icon, class: 'w-10 h-10 rounded-full object-cover border border-primary border-300' %>
+          <% if current_user.profile.present? && current_user.profile.user_icon.attached? %>
+            <%= image_tag current_user.profile.user_icon, class: 'w-10 h-10 rounded-full object-cover border border-primary border-300' %>
           <% else %>
             <%= image_tag 'profile_sample.png', class: 'w-10 h10 rounded-full object-cover border border-primary border-300' %>
           <% end %>
