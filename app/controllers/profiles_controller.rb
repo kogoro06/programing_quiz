@@ -13,6 +13,7 @@ class ProfilesController < ApplicationController
   end
 
   def edit
+    user_inspections(@user)
     @profile_form = UserProfileForm.new(@user, @user.profile || @user.build_profile)
   end
 
