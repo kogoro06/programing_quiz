@@ -6,12 +6,12 @@ class TagsController < ApplicationController
   end
 
   def show
-    @quizzes = @tag.quizzes
-                   .eager_load(:user, :tags)
-                   .select('quizzes.created_at, quizzes.title, quizzes.author_user_id,
-                            quizzes.questions_count, users.name as author_name')
+    @quizzes = @tag.quizzes.eager_load(:user, :tags)
+                   .select('quizzes.created_at, quizzes.title, quizzes.author_user_id, quizzes.questions_count, users.name as author_name')
+                   .order(created_at: :desc)
                    .page(params[:page])
                    .per(6)
+    @newest_quizzes = Quiz.includes(:tags).order(created_at: :desc).first(6)
   end
 
   private
