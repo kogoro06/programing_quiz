@@ -118,7 +118,9 @@
   
       if (!document.getElementById("explanation-link")) {
         const explanationLink = document.createElement("a");
-        explanationLink.href = `<%= result_question_path(@question) %>`;
+        const currentUrl = window.location.href;
+
+        explanationLink.href = `${currentUrl}/result`;
         explanationLink.className = "text-accent text-lg hover:opacity-70";
         explanationLink.textContent = "解説ページを見る";
         explanationLink.id = "explanation-link"; 
