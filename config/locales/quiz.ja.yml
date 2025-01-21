@@ -37,6 +37,7 @@ ja:
       title: "新規クイズ作成"
       create_limit: "1問~10問作成できます"
       create_necessary: "*は必須項目です"
+      create_edit: "編集機能は後日アップデート予定"
       quizes_title: "クイズ集タイトル"
       quizes_tags: "クイズ集タグ"
       tags_annotation: "※ エラータグのみ他タグと組み合わせた選択が可能です。"
