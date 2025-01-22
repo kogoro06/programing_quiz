@@ -80,13 +80,13 @@ end
       title: quiz.title,
       description: "Programming Questionはプログラミングのクイズを投稿・共有できるサイトです。",
       type: "website",
-      url: url_for(controller: 'quiz_posts', action: 'show', id: quiz.id, only_path: false),
+      url: url_for(controller: "quiz_posts", action: "show", id: quiz.id, only_path: false),
       # image: image_url,
       locale: "ja-JP"
     },
     twitter: {
       card: "summary_large_image",
-      site: "@study_kogoro",  
+      site: "@study_kogoro"
       # image: image_url
     }
   end
