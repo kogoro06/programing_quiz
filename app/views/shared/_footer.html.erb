@@ -1,13 +1,13 @@
 <div class="bg-secondary w-full">
-  <div class="ml-5 mx-auto flex justify-between items-center p-4">
-    <div class="flex space-x-4">
-      <%= link_to 'お問い合わせ', new_contacts_path, class: 'text-primary font-bold' %>
-      <%= link_to '利用規約', terms_of_services_path, class: 'text-primary font-bold' %>
-      <%= link_to 'プライバシーポリシー',privacy_policies_path, class: 'text-primary font-bold' %>
+  <div class="md:ml-5 flex flex-col md:flex-row md:justify-between md:items-center p-4">
+    <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
+      <%= link_to 'お問い合わせ', new_contacts_path, class: 'text-sm md:text-base text-primary text-nowrap font-bold' %>
+      <%= link_to '利用規約', terms_of_services_path, class: 'text-sm md:text-base text-primary text-nowrap font-bold' %>
+      <%= link_to 'プライバシーポリシー', privacy_policies_path, class: 'text-sm md:text-base text-primary text-nowrap font-bold' %>
     </div>
-    <div class="flex items-center space-x-2 mr-5">
-      <p class="text-sm text-primary font-bold mr-5">© 2024 Programming Question. All rights reserved.</p>
-      <%= image_tag 'duck_face.png', class: 'w-10 h-10' %>
+    <div class="flex items-center justify-between md:space-x-2 md:mr-5 mt-6 md:mt-0">
+      <p class="text-xs md:text-sm text-primary md:font-bold">© 2024 Programming Question. All rights reserved.</p>
+      <%= image_tag 'duck_face.png', class: 'w-7 h-7 md:w-10 md:h-10' %>
     </div>
   </div>
 </div>
