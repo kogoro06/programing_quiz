@@ -1,4 +1,6 @@
 class QuizPostsController < ApplicationController
+  # 設定したprepare_meta_tagsをprivateにあってもpostコントローラー以外にも使えるようにする
+  helper_method :prepare_meta_tags
   before_action :authenticate_user!
   skip_before_action :authenticate_user!, only: [ :index ]
 
@@ -12,33 +14,7 @@ class QuizPostsController < ApplicationController
   def show
     @quiz = Quiz.includes(:tags, :questions).find(params[:id])
     @tags = Tag.all
-
-    # メタタグの設定
-    # 画像のテキストは、クイズのタイトル、問題数、タグを使う
-    image_url = "#{request.base_url}/images/ogp.png?text=#{CGI.escape(@quiz.title)}&questions_count=#{@quiz.questions_count}&tags=#{CGI.escape(@quiz.tags.pluck(:name).join(','))}"
-    quiz_url = url_for(controller: "quiz_posts", action: "show", id: @quiz.id, only_path: false)
-
-    set_meta_tags(
-      title: @quiz.title,
-      description: "Programming Questionはプログラミングのクイズを投稿・共有できるサイトです。",
-      image: image_url,
-      og: {
-          site_name: "Programming Question",
-          title: @quiz.title,
-          description: "Programming Questionはプログラミングのクイズを投稿・共有できるサイトです。",
-          type: "website",
-          url: quiz_url,
-          image: image_url,
-          local: "ja-JP"
-      },
-      twitter: {
-          card: "summary_large_image",
-          site: "@study_kogoro", # 公式アカウントのユーザー名を入れる
-          title: @quiz.title,
-          description: "Programming Questionはプログラミングのクイズを投稿・共有できるサイトです。",
-          image: image_url
-      }
-    )
+    prepare_meta_tags(@quiz)
   end
 
   def new
@@ -83,6 +59,26 @@ class QuizPostsController < ApplicationController
   end
 
   private
+
+  # show画面の内容がシェアできれば良いので、設定をコントローラーで行う。
+  def prepare_meta_tags(quiz)
+    # このimage_urlにMiniMagicで設定したOGPの生成した合成画像を代入する
+    # image_url = "#{request.base_url}/images/ogp.png?text=#{CGI.escape(quiz.title)}&questions_count=#{quiz.questions_count}&tags=#{CGI.escape(quiz.tags.pluck(:name).join(','))}"
+    set_meta_tags og: {
+      site_name: "Programming Question",
+      title: quiz.title,
+      description: "Programming Questionはプログラミングのクイズを投稿・共有できるサイトです。",
+      type: "website",
+      url: url_for(controller: "quiz_posts", action: "show", id: quiz.id, only_path: false),
+      # image: image_url,
+      locale: "ja-JP"
+    },
+    twitter: {
+      card: "summary_large_image",
+      site: "@study_kogoro"
+      # image: image_url
+    }
+  end
 
   def quiz_params
     params.require(:quiz).permit(
