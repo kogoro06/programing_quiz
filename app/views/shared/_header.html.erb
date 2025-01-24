@@ -1,8 +1,8 @@
 <div class="bg-secondary fixed top-0 w-full z-50">
-  <div class="ml-5 mx-auto flex justify-between items-center p-4">
-    <div class="flex items-center space-x-4">
-      <%= image_tag 'logo.png', class: 'w-10 h-10' %>
-        <%= link_to 'Programming Question', '/', class: 'text-primary font-bold text-lg font-frankfurter mr-10' %>
+  <div class="md:ml-5 mx-auto flex justify-between items-center p-4">
+    <div class="flex items-center space-x-2 md:space-x-4">
+      <%= image_tag 'logo.png', class: 'w-8 h-8 md:w-10 md:h-10' %>
+        <%= link_to 'Programming Question', '/', class: 'text-primary font-bold text-sm md:text-lg font-frankfurter mr-10 text-nowrap' %>
           <!--（本リリース）検索機能
           <form class="flex items-center">
             <label for="simple-search" class="sr-only">Search</label>
@@ -24,34 +24,87 @@
           </form>
           -->
     </div>
-    <div class="flex items-center space-x-4 justify-end">
-      <% if user_signed_in? %>
+    
+    <% if user_signed_in? %>
+      <div class="hidden md:flex items-center space-x-4 md:mr-5">
         <%= link_to user_profile_path(current_user.id) do %>
           <div class="text-center">
-          <% if current_user.profile.present? && current_user.profile.user_icon.attached? %>
-            <%= image_tag current_user.profile.user_icon, class: 'w-10 h-10 rounded-full object-cover border border-primary border-300' %>
-          <% else %>
-            <%= image_tag 'profile_sample.png', class: 'w-10 h10 rounded-full object-cover border border-primary border-300' %>
-          <% end %>
-        </div>
-      <% end %>
-      <!--(本リリース)ブックマーク機能
+            <% if current_user.profile.present? && current_user.profile.user_icon.attached? %>
+              <%= image_tag current_user.profile.user_icon, class: 'w-10 h-10 rounded-full object-cover border border-primary border-300' %>
+            <% else %>
+              <%= image_tag 'profile_sample.png', class: 'w-10 h-10 rounded-full object-cover border border-primary border-300' %>
+            <% end %>
+          </div>
+        <% end %>
+        <!--(本リリース)ブックマーク機能
         <%= link_to bookmarks_quiz_posts_path do %>
           <span class="material-icons md-36 text-primary">bookmark</span>
         <% end %>
-      -->
+        -->
         <%= button_to destroy_user_session_path, method: :delete, data: { turbo_method: :delete } do %>
-          <span class="material-icons md-36 text-primary">logout</span>
+          <span class="material-icons md-36 text-primary mt-1.5">logout</span>
         <% end %>
-      <% else %>
-        <div class="space-x-8">
-          <%= link_to 'ログイン', new_user_session_path, class: 'text-primary font-bold text-base md:text-lg tracking-wide hover:opacity-70 transition duration-300' %>
-          <%= link_to '新規登録', new_user_registration_path, class: 'text-primary font-bold text-base md:text-lg tracking-wide hover:opacity-70 transition duration-300' %>
-           <!--(本リリース)パスワードリセット機能
-          <%= link_to 'パスワードリセット', new_user_password_path, class: 'text-primary font-bold text-base md:text-lg tracking-wide hover:opacity-70 transition duration-300' %>
-           -->
+      </div>
+
+      <!--(レスポンシブ)ハンバーガーメニュー -->
+      <div class="flex-none md:hidden">
+        <div class="dropdown dropdown-hover dropdown-end">
+          <div tabindex="0" role="button" class="btn btn-ghost btn-circle btn-sm">
+            <% if current_user.profile.present? && current_user.profile.user_icon.attached? %>
+              <%= image_tag current_user.profile.user_icon, class: "rounded-full object-cover border border-primary border-300" %>
+            <% else %>
+              <%= image_tag 'profile_sample.png', class: "w-8 h-8 rounded-full object-cover border border-primary border-300" %>
+            <% end %>
+          </div>
+          <ul tabindex="0" class="dropdown-content menu bg-white rounded-box p-2 shadow space-y-2">
+            <li>
+              <%= link_to 'プロフィール', user_profile_path(current_user.id), class: "text-primary font-bold text-base tracking-wide hover:opacity-70 transition duration-300 text-nowrap" %>
+            </li>
+            <!--(本リリース)ブックマーク機能
+            <li>
+              <%= link_to 'ブックマーク', bookmarks_quiz_posts_path, class: 'text-primary font-bold text-base tracking-wide hover:opacity-70 transition duration-300 text-nowrap' %>
+            </li>
+            -->
+            <li>
+              <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: 'text-primary font-bold text-base tracking-wide hover:opacity-70 transition duration-300 text-nowrap' %>
+            </li>
+          </ul>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% else %>
+      <div class="hidden md:flex space-x-8 md:mr-5">
+        <%= link_to 'ログイン', new_user_session_path, class: 'text-primary font-bold text-base md:text-lg tracking-wide hover:opacity-70 transition duration-300' %>
+        <%= link_to '新規登録', new_user_registration_path, class: 'text-primary font-bold text-base md:text-lg tracking-wide hover:opacity-70 transition duration-300' %>
+          <!--(本リリース)パスワードリセット機能
+        <%= link_to 'パスワードリセット', new_user_password_path, class: 'text-primary font-bold text-base md:text-lg tracking-wide hover:opacity-70 transition duration-300' %>
+          -->
+      </div>
+
+      <!--(レスポンシブ)ハンバーガーメニュー -->
+      <div class="flex-none md:hidden">
+        <div class="dropdown dropdown-hover dropdown-end">
+          <div tabindex="0" role="button">
+            <button class="btn btn-square btn-ghost btn-sm">
+              <span class="material-icons text-primary">
+                menu
+              </span>
+            </button>
+          </div>
+          <ul tabindex="0" class="dropdown-content menu bg-white rounded-box p-2 shadow space-y-2">
+            <li>
+              <%= link_to 'ログイン', new_user_session_path, class: "text-primary font-bold text-base tracking-wide hover:opacity-70 transition duration-300 text-nowrap" %>
+            </li>
+            <li>
+              <%= link_to '新規登録', new_user_registration_path, class: 'text-primary font-bold text-base tracking-wide hover:opacity-70 transition duration-300 text-nowrap' %>
+            </li>
+              <!--(本リリース)パスワードリセット機能
+            <li>
+              <%= link_to 'パスワードリセット', new_user_password_path, class: 'text-primary font-bold text-base tracking-wide hover:opacity-70 transition duration-300 text-nowrap' %>
+            </li>
+              -->
+          </ul>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
