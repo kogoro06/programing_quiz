@@ -27,7 +27,7 @@ class QuestionsController < ApplicationController
   user_answer = params[:answer]
   correct_answer = @question.correct_answer
   is_correct = (user_answer.to_s == correct_answer.to_s)
-  redirect_to question_result_path(question_id: @question.id, is_correct: is_correct)
+  redirect_to result_question_path(question_id: @question.id, is_correct: is_correct)
 
   past_answer = PastAnswer.find_or_initialize_by(
     question_id: @question.id,
