@@ -10,17 +10,15 @@
     <h1 class="text-3xl font-bold text-accent text-center">ユーザープロフィール編集</h1>
   </div>
 
-  <%= form_with(model: @user_profile_form, url: user_profile_path, local: true, data: {turbo: false}, method: :patch, multipart: true)  do |f| %>
-      <% if @user.errors.any? %>
+  <%= form_with(model: @user_profile_form,
+                url: user_profile_path,
+                local: true,
+                data: {turbo: false},
+                method: :patch,
+                multipart: true)  do |f| %>
+      <% if @user_profile_form.errors.any? %>
         <ul>
-          <% @user.errors.full_messages.each do |error| %>
-            <li><%= error %></li>
-          <% end %>
-        </ul>
-      <% end %>
-      <% if @profile_form.errors.any? %>
-        <ul>
-          <% @profile_form.errors.full_messages.each do |error| %>
+          <% @user_profile_form.errors.full_messages.each do |error| %>
             <li><%= error %></li>
           <% end %>
         </ul>

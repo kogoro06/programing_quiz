@@ -36,6 +36,7 @@ class UserProfileForm
     self.github_link = @profile.github_link || ""
   end
 
+  # データを保存
   def save(user_profile_form_params)
     return set_error_and_return_false("Validation faild") unless valid?
 
