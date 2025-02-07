@@ -28,8 +28,11 @@
             </div>
 
             <div class="flex items-center justify-center text-[25px] space-x-8 my-5">
-                <%= link_to "", @profile[:x_link], class: "fa-brands fa-x-twitter" %>
-                <%= link_to "", @profile[:github_link], class: "fa-brands fa-github" %>
+                <%= link_to url_for(@profile[:x_link]), target: "_blank", rel: "noopener noreferrer", class: "fa-brands fa-x-twitter #{'opacity-30 pointer-events-none' if @profile[:x_link].blank?}" do %>
+                <% end %>
+
+                <%= link_to url_for(@profile[:github_link]), target: "_blank", rel: "noopener noreferrer", class: "fa-brands fa-github #{'opacity-30 pointer-events-none' if @profile[:github_link].blank?}" do %>
+                <% end %>
             </div>
 
             <div class="bg-gray-50 text-sm mb-5 p-5 text-primary">
