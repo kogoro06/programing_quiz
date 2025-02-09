@@ -96,4 +96,14 @@ profiles.each do |profile_attribute|
   print "."
 end
 
+puts "\nCreating Tags..."
+# Tagsのダミーデータ作成
+CSV.foreach('db/csv/tags.csv', headers: true) do |row|
+  tag = Tag.find_or_create_by!(id: row['tag_id']) do |t|
+    t.name = row['name']
+    t.color = row['color']
+  end
+  print "."
+end
+
 puts "\nSeeding completed! 🎉"
