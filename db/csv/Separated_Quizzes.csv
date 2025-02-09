@@ -1,0 +1,433 @@
+author_user_id,tag_id,quiz_title,question,choice1,choice2,choice3,choice4,correct_answer,explanation,answer_source
+1,1,＜!DOCTYPE html＞の役割について,＜!DOCTYPE html＞の役割は？,この後に記載する内容がHTML文書であることを示す,最適なHTMLバージョンに自動的に切り替える,使用するHTMLのバージョンを宣言する,ページの読み込み速度を高速化する,3,記載する内容がHTML文書であることを示すのはhtmlタグです。,https://qiita.com/y-wanida/items/db7ddfcc9b974feb0884
+1,1,文字コードの指定について,文字コードの指定で正しいのは？,"＜meta charset=""utf-5"" /＞","＜meta charset=""utf-7"" /＞","＜meta charset=""utf-4"" /＞","＜meta charset=""utf-8"" /＞",4,UTF-8 (UCS Transformation Format 8) は World Wide Web において最も一般的な文字エンコーディングです。UTF-7はかつて使用されていましたが、安全性や互換性の問題から現在は推奨されていません。UTF-5とUTF-4は実在しません。,https://developer.mozilla.org/ja/docs/Glossary/UTF-8
+1,1,"＜ul＞, ＜ol＞, ＜li＞の役割について","＜ul＞, ＜ol＞, ＜li＞の役割の正しい組み合わせは？",＜ul＞は順序なしリスト要素、＜ol＞は順序付きリスト要素、＜li＞はリスト項目要素,＜ul＞はリスト項目要素、＜ol＞は順序なしリスト要素、＜li＞は順序付きリスト要素,＜ul＞と＜ol＞は順序付きリスト要素、＜li＞は順序なしリスト要素,＜ul＞は順序付きリスト要素、＜ol＞は順序なしリスト要素、＜li＞はリスト項目要素,1,"＜ul＞は順序なしリストを表し、一般的に行頭記号を伴うリストとして表示されます。
+＜ol＞は項目の順序付きリストを表し、一般的に番号付きのリストとして表示されます。
+＜li＞は＜ul＞と＜ol＞の子要素として配置し、リストの項目を表します。",https://webliker.info/html/64204/
+1,1,実行するコードやデータを埋め込む方法について,実行するコードやデータを埋め込むために使用するタグは？,＜span＞,＜script＞,＜source＞,＜object＞,2,"＜span＞は要素をグループ化する用途で使用することができます。
+＜source＞はメディアまたは画像のソース要素を指定します。
+＜object＞は画像、内部の閲覧コンテキストなど、扱われる外部リソースを表します。",https://developer.mozilla.org/ja/docs/Web/HTML/Element/script
+1,1,空要素について,空要素ではないのは？,＜br＞,＜img＞,＜textarea＞,"
+＜meta＞",3,"＜br＞, ＜img＞, ＜meta＞は空要素 (void element) です。空要素には開始タグしかなく、終了タグを指定することができません。＜textarea＞は空要素ではないですが、＜area＞は空要素です。",https://developer.mozilla.org/ja/docs/Glossary/Void_element
+1,1,HTMLでコメントを書く方法について,HTMLでコメントを書く方法は？, ＜!-- コメント --＞,// コメント,# コメント, /* コメント */,1,HTMLのコメントは ＜!-- で始まり、--＞ で終わります。,https://www.sejuku.net/blog/50683
+1,1,外部CSSを読み込むタグについて,外部CSSを読み込むタグは？,＜css＞,＜style＞,＜link＞, ＜script＞,3,＜link＞タグは外部のCSSファイルをHTMLに読み込むために使います。,https://saruwakakun.com/html-css/reference/where-css
+1,1,ユーザーが入力するための1行のテキストボックスを作成するタグについて,ユーザーが入力するための1行のテキストボックスを作成するタグは？, ＜textarea＞, ＜textbox＞, ＜textfield＞,"＜input type=""text""＞",4,"1行のテキスト入力フィールドを作成するには＜input type=""text""＞を使います。",https://developer.mozilla.org/ja/docs/Web/HTML/Element/input
+1,1,alt属性が使用される要素について,alt属性が使用される要素は？, ＜a＞, ＜img＞,＜p＞,＜div＞,2,alt属性は画像が表示されない場合に代替テキストを表示するために使います。,https://developer.mozilla.org/ja/docs/Web/API/HTMLImageElement/alt
+1,1,HTMLでボタンを作成するタグについて,HTMLでボタンを作成するタグは？, ＜btn＞, ＜button＞,＜input＞, ＜submit＞,2,＜button＞タグはクリック可能なボタンを作成します。,https://developer.mozilla.org/ja/docs/Web/HTML/Element/button
+1,1,HTMLの標準仕様について,HTMLの標準仕様は？,HTML Layput System,HTML6,HTML Living Standard,HTML5,3,HTML5はW3C、HTML Living StandardはWHATWGという組織が策定したHTMLの仕様です。2つの仕様は6年以上に渡り共存していましたが、2021年にHTML5が廃止され、HTML Living Standardが標準仕様として採用されました。,https://anymanager.io/ja/blog/html5/html-living-standard
+1,1,特定の時の区間を表す要素について,特定の時の区間を表す要素は？,＜datetime＞,＜time＞,＜date＞,＜moment＞,2,＜time＞は特定の時の区間を表す要素です。datetime 属性を使用し、検索エンジンの結果を改善したりリマインダーなどの独自機能に使用したりすることができます。,https://developer.mozilla.org/ja/docs/Web/HTML/Element/time
+1,1,＜ruby＞について,＜ruby＞とはどのような要素？,文章内の単語を自動で翻訳する,Rubyで記述した内容を表示する,文章をハイライト表示する,ふりがなや注釈を表示する,4,＜ruby＞はベーステキストの上、下、隣に小さな注釈を表す要素です。,https://developer.mozilla.org/ja/docs/Web/HTML/Element/ruby
+1,1,改行を生成する要素について,改行を生成する要素は？,＜br＞,＜n＞,＜break＞,＜split＞,1,＜br＞は文中に改行を生成する要素です。住所など、行の分割が重要な場合に使用します。,https://developer.mozilla.org/ja/docs/Web/HTML/Element/br
+1,1,モーダルの表示に使用する要素について,モーダルの表示に使用する要素は？,＜modal＞,＜window＞,＜dialog＞,＜popup＞,3,＜dialog＞はモーダル、アラート、サブウィンドウなどを表す要素です。,https://developer.mozilla.org/ja/docs/Web/HTML/Element/dialog
+1,1,HTMLの正式名称,HTMLとは何の略称ですか？  ,Hyper Text Markup Language,Homepage Text Markdown Language,Hyper Text Markdown Language,Homepage Text Markup Language,1,「Hyper Text Markup Language（ハイパーテキストマークアップ言語）」を略したもので、わかりやすくいえば、Web上で公開しているページのテキスト（文書）やレイアウトなどの構造を定義している書式となります。,https://www.profuture.co.jp/mk/column/about-html
+1,1,HTMLでリンクを作成するタグについて,HTMLでリンクを作成するタグはどれですか？  ,＜a＞,＜li＞,＜link＞,＜https＞,1,"aタグとは、HTMLの基本的なタグの1つで、ハイパーリンクを設置するために使用されます。
+",https://emma.tools/magazine/seo/content-seo/seo-writing/what-atag-is/
+1,1,リンクに使用する属性について,リンクを開く際に新しいタブで開くために使用する属性は何ですか？,"target=""_blank""","page=""_new""","target=""_new""","page=""_blank""",1,target=”_blank”（ターゲットブランク）とは、リンク先が新しいウィンドウ（タブ）で表示されるように指定するリンクタグの属性のひとつです。,https://seopack.jp/seoblog/target_blank/
+1,1,HTMLで画像を挿入する方法,HTMLで画像を挿入するために使用するタグはどれですか？,＜img＞,＜pic＞,＜content＞,＜div＞,1,＜img＞ は HTML の要素で、文書に画像を埋め込みます。,https://developer.mozilla.org/ja/docs/Web/HTML/Element/img
+1,1,HTMLでフォームを作成する方法,HTMLでフォームを作成する際に使用するタグはどれですか？,＜form＞,＜input＞,＜form_with＞,＜form_input＞,1,＜form＞ は HTML の要素で、ウェブサーバーに情報を送信するための対話型コントロールを含む文書の区間を表します。,https://developer.mozilla.org/ja/docs/Web/HTML/Element/form
+1,1,HTMLでリスト項目を作成する方法,HTMLでリスト項目を作成するために使用するタグはどれですか？,＜li＞,＜ul＞,＜ol＞,＜dl＞,1,＜li＞ タグはリスト項目を作成するために使用されます。＜ul＞ または ＜ol＞ タグ内で使用されます。,https://developer.mozilla.org/ja/docs/Web/HTML/Element/li?form=MG0AV3
+1,1,HTMLでセクションを定義する方法,HTMLでセクションを定義するタグはどれですか？,＜header＞,＜article＞,＜section＞,＜footer＞,3,＜section＞ タグは、HTML文書内のセクションを定義するために使用されます。セクションとは、関連する内容のグループを意味します。,＜section＞: 汎用セクション要素 - HTML: ハイパーテキストマークアップ言語 | MDN
+1,1,HTMLでインラインフレームを作成する方法,HTMLでインラインフレームを作成するために使用するタグはどれですか？,＜iframe＞,＜frame＞,＜embed＞,＜object＞,1,＜iframe＞ タグは、HTML文書内に別のHTMLページを埋め込むためのインラインフレームを作成します。これは外部コンテンツを表示するためによく使用されます。,https://developer.mozilla.org/ja/docs/Web/HTML/Element/iframe?form=MG0AV3
+1,1,HTMLでメタデータを指定する方法,HTMLでメタデータを指定するためのタグはどれですか？,＜meta＞,＜link＞,＜script＞,＜style＞,1,＜meta＞ タグは、HTML文書のメタデータを指定するために使用されます。例えば、文字セット、ページの説明、キーワードなどを指定します。,https://developer.mozilla.org/ja/docs/Web/HTML/Element/meta?form=MG0AV3
+1,1,HTMLで段落を作成するために使用する方法,HTMLで段落を作成するために使用するタグはどれですか？,＜div＞,＜span＞,＜p＞,＜br＞,3,＜p＞ タグは、HTML文書内の段落を定義するために使用されます。テキストのグループを段落として区切る際に使用します。,https://developer.mozilla.org/ja/docs/Web/HTML/Element/p?form=MG0AV3
+1,1,HTMLで複数行テキストを入力する方法,HTMLで複数行テキストを入力するには？,＜textarea＞,"＜input type=""textarea""＞",＜textbox＞,＜multiline＞,1,"＜textarea＞タグは複数行のテキスト入力フィールドを作成するために使用されます。＜input＞タグのtype=""text""は1行の入力フィールドを作成しますが、＜textarea＞は改行や長文の入力に適しています。",https://developer.mozilla.org/ja/docs/Web/HTML/Element/textarea
+1,1,HTMLで時刻を示すタグについて,HTMLで時刻を示すタグは？,＜date＞,＜time＞,＜datetime＞,＜timestamp＞,2,＜time＞タグは、特定の日付や時刻を示すためのHTMLタグです。検索エンジンやスクリーンリーダーが時刻を理解しやすくするために使用されます。,https://developer.mozilla.org/ja/docs/Web/HTML/Element/time
+1,1,HTMLで入力フィールドにプレースホルダーを設定する方法,HTMLで入力フィールドにプレースホルダーを設定する属性は？,text,hint,placeholder,label,3,placeholder属性は、入力フィールドに薄い文字で表示されるヒントや例を設定するための属性です。ユーザーが入力するとこの文字は消えます。,https://allabout.co.jp/gm/gc/23942/
+1,1,HTMLでラベルとフォーム要素を関連付ける方法,HTMLでラベルとフォーム要素を関連付けるには？,idとfor属性を使用する,class属性を使用する,＜label＞で囲む,何もしない,1,フォーム要素（例えば＜input＞や＜textarea＞）と＜label＞タグを関連付けることで、アクセシビリティが向上します。＜label＞をクリックすると、自動的に関連付けられた入力フィールドがフォーカスされます。,"https://html-coding.co.jp/annex/dictionary/html/label/#:~:text=%E3%82%BF%E3%82%B0%E3%81%AE%E6%8C%87%E5%AE%9A%E6%96%B9%E6%B3%95,%E3%81%AE%E9%96%A2%E9%80%A3%E4%BB%98%E3%81%91%E3%81%8C%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%99%E3%80%82"
+1,1,＜nav＞タグについて,＜nav＞タグはどの目的に使用されますか？,サイドバーを作成,ナビゲーションリンクをグループ化,スクロールメニューを作成,ページタイトルを表示,2,＜nav＞タグは、ウェブサイト内で他のページやセクションへのリンクを提供するナビゲーション領域を定義します。スクリーンリーダーや検索エンジンに「これはナビゲーションである」と伝える役割があります。,https://developer.mozilla.org/ja/docs/Web/HTML/Element/nav
+1,2,見出しの文字を赤色にする方法,見出しの文字を赤色にする際、正しい記述は？,"h1 {
+        color; red:
+}","h1 {
+        color: red;
+}","h1 [
+        color; red:
+]","h1 [
+        color: red;
+]",2,"先頭でセレクター（HTML 要素名）を定義し、プロパティとプロパティ値を指定します。セレクター以外を中括弧 ({}) で囲み、
+コロン (:) とセミコロン (;) を使用して区切ります。",https://developer.mozilla.org/ja/docs/Learn/Getting_started_with_the_web/CSS_basics
+1,2,文字の大きさを指定するプロパティ,文字の大きさを指定するプロパティは？,text-size,letter-size,font-size,font-height,3,font-sizeで文字の大きさを指定します。その他、文字に関するプロパティにはfont-family（フォントの種類）、font-weight（太さ）、font-style（ノーマル・イタリック・斜体）などがあります。,https://developer.mozilla.org/ja/docs/Web/CSS/font-size
+1,2,ボックスモデルを内側から順番に並べた際の挙動,ボックスモデルを内側から順番に並べた際、正しいのは？,"content, border, padding, margin","content, margin, border, padding","content, border, margin, padding","content, padding, border, margin",4,content（コンテンツ）は要素の内容が表示される領域、padding（パディング）は要素の内側の余白部分、border（ボーダー）は要素の境界線、margin（マージン）は要素の外側の余白部分です。,https://pikawaka.com/curriculums/programming-introduction/css-boxmodel
+1,2,flex: 1;に含まれないプロパティについて,flex: 1;に含まれないプロパティは？,flex-grow,flex-wrap,flex-shrink,flex-basis,2,flexは、Flexboxレイアウトに関するCSSを一括指定するプロパティです。flex-growは親要素の余りを割り当てる量、flex-shrinkは親要素からはみ出した際に縮める量、flex-basisはデフォルトの寸法を示します。flex-wrapはflexアイテムの折り返しを指定します。,https://takechi-web.com/flex1-meaning-usage/
+1,2,overflow,overflowはどのようなプロパティ？,コンテンツが要素からはみ出す場合の表示方法を指定する,要素の不透明度を指定する,要素の重なり順を指定する,要素を横並びにする,1,要素の不透明度を指定するのはopacity、要素の重なり順を指定するのはz-index、要素を横並びにするのはfloatです。,https://developer.mozilla.org/ja/docs/Web/CSS/overflow
+1,2,position,positionのプロパティで要素の相対位置を指定するのは？,sticky,absolute,relative,fixed,3,relativeで親要素の相対位置を指定し、absoluteで子要素の絶対位置を指定します。stickyは要素をスクロールした際、指定した位置に追従させます。fixedは要素を固定します。,https://jajaaan.co.jp/web-production/frontend/position/
+1,2,テキストの水平方向の配置を指定するプロパティについて,テキストの水平方向の配置を指定するプロパティは？,text-transform,text-indent,text-justify,text-align,4,text-transformは要素のテキストを大文字表記する方法を指定します。text-indentはテキストの行頭に置く空白 (字下げ) の幅を設定します。text-justifyは要素に text-align: justify; が設定された際、両端揃えの種類を設定します。,https://developer.mozilla.org/ja/docs/Web/CSS/text-align
+1,2,文字列の折り返しを制御するプロパティについて,テキストがボックスからはみ出る際、文字列の折り返しを制御するプロパティは？,overflow-wrap,word-break,word-wrap,line-break,1,word-breakは文章内の単語の折り返し位置を制御します。word-wrapはInternet Explorer向けに開発され、現在はoverflow-wrapに改名されています。line-breakは文章の禁則処理を指定します。,https://ics.media/entry/240411/
+1,2,要素を横並びにするプロパティについて,要素を横並びにするプロパティは？,position,display,float,z-index,3,positionは要素の位置を指定します。displayは要素を表示する形式（ブロックボックス、インラインボックスなど）を指定します。z-indexは要素の重なり順を指定します。,https://developer.mozilla.org/ja/docs/Web/CSS/float
+1,2,CSSでコメントを書く方法,CSSでコメントを書く方法は？, ＜!-- コメント --＞,/* コメント */,# コメント,// コメント,2,CSSのコメントは /* コメント */と記述します。,https://developer.mozilla.org/ja/docs/Web/CSS/Comments
+1,2,CSSで幅を画面の割合で指定する方法,CSSで幅を画面の割合で指定する単位は？,px,%,em,rem,2,%は親要素の幅に対する割合を指定します。例えば、width: 50%;は親要素の幅の半分を指定します。,
+1,2,CSSでのページ全体背景色の指定,CSSでページ全体の背景色を指定するには？,color,page-background,background-color,body-color,3,background-colorプロパティは、要素やページ全体の背景色を設定する際に使用します。bodyに適用すればページ全体の背景色を変更できます。,
+1,2,CSSで指定できるカラーフォーマット,CSSで指定できるカラーフォーマットはどれ？,RGB,HEX,HSL,すべて正しい,4,"CSSではHEX: #ffffff、RGB: rgb(255, 255, 255)、HSL: hsl(0, 0%, 100%）のカラーフォーマットが使用可能です。",
+1,2,CSSでの要素左右中央揃え,CSSで要素を左右中央揃えにするには？,flex-direction,align-items,justify-content,order,1,Flexboxで要素の配置方向を指定します。例: flex-direction: row;,
+1,2,画面幅に応じてスタイルを切り替えるために使用するもの,画面幅に応じてスタイルを切り替えるために使用するものは？,@query,@media,responsive,media-width,2,メディアクエリを使用して、画面の幅、高さ、解像度などに応じたスタイルを指定します。,
+1,2,CSSは何の略？,CSSは何の略ですか？,Cascading Style Sheets,Color Style Sheet,Computer Style System,Creative Style Syntax,1,CSS (Cascading Style Sheets) は、ウェブページのスタイルを設定するスタイルシート言語です。,https://developer.mozilla.org/ja/docs/Learn_web_development/Getting_started/Your_first_website/Styling_the_content
+1,2,CSSでボックスモデルに含まれない要素について,CSSでボックスモデルに含まれない要素はどれですか？,margin,padding,border,font,4,,https://nulab.com/ja/blog/nulab/css-basics-for-engineer-boxmodel/#loom-header-8
+1,2,CSSのフレームワークについて,CSSのフレームワークは主に何のために使用されますか？,プログラムのバグを修正するため,コードの再利用性を高めるため,データベースの管理を効率化するため,サーバーの速度を向上させるため,2,"CSSのフレームワークは、コードの再利用性を高めるために使われます。
+CSSフレームワークを活用することで、サイト構築の工数を短縮できます。","https://freelance.bizlink.io/tips/css-framework#:~:text=%E3%81%A6%E3%81%84%E3%81%8D%E3%81%BE%E3%81%99%E3%80%82-,%E3%83%A1%E3%83%AA%E3%83%83%E3%83%88,-%E3%81%BE%E3%81%9A%E3%81%AF%E3%83%A1%E3%83%AA%E3%83%83%E3%83%88%E3%81%8B%E3%82%89"
+1,2,CSSのフレームワークはどれ？,次のうち、CSSのフレームワークではないものはどれですか？,Bootstrap,Bulma,Ulkit,jQuery,4,"jQueryはCSSのフレームワークではなく、JavaScriptのライブラリです。
+Bootstrap、Bulma、UIkit、 これらは全てCSSのフレームワークです。","https://freelance.bizlink.io/tips/css-framework#:~:text=%E6%A1%88%E4%BB%B6%E3%82%92%E6%8E%A2%E3%81%99-,CSS%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AF%E3%81%AE%E3%81%8A%E3%81%99%E3%81%99%E3%82%8110%E9%81%B8,-%E3%81%93%E3%81%93%E3%81%8B%E3%82%89%E3%81%AF"
+1,2,CSSのボックスモデルについて,CSSのボックスモデルにおいて、要素の外側の余白を設定するプロパティはどれですか？,padding,margin,border,width,2,CSSのボックスモデルにおいて要素の外側の余白を設定するプロパティは「margin」だ。marginは要素の外部とのスペースを調整するために使うもので、他の要素との距離を制御するのに役立ちます。,"https://nulab.com/ja/blog/nulab/css-basics-for-engineer-boxmodel/#loom-header-8:~:text=%E3%81%8C%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%99%E3%80%82-,margin%EF%BC%88%E3%83%9E%E3%83%BC%E3%82%B8%E3%83%B3%EF%BC%89,-%E3%83%9C%E3%83%83%E3%82%AF%E3%82%B9%E3%81%AE%E4%B8%80%E7%95%AA"
+1,2,CSSのプロパティでないものについて,CSSのプロパティでないものは？,color,font-size,margin,display-all,4,displayは実在するプロパティですが、display-allは実在しません。,https://developer.mozilla.org/ja/docs/Web/CSS/display
+1,2,クラス名を指定する方法,クラス名を指定する際、使用するのは？,/,.,:,;,2,クラス名を指定する際は、.クラス名 { スタイルプロパティ }と記述します。,https://developer.mozilla.org/ja/docs/Web/CSS/Class_selectors
+1,2,行間設定方法,行間を設定するプロパティは？,line-style,font-spacing,text-line,line-height,4,行間を設定するのはline-heightです。,https://developer.mozilla.org/ja/docs/Web/CSS/line-height
+1,2,角を丸くする方法,角を丸くするプロパティは？,border-style,border-width,border-radius,border-curve,3,角を丸くするのはborder-radiusです。border-styleはボーターの種類を指定します。border-widthはボーダーの幅を指定します。,https://developer.mozilla.org/ja/docs/Web/CSS/border-radius
+1,2,文字を太字にするプロパティ,文字を太字にするプロパティは？,font-weight,font-bold,font-black,bold-style,1,文字を太字にするのはfont-weightです。,https://developer.mozilla.org/ja/docs/Web/CSS/font-weight
+1,2,CSSで要素の影を追加するために使用するプロパティ,CSSで要素の影を追加するために使用するプロパティはどれですか？,box-shadow,text-shadow,border,opacity,1,box-shadow プロパティは、要素に影を追加するために使用されます。影のオフセット、ぼかしの半径、色などを指定できます。,box-shadow - CSS: カスケーディングスタイルシート | MDN
+1,2,CSSで要素の透明度を設定するプロパティ,CSSで要素の透明度を設定するプロパティはどれですか？,opacity,visibility,display,z-index,1,opacity プロパティは要素の透明度を設定します。0は完全に透明、1は完全に不透明を意味します。,opacity - CSS: カスケーディングスタイルシート | MDN
+1,2,CSSでアニメーションの設定を行うプロパティ,CSSでアニメーションの設定を行うプロパティはどれですか？,transition,animation,transform,keyframes,2,animation プロパティは、要素のアニメーションを設定するために使用されます。アニメーションの名前、持続時間、タイミング関数などを指定します。,animation - CSS: カスケーディングスタイルシート | MDN
+1,2,CSSでグリッドレイアウトを設定するために使用するプロパティ,CSSでグリッドレイアウトを設定するために使用するプロパティはどれですか？,display: flex,display: grid,display: block,display: inline,2,display: grid プロパティは、グリッドレイアウトを設定するために使用されます。このプロパティを使用すると、コンテナ内の要素を行と列に分割して配置できます。,grid - CSS: カスケーディングスタイルシート | MDN
+1,2,CSSでフォントファミリを設定するために使用するプロパティ,CSSでフォントファミリを設定するために使用するプロパティはどれですか？,font-size,font-family,font-style,font-weitht,2,font-family プロパティは、テキストのフォントファミリを指定します。複数のフォントをカンマで区切って指定することができ、ブラウザが最初の利用可能なフォントを使用します。,font-family - CSS: カスケーディングスタイルシート | MDN
+1,3,letとconstの違い,letとconstの違いは何？,letは関数スコープ,constはグローバル変数として使う,letはブロックスコープがない,"
+constは再代入できない",4,letは変数の再代入が可能ですが、constは一度値を代入したら再代入できません。,https://techplay.jp/column/1619
+1,3,nullとundefinedの違い,nullとundefinedの違いは？,どちらも同じ,nullは意図的、undefinedは未定義 ,undefinedはオブジェクト,nullは未定義、undefinedは意図的,2,nullは「値がないことを意図的に示す値」です。undefinedは「値がまだ設定されていない状態」を示します。,https://qiita.com/gilly/items/3871bbd7371b4dec2e41
+1,3,文字列の長さを取得する方法,文字列の長さを取得する方法は？,str.size ,str.getLength(),str.count,str.length,4,JavaScriptで文字列の長さを取得するには、.length プロパティを使います。,https://uxmilk.jp/14057
+1,3,alertの役割,alert('Hello!') の役割は？,コンソールに出力する,画面にポップアップを表示する,ページをリロードする,変数を宣言する,2,alert() はブラウザ上にポップアップのアラートメッセージを表示します。画面上に「OK」ボタンが付いたメッセージが出ます。,https://www.akkodis.co.jp/candidate/insight/column_101
+1,3,非同期処理に使用される構文,非同期処理に使用される構文はどれ？,forEach,map,setInterval,async/await,4,async/awaitは非同期処理をシンプルに記述するための構文です。awaitで非同期処理が終わるのを待てます。,https://www.issoh.co.jp/tech/details/3691/
+1,3,Promiseが解決されたときの処理を指定するメソッド,Promiseが解決されたときの処理を指定するメソッドは？,resolve() ,finally(),then(),catch(),3,then()はPromiseが成功（解決）したときに呼ばれるメソッドです。,https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Promise/then
+1,3,"""==""と""===""の違い",JavaScriptで==と===の違いは？,・==は型変換し、===は厳密比較,どちらも厳密な比較,・===は型変換し、==は厳密比較,どちらも型変換する,1,"(== は型を自動的に変換して比較します。=== は型変換を行わず、値と型が一致するかを比較します。
+)",https://qiita.com/PianoScoreJP/items/e43d70ec188c6fed73ed
+1,3,クラスのインスタンスの作成方法,JavaScriptでクラスのインスタンスを作成する構文は？,instance ClassName,create ClassName,new ClassName(),ClassName.create(),3,new キーワードを使ってクラスのインスタンスを作成します。,https://tcd-theme.com/2021/09/javascript-class-instancemethod.html
+1,3,mapメソッドについて,次の中で、map()メソッドが返すものはどれ？,配列の長さ,元の配列,新しい配列,単一の値,3,map()は元の配列の要素を変換して、新しい配列を返します。,https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Map
+1,3,JSONについて,"JSON.parse('{""key"": ""value""}') の結果は？",undefined,null,エラー,"{""key"": ""value""}",4,JSON.parse()はJSON形式の文字列をJavaScriptオブジェクトに変換します。,https://qiita.com/t_t238/items/591cd44d89560b72154a
+1,3,console.logについて,"次のコードの出力は何ですか？
+
+console.log(""Hello, "" + ""World!"");
+",Hello,World,Hello Werld!,エラーになる,3,"JavaScriptでは+演算子を使うと文字列を結合できます。この場合、""Hello, ""と""World!""が結合され、出力は""Hello, World!""になります。",
+1,3,変数宣言について,"JavaScriptで変数を宣言するために使われるキーワードは次のうちどれですか？
+
+",var,let,const,すべて,4,"var: 古いスタイルの変数宣言で、関数スコープを持ちます。
+let: ブロックスコープを持ち、再代入可能です。
+const: ブロックスコープを持ち、値の再代入はできません。定数の定義に使用されます。",
+1,3,関数定義と条件分岐について,"次のコードの出力結果はどうなりますか？
+
+function test() {
+  var a = 10;
+  if (true) {
+    var a = 20;
+    console.log(a);
+  }
+  console.log(a);
+}
+test();
+","10,20","20,10","20,20",エラーになる,3,varは関数スコープを持つため、同じ関数内では値が上書きされます。,
+1,3,値の参照について,"次のコードの出力結果はどうなりますか？
+
+const obj = { a: 1 };
+Object.freeze(obj);
+obj.a = 2;
+console.log(obj.a);
+",1,2,undefined,エラーになる,1,Object.freezeによってオブジェクトのプロパティが変更不可になります。,
+1,3,次のコードの出力結果は？,"次のコードの出力結果はどうなりますか？
+
+(function() {
+  console.log(typeof arguments);
+})();
+",object,array,undefined,function,1,argumentsは関数の中で使用できる特別なオブジェクトで、配列のように動作しますが、型はobjectです。,
+1,3,HTMLのファイル内で使用するタグについて,HTMLのファイル内にJavaScriptのコードを記述する場合、使用するタグは？,＜javascript＞,＜js＞,＜script＞,＜java＞,3,＜script＞タグをJavaScriptのコードの埋め込みや参照に使用します。,https://developer.mozilla.org/ja/docs/Web/HTML/Element/script
+1,3,＜script＞タグにdefer属性をつける利点について,＜script＞タグにdefer属性をつける利点は？,JavaScriptを自動的に圧縮する,Webページの読み込みが速くなる,JavaScriptを最初に実行する,ブラウザのキャッシュを無効化する,2,＜script＞タグにdefer属性を指定すると、HTMLの解析と同時にJavaScriptファイルの読み込みが行われます。HTMLの解析後に読み込んだJavaScriptが実行されるため、Webページの読み込みを速くします。,https://zenn.dev/sudoukky/articles/65268af8ff5c51
+1,3,複数行のコメントを書く方法について,JavaScriptで複数行のコメントを書く方法は？,// コメント,# コメント,/* コメント */, ＜!-- コメント --＞,3,JavaScriptのコメントを複数行で書く場合は /* コメント */ と記述します。1行で書く場合は // コメント または /* コメント */ と記述します。,https://www.javadrive.jp/javascript/ini/index4.html
+1,3,DOMとは何の略？,DOMとは何の略？,Digital Operations Manager,Distributed Object Model,Dynamic Object Manipulation,Document Object Model,4,DOMとはドキュメントオブジェクトモデル （Document Object Model）の略で、HTMLやXMLドキュメントなどのマークアップ言語と、CSSをJavaScriptなどのプログラミング言語からアクセスできるようにするためのAPIです。ドキュメントの各要素やテキストデータを階層的に組み合わせ、ツリー構造として扱います。,https://developer.mozilla.org/ja/docs/Web/API/Document_Object_Model/Introduction
+1,3,アロー関数を使用する利点,アロー関数を使用する利点に当てはまらないのは？,コードの実行速度が速くなる,コードが簡潔になる,意図しない挙動を防ぎやすい,コードの可読性が向上する,1,アロー関数を使用するとコードを簡潔に記述することができますが、実行速度は変わりません。,https://ns-adwork.com/javascript/3497/
+1,3,setTimeoutの用途について,setTimeoutの用途は？,非同期ループ,指定時間後に関数を実行する,関数をスケジュール実行する,イベントリスナーを設定する,2,setTimeout は指定した時間（ミリ秒）後に一度だけ関数を実行するためのメソッドです。非同期処理として使われ、コードの実行を一定時間遅らせる際に便利です。,https://developer.mozilla.org/ja/docs/Web/API/Window/setTimeout
+1,3,配列の中の条件を満たす要素の取得方法,配列の中で条件を満たす最初の要素を取得するメソッドは？,findIndex,filter,find,forEach,3,Array.prototype.find メソッドを使用します。このメソッドは、配列内の要素に対して指定した条件を満たす最初の要素を返します。条件に一致する要素がない場合は undefined を返します。,https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/find
+1,3,thisの値の定義,thisの値はどのように決まりますか？,グローバルオブジェクトに固定される,常に関数自身を指す,呼び出し元に応じて変わる,常にnull,3,this の値は、関数の呼び出し方法によって動的に決まります。通常の関数呼び出し：グローバルオブジェクト（ブラウザでは window）。メソッド呼び出し：そのメソッドを呼び出したオブジェクト。Arrow関数：定義されたスコープの this を継承。。call / apply / bind を使用：明示的に指定された値,https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/this
+1,3,try-catch構文,try-catch構文は何のために使用されますか？,非同期処理を実行する,例外をキャッチして処理を継続する,配列を操作する,関数を即時実行する,2,try-catch 構文は、エラーが発生する可能性のあるコードを安全に実行するために使います。エラーが発生した場合でもプログラムを停止させずに処理を続行できます。,https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/try...catch
+1,3,配列の最後に要素を追加する方法,配列の最後に要素を追加するには？,add(),pushLast(),append(),push(),4,Array.prototype.push メソッドを使用します。このメソッドは、配列の末尾に1つ以上の要素を追加し、新しい配列の長さを返します。,https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/push
+1,3,RubyとJavaScriptの違い,RubyとJavaScriptの違いは何ですか？,Rubyはクライアント側（ブラウザ）で動く言語、JavaScriptはサーバーで動く言語,"Rubyはサーバーで動く言語、JavaScriptはクライアント側（ブラウザ）で動く言語
+",RubyとJavaScriptはどちらもサーバーで動く言語,Rubyはクライアント側（ブラウザ）で動く言語、JavaScriptはデータベース操作を行う言語,2,RubyとJavaScriptの違いは、Rubyはサーバーで動く言語、JavaScriptはクライアント側（ブラウザ）で動く言語ということです。,"https://school.dhw.co.jp/course/web/contents/r_JavaScript-cando.html#:~:text=%E3%82%8C%E3%81%BE%E3%81%97%E3%81%9F%E3%80%82-,Ruby%E3%81%A8JavaScript%E3%81%AE%E6%AF%94%E8%BC%83,-Ruby%E3%81%A8JavaScript"
+1,3,Ajaxの正式名称,Ajaxは何の略ですか？,Asynchronous JavaScript + XML,Automatic JavaScript + XHTML,Asynchronous Java + XML,Automatic Java + XHTML,1,AjaxとはAsynchronous JavaScript + XMLの略です,https://qiita.com/katsunory/items/9bf9ee49ee5c08bf2b3d
+1,3,Ajaxとは？,"JavaScriptのAjaxとは何ですか？
+",JavaScriptの新しいフレームワークのこと,サーバーと非同期通信を行うための技術のこと,ブラウザの表示速度を向上させるためのツールのこと,HTMLのスタイルを定義するための言語のこと,2,Ajaxはサーバーと非同期通信を行うための技術のことです。,https://qiita.com/katsunory/items/9bf9ee49ee5c08bf2b3d
+1,3,NaNとは？,JavaScriptにおけるNaNとは何を表しますか？,数字が正の値であること,数字が無限大であること,数字の計算結果がゼロであること,"数字ではないもののこと
+",4,NaNとはNot-a-Numberの略で、JavaScriptにおける非数（数字ではないもの）を表す、特別な値です,https://www.sejuku.net/blog/58911
+1,3,JavaScriptとは？,JavaScriptは何を行うプログラミング言語ですか？,データベース操作を行う,Webサイトに動きをつける,サーバーの設定を管理する,グラフィックデザインを作成する,2,JavaScript（ジャバスクリプト）とは、Webサイトに動きをつけることを目的として開発されたプログラミング言語です,https://school.dhw.co.jp/course/web/contents/r_JavaScript-cando.html
+1,4,Railsのappディレクトリについて,Railsのapp/ディレクトリにはどのような用途がありますか？," アプリケーションの設定
+
+","
+モデル、ビュー、コントローラ、ヘルパーなどを含む主要なアプリケーションコード
+
+","
+アセット（CSS、JavaScript、画像など）を管理する
+","
+アプリケーションのテスト
+",2,Railsのapp/ディレクトリには、モデル、ビュー、コントローラ、ヘルパーなどを含む主要なアプリケーションコードが格納されています。これらのコンポーネントが連携して、アプリケーションの機能を実現しています。,https://railstutorial.jp/chapters/beginning?version=7.0#cha-beginning:~:text=%E3%83%87%E3%83%95%E3%82%A9%E3%83%AB%E3%83%88%E3%81%AERails%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E6%A7%8B%E6%88%90%E3%81%AE%E6%A6%82%E8%A6%81
+1,4,Ruby on Rails が採用しているアーキテクチャパターンは？,Ruby on Rails が採用しているアーキテクチャパターンは次のうちどれですか？,"MVC
+
+","
+MVP
+
+","
+ MVVM
+","
+MVPとMVP
+",1,MVC（Model-View-Controller）です。モデルがデータやビジネスロジックを管理し、ビューがユーザーインターフェイスを表示し、コントローラがリクエストを処理してモデルとビューをつなぐ役割を果たしています。,"https://railstutorial.jp/chapters/beginning?version=7.0#sec-mvc:~:text=1.3.3-,Model%2DView%2DController%EF%BC%88MVC%EF%BC%89,-%E3%81%BE%E3%81%A0%E5%A7%8B%E3%81%BE%E3%81%A3"
+1,4,Ruby on Railsのルーティングの主な用途,Ruby on Railsのルーティングの主な用途はどれですか？,"データベースの設計を行うこと
+","
+HTTPリクエストを特定のコントローラアクションにマッピングすること
+","
+ユーザーインターフェイスのスタイリングを行うこと
+","
+サーバーのセキュリティ設定を行うこと",2,"ルーティングは、HTTPリクエストを特定のコントローラのアクションにマッピングするための仕組みです。
+具体的には、ユーザーがブラウザで特定のURLにアクセスしたとき、そのリクエストをどのコントローラやアクションに送るかを決める役割を果たします。これによって、アプリケーションの機能を整理して、ユーザーのリクエストに対して適切な処理を行えるようになります。",https://railsguides.jp/routing.html
+1,4,putsと演算子について,"次のRubyコードの出力は何になりますか？
+puts 10 + 5 * 2",20,15,25,10,1,Rubyでは、演算子の優先順位があるから、掛け算（*）が足し算（+）よりも先に計算されます。だから、まず5 * 2が計算されて10になり、それから10 + 10を計算して20になります。,https://docs.ruby-lang.org/ja/latest/doc/spec=2foperator.html
+1,4,コメントアウトするために使う記号,Railsでコメントアウトするために使う記号はどれですか？,"
+//
+","
+#
+","
+/* */
+","
+＜!-- --＞",2,Railsでコメントアウトするには、Rubyのコード内で「#」を使用します。,https://zenn.dev/n_haru2/articles/ead938f3ad117e
+1,4,条件分岐を行うために使用するキーワード,特定の条件が真のときだけ特定のコードを実行したい条件分岐を行うために使用するキーワードはどれですか？,"
+switch
+","
+when
+","
+case
+",if,4,"条件分岐 `if` は、プログラムの中で特定の条件が真かどうかを判断して、実行する処理を分けるための構文です。
+`end` とセットで使用します。",https://x-tech.pasona.co.jp/media/detail.html?p=2628
+1,4,Railsのクラスに関する説明として、間違っているもの,Railsのクラスに関する説明として、間違っているものはどれですか？,"
+Railsでは、クラスはオブジェクトの設計図として使われる。
+","
+Railsのコントローラーは、リクエストを処理するためのクラスだ。
+","
+
+Railsでは、全てのクラスは必ずモジュールをインクルードしなければならない。
+","
+ Railsのモデルは、データベースとのやり取りを行うクラスだ。",3,Railsのクラスは必ずしもモジュールを含めなければいけないわけではありません。,https://www.techpit.jp/courses/61/curriculums/65/sections/526/parts/1790
+1,4,Railsでモジュールをインクルードすることの主な目的,Railsでモジュールをインクルードすることの主な目的はどれですか？,"
+クラスのインスタンスを生成するため
+",コードの再利用性を高めるため ,"
+データベースの接続を管理するため
+",スタイルシートを適用するため,2,"モジュールをインクルードする主な目的は、コードの再利用性を高めることです。モジュールを使うことで、複数のクラスで共通のメソッドや機能を簡単に共有できます。これにより、コードが整理されて、保守もしやすくなります。
+
+",https://pikawaka.com/ruby/include
+1,4,メソッドとは？,次の中で、メソッドに関する説明文で間違いはどれかですか？,"
+メソッドはオブジェクトに関連付けられた機能を定義する。
+","
+メソッドは引数を受け取ることができない
+","
+メソッドはクラス内で定義されることが一般的である。
+",メソッドは特定の機能を実行するために呼び出される。,2,Ruby on Railsのメソッドは引数を受け取ることができます。,https://qiita.com/raccy/items/1168c7e8849dedf70fa4
+1,4,Gemfileでgemのバージョンを指定する正しい書き方,Gemfileでgemのバージョンを指定する正しい書き方はどれですか？,"gem 'rails', '5.2.0'
+","gem 'rails' = '5.2.0'
+","gem 'rails' : '5.2.0'
+",gem 'rails' version '5.2.0',1,gemの名前とバージョンを正しく指定しています。シングルクォートで囲まれた文字列の後にカンマで区切ってバージョンを指定しているのでRubyの文法に従っています。,https://musclecoding.com/rails-gemfile/
+1,4,データベースに初期データを投入するコマンド,Railsでデータベースに初期データを投入するために使われるコマンドはどれですか？,"rails db:migrate
+","rails db:seed
+","rails generate model
+",rails console,2,このコマンドを使うと、db/seeds.rbに定義したデータがデータベースに追加されます。,https://railsdoc.com/page/rails_db_seed
+1,4,renderメソッドとredirect_toメソッドの違い,Railsで使用されるrenderメソッドとredirect_toメソッドの違いについて正しい説明はどれですか？,renderは新しいリクエストを作成するが、redirect_toは作成しない,renderはURLを変えずに別のビューを表示し、redirect_toはURLを変えて別のページに移動する,redirect_toは同じアクションを再実行し、renderは別のアクションを実行する,renderとredirect_toは同じ動作をする,2,renderはURLを変えずに別のビューを表示し、redirect_toはURLを変えて別のページに移動します。,https://railsguides.jp/layouts_and_rendering.html#redirect-to%E3%82%92%E4%BD%BF%E3%81%86
+1,4,バリデーションの主な役割,バリデーションの主な役割は何ですか？,データベースのバックアップを取ること,アプリケーションのデザインを改善すること, アプリケーションのパフォーマンスを向上させること,アプリケーションのデザインを改善すること,4,バリデーションは、正しいデータだけをデータベースに保存するために行われます。これにより、不正確な情報や不適切なデータが保存されるのを防ぎ、アプリケーションの信頼性を高めることができます。,https://railsguides.jp/active_record_validations.html#%E3%83%90%E3%83%AA%E3%83%87%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92%E8%A1%8C%E3%81%AA%E3%81%86%E7%90%86%E7%94%B1
+1,4,関連付け（アソシエーション）の役割,関連付け（アソシエーション）」の役割は何ですか？,モデル間のリレーションシップを定義する,データベースのバックアップを取ること,ユーザーの入力を検証する,プログラムのパフォーマンスを向上させる,1,関連付け（アソシエーション: association）」を使うと、モデル間のリレーションシップを定義できます。,https://railsguides.jp/association_basics.html
+1,4,I18n(internationalization)は何を行うものか,I18n(internationalization)は何を行うものですか？,データベースのサイズを削減する,アプリケーションを複数の言語で利用できるようにする,コードの実行速度を速くする,ユーザーインターフェースをシンプルにする,2,"I18n（国際化・多言語化: 先頭の「i」と語尾の「n」の間に 18 文字あることに由来しています）
+I18nはアプリケーションを国際化して、さまざまな言語や地域に対応できるようにする仕組みです。",https://railsguides.jp/i18n.html
+1,4,新しいアプリケーションを作成するコマンド,Railsで新しいアプリケーションを作成するコマンドは何ですか？,rails new,rails generate,rails start,rails generate new,1,Railsで新しいアプリケーションを作成するには、「rails new アプリケーション名」というコマンドを実行します。,https://railsguides.jp/v4.2/command_line.html#rails-new
+1,4,モデルを生成するためのコマンド,Railsでモデルを生成するためのコマンドはどれですか？,rails g モデル名,rails g model モデル名,rails g controller モデル名,rails モデル名 ,2,新たなモデルを作成するには、rails g modelもしくはrails generate modelコマンドを実行します。,https://magazine.techacademy.jp/magazine/22033
+1,4,ルーティングを記述するファイルの名前,Railsのルーティングを記述するファイルの名前は何ですか？,.env,config/routes.rb,config/routes.rb,config/routes.rb,3,アプリケーションやエンジンのルーティングはconfig/routes.rbファイルの中に存在します。,https://railsguides.jp/routing.html#rails%E3%83%AB%E3%83%BC%E3%82%BF%E3%83%BC%E3%82%92%E8%A8%AD%E5%AE%9A%E3%81%99%E3%82%8B
+1,4,コントローラーで、アクションを定義するために使用するメソッド,Railsのコントローラーで、アクションを定義するために使用するメソッドは何ですか？,def,puts,act,params,1,コントローラ内でアクションを定義する際は、「def アクション名」の形で定義を行います。,https://railsguides.jp/action_controller_overview.html#%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%81%A8%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3
+1,4,データベースのマイグレーションのみを実行するコマンド,Railsでデータベースのマイグレーションのみを実行するコマンドは何ですか？,rails db:migrate,puts migration,rails db:seed,rails db:reset,2,"rails db:migrateコマンドは、railsで使用するデータベースの構造（テーブル、カラム）を変更するときに利用する機能です。
+
+",https://www.sejuku.net/blog/14229
+1,4,オブジェクトの内容を文字列に変換するメソッド,オブジェクトの内容を文字列に変換するRubyのメソッドは？,to_s,to_h,to_i,to_a,1,to_sメソッドはオブジェクトの内容を文字列に変換します。to_hメソッドは8種に、to_iメソッドは整数に、to_aメソッドは配列に変換します。,https://docs.ruby-lang.org/ja/latest/method/Object/i/to_s.html
+1,4,オブジェクトの内容を整数に変換するメソッド,オブジェクトの内容を整数に変換するRubyのメソッドは？,to_a,to_i,to_s,to_f,2,to_iメソッドはオブジェクトの内容を整数に変換します。to_aメソッドは配列に、to_sメソッドは文字列に、to_fメソッドは小数に変換します。,https://docs.ruby-lang.org/ja/latest/method/String/i/to_i.html
+1,4,文字列を分割して配列にするメソッド,文字列を分割して配列にするRubyのメソッドは？,join,gsub,slice,split,4,splitメソッドは、文字列を分割して配列にします。joinメソッドは配列中の文字列を連結します。gsubメソッドは文字列の置換を行います。sliceメソッドは配列や文字列から指定した要素を取り出します。,https://docs.ruby-lang.org/ja/latest/method/String/i/split.html
+1,4,配列中の文字列を連結するメソッド,配列中の文字列を連結するRubyのメソッドは？,merge,add,join,combine,3,joinメソッドは配列中の文字列を連結します。mergeメソッドはハッシュリテラル内でほかのハッシュの要素を展開します。,https://docs.ruby-lang.org/ja/latest/method/Array/i/join.html
+1,4,改行を加えずに変数の内容やメソッドの戻り値をターミナルに出力するメソッド,改行を加えずに変数の内容やメソッドの戻り値をターミナルに出力するRubyのメソッドは？,puts,print,p,pp,2,printメソッドは、改行を加えずに変数の内容やメソッドの戻り値をターミナルに出力します。putsメソッドとpメソッドは改行を加えます。ppメソッドは、大きく複雑な配列やハッシュなどを見やすく整形して出力します。,https://zenn.dev/syommy_program/articles/c84c7f2b112447
+1,5,git initコマンド,git initコマンドは、次のどの状況で使用されますか？,"
+
+新しいGitリポジトリを作成するとき
+
+","
+
+リモートリポジトリをクローンするとき
+
+","
+
+コミットを作成するとき
+
+",ブランチをマージするとき,1,git initコマンドは、新しいGitリポジトリを作成するために使用されます。これにより、現在のディレクトリが新しいGitリポジトリとして初期化され、.gitディレクトリが作成されます。,https://www.sejuku.net/blog/5816#index_id1
+1,5,git cloneコマンド,git cloneコマンドは、次のどの状況で使用されますか？,"
+
+新しいGitリポジトリを作成するとき
+
+","
+
+リモートリポジトリをクローンするとき
+
+","
+
+コミットを作成するとき
+
+",ブランチをマージするとき,2,git cloneコマンドは、リモートリポジトリをローカルにクローンするために使用されます。これにより、リモートリポジトリの完全なコピーがローカルに作成されます。,https://www.sejuku.net/blog/5816#index_id1
+1,5,git addコマンド,git addコマンドは、次のどの状況で使用されますか？,"
+
+コミットを作成するとき
+
+","
+
+ファイルをインデックスに追加するとき
+
+","
+ブランチを削除するとき
+",リモートリポジトリをクローンするとき,2,git addコマンドは、ファイルをインデックス（ステージングエリア）に追加するために使用されます。これにより、次のコミットに含める変更が指定されます。,https://www.sejuku.net/blog/5816#index_id1
+1,5,git commitコマンド,git commitコマンドは、次のどの状況で使用されますか？,"
+新しいブランチを作成するとき
+
+","
+ファイルをインデックスに追加するとき
+
+","
+コミットを作成するとき
+
+",リモートリポジトリをクローンするとき,3,git commitコマンドは、ステージングエリアにある変更を新しいコミットとして記録するために使用されます。これにより、変更がGitリポジトリに保存されます。,https://www.sejuku.net/blog/5816#index_id1
+1,5,git pushコマンド,git pushコマンドは、次のどの状況で使用されますか？,"
+ローカルの変更をリモートリポジトリに送信するとき
+
+","
+新しいブランチを作成するとき
+","
+
+コミットを作成するとき
+
+",リモートリポジトリをクローンするとき,1,git pushコマンドは、ローカルリポジトリの変更をリモートリポジトリに送信するために使用されます。これにより、リモートリポジトリが最新の状態に更新されます。,https://www.sejuku.net/blog/5816#index_id1
+1,5,git pullコマンド,git pullコマンドは、次のどの状況で使用されますか？,"
+リモートリポジトリから変更を取得してマージするとき
+","
+
+ローカルリポジトリの変更をリモートリポジトリに送信するとき
+
+","
+
+コミットを作成するとき
+
+",ファイルをインデックスに追加するとき,1,git pullコマンドは、リモートリポジトリから変更を取得してローカルリポジトリにマージするために使用されます。これにより、リモートの変更がローカルリポジトリに反映されます。,https://www.sejuku.net/blog/5816#index_id1
+1,5,git branchコマンド,git branchコマンドは、次のどの状況で使用されますか？,"
+新しいブランチを作成するとき
+","
+
+ブランチを削除するとき
+
+","
+
+ブランチを一覧表示するとき
+
+",以上のすべて,4,git branch コマンドは、新しいブランチの作成、既存のブランチの削除、ブランチの一覧表示などに使用されます。このコマンドは、ブランチの管理に役立ちます。,https://www.sejuku.net/blog/5816#index_id1
+1,5,git merge コマンド,git merge コマンドは、次のどの状況で使用されますか？,"
+
+ファイルの変更をステージングエリアに追加するとき
+
+","
+
+ブランチをマージするとき
+
+","
+
+変更をリモートリポジトリにプッシュするとき
+
+",新しいブランチを作成するとき,2,git merge コマンドは、別のブランチの変更を現在のブランチに統合するために使用されます。これにより、複数のブランチの変更を一つにまとめることができます。,https://www.sejuku.net/blog/5816#index_id1
+1,5,git checkout コマンド,git checkout コマンドは、次のどの状況で使用されますか？,"
+ブランチを切り替えるとき
+
+","
+ファイルの変更をステージングエリアに追加するとき
+","
+
+変更をリモートリポジトリにプッシュするとき
+
+",リポジトリの初期化を行うとき,1,git checkout コマンドは、別のブランチに切り替えるために使用されます。また、特定のコミットやファイルのバージョンをチェックアウトすることもできます。,https://www.sejuku.net/blog/5816#index_id1
+1,5,git status コマンド,git status コマンドは、次のどの状況で使用されますか？,"
+リモートリポジトリの状態を確認するとき
+","
+
+ステージングエリアとワーキングディレクトリの状態を確認するとき
+
+","
+ブランチのマージ状況を確認するとき
+",リポジトリの初期化状況を確認するとき,2,git status コマンドは、ステージングエリアとワーキングディレクトリの状態を確認するために使用されます。変更されたファイルやステージングエリアに追加されたファイルの一覧を表示します。,https://www.sejuku.net/blog/5816#index_id1
+1,5,git reset コマンド,「git reset」このコマンドの主な用途は何ですか？,リポジトリの現在の状態を全て削除する,ローカルリポジトリを指定のコミットに戻す,ローカルリポジトリの最新のコミットを表示する,変更内容を一時的に保存する,2,git reset コマンドは、ローカルリポジトリの現在のブランチを指定されたコミットに戻します。このコマンドは履歴を書き換えるため、特に慎重に使用する必要があります。,https://www.sejuku.net/blog/5816#index_id1
+1,5,git revert コマンド,「git revert」このコマンドの主な用途は何ですか？,変更内容を一時的に保存する,リポジトリの現在の状態を全て削除する,指定されたコミットの変更を元に戻す,ローカルリポジトリの最新のコミットを表示する,3,git revert コマンドは、指定されたコミットの変更を元に戻します。このコマンドは新しいコミットを作成するため、履歴を書き換えずに変更を取り消すことができます。,https://www.sejuku.net/blog/5816#index_id1
+1,5,git log コマンド,「git log」このコマンドの主な用途は何ですか？,リポジトリの現在の状態を全て削除する,変更内容を一時的に保存する,ローカルリポジトリの最新のコミットを表示する,コミット履歴を表示する,4,git log コマンドは、リポジトリのコミット履歴を表示します。これにより、過去のコミットメッセージや変更内容を確認することができます。,https://www.sejuku.net/blog/5816#index_id1
+1,5,git diff コマンド,「git diff」このコマンドの主な用途は何ですか？,指定されたコミットの変更を元に戻す,リポジトリの現在の状態を全て削除する,コミット履歴を表示する,変更内容の差分を表示する,4,git diff コマンドは、現在の変更内容と最新のコミットやブランチ間の差分を表示します。これにより、どのファイルがどのように変更されたかを確認することができます。,https://www.sejuku.net/blog/5816#index_id1
+1,5,git stash コマンド,「git stash」このコマンドの主な用途は何ですか？,リポジトリの現在の状態を全て削除する,変更内容を一時的に保存する,指定されたコミットの変更を元に戻す,コミット履歴を表示する,2,git stash コマンドは、作業中の変更を一時的に保存し、作業ディレクトリをクリーンな状態に戻します。後でその変更内容を再び適用することができます。,https://www.sejuku.net/blog/5816#index_id1
+1,5,Gitの仕組みを利用したウェブ上のバージョン管理サービス,Gitの仕組みを利用したウェブ上のバージョン管理サービスはそれですか？,GitHub,GitLab,GitSync,Dropbox,1,GitHubとは、Gitの仕組みを利用したウェブ上のバージョン管理サービスです。,https://www.kagoya.jp/howto/it-glossary/develop/git/
+1,5,「ステージングエリア」とは,Gitの「ステージングエリア」とは何ですか？,リモートリポジトリへのアップロード先,プロジェクトの設定ファイル,バグ修正を行うためのブランチ,Gitレポジトリにコミットするファイルを置いておくためのエリア,4,"ステージングエリアとはGitレポジトリにコミットするファイルを置いておくためのエリアです。
+ステージングエリアがあることによって、いきなりセーブされずに、セーブするファイル（フォルダ）群を選択することができます。",https://qiita.com/takuyanin/items/8d5226fd5834e6ebc564
+1,5,「リポジトリ」とは,Gitの「リポジトリ」とは何ですか？, プログラミング言語の一つ,サーバーのIPアドレス,ファイルやディレクトリの状態を記録する場所,ブラウザのキャッシュ,3,リポジトリとは、ファイルやディレクトリの状態を記録する場所です。,https://backlog.com/ja/git-tutorial/intro/02/
+1,5,「HEAD」とは,Gitの「HEAD」とは何を指しますか？,ブランチの先頭,最初のコミット,リモートリポジトリのURL,プロジェクトの全履歴を表示する機能,1,HEADとは、現在使用しているブランチの先頭を表す名前です。,https://backlog.com/ja/git-tutorial/stepup/03/
+1,5,「タグ」とは,Gitの「タグ」とは何を指しますか？,リモートリポジトリのこと,コミットに対して名前をつけて、識別しやすくすること,コードのバージョンを管理するためのブランチ,変更履歴の一部を削除する機能,2,git tagとはコミットに対してわかりやすいタグをつけて、識別しやすくするためのコマンドを指します。そのコミット時点におけるバージョンを、タグに記入して管理することが多いです。git tagコマンドを使えば、コミットのタグを簡単に作成・管理できます。,https://www.kagoya.jp/howto/rentalserver/webtrend/gittag/
+1,5,Gitでリモートリポジトリを登録するコマンド,Gitでリモートリポジトリを登録するコマンドはどれか？,git remote add,git init,git branch,git fetch,1,`git remote add`は、リモートリポジトリを登録するためのコマンドです。,https://www.sejuku.net/blog/71492
+1,5,Gitとは何か？,Gitとは何か？,バージョン管理システム  ,プログラミング言語,データベース管理システム,テキストエディタ,1,Gitは、ソースコードやファイルのバージョン管理を行うための分散型バージョン管理システムです。,https://www.kagoya.jp/howto/it-glossary/develop/git/
+1,5,現在のブランチを変更するコマンド,現在のブランチを変更するコマンドはどれか？,git branch,git switch,git merge,git rebase,2,`git switch`は、現在の作業ブランチを別のブランチに切り替えるコマンドです。,https://tracpath.com/docs/git-switch/
+1,5,コミットメッセージを変更するコマンド,コミットメッセージを変更するコマンドはどれか？,git add,git commit --amend,git log,git revert,2,`git commit --amend`は、直前のコミットメッセージを修正するためのコマンドです。,https://tech-blog.rakus.co.jp/entry/20191113/git
+1,5,指定したファイルの変更を取り消すコマンド,指定したファイルの変更を取り消すコマンドはどれか？,git reset -- ＜ファイル名＞,git revert -- ＜ファイル名＞,git checkout -- ＜ファイル名＞,git stash -- ＜ファイル名＞,3,`git checkout -- ＜ファイル名＞`は、指定したファイルを以前の状態に戻します。,https://phoeducation.work/entry/20210816/1629068280
+1,6,NameErrorが発生する原因,NameErrorが発生する原因として正しいものはどれですか？,"未定義の変数やメソッドを呼び出そうとした時
+",不正なクラス名を指定した時,"変数のスコープが正しくない時
+",すべての選択肢が正しい,1,NameErrorは、未定義の変数やメソッドを参照しようとしたときに発生するエラーです。,https://qiita.com/tomomitsu_keruma/items/f8b8af5d6d4b1c081116
+1,6,SyntaxErrorが発生する原因,SyntaxErrorが発生する原因として正しいものはどれ？,"変数名が不正な文字を含んでいる時
+","メソッドの引数が不足している時
+",コードの構文が正しくない時,"
+すべての選択肢が正しい",3,カッコの閉じ忘れや、コロンの位置が間違っている場合など、コードの構文が正しくない時にSyntaxErrorが発生する。,https://musclecoding.com/rails-error/#index_id14
+1,6,実際のコードでのエラー発生,"次のコードを実行したときに発生するエラーは何ですか？
+
+class Dog
+  def bark
+    puts ""ワンワン！""
+  end
+end
+
+dog =Dog.new
+dog.meow","NameError
+","NoMethodError
+","SyntaxError
+",TypeError,2,"NoMethodErrorはオブジェクトに対して呼び出そうとしたメソッドが存在しない場合に発生するエラーです。
+このコードでは、Dogクラスのインスタンスdogを作成していますがmeowメソッドはDogクラスに定義されていないため、NoMethodErrorが発生します。",https://musclecoding.com/rails-error/#index_id6
+1,6,ActiveRecord::RecordNotFound,ActiveRecord::RecordNotFoundが発生するのはどのような状況ですか？,"データベース接続が失われたとき
+","モデルのバリデーションに失敗したとき
+","SQL文が正しくないとき
+",指定したIDのレコードが見つからないとき,4,ActiveRecord::RecordNotFoundはデータベースから取得しようとしたレコードが存在しない場合に発生するエラーです。例えばUser.find(999)のように存在しないユーザーIDを指定したときなどに発生します。,https://musclecoding.com/rails-error/#index_id38
+1,6,ActiveRecord::UnknownAttributeError,ActiveRecord::UnknownAttributeErrorが発生するのはどのような状況ですか？,"データベースが見つからないとき
+","モデルに存在しない属性を指定したとき
+","レコードが存在しないとき
+",モデルのバリデーションに失敗したとき,2,"ActiveRecord::UnknownAttributeErrorは、指定した属性がモデルに定義されていない場合に発生するエラーです。例えばUser.new(name: ""太郎"", age: 30)のときに、Userモデルにage属性がない場合にこのエラーが出ます。",https://zenn.dev/take_tech/articles/0f3024e9ec9f67
+1,6,"""StandardError: An error has occurred, this and all later migrations canceled"" ","""StandardError: An error has occurred, this and all later migrations canceled"" は、次のどの状況で発生しますか？","マイグレーションファイルにシンタックスエラーがあるとき
+
+","データベースに存在しないテーブルにアクセスしたとき
+
+",コントローラで使用されていないインスタンス変数にアクセスしたとき,ビューのレンダリング中にエラーが発生したとき,1,"StandardError: An error has occurred, this and all later migrations canceled は、マイグレーションファイルの実行中にエラーが発生したときに表示されます。例えば、マイグレーションファイルにシンタックスエラーが含まれている場合や、データベース操作に失敗した場合などです。このエラーが発生すると、該当のマイグレーションおよびそれ以降のマイグレーションはすべてキャンセルされます。",https://musclecoding.com/rails-error/#index_id34
+1,6,ActiveRecord::PendingMigrationError,ActiveRecord::PendingMigrationErrorは、次のどの状況で発生しますか？,"バリデーションに失敗してレコードが保存できないとき
+","
+未実行のマイグレーションがあるとき
+
+",不正なシンタックスがあるとき,コントローラで使用されていないインスタンス変数にアクセスしたとき,2,ActiveRecord::PendingMigrationErrorは、未実行のマイグレーションがある場合に発生します。データベーススキーマが最新でないときにこのエラーが発生し、rails db:migrateコマンドを実行してマイグレーションを適用する必要があります。,https://musclecoding.com/rails-error/#index_id42
+1,6,ActionController::RoutingError,ActionController::RoutingErrorは、次のどの状況で発生しますか？,"存在しないメソッドを呼び出したとき
+","
+データベースに存在しないレコードにアクセスしたとき
+
+",定義されていないルートにアクセスしようとしたとき,バリデーションに失敗してレコードが保存できないとき,3,ActionController::RoutingErrorは、ルーティングが定義されていないパスにアクセスしようとしたときに発生します。ルートが正しく設定されているかを確認し、ルーティングファイルを適切に修正する必要があります。,https://musclecoding.com/rails-error/#index_id30
+1,6,ActiveRecord::IrreversibleMigration ,ActiveRecord::IrreversibleMigration は、次のどの状況で発生しますか？,"マイグレーションでデータを削除しようとしたとき
+
+","モデルのバリデーションに失敗してレコードが保存できないとき
+
+","定義されていないルートにアクセスしようとしたとき
+",不正なシンタックスがあるとき,1,ActiveRecord::IrreversibleMigration は、マイグレーションの down メソッドが実装されていない場合や、実装されていても元に戻せない操作が含まれている場合に発生します。例えば、データベースのテーブルやカラムを削除する操作は不可逆であり、元に戻すことができないため、このエラーが発生します。,https://musclecoding.com/rails-error/#index_id50
+1,6,ArgumentError,ArgumentErrorは、次のどの状況で発生しますか？,"データベースに存在しないレコードにアクセスしたとき
+
+","引数が不正なとき
+
+",ビューのレンダリング中にエラーが発生したとき,未実行のマイグレーションがあるとき,2,ArgumentErrorは、メソッドに渡された引数が不正なときに発生します。例えば、期待される引数の数と実際に渡された引数の数が一致しない場合などにこのエラーが発生します。,https://musclecoding.com/rails-error/#index_id22
+1,6,NoMethodError: undefined method 'xxx' for nil:NilClass,「NoMethodError: undefined method 'xxx' for nil:NilClass」このエラーの原因は何ですか？,メソッドが存在しないクラスを呼び出した,Nilオブジェクトに対して存在しないメソッドを呼び出した,ファイルが見つからない,データベースの一意制約に違反した,2,このエラーは、Nilオブジェクト（値がnilの変数）に対して、存在しないメソッドxxxを呼び出したときに発生します。nilにメソッドを呼び出しても、何も処理を実行できないため、このエラーが発生します。,https://musclecoding.com/rails-error/#index_id6
+1,6,TypeError: no implicit conversion of Symbol into Integer,「TypeError: no implicit conversion of Symbol into Integer」このエラーの原因は何ですか？,シンボルを整数に変換しようとした,メソッドが存在しないクラスを呼び出した,ファイルが見つからない,データベースの一意制約に違反した,1,このエラーは、シンボルを整数に暗黙的に変換しようとした場合に発生します。例えば、ハッシュのキーとしてシンボルを使用する場合や配列のインデックスとしてシンボルを使用しようとすると、このエラーが発生します。,https://musclecoding.com/rails-error/#index_id18
+1,6,LoadError: cannot load such file — xxx,「LoadError: cannot load such file — xxx」このエラーの原因は何ですか？,メソッドが存在しないクラスを呼び出した,ファイルが見つからない,データベースの一意制約に違反した,シンボルを整数に変換しようとした,2,このエラーは、指定されたファイルxxxが見つからない場合に発生します。正しいパスを指定しているか、ファイルが存在するかを確認してください。,https://musclecoding.com/rails-error/#index_id26
+1,6,ActiveRecord::Migration::CommandRecorder::IrreversibleError,「ActiveRecord::Migration::CommandRecorder::IrreversibleError」このエラーの原因は何ですか？,メソッドが存在しないクラスを呼び出した,ファイルが見つからない,データベースのマイグレーションが元に戻せない操作を含んでいる,シンボルを整数に変換しようとした,3,このエラーは、データベースのマイグレーションが元に戻せない操作（不可逆な操作）を含んでいる場合に発生します。例えば、カラムの削除などの操作です。,https://musclecoding.com/rails-error/#index_id50
+1,6,ActiveRecord::RecordNotUnique: SQLite3::ConstraintException: UNIQUE constraint failed: xxx,「ActiveRecord::RecordNotUnique: SQLite3::ConstraintException: UNIQUE constraint failed: xxx」このエラーの原因は何ですか？,メソッドが存在しないクラスを呼び出した,ファイルが見つからない,データベースの一意制約に違反した,シンボルを整数に変換しようとした,3,このエラーは、データベースで一意性制約（UNIQUE制約）が設定されているカラムに対して、重複する値を挿入しようとした場合に発生します。一意性を保つために、重複するデータが存在しないことを確認する必要があります。,https://musclecoding.com/rails-error/#index_id54
+1,6,NameError: uninitialized constant,「NameError: uninitialized constant」が発生するのはどのような状況ですか？,未定義の変数を使用したとき,クラスやモジュールが見つからないとき,メソッドが非公開のとき,配列が空のとき,2,未定義のクラスやモジュールを参照しようとした場合に発生します。例えば、MyClassが定義されていない状態でMyClass.newを呼び出す。,https://qiita.com/imotan/items/c73fab5ee230114a08b6
+1,6,TypeError,「TypeError」が発生する原因は何ですか？,数値型を文字列型に変換できなかったとき,nilを文字列型に変換しようとしたとき,適切な型キャストがされていないとき,配列が空のとき,3,ある型の値を別の型に自動変換できない場合にTypeErrorが発生します。例えば、数値を直接文字列と結合しようとした場合。,https://docs.ruby-lang.org/ja/latest/class/TypeError.html
+1,6,ActiveRecord::InvalidForeignKey,ActiveRecord::InvalidForeignKey エラーが発生する原因として正しいものはどれですか？,外部キー制約に違反する操作が実行された場合,モデルに関連付けが定義されていない場合,データベース接続が切れている場合,外部キーが主キーとして定義されていない場合,1,ActiveRecord::InvalidForeignKey は、外部キー制約を持つカラムに対して関連付けが壊れるような操作が実行された場合に発生します。例えば、親テーブルに関連するレコードが存在しない状態で、子テーブルにデータを挿入しようとすると、このエラーが発生します。,https://qiita.com/TANIOKA_Akihiro/items/915924bbe7c5662b6541
+1,6,docker-compose: Service failed to build,docker-compose: Service failed to build の原因として正しいものは？,Dockerfileに記述ミスがある,イメージの名前が間違っている,コンテナがポートを開けない,ホストマシンのネットワークが不安定,1,docker-composeを使用してビルド中に、Dockerfile内の記述が無効だった場合、このエラーが発生します。例えば、COPYやRUNステートメントが間違っている場合です。,https://qiita.com/j1403239/items/baa989113c6992105115
+1,6,Error response from daemon: driver failed programming external connectivity,Error response from daemon: driver failed programming external connectivity エラーの原因として正しいものは？,ネットワーク接続が切断されている,Dockerイメージが存在しない,コンテナがメモリ不足で停止した,ポートが他のプロセスによって使用されている,4,このエラーは、Dockerコンテナが指定されたホストポートを使用しようとしたときに、すでに別のプロセスがそのポートを使用している場合に発生します。例えば、ポート3000が既に他のアプリケーションで使用されている場合、コンテナの起動に失敗します。,https://qiita.com/Senritsu420/items/65e0da5696040a5a17c4
+1,6,undefined method 'each' for nil:NilClass,undefined method 'each' for nil:NilClass エラーが発生する原因は？,配列が空である,配列がnilである,配列に文字列が含まれている,配列に数値が含まれている,2,nilに対してeachメソッドを呼び出そうとした場合に発生するエラーです。,https://qiita.com/somarihair/items/f0d3d3be11e1b6b85df7
+1,6,SyntaxError: unexpected end-of-input,SyntaxError: unexpected end-of-input の主な原因は？,必要なendが不足している,不正なメソッド名を使っている,定義されていない変数を使用している,配列の要素が多すぎる,1,endが不足しているときに発生するエラーで、構文が正しく閉じられていません。,https://web-engineer-wiki.com/javascript/error-unexpected-end-of-input/
+1,6,Routing Error: No route matches,Routing Error: No route matches の主な原因は？,指定されたルートが存在しない,コントローラーが定義されていない,ビューが見つからない,テーブルが存在しない,1,URLに対応するルートが設定されていない場合に発生します。,https://qiita.com/rhythmic0531/items/27c87dd7465d44416813
+1,6,TypeError: nil can't be coerced into Integer,TypeError: nil can't be coerced into Integer の原因は？,nilを数値演算に使用した,nilに文字列を追加した,nilにメソッドを呼び出した,nilを変数に代入した,1,nilを数値として扱おうとすると発生するエラーです。,https://qiita.com/TK_WebSE/items/ff89f3372b71620ef61c
+1,6,NameError: undefined local variable or method 'hoge',NameError: undefined local variable or method 'hoge' の原因は？,hogeがクラスとして定義されていない,hogeがメソッドとして定義されていない,hogeがローカル変数として定義されていない,hogeが配列でない,3,ローカル変数またはメソッドとしてhogeが定義されていない場合に発生します。,"https://magazine.rubyist.net/articles/0014/0014-CGIProgrammingForRubyBeginners-2.html#:~:text=%E3%82%A8%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8%E3%81%AE%20%E3%80%8Cundefined%20local,%E5%90%8D%E3%82%92%E4%BD%BF%E3%81%86%E3%81%93%E3%81%A8%E3%81%A7%E3%81%99%E3%80%82"
