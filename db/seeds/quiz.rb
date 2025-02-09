@@ -2,10 +2,11 @@ require "csv"
 
 puts "\n=== Creating Quizzes ==="
 CSV.foreach("db/csv/Separated_Quizzes.csv", headers: true) do |row|
-  quiz = Quiz.create!(title: row["quiz_title"]) do |q|
+  quiz = Quiz.find_or_create_by!(title: row["quiz_title"]) do |q|
     q.author_user_id = row["author_user_id"]
     q.title = row["quiz_title"]
-    q.questions_count = 1
+    q.questions_count = 0
+    print "."
     q.questions.build(
       question: row["question"],
       correct_answer: row["correct_answer"],
@@ -25,5 +26,4 @@ CSV.foreach("db/csv/Separated_Quizzes.csv", headers: true) do |row|
     )
     q.save(validate: false)
   end
-  print "."
 end
