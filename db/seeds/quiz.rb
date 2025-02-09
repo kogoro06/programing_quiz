@@ -12,7 +12,17 @@ CSV.foreach("db/csv/Separated_Quizzes.csv", headers: true) do |row|
       answer_source: row["answer_source"],
       explanation: row["explanation"]
     )
-    p q.questions
+    q.questions.each do |question|
+      question.choices.build(
+        choice1: row["choice1"],
+        choice2: row["choice2"],
+        choice3: row["choice3"],
+        choice4: row["choice4"]
+      )
+    end
+    q.tag_quizzes.build(
+      tag_id: row["tag_id"]
+    )
     q.save(validate: false)
   end
   print "."
