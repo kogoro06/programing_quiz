@@ -20,7 +20,12 @@ function setInitialTagSelection() {
   }
   
   function updateTagSelectStyle(tagSelect, bgColor) {
-    tagSelect.className = `w-1/4 h-12 text-3xl text-white font-bold text-center text-nowrap rounded-lg flex items-center justify-center ${bgColor}`;
+    tagSelect.classList.forEach(cls => {
+      if (cls.startsWith("bg-")) {
+        tagSelect.classList.remove(cls);
+      }
+    });
+    tagSelect.classList.add(bgColor);
   }
   
   function setupTagSelect() {
