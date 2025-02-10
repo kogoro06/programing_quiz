@@ -5,95 +5,93 @@
     </h1>
   </div>
 
-<div class="bg-secondary m-12 rounded-lg p-6 max-w-3xl mx-auto">
-  <div class="bg-base-100 p-8 rounded-lg max-w-3xl mx-auto">
-    <div class="flex justify-between items-center">
-      <h1 class="text-3xl text-accent"><%= @quiz.title %></h1>
-      <div class="flex text-primary">
-      <!--(本リリース)クイズ編集ページ
-        <button>
-          <span class="material-icons md-36">
-            edit
-          </span>
-        </button>
-      -->
-        <div class="flex text-primary space-x-4">
-          <% if @quiz.author_user_id == current_user.id || current_user.admin? %>
-            <%= button_to @quiz,
-            method: :delete do %>
-              <span class="material-icons md-36" >
-                delete
-              </span>
-            <% end %>
-          <% end %>
-        </div>
-        <!--(本リリース)ブックマーク機能
-        <button>
-          <span class="material-icons md-36">
-            bookmark_border
-          </span>
-        </button>
-        -->
-      </div>
-    </div>
-    <div class="mt-4">
+<div class="flex justify-center m-6 md:m-12">
+  <div class="bg-secondary rounded-lg p-6 mx-auto max-w-3xl w-full">
+    <div class="bg-base-100 p-4 md:p-8 rounded-lg space-y-6">
       <div class="flex justify-between items-center">
-        <div class="flex items-center space-x-2">
-          <%= link_to user_profile_path(@quiz.user.id) do %>
-            <%= image_tag @quiz.user.profile&.user_icon&.attached? ? @quiz.user.profile.user_icon : 'profile_sample.png', class: 'w-8 h-8 rounded-full object-cover border border-primary' %>
-          <% end %>
-          <div class="mt-4">
-            <%= link_to user_profile_path(@quiz.user.id) do %>
-              <p class="text-primary"><%= @quiz.user.name %></p>
-            <% end %>
-            <p class="text-sm"><%= @quiz.created_at.strftime("%Y-%m-%d") %></p>
-          </div>
-        </div>
-        <!--(本リリース)レビュー機能
-        <div class="rating rating-md rating-half">
-          <input type="radio" name="rating-10" class="rating-hidden" />
-          <input type="radio" name="rating-10" class="mask mask-star mask-half-1 bg-primary" />
-          <input type="radio" name="rating-10" class="mask mask-star mask-half-2 bg-primary" />
-          <input
-            type="radio"
-            name="rating-10"
-            class="mask mask-star mask-half-1 bg-primary"
-            checked="checked" />
-          <input type="radio" name="rating-10" class="mask mask-star mask-half-2 bg-primary" />
-          <input type="radio" name="rating-10" class="mask mask-star mask-half-1 bg-primary" />
-          <input type="radio" name="rating-10" class="mask mask-star mask-half-2 bg-primary" />
-          <input type="radio" name="rating-10" class="mask mask-star mask-half-1 bg-primary" />
-          <input type="radio" name="rating-10" class="mask mask-star mask-half-2 bg-primary" />
-          <input type="radio" name="rating-10" class="mask mask-star mask-half-1 bg-primary" />
-          <input type="radio" name="rating-10" class="mask mask-star mask-half-2 bg-primary" />
-        </div>
+        <h1 class="text-lg md:text-3xl text-accent"><%= @quiz.title %></h1>
+        <div class="flex text-primary">
+        <!--(本リリース)クイズ編集ページ
+          <button>
+            <span class="material-icons md-36">
+              edit
+            </span>
+          </button>
         -->
-      </div>
-      <div class="mt-4 flex items-center justify-between">
-        <div>
-          <div class="flex gap-4 items-center">
-            <% @quiz.tags.each do |tag| %>
-              <%= link_to tag_path(tag.id), class: "btn btn-sm text-sm text-white font-bold text-center text-nowrap mt-2 #{tag.data_color}" do %>
-                <%= tag.name %>
+          <div class="flex text-primary space-x-4">
+            <% if @quiz.author_user_id == current_user.id || current_user.admin? %>
+              <%= button_to @quiz,
+              method: :delete do %>
+                <span class="material-icons md-36" >
+                  delete
+                </span>
               <% end %>
             <% end %>
-             <span class="mt-2 text-sm">全 <%= @quiz.questions_count %> 問</span>
           </div>
+          <!--(本リリース)ブックマーク機能
+          <button>
+            <span class="material-icons md-36">
+              bookmark_border
+            </span>
+          </button>
+          -->
         </div>
-        <div>
+      </div>
+      <div class="flex items-center gap-2">
+        <%= link_to user_profile_path(@quiz.user.id) do %>
+          <%= image_tag @quiz.user.profile&.user_icon&.attached? ? @quiz.user.profile.user_icon : 'profile_sample.png', class: 'w-8 h-8 rounded-full object-cover border border-primary' %>
+        <% end %>
+        <div class="flex md:flex-col flex-row justify-between md:flex-grow-0 flex-grow md:mt-4 items-center md:items-start">
+          <%= link_to user_profile_path(@quiz.user.id) do %>
+            <p class="text-primary text-base"><%= @quiz.user.name %></p>
+          <% end %>
+          <div>
+            <p class="text-sm"><%= @quiz.created_at.strftime("%Y-%m-%d") %></p>
+          </div>
+          <!--(本リリース)レビュー機能
+          <div class="rating rating-md rating-half">
+            <input type="radio" name="rating-10" class="rating-hidden" />
+            <input type="radio" name="rating-10" class="mask mask-star mask-half-1 bg-primary" />
+            <input type="radio" name="rating-10" class="mask mask-star mask-half-2 bg-primary" />
+            <input
+              type="radio"
+              name="rating-10"
+              class="mask mask-star mask-half-1 bg-primary"
+              checked="checked" />
+            <input type="radio" name="rating-10" class="mask mask-star mask-half-2 bg-primary" />
+            <input type="radio" name="rating-10" class="mask mask-star mask-half-1 bg-primary" />
+            <input type="radio" name="rating-10" class="mask mask-star mask-half-2 bg-primary" />
+            <input type="radio" name="rating-10" class="mask mask-star mask-half-1 bg-primary" />
+            <input type="radio" name="rating-10" class="mask mask-star mask-half-2 bg-primary" />
+            <input type="radio" name="rating-10" class="mask mask-star mask-half-1 bg-primary" />
+            <input type="radio" name="rating-10" class="mask mask-star mask-half-2 bg-primary" />
+          </div>
+          -->
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row md:justify-between">
+        <div class="flex items-center gap-4">
+          <% @quiz.tags.each do |tag| %>
+            <%= link_to tag_path(tag.id), class: "btn btn-sm text-sm text-white font-bold text-center text-nowrap mt-2 #{tag.data_color}" do %>
+              <%= tag.name %>
+            <% end %>
+          <% end %>
+          <span class="mt-2 text-sm">全 <%= @quiz.questions_count %> 問</span>
+        </div>
+        <div class="mt-8 md:mt-0">
           <!-- 設定したメタタグをリダイレクトされる前に呼び出す -->
           <% prepare_meta_tags @quiz %> 
           <% twitter_share_url = "https://twitter.com/share?url= #{CGI.escape(quiz_post_url(@quiz))}" %>
           <%= link_to twitter_share_url, target: "_blank", data: { toggle: "tooltip", placement: "bottom" }, title: "Xでシェア" do %>
-            <button class="bg-secondary hover:opacity-70 mt-2 px-4 py-1 rounded-lg shadow">
+            <button class="bg-secondary hover:opacity-70 px-4 py-1 rounded-lg shadow">
               <i class="fa-brands fa-x-twitter"></i>に共有する
             </button> 
           <% end %>
         </div>
       </div>
     </div>
-  </div>
-  <div class="flex justify-center items-center mt-2">
-    <%= link_to 'クイズを始める', question_path(@quiz.questions.order(:id).first), class: 'text-white bg-accent hover:opacity-70 font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center mt-6' %>
+    <div class="flex justify-center items-center mt-2 mb-2">
+      <%= link_to 'クイズを始める', question_path(@quiz.questions.order(:id).first), class: 'text-white bg-accent hover:opacity-70 font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center mt-6' %>
+    </div>
   </div>
 </div>
