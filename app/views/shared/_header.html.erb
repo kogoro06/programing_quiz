@@ -58,15 +58,15 @@
           </div>
           <ul tabindex="0" class="dropdown-content menu bg-white rounded-box p-2 shadow space-y-2">
             <li>
-              <%= link_to 'プロフィール', user_profile_path(current_user.id), class: "text-primary font-bold text-base tracking-wide hover:opacity-70 transition duration-300 text-nowrap" %>
+              <%= link_to 'プロフィール', user_profile_path(current_user.id), class: "text-primary text-base tracking-wide hover:opacity-70 transition duration-300 text-nowrap" %>
             </li>
             <!--(本リリース)ブックマーク機能
             <li>
-              <%= link_to 'ブックマーク', bookmarks_quiz_posts_path, class: 'text-primary font-bold text-base tracking-wide hover:opacity-70 transition duration-300 text-nowrap' %>
+              <%= link_to 'ブックマーク', bookmarks_quiz_posts_path, class: 'text-primary text-base tracking-wide hover:opacity-70 transition duration-300 text-nowrap' %>
             </li>
             -->
             <li>
-              <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: 'text-primary font-bold text-base tracking-wide hover:opacity-70 transition duration-300 text-nowrap' %>
+              <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: 'text-primary text-base tracking-wide hover:opacity-70 transition duration-300 text-nowrap' %>
             </li>
           </ul>
         </div>
