@@ -16,18 +16,21 @@ class User < ApplicationRecord
 
   # OAuthログイン用メソッド
   def self.from_omniauth(auth)
-    user = where(provider: auth.provider, uid: auth.uid).first_or_initialize
-
-    user.email = auth.info.email
-    user.name = auth.info.name
-    user.password = Devise.friendly_token[0, 20] if user.new_record?
-
+    user = where(email: auth.info.email).first_or_initialize
+  
+    user.name = auth.info.name if user.name.blank?
+  
+    if user.new_record?
+      user.password = Devise.friendly_token[0, 20]
+    end
+  
     is_new_user = user.new_record?
-
+  
     user.save!
-
+  
     user.create_profile if user.profile.nil?
-
+  
     return user, is_new_user
   end
+  
 end
