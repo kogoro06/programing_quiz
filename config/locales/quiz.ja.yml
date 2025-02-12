@@ -41,6 +41,7 @@ ja:
       quizes_title: "クイズ集タイトル"
       quizes_tags: "クイズカテゴリを選択"
       tags_annotation: "※ エラータグのみ他タグと組み合わせた選択が可能です。"
+      accordion_title: "問題"
       question: "問題文"
       choices:
         1: "選択肢1"
