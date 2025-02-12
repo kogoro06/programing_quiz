@@ -23,6 +23,10 @@ gem "jbuilder"
 gem "devise", "~> 4.9"
 gem "devise-i18n"
 gem "devise-i18n-views"
+gem 'omniauth'
+gem 'omniauth-rails_csrf_protection'
+gem 'omniauth-github'
+gem 'omniauth-google-oauth2'
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
