@@ -18,11 +18,22 @@
       </select>
     </div>
     <div id="quiz_content" class="bg-secondary rounded-lg p-6 m-6 md:m-10">
-      <div class="flex flex-wrap justify-start gap-6">
-        <% @quizzes.each do |quiz| %>
-          <%= render partial: "quizzes/lg_card", locals: { quiz: quiz } %>
-        <% end %>
-      </div>
+      <% if @quizzes.blank? %>
+        <div class="flex items-center justify-center">
+          <div class="text-center text-2xl font-bold text-accent">
+            クイズがありません。
+          </div>
+          <%= link_to new_quiz_post_path, class: "btn btn-primary" do %>
+            クイズを作成する
+          <% end %>
+        </div>
+      <% else %>
+        <div class="flex flex-wrap justify-start gap-6">
+          <% @quizzes.each do |quiz| %>
+            <%= render partial: "quizzes/lg_card", locals: { quiz: quiz } %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
     <!-- ページネーション -->
     <div class="flex justify-center gap-2">
