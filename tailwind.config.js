@@ -1,4 +1,9 @@
 module.exports = {
+  safelist: [
+    {
+      pattern: /^bg-/,
+    }
+  ],
   content: [
     './app/views/**/*.html.erb',
     './app/helpers/**/*.rb',
