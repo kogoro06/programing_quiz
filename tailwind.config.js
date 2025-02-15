@@ -14,6 +14,9 @@ module.exports = {
         ruby: '#FF9999',
         git: '#6BF5C7',
         error: '#E6AFE1',
+        react: '#61DAFB',
+        java: '#41B883',
+        laravel: '#FF2D20',
       },
       fontFamily: {
         frankfurter: ['"OPTIFrankfurter-Medium"', 'sans-serif'],
