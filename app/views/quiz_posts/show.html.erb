@@ -11,13 +11,12 @@
       <div class="flex justify-between items-center">
         <h1 class="text-lg md:text-3xl text-accent"><%= @quiz.title %></h1>
         <div class="flex text-primary">
-        <!--(本リリース)クイズ編集ページ
-          <button>
-            <span class="material-icons md-36">
-              edit
-            </span>
-          </button>
-        -->
+          <% if @quiz.author_user_id == current_user.id || current_user.admin? %>
+            <!-- クイズ編集ボタン -->
+            <%= link_to edit_quiz_post_path(@quiz), class: "text-primary" do %>
+              <span class="material-icons md-36">edit</span>
+            <% end %>
+          <% end %>
           <div class="flex text-primary space-x-4">
             <% if @quiz.author_user_id == current_user.id || current_user.admin? %>
               <%= button_to @quiz,

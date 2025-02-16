@@ -58,6 +58,50 @@ class QuizPostsController < ApplicationController
     Rails.logger.info "Received tag_ids: #{params[:quiz][:tag_ids]}"
   end
 
+  def edit
+    @quiz = Quiz.find(params[:id])
+    @tags = Tag.all
+    unless @quiz.user == current_user
+      redirect_to root_path, alert: "権限がありません"
+    end
+
+    # 現在の質問の数を取得
+    existing_questions_count = @quiz.questions.count
+
+    # 最大10問になるように新しいquestionを追加
+    (10 - existing_questions_count).times do
+      question = @quiz.questions.build
+      question.choices.build # 1回だけchoicesを作成
+    end
+  end
+
+  def update
+    @quiz = Quiz.find_by(id: params[:id])
+    @tags = Tag.all
+    return redirect_to root_path, alert: "クイズが見つかりません" unless @quiz
+
+    # 空の question を除外
+    quiz_questions = quiz_params[:questions_attributes]&.values || []
+    quiz_questions.reject! { |q| q[:question].blank? && q[:correct_answer].blank? && q[:choices_attributes].values.all? { |c| c.values.all?(&:blank?) } }
+
+    # 更新するパラメータを再構築
+    update_params = quiz_params.merge(questions_attributes: quiz_questions)
+
+    if @quiz.update(update_params)
+      redirect_to quiz_post_path(@quiz), notice: "クイズを更新しました！"
+    else
+      # バリデーションエラー時に新しい質問を追加
+      existing_questions_count = @quiz.questions.count
+      (10 - existing_questions_count).times do
+        question = @quiz.questions.build
+        question.choices.build # 1回だけchoicesを作成
+      end
+
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+
   private
 
   # show画面の内容がシェアできれば良いので、設定をコントローラーで行う。
