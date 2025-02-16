@@ -56,7 +56,7 @@ ja:
       submit: "登録する"
     edit:
       errors_blank: "入力内容を確認してください"
-      title: "新規クイズ作成"
+      title: "クイズ編集"
       create_limit: "1問~10問作成できます"
       create_necessary: "*は必須項目です"
       create_edit: "編集機能は後日アップデート予定"
