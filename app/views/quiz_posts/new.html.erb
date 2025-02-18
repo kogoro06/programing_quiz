@@ -1,8 +1,14 @@
+<% content_for(:title, t('.title')) %>
 <div class="bg-white min-h-screen overflow-auto">
-  <div class="flex flex-col justify-center items-center mt-8 mb-8 mx-4 md:mx-24 lg:mx-72">
-    <h1 class="text-3xl md:text-3xl lg:text-4xl font-bold text-accent text-center">
-      <% content_for(:title, 'クイズ作成') %>
+  <div class="flex flex-col justify-center items-center mt-12 mb-6 md:mb-8 mx-4 md:mx-44">
+    <h1 class="text-xl md:text-3xl md:text-3xl lg:text-4xl font-bold text-accent text-center">
+      <%= t('.title') %>
     </h1>
+    <div class="flex flex-col w-full justify-end items-center pr-10 md:pr-20 mt-6 md:mt-0">
+      <p class="text-xs md:text-sm text-primary ml-auto text-right"><%= t('.create_limit') %></p>
+      <p class="text-xs md:text-sm text-primary ml-auto text-right"><%= t('.create_necessary') %></p>
+      <p class="text-xs md:text-sm text-primary ml-auto text-right"><%= t('.create_edit') %></p>
+    </div>
   </div>
 
 <%= form_with model: @quiz, url: quiz_posts_path, local: true do |form| %>
@@ -17,87 +23,83 @@
     </div>
   <% end %>
   <div class="bg-white">
-    <div class="flex flex-col justify-center items-center mt-6 mb-6 mx-72">
-      <h1 class="text-3xl font-bold text-accent text-center"><%= t('.title') %></h1>
-      <p class="text-sm text-primary ml-auto text-right"><%= t('.create_limit') %></p>
-      <p class="text-sm text-primary ml-auto text-right"><%= t('.create_necessary') %></p>
-      <p class="text-sm text-primary ml-auto text-right"><%= t('.create_edit') %></p>
-    </div>
 
-    <div class="flex bg-secondary rounded justify-center mx-48 mb-12">
-      <div class="flex flex-col w-full mt-6 mb-6 mx-24">
+    <div class="flex bg-secondary rounded justify-center px-3 md:px-12 mx-6 md:mx-44 mb-12">
+      <div class="flex flex-col w-full mt-6 mb-10 md:mb-6 mx-4 md:mx-6">
         <div class="space-y-4">
           <div class="flex flex-col bg-white rounded p-6">
             <div class="flex items-start">
-              <%= form.label :title, t('.quizes_title'), class: "block mb-2 text-lg text-nowrap font-medium text-primary" %>
+              <%= form.label :title, t('.quizes_title'), class: "block mb-2 text-base md:text-lg text-nowrap font-medium text-primary" %>
               <span class="text-accent ml-1">*</span>
             </div>
             <%= form.text_field :title, class: "bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5" %>
           </div>
           <div class="bg-white rounded p-6 mb-6">
             <div class="flex items-start">
-              <label for="tag" class="block mb-1 text-lg font-medium text-primary"><%= t('.quizes_tags') %></label>
+              <label for="tag" class="block mb-1 text-base md:text-lg font-medium text-primary"><%= t('.quizes_tags') %></label>
               <span class="text-accent ml-1">*</span>
             </div>
-            <div class="text-sm text-gray-500 mb-2">
+            <div class="text-xs md:text-sm text-gray-500 mb-2">
               <%= t('.tags_annotation') %>
             </div>
-            <div class="flex justify-between space-x-2">
-              <% @tags.each do |tag| %>
-                <label
-                  class="tag-label btn flex-1 text-lg text-white text-bold text-center text-nowrap cursor-pointer <%= tag.data_color %>"
-                  data-color="<%= tag.data_color %>">
-                  <input
-                    type="checkbox"
-                    name="quiz[tag_ids][]"
-                    value="<%= tag.id %>"
-                    class="tag-checkbox hidden"
-                    <%= 'checked' if @quiz.tag_ids.include?(tag.id) %> >
-                  <%= tag.name %>
-                </label>
-              <% end %>
+            <div class="bg-base-100 rounded">
+              <div class="grid grid-cols-2 md:grid-cols-6 gap-2">
+                <% @tags.each do |tag| %>
+                  <label
+                    class="tag-label btn flex-1 text-sm md:text-lg text-white text-bold text-center text-nowrap cursor-pointer <%= tag.data_color %>"
+                    data-color="<%= tag.data_color %>">
+                    <input
+                      type="checkbox"
+                      name="quiz[tag_ids][]"
+                      value="<%= tag.id %>"
+                      class="tag-checkbox hidden"
+                      <%= 'checked' if @quiz.tag_ids.include?(tag.id) %> >
+                    <%= tag.name %>
+                  </label>
+                <% end %>
+              </div>
             </div>
           </div>
           <div class="divider"></div>
           <%= form.fields_for :questions, @current_question do |q_form| %>         
             <div class="collapse collapse-arrow bg-white">
               <input type="checkbox" />
-              <div class="collapse-title text-lg font-medium text-primary">問題</div>
+              <div class="collapse-title text-base md:text-lg font-medium text-primary"><%= t('.accordion_title') %></div>
               <div class="collapse-content">
-                <div class="flex flex-col bg-white rounded p-6">
+                <div class="flex flex-col bg-white rounded p-2 md:p-6">
                   <div class="flex items-start">
-                    <%= q_form.label :question, t('.question'), class: "block mb-2 text-lg text-nowrap font-medium text-primary" %>
+                    <%= q_form.label :question, t('.question'), class: "block mb-2 text-base md:text-lg text-nowrap font-medium text-primary" %>
                     <span class="text-accent ml-1">*</span>
                   </div>
-                  <%= q_form.text_area :question, class: "bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5 h-20" %>
+                  <%= q_form.rich_text_area :question, class: "bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5 h-20" %>
                 </div>
                 <div class="bg-white rounded">
-                  <div class="flex justify-between space-x-4 p-6">
+                  <div class="flex flex-col md:flex-row justify-between md:space-x-4 p-2 md:p-6 w-full">
                     <%= q_form.fields_for :choices do |c_form| %>
-                      <div class="w-1/2">
+                      <div class="md:w-1/2">
                         <div class="flex items-start">
-                          <%= c_form.label :choice1, t('.choices.1'), class: "block mb-2 text-lg font-medium text-primary" %>
+                          <%= c_form.label :choice1, t('.choices.1'), class: "block mb-2 text-base md:text-lg font-medium text-primary" %>
                           <span class="text-accent ml-1">*</span>
                         </div>
                         <%= c_form.text_area :choice1, class: "bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary p-2.5" %>
                       </div>
-                      <div class="w-1/2">
+                      <div class="md:w-1/2">
                         <div class="flex items-start">
-                          <%= c_form.label :choice2, t('.choices.2'), class: "block mb-2 text-lg font-medium text-primary" %>
+                          <%= c_form.label :choice2, t('.choices.2'), class: "block mb-2 text-base md:text-lg font-medium text-primary" %>
                           <span class="text-accent ml-1">*</span>
                         </div>
                         <%= c_form.text_area :choice2, class: "bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary p-2.5" %>
                       </div>
-                      <div class="w-1/2">
+                      <div class="md:w-1/2">
                         <div class="flex items-start">
-                          <%= c_form.label :choice3, t('.choices.3'), class: "block mb-2 text-lg font-medium text-primary" %>
+                          <%= c_form.label :choice3, t('.choices.3'), class: "block mb-2 text-base md:text-lg font-medium text-primary" %>
                           <span class="text-accent ml-1">*</span>
                         </div>
                         <%= c_form.text_area :choice3, class: "bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary p-2.5" %>
                       </div>
-                      <div class="w-1/2">
+                      <div class="md:w-1/2">
                         <div class="flex items-start">
-                          <%= c_form.label :choice4, t('.choices.4'), class: "block mb-2 text-lg font-medium text-primary" %>
+                          <%= c_form.label :choice4, t('.choices.4'), class: "block mb-2 text-base md:text-lg font-medium text-primary" %>
                           <span class="text-accent ml-1">*</span>
                         </div>
                         <%= c_form.text_area :choice4, class: "bg-white border border-gray-300 text-sm w-full rounded-lg focus:ring-primary focus:border-primary p-2.5" %>
@@ -105,41 +107,41 @@
                     <% end %>
                   </div>
                 </div>
-                <div class="bg-white rounded p-6">
+                <div class="bg-white rounded p-2 md:p-6">
                   <div class="flex flex-col justify-start">
                     <div class="flex items-start">
-                      <h2 class="block mb-2 text-lg text-nowrap font-medium text-primary"><%= t('.answer') %></h2>
+                      <h2 class="block mb-2 text-base md:text-lg text-nowrap font-medium text-primary"><%= t('.answer') %></h2>
                       <span class="text-accent ml-1">*</span>
                     </div>
                     <%= q_form.select :correct_answer,
                       [[t('.choices.1'), 1], [t('.choices.2'), 2], [t('.choices.3'), 3], [t('.choices.4'), 4]],
                       { prompt: t('.choice_corrected_answer') },
-                      { class: "select select-bordered w-1/2" } %>
+                      { class: "select select-bordered md:w-1/2" } %>
                   </div>
                 </div>
-                <div class="flex flex-col bg-white rounded p-6">
-                  <%= q_form.label :explanation, t('.explanation'), class: "block mb-2 text-lg text-nowrap font-medium text-primary" %>
+                <div class="flex flex-col bg-white rounded p-2 md:p-6">
+                  <%= q_form.label :explanation, t('.explanation'), class: "block mb-2 text-base md:text-lg text-nowrap font-medium text-primary" %>
                   <%= q_form.text_area :explanation, class: "bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5 h-20" %>
                 </div>
-                <div class="flex flex-col bg-white rounded p-6">
-                  <%= q_form.label :answer_source, t('.answer_source'), class: "block mb-2 text-lg text-nowrap font-medium text-primary" %>
+                <div class="flex flex-col bg-white rounded p-2 md:p-6">
+                  <%= q_form.label :answer_source, t('.answer_source'), class: "block mb-2 text-base md:text-lg text-nowrap font-medium text-primary" %>
                   <%= q_form.text_field :answer_source, class: "bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5" %>
                 </div>
-                <div class="flex items-center bg-white rounded p-6 gap-8">
-                  <%= q_form.label :question_image, t('.questions_image'), class: "block text-lg text-nowrap font-medium text-primary" %>
-                  <%= q_form.file_field :question_image, class: "file-input file-input-bordered file-input-primary file-input-sm w-full" %>
+                <div class="flex flex-col md:flex-row justify-start items-start md:items-center bg-white rounded p-2 md:p-6 gap-2 md:gap-8">
+                  <%= q_form.label :question_image, t('.questions_image'), class: "block text-base md:text-lg text-nowrap font-medium text-primary" %>
+                  <%= q_form.file_field :question_image, class: "file-input file-input-bordered file-input-primary file-input-xs md:file-input-sm w-full" %>
                 </div>
-                <div class="flex items-center bg-white rounded p-6 gap-8 mb-8">
-                  <%= q_form.label :question_image, t('.explanation_image'), class: "block text-lg text-nowrap font-medium text-primary" %>
-                  <%= q_form.file_field :explanation_image, class: "file-input file-input-bordered file-input-primary file-input-sm w-full" %>
+                <div class="flex flex-col md:flex-row justify-start items-start md:items-center bg-white rounded p-2 md:p-6 gap-2 md:gap-8 mb-8">
+                  <%= q_form.label :question_image, t('.explanation_image'), class: "block text-base md:text-lg text-nowrap font-medium text-primary" %>
+                  <%= q_form.file_field :explanation_image, class: "file-input file-input-bordered file-input-primary file-input-xs md:file-input-sm w-full" %>
                 </div>
               </div>
             </div>
           <% end %>
-          <!-- フォーム送信ボタン -->
-          <div class="flex justify-center mt-6">
-            <%= form.submit t('.submit'), class: "text-white bg-accent hover:opacity-70 font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center" %>
-          </div>
+        </div>
+        <!-- フォーム送信ボタン -->
+        <div class="flex justify-center mt-6">
+          <%= form.submit t('.submit'), class: "text-white bg-accent hover:opacity-70 font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center" %>
         </div>
       </div>
     </div>

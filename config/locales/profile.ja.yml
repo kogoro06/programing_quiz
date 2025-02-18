@@ -9,6 +9,12 @@ ja:
         github_link: "GitHubリンク"
         update: "更新する"
         destroy: "退会する"
+
+  profiles:
+    show:
+      title: "マイページ"
+    edit:
+      title: "アカウント情報の更新"
   activemodel:
     errors:
       models:

@@ -2,7 +2,7 @@ class TagsController < ApplicationController
   before_action :set_tag, only: [ :show ]
 
   def index
-    @tags = Tag.all
+    set_tags
   end
 
   def show
@@ -12,11 +12,16 @@ class TagsController < ApplicationController
                    .page(params[:page])
                    .per(6)
     @newest_quizzes = Quiz.includes(:tags).order(created_at: :desc).first(6)
+    set_tags
   end
 
   private
 
   def set_tag
     @tag = Tag.find(params[:id])
+  end
+
+  def set_tags
+    @tags = Tag.all
   end
 end
