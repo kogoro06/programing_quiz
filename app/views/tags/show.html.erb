@@ -28,7 +28,7 @@
           <% end %>
         </div>
       <% else %>
-        <div class="flex flex-wrap justify-start gap-6">
+        <div class="flex flex-wrap justify-center gap-6">
           <% @quizzes.each do |quiz| %>
             <%= render partial: "quizzes/lg_card", locals: { quiz: quiz } %>
           <% end %>
