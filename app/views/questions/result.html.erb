@@ -74,10 +74,12 @@
           <p class="text-sm">
             <%= @question.explanation %>
           </p>
-          <h2 class="mt-12 text-accent">クイズ作成時の参考資料（URL）</h2>
-          <p class="text-sm link">
-            <%= link_to @question.answer_source.truncate(50), @question.answer_source %>
-          </p>
+          <% if @question.answer_source.present? %>
+            <h2 class="mt-12 text-accent">クイズ作成時の参考資料（URL）</h2>
+            <p class="text-sm link">
+              <%= link_to @question.answer_source.truncate(50), @question.answer_source, target: :_blank, rel: "noopener noreferrer" %>
+            </p>
+          <% end %>
           <div>
             <% if @question.question_image.attached? %>
               <h2 class="mt-12 text-accent">問題画像</h2>
