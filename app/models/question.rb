@@ -6,6 +6,8 @@ class Question < ApplicationRecord
   accepts_nested_attributes_for :choices, allow_destroy: true
   has_many :past_answers, dependent: :destroy
 
+  has_rich_text :question
+
   # 入力があればバリデーションを実行
   validates :question, presence: true, if: :required_question?
   validate :validate_correct_answer_and_choices
