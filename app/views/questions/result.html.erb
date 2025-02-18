@@ -132,7 +132,7 @@
             <% end %>
           </div>
           <div class="flex justify-center items-center mt-4 space-x-4">
-            <% twitter_share_url = "https://twitter.com/share?url=#{CGI.escape(quiz_post_url(@quiz))}" %>
+            <% twitter_share_url = "https://twitter.com/share?url=#{CGI.escape(quiz_post_url(@quiz))}&text=#{@quiz.title}の問題を解きました!%0A%0A&hashtags=ProgramingQuestion" %>
             <%= link_to twitter_share_url, target: "_blank", data: { toggle: "tooltip", placement: "bottom" }, title: "Xでシェア" do %>
               <button class="bg-secondary hover:opacity-70 rounded-lg text-lg px-5 py-2.5 flex items-center justify-center gap-2 w-64">
                 <i class="fa-brands fa-x-twitter"></i>に共有する
