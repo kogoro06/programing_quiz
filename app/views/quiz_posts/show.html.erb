@@ -11,13 +11,12 @@
       <div class="flex justify-between items-center">
         <h1 class="text-lg md:text-3xl text-accent"><%= @quiz.title %></h1>
         <div class="flex text-primary">
-        <!--(本リリース)クイズ編集ページ
-          <button>
-            <span class="material-icons md-36">
-              edit
-            </span>
-          </button>
-        -->
+          <% if @quiz.author_user_id == current_user.id || current_user.admin? %>
+            <!-- クイズ編集ボタン -->
+            <%= link_to edit_quiz_post_path(@quiz), class: "text-primary" do %>
+              <span class="material-icons md-36">edit</span>
+            <% end %>
+          <% end %>
           <div class="flex text-primary space-x-4">
             <% if @quiz.author_user_id == current_user.id || current_user.admin? %>
               <%= button_to @quiz,
@@ -81,7 +80,7 @@
         <div class="mt-8 md:mt-0">
           <!-- 設定したメタタグをリダイレクトされる前に呼び出す -->
           <% prepare_meta_tags @quiz %> 
-          <% twitter_share_url = "https://twitter.com/share?url= #{CGI.escape(quiz_post_url(@quiz))}" %>
+          <% twitter_share_url = "https://twitter.com/intent/tweet?url=#{CGI.escape(quiz_post_url(@quiz))}&text=#{@quiz.title}の問題を作成しました!%0A%0A&hashtags=ProgramingQuestion" %>
           <%= link_to twitter_share_url, target: "_blank", data: { toggle: "tooltip", placement: "bottom" }, title: "Xでシェア" do %>
             <button class="bg-secondary hover:opacity-70 px-4 py-1 rounded-lg shadow">
               <i class="fa-brands fa-x-twitter"></i>に共有する

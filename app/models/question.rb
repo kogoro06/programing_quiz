@@ -6,9 +6,17 @@ class Question < ApplicationRecord
   accepts_nested_attributes_for :choices, allow_destroy: true
   has_many :past_answers, dependent: :destroy
 
+  has_rich_text :question
+
   # 入力があればバリデーションを実行
   validates :question, presence: true, if: :required_question?
   validate :validate_correct_answer_and_choices
+  # 必要な場合に `question` を必須にする
+  validates :question, presence: true, if: :question_needed?
+
+  # `question` がある場合は `correct_answer` と `choices` も必須にする
+  validates :correct_answer, presence: true, if: -> { question.present? }
+  validates :choices, presence: true, if: -> { question.present? }
 
 
 
@@ -29,5 +37,10 @@ class Question < ApplicationRecord
         errors.add(:choices, "をすべて入力してください")
       end
     end
+  end
+
+  def question_needed?
+    # `correct_answer` や `choices` のいずれかが入力されている場合は `question` を必須にする
+    correct_answer.present? || choices.any? { |c| c.choice1.present? || c.choice2.present? || c.choice3.present? || c.choice4.present? }
   end
 end

@@ -1,6 +1,6 @@
 <div class="bg-white min-h-screen overflow-auto">
   <div class="flex flex-col justify-center items-center mt-8 mb-8 mx-4 md:mx-24 lg:mx-72">
-    <h1 class="text-3xl md:text-3xl lg:text-4xl font-bold text-accent text-center">
+    <h1 class="font-bold text-accent text-center">
       <% content_for(:title, "クイズの解説: #{@quiz.title}") %>
     </h1>
   </div>
@@ -8,7 +8,7 @@
 <div class="bg-secondary m-12 rounded-lg p-6 max-w-3xl mx-auto">
     <div class="bg-base-100 p-8 rounded-lg max-w-3xl mx-auto">
       <div class="flex items-center">
-        <h1 class="text-3xl text-accent mr-4"><%= @quiz.title %></h1>
+        <h1 class="text-xl md:text-3xl text-accent mr-4"><%= @quiz.title %></h1>
       </div>
       <div class="flex gap-2 mt-2">
         <% @quiz.tags.each do |tag| %>
@@ -33,8 +33,8 @@
         <%= @question.question %>
       </p>
       <% @choices.each_with_index do |choice, index| %>
-        <div class="mt-12 flex gap-2 justify-center max-w-2xl mx-auto">
-          <button class="flex-1 bg-secondary text-sm font-bold text-center mt-2 py-2 px-4 w-[49%]">
+        <div class="mt-12 md:flex flex-wrap gap-2 justify-center max-w-2xl mx-auto">
+          <button class="w-full flex-1 bg-secondary text-sm font-bold text-center mt-2 py-2 px-4 md:w-[49%]">
             <% if 1==@question.correct_answer %>
               <i class="fa-regular fa-circle text-md text-red-500"></i>
               <% else %>
@@ -42,7 +42,7 @@
                 <% end %>
                   <%= choice.choice1 %>
           </button>
-          <button class="flex-1 bg-secondary text-sm font-bold text-center mt-2 py-2 px-4 w-[49%]">
+          <button class="w-full flex-1 bg-secondary text-sm font-bold text-center mt-2 py-2 px-4 md:w-[49%]">
             <% if 2==@question.correct_answer %>
               <i class="fa-regular fa-circle text-md text-red-500"></i>
               <% else %>
@@ -51,8 +51,8 @@
                   <%= choice.choice2 %>
           </button>
         </div>
-        <div class="mt-2 flex gap-2 justify-center max-w-2xl mx-auto">
-          <button class="flex-1 bg-secondary text-sm font-bold text-center mt-2 py-2 px-4 w-[49%]">
+        <div class="md:mt-2 md:flex flex-wrap gap-2 justify-center max-w-2xl mx-auto">
+          <button class="w-full flex-1 bg-secondary text-sm font-bold text-center mt-2 py-2 px-4 md:w-[49%]">
             <% if 3==@question.correct_answer %>
               <i class="fa-regular fa-circle text-md text-red-500"></i>
               <% else %>
@@ -60,7 +60,7 @@
                 <% end %>
                   <%= choice.choice3 %>
           </button>
-          <button class="flex-1 bg-secondary text-sm font-bold text-center mt-2 py-2 px-4 w-[49%]">
+          <button class="w-full flex-1 bg-secondary text-sm font-bold text-center mt-2 py-2 px-4 md:w-[49%]">
             <% if 4==@question.correct_answer %>
               <i class="fa-regular fa-circle text-md text-red-500"></i>
               <% else %>
@@ -74,10 +74,12 @@
           <p class="text-sm">
             <%= @question.explanation %>
           </p>
-          <h2 class="mt-12 text-accent">クイズ作成時の参考資料（URL）</h2>
-          <p class="text-sm link">
-            <%= link_to @question.answer_source.truncate(50), @question.answer_source %>
-          </p>
+          <% if @question.answer_source.present? %>
+            <h2 class="mt-12 text-accent">クイズ作成時の参考資料（URL）</h2>
+            <p class="text-sm link">
+              <%= link_to @question.answer_source.truncate(50), @question.answer_source, target: :_blank, rel: "noopener noreferrer" %>
+            </p>
+          <% end %>
           <div>
             <% if @question.question_image.attached? %>
               <h2 class="mt-12 text-accent">問題画像</h2>
@@ -132,7 +134,7 @@
             <% end %>
           </div>
           <div class="flex justify-center items-center mt-4 space-x-4">
-            <% twitter_share_url = "https://twitter.com/share?url=#{CGI.escape(quiz_post_url(@quiz))}" %>
+            <% twitter_share_url = "https://twitter.com/share?url=#{CGI.escape(quiz_post_url(@quiz))}&text=#{@quiz.title}の問題を解きました!%0A%0A&hashtags=ProgramingQuestion" %>
             <%= link_to twitter_share_url, target: "_blank", data: { toggle: "tooltip", placement: "bottom" }, title: "Xでシェア" do %>
               <button class="bg-secondary hover:opacity-70 rounded-lg text-lg px-5 py-2.5 flex items-center justify-center gap-2 w-64">
                 <i class="fa-brands fa-x-twitter"></i>に共有する
