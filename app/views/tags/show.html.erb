@@ -10,20 +10,30 @@
       <!-- プルダウンメニュー -->
       <select id="tag-select" 
         class="select w-xs md:w-sm h-12 rounded-lg text-xl md:text-3xl font-bold text-nowrap text-white text-center">
-        <option value="/tags/1" data-color="bg-html">HTML</option>
-        <option value="/tags/2" data-color="bg-css">CSS</option>
-        <option value="/tags/3" data-color="bg-js">JavaScript</option>
-        <option value="/tags/4" data-color="bg-ruby">Ruby on Rails</option>
-        <option value="/tags/5" data-color="bg-git">Git</option>
-        <option value="/tags/6" data-color="bg-error">エラー</option>
+        <% @tags.each do |tag| %>
+          <option value="/tags/<%= tag.id %>" data-color="<%= tag.data_color %>">
+            <%= tag.name %>
+          </option>
+        <% end %>
       </select>
     </div>
     <div id="quiz_content" class="bg-secondary rounded-lg p-6 m-6 md:m-10">
-      <div class="flex flex-wrap justify-start gap-6">
-        <% @quizzes.each do |quiz| %>
-          <%= render partial: "quizzes/lg_card", locals: { quiz: quiz } %>
-        <% end %>
-      </div>
+      <% if @quizzes.blank? %>
+        <div class="flex items-center justify-center">
+          <div class="text-center text-2xl font-bold text-accent">
+            クイズがありません。
+          </div>
+          <%= link_to new_quiz_post_path, class: "btn btn-primary" do %>
+            クイズを作成する
+          <% end %>
+        </div>
+      <% else %>
+        <div class="flex flex-wrap justify-start gap-6">
+          <% @quizzes.each do |quiz| %>
+            <%= render partial: "quizzes/lg_card", locals: { quiz: quiz } %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
     <!-- ページネーション -->
     <div class="flex justify-center gap-2">

@@ -9,6 +9,9 @@ class Tag < ApplicationRecord
     when 4 then "bg-ruby"
     when 5 then "bg-git"
     when 6 then "bg-error"
+    when 7 then "bg-react"
+    when 8 then "bg-java"
+    when 9 then "bg-laravel"
     end
   end
 end
