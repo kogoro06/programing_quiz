@@ -141,11 +141,20 @@ GEM
       logger
     faraday-net_http (3.4.0)
       net-http (>= 0.5.0)
+    ffi (1.17.1-aarch64-linux-gnu)
+    ffi (1.17.1-arm-linux-gnu)
+    ffi (1.17.1-arm64-darwin)
+    ffi (1.17.1-x86-linux-gnu)
+    ffi (1.17.1-x86_64-darwin)
+    ffi (1.17.1-x86_64-linux-gnu)
     globalid (1.2.1)
       activesupport (>= 6.1)
     hashie (5.0.0)
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
+    image_processing (1.14.0)
+      mini_magick (>= 4.9.5, < 6)
+      ruby-vips (>= 2.0.17, < 3)
     io-console (0.7.2)
     irb (1.14.1)
       rdoc (>= 4.0.0)
@@ -336,6 +345,9 @@ GEM
       rubocop-performance
       rubocop-rails
     ruby-progressbar (1.13.0)
+    ruby-vips (2.2.3)
+      ffi (~> 1.12)
+      logger
     rubyzip (2.3.2)
     securerandom (0.3.2)
     selenium-webdriver (4.27.0)
@@ -404,6 +416,7 @@ DEPENDENCIES
   devise-i18n
   devise-i18n-views
   dotenv-rails
+  image_processing (~> 1.2)
   jbuilder
   jsbundling-rails
   kaminari
