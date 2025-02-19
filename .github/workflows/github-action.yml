@@ -5,7 +5,7 @@ on:
   push:
 
 jobs:
-  Run rspec and rubocop:
+  Run-rspec-and-rubocop:
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
