@@ -22,7 +22,9 @@ export default class extends Controller {
       });
   }
 
-  updateResults(data) {
+  updateResults(response) {
+    const data = response.data || [];
+    
     if (!data.length) {
       this.hideResults();
       return;
@@ -32,8 +34,10 @@ export default class extends Controller {
       <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer" 
           data-action="click->autocomplete#select"
           data-id="${item.id}" 
-          data-title="${item.title}">
-        ${item.title}
+          data-title="${item.attributes.title}">
+        <div class="flex flex-col">
+          <span class="font-medium">${item.attributes.title}</span>
+        </div>
       </li>
     `).join('');
 
@@ -41,7 +45,7 @@ export default class extends Controller {
   }
 
   select(event) {
-    const title = event.target.dataset.title;
+    const title = event.target.closest('li').dataset.title;
     this.inputTarget.value = title;
     this.hideResults();
   }
