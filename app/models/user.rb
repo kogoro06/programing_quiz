@@ -15,7 +15,7 @@ class User < ApplicationRecord
   validates :uid, uniqueness: { scope: :provider }, allow_nil: true
 
   def self.ransackable_attributes(auth_object = nil)
-    ["name"]
+    [ "name" ]
   end
 
   # OAuthログイン用メソッド

@@ -19,10 +19,10 @@ class Quiz < ApplicationRecord
   end
 
   def self.ransackable_associations(auth_object = nil)
-    ["questions", "tags", "user"]
+    [ "questions", "tags", "user" ]
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["author_user_id", "created_at", "id", "id_value", "questions_count", "title", "updated_at"]
+    [ "author_user_id", "created_at", "id", "id_value", "questions_count", "title", "updated_at" ]
   end
 end
