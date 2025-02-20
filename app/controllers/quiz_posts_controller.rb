@@ -107,9 +107,14 @@ class QuizPostsController < ApplicationController
 
   def autocomplete
     query = params[:q]
+    require "moji"
+
+    # 入力をひらがなに変換
+    hiragana_query = query.tr("ァ-ン", "ぁ-ん")
+
     @quizzes = Quiz.eager_load(:user)
-                   .where("quizzes.title ILIKE ? OR users.name ILIKE ? OR quizzes.name_hiragana LIKE ?",
-                         "%#{query}%", "%#{query}%", "%#{query}%")
+                   .where("quizzes.title ILIKE ? OR users.name ILIKE ? OR quizzes.name_hiragana ILIKE ?",
+                         "%#{query}%", "%#{query}%", "%#{hiragana_query}%")
                    .limit(10)
 
     render json: QuizSerializer.new(@quizzes)
