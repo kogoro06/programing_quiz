@@ -2,7 +2,7 @@ class QuizPostsController < ApplicationController
   # 設定したprepare_meta_tagsをprivateにあってもpostコントローラー以外にも使えるようにする
   helper_method :prepare_meta_tags
   before_action :authenticate_user!
-  skip_before_action :authenticate_user!, only: [ :index, :search ,:autocomplete]
+  skip_before_action :authenticate_user!, only: [ :index, :search, :autocomplete ]
 
   def index
     @quizzes = Quiz.eager_load(:user, :tags).all
@@ -108,10 +108,10 @@ class QuizPostsController < ApplicationController
   def autocomplete
     query = params[:q]
     @quizzes = Quiz.eager_load(:user)
-                   .where("quizzes.title ILIKE ? OR users.name ILIKE ? OR quizzes.name_hiragana LIKE ?", 
+                   .where("quizzes.title ILIKE ? OR users.name ILIKE ? OR quizzes.name_hiragana LIKE ?",
                          "%#{query}%", "%#{query}%", "%#{query}%")
                    .limit(10)
-    
+
     render json: QuizSerializer.new(@quizzes)
   end
 
