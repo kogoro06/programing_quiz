@@ -108,16 +108,11 @@ class QuizPostsController < ApplicationController
   def autocomplete
     query = params[:q]
     @quizzes = Quiz.eager_load(:user)
-                   .where("quizzes.title ILIKE ? OR users.name ILIKE ?", "%#{query}%", "%#{query}%")
+                   .where("quizzes.title ILIKE ? OR users.name ILIKE ? OR quizzes.name_hiragana LIKE ?", 
+                         "%#{query}%", "%#{query}%", "%#{query}%")
                    .limit(10)
     
-    render json: @quizzes.map { |quiz| 
-      {
-        id: quiz.id,
-        title: quiz.title,
-        author: quiz.user&.name
-      }
-    }
+    render json: QuizSerializer.new(@quizzes)
   end
 
   private
