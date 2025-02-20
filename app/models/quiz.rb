@@ -17,4 +17,12 @@ class Quiz < ApplicationRecord
       errors.add(:questions, "は1問から登録できます")
     end
   end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["questions", "tags", "user"]
+  end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["author_user_id", "created_at", "id", "id_value", "questions_count", "title", "updated_at"]
+  end
 end

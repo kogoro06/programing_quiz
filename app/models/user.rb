@@ -14,6 +14,10 @@ class User < ApplicationRecord
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }, uniqueness: true
   validates :uid, uniqueness: { scope: :provider }, allow_nil: true
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["name"]
+  end
+
   # OAuthログイン用メソッド
   def self.from_omniauth(auth)
     user = where(email: auth.info.email).first_or_initialize
