@@ -28,7 +28,7 @@ class Quiz < ApplicationRecord
     normalized = title.tr("Ａ-Ｚａ-ｚ０-９", "A-Za-z0-9")  # 全角英数を半角に
                      .tr("！-～", "!-~")                    # 全角記号を半角に
                      .tr("。、", "｡､")                      # 句読点を半角に
-    
+
     # カタカナをひらがなに変換（濁点などの正規化も含む）
     self.name_hiragana = normalized.tr("ァ-ン", "ぁ-ん")
                                  .tr("ｧ-ﾝ", "ぁ-ん")       # 半角カタカナ対応
