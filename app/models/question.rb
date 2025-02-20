@@ -18,7 +18,9 @@ class Question < ApplicationRecord
   validates :correct_answer, presence: true, if: -> { question.present? }
   validates :choices, presence: true, if: -> { question.present? }
 
-
+  def self.ransackable_attributes(auth_object = nil)
+    [ "explanation" ]
+  end
 
   def required_question?
     quiz&.questions&.first == self
