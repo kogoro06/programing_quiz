@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       get :bookmarks
       post :create
       get "search"
+      get "autocomplete"
     end
   end
 
