@@ -3,9 +3,9 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
   before_action :set_user
   before_action :set_profile
+  before_action :set_search
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-
 
 
 
@@ -22,6 +22,10 @@ class ApplicationController < ActionController::Base
 
   def set_profile
     @profile = current_user&.profile if user_signed_in?
+  end
+
+  def set_search
+    @q = Quiz.ransack(params[:q])
   end
 
   protected
