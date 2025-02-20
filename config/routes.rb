@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     collection do
       get :bookmarks
       post :create
+      get 'search'
     end
   end
 
