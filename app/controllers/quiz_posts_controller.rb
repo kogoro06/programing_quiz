@@ -2,13 +2,11 @@ class QuizPostsController < ApplicationController
   # 設定したprepare_meta_tagsをprivateにあってもpostコントローラー以外にも使えるようにする
   helper_method :prepare_meta_tags
   before_action :authenticate_user!
-  skip_before_action :authenticate_user!, only: [ :index ]
+  skip_before_action :authenticate_user!, only: [ :index, :search ]
 
   def index
     @quizzes = Quiz.eager_load(:user, :tags).all
-    @tags = Tag.all
-    @newest_quizzes = Quiz.includes(:tags).order(created_at: :desc).first(6)
-    @current_user = current_user
+    set_common_variables
   end
 
   def show
@@ -101,8 +99,19 @@ class QuizPostsController < ApplicationController
     end
   end
 
+  def search
+    @quizzes = @q.result(distinct: true).eager_load(:user, :tags)
+    set_common_variables
+    render :index
+  end
 
   private
+
+  def set_common_variables
+    @tags = Tag.all
+    @newest_quizzes = Quiz.includes(:tags).order(created_at: :desc).first(6)
+    @current_user = current_user
+  end
 
   # show画面の内容がシェアできれば良いので、設定をコントローラーで行う。
   def prepare_meta_tags(quiz)

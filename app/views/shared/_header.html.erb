@@ -2,10 +2,9 @@
   <div class="md:ml-5 mx-auto flex justify-between items-center p-4">
     <div class="flex items-center space-x-2 md:space-x-4">
       <%= image_tag 'logo.png', class: 'w-8 h-8 md:w-10 md:h-10' %>
-        <%= link_to 'Programming Question', '/', class: 'text-primary font-bold text-sm md:text-lg font-frankfurter mr-10 text-nowrap' %>
-          <!--（本リリース）検索機能
-          <form class="flex items-center">
-            <label for="simple-search" class="sr-only">Search</label>
+        <%= link_to 'Programming Question', '/', class: 'text-primary font-bold text-xs md:text-lg font-frankfurter mr-10 text-nowrap' %>
+          <%= search_form_for @q, url: search_quiz_posts_path, class: "flex items-center" do |f| %>
+            <label for="q_title_or_user_name_or_questions_explanation_cont" class="sr-only">Search</label>
             <div class="flex items-center gap-4">
               <div class="relative w-full">
                 <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -13,16 +12,14 @@
                     search
                   </span>
                 </div>
-                <input type="text" id="simple-search"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full ps-10 p-2.5"
-                  placeholder="検索" required />
+                <%= f.search_field :title_or_user_name_or_questions_explanation_cont,
+                    id: "q_title_or_user_name_or_questions_explanation_cont",
+                    class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full ps-10 p-2.5",
+                    placeholder: "検索内容を入力してください" %>
               </div>
-              <button type="submit" class="btn btn-primary btn-sm hover:opacity-70">
-                検索
-              </button>
+              <%= f.submit "検索", class: "btn btn-primary btn-sm hover:opacity-70" %>
             </div>
-          </form>
-          -->
+          <% end %>
     </div>
     
     <% if user_signed_in? %>
@@ -30,9 +27,9 @@
         <%= link_to user_profile_path(current_user.id) do %>
           <div class="text-center">
             <% if current_user.profile.present? && current_user.profile.user_icon.attached? %>
-              <%= image_tag current_user.profile.user_icon, class: 'w-10 h-10 rounded-full object-cover border border-primary border-300' %>
+              <%= image_tag current_user.profile.user_icon, class: 'w-10 h-10 rounded-full object-cover border border-primary border-300 ml-1' %>
             <% else %>
-              <%= image_tag 'profile_sample.png', class: 'w-10 h-10 rounded-full object-cover border border-primary border-300' %>
+              <%= image_tag 'profile_sample.png', class: 'w-10 h-10 rounded-full object-cover border border-primary border-300 ml-1' %>
             <% end %>
           </div>
         <% end %>
