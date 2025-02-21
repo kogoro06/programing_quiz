@@ -1,72 +1,71 @@
+<% content_for(:title, t('.title')) %>
 <div class="bg-white min-h-screen overflow-auto">
-  <div class="flex flex-col justify-center items-center mt-8 mb-8 mx-4 md:mx-24 lg:mx-72">
-    <h1 class="text-3xl md:text-3xl lg:text-4xl font-bold text-accent text-center">
-      <% content_for(:title, 'マイページ') %>
+
+  <div class="flex justify-center items-center mt-12 mb-8 mx-4 md:mx-24 lg:mx-72">
+    <h1 class="text-xl md:text-3xl lg:text-4xl font-bold text-accent text-center">
+      <%= t('.title') %>
     </h1>
   </div>
 
-  <div class="flex flex-col justify-center items-center mt-6 mb-6 mx-72">
-    <h1 class="text-3xl font-bold text-accent text-center"><%= t('.title') %></h1>
-  </div>
-
-
-<div class="bg-gray-50 h-max m-5 p-10 flex flex-col ">
-    <div class="flex flex-col justify-center items-center">
-        <div class="bg-white w-[300px] p-5">
-            <div class="flex space-x-5">
-                <div class="text-center">
-                    <% if @profile.user_icon.attached? %>
-                        <%= image_tag @profile.user_icon, class: 'w-14 h-14 rounded-full object-cover border border-primary border-300' %>
-                    <% else %>
-                        <%= image_tag 'profile_sample.png', class: 'w-14 h-14 rounded-full object-cover border border-primary border-300' %>
-                    <% end %>
-                </div>
-                <div class="text-accent font-bold">
-                    <p class="text-2xl"><%= @user.name %></p>
-                    <!-- （本リリース）フォロー一覧、フォロワー一覧画面への遷移を実装
-                    <div class="flex text-sm space-x-3">
-                        <p>フォロー</p>
-                        <p>フォロワー</p>
-                    </div>
-                    -->
-                </div>
-            </div>
-
-            <div class="flex items-center justify-center text-[25px] space-x-8 my-5">
-                <%= link_to url_for(@profile[:x_link]), target: "_blank", rel: "noopener noreferrer", class: "fa-brands fa-x-twitter #{'opacity-30 pointer-events-none' if @profile[:x_link].blank?}" do %>
-                <% end %>
-
-                <%= link_to url_for(@profile[:github_link]), target: "_blank", rel: "noopener noreferrer", class: "fa-brands fa-github #{'opacity-30 pointer-events-none' if @profile[:github_link].blank?}" do %>
+  <div class="bg-white">
+    <div class="bg-secondary rounded-lg p-6 m-6 md:m-10">
+      <div class="flex flex-col justify-center items-center">
+        <div class="bg-white w-[300px] p-5 md:mt-4">
+          <div class="flex space-x-5">
+            <div class="text-center">
+                <% if @profile.user_icon.attached? %>
+                    <%= image_tag @profile.user_icon, class: 'w-14 h-14 rounded-full object-cover border border-primary border-300' %>
+                <% else %>
+                    <%= image_tag 'profile_sample.png', class: 'w-14 h-14 rounded-full object-cover border border-primary border-300' %>
                 <% end %>
             </div>
-
-            <div class="bg-gray-50 text-sm mb-5 p-5 text-primary">
-                <p><%= @profile.bio %></p>
-                <!--(本リリース)勉強している言語-分かりやすい文面を付け加える
-                <p class="mt-5"><%= @profile[:studying_languages] %></p>
-                -->
+            <div class="text-accent font-bold">
+              <p class="text-xl md:text-2xl"><%= @user.name %></p>
+              <!-- （本リリース）フォロー一覧、フォロワー一覧画面への遷移を実装
+              <div class="flex text-sm space-x-3">
+                  <p>フォロー</p>
+                  <p>フォロワー</p>
+              </div>
+              -->
             </div>
+          </div>
 
-            <% if @user == current_user %>
-                <div class="bg-gray-50 text-sm flex justify-center p-2 mb-3 text-primary">
-                    <span class="material-icons">edit</span>
-                    <%= link_to("編集", edit_user_profile_path)%>
-                </div>
+          <div class="flex items-center justify-center text-[25px] space-x-8 my-5">
+            <%= link_to url_for(@profile[:x_link]), target: "_blank", rel: "noopener noreferrer", class: "fa-brands fa-x-twitter #{'opacity-30 pointer-events-none' if @profile[:x_link].blank?}" do %>
             <% end %>
 
-            <!--# TODO: （本リリース）バッジ画面への遷移を実装
-            <div class="bg-gray-50 text-sm flex justify-center p-2 text-primary">
-                <span class="material-icons">
-                    workspace_premium
-                </span>
-                <p>バッジ</p>
-            </div>
-            -->
-        </div>
-    </div>
+            <%= link_to url_for(@profile[:github_link]), target: "_blank", rel: "noopener noreferrer", class: "fa-brands fa-github #{'opacity-30 pointer-events-none' if @profile[:github_link].blank?}" do %>
+            <% end %>
+          </div>
 
-    <!-- ユーザーが投稿した一覧を表示する部分 -->
-    <div class="inline-flex flex-col items-center" id="paginate">
-        <%= render 'my_quizzes', quizzes: @quizzes %>
+          <div class="bg-gray-50 text-sm mb-5 p-5 text-primary">
+            <p><%= @profile.bio %></p>
+            <!--(本リリース)勉強している言語-分かりやすい文面を付け加える
+            <p class="mt-5"><%= @profile[:studying_languages] %></p>
+            -->
+          </div>
+
+          <% if @user == current_user %>
+            <div class="bg-gray-50 text-sm flex justify-center p-2 mb-3 text-primary">
+                <span class="material-icons">edit</span>
+                <%= link_to("編集", edit_user_profile_path)%>
+            </div>
+          <% end %>
+
+          <!--# TODO: （本リリース）バッジ画面への遷移を実装
+          <div class="bg-gray-50 text-sm flex justify-center p-2 text-primary">
+            <span class="material-icons">
+                workspace_premium
+            </span>
+            <p>バッジ</p>
+          </div>
+          -->
+        </div>
+        <!-- ユーザーが投稿した一覧を表示する部分 -->
+        <div class="inline-flex flex-col items-center md:w-[1200px] mt-6" id="paginate">
+          <%= render 'my_quizzes', quizzes: @quizzes %>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

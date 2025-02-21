@@ -49,6 +49,13 @@ gem "meta-tags", require: "meta_tags"
 
 gem "aws-sdk-s3"
 
+gem "ransack"
+
+gem "fast_jsonapi"  # JSONシリアライザー
+gem "rubyfuri"      # 読み仮名変換
+# 日本語処理用のgem
+gem "moji"          # 文字種変換
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
