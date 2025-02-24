@@ -69,7 +69,9 @@
                     <%= q_form.label :question, t('.question'), class: "block mb-2 text-base md:text-lg text-nowrap font-medium text-primary" %>
                     <span class="text-accent ml-1">*</span>
                   </div>
-                  <%= q_form.rich_text_area :question, class: "bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5 h-20" %>
+                  <div>
+                    <%= q_form.rich_text_area :question, class: "bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5" %>
+                  </div>
                 </div>
                 <div class="bg-white rounded">
                   <div class="flex flex-col md:flex-row justify-between md:space-x-4 p-2 md:p-6 w-full">
