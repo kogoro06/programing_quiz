@@ -8,7 +8,7 @@ class ProfilesController < ApplicationController
     if @profile.nil? || @profile.new_record?
       redirect_to edit_user_profile_path(@user), alert: "プロフィールを編集してください。"
     else
-      @quizzes = Quiz.eager_load(:user).where(author_user_id: @user.id).page(params[:page]).per(6)
+      @quizzes = Quiz.eager_load(:user).where(author_user_id: @user.id).page(params[:page]).per(4)
     end
   end
 

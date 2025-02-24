@@ -1,11 +1,11 @@
-<div class="flex flex-wrap gap-3 items-center justify-center lg:md:justify-between max-w-[1200px]">
+<div class="flex flex-wrap gap-3 items-center justify-center lg:md:justify-between w-full">
   <% if @quizzes.any? %>
     <div class="w-full">
-      <div class="bg-primary w-fit p-3 text-white text-xl my-5">
+      <div class="bg-primary w-fit p-3 text-white text-base md:text-xl my-2 md:my-5">
         <%= @user.name %>が投稿したクイズ一覧
       </div>
     </div>
-    <div class="grid grid-cols-2 gap-4 w-full">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 w-full">
       <% @quizzes.each do |quiz| %>
         <%= render partial: "quizzes/lg_card", locals: { quiz: quiz } %>
       <% end %>

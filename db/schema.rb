@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_02_15_021423) do
+ActiveRecord::Schema[7.2].define(version: 2025_02_20_104037) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -120,7 +120,9 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_15_021423) do
     t.datetime "updated_at", null: false
     t.string "title"
     t.integer "questions_count", default: 0, null: false
+    t.string "name_hiragana"
     t.index ["author_user_id"], name: "index_quizzes_on_author_user_id"
+    t.index ["name_hiragana"], name: "index_quizzes_on_name_hiragana"
   end
 
   create_table "reviews", force: :cascade do |t|

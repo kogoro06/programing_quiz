@@ -1,13 +1,11 @@
+<% content_for(:title, t('.title')) %>
 <div class="bg-white min-h-screen overflow-auto">
-  <div class="flex flex-col justify-center items-center mt-8 mb-8 mx-4 md:mx-24 lg:mx-72">
-    <h1 class="text-3xl md:text-3xl lg:text-4xl font-bold text-accent text-center">
-      <% content_for(:title, 'ユーザーログイン') %>
+
+  <div class="flex justify-center items-center mt-12 mb-8 mx-4 md:mx-24 lg:mx-72">
+    <h1 class="text-xl md:text-3xl lg:text-4xl font-bold text-accent text-center">
+      <%= t('.title') %>
     </h1>
   </div>
-
-  <div class="flex flex-col justify-center items-center mt-6 mb-6 mx-72">
-  　<h1 class="text-3xl font-bold text-accent text-center"><%= t('.title') %></h1>
-　</div>
 
   <div class="flex bg-secondary rounded justify-center mx-4 md:mx-12 lg:mx-48 mb-8 md:mb-12">
     <div class="flex flex-col w-full mt-6 mb-6 mx-4 md:mx-12 lg:mx-24 space-y-6">
