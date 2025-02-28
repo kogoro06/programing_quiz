@@ -59,10 +59,10 @@
             </div>
           </div>
           <div class="divider"></div>
-          <%= form.fields_for :questions, @current_question do |q_form| %>         
+          <%= form.fields_for :questions, @current_question do |q_form| %>
             <div class="collapse collapse-arrow bg-white">
               <input type="checkbox" />
-              <div class="collapse-title text-base md:text-lg font-medium text-primary"><%= t('.accordion_title') %></div>
+              <div class="collapse-title text-base md:text-lg font-medium text-primary"><%= t(".accordion_title", index: q_form.index + 1) %></div>
               <div class="collapse-content">
                 <div class="flex flex-col bg-white rounded p-2 md:p-6">
                   <div class="flex items-start">
