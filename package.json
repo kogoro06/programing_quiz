@@ -16,7 +16,9 @@
     "@rails/actiontext": "^8.0.100",
     "autoprefixer": "^10.4.20",
     "daisyui": "^4.12.14",
+    "jquery": "^3.7.1",
     "postcss": "^8.4.49",
+    "selectize": "^0.12.6",
     "tailwindcss": "^3.4.15",
     "trix": "^2.1.12"
   }
