@@ -1,0 +1,69 @@
+name: Run rspec, rubocop
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  Run-rspec-and-rubocop:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+        ports:
+          - 5432:5432
+        options: --health-cmd="pg_isready" --health-interval=10s --health-timeout=5s --health-retries=3
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.0
+          bundler-cache: true
+
+      - name: Cache Ruby gems
+        uses: actions/cache@v3
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
+      - name: Cache Yarn modules
+        uses: actions/cache@v3
+        with:
+          path: frontend/node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update -qq
+          gem install bundler
+          bundle install
+
+      - name: Scan for common Rails security vulnerabilities using static analysis
+        run: bundle exec brakeman --no-pager
+
+      - name: Yarn install
+        run: yarn install --check-files
+
+      - name: Database create and migrate
+        run: |
+          cp config/database.yml.ci config/database.yml
+          bundle exec bin/rails db:create RAILS_ENV=test
+          bundle exec bin/rails db:migrate RAILS_ENV=test
+
+      - name: Run rspec
+        run: bundle exec rspec
+
+      - name: Run rubocop
+        run: bundle exec rubocop
