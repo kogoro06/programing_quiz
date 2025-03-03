@@ -1,12 +1,7 @@
+<% content_for(:title, "クイズ一覧: #{@tag.name}") %>
 <div class="bg-white min-h-screen overflow-auto">
-  <div class="flex flex-col justify-center items-center mt-8 mb-8 mx-4 md:mx-24 lg:mx-72">
-    <h1 class="text-3xl md:text-3xl lg:text-4xl font-bold text-accent text-center">
-      <% content_for(:title, "クイズ一覧: #{@tag.name}") %>
-    </h1>
-  </div>
-
   <div class="flex flex-col justify-center">
-    <div class="flex justify-center items-center mb-4 md:mb-6">
+    <div class="flex justify-center items-center mt-10 md:mt-14 mb-4 md:mb-6">
       <!-- プルダウンメニュー -->
       <select id="tag-select" 
         class="select w-xs md:w-sm h-12 rounded-lg text-xl md:text-3xl font-bold text-nowrap text-white text-center">
