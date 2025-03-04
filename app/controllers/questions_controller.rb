@@ -60,13 +60,13 @@ end
 
     if user_signed_in?
       @past_answer = PastAnswer.find_by(question_id: @question.id, user_id: current_user.id)
-  
+
       # もし `PastAnswer` が見つからない場合はエラー表示
       unless @past_answer
         flash[:alert] = "回答履歴が見つかりませんでした。"
         redirect_to root_path and return
       end
-  
+
       @is_correct = @past_answer.answer_result
     else
       @is_correct = session[:is_correct]
