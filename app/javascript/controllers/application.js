@@ -1,4 +1,5 @@
 import { Application } from "@hotwired/stimulus"
+import "./search_toggle";
 
 const application = Application.start()
 
