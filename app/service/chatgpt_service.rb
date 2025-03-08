@@ -1,0 +1,2 @@
+class ChatgptService
+  include Faraday

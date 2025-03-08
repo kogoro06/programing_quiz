@@ -444,6 +444,7 @@ DEPENDENCIES
   devise-i18n
   devise-i18n-views
   dotenv-rails
+  faraday
   fast_jsonapi
   image_processing (~> 1.2)
   jbuilder
