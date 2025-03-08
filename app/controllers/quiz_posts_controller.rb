@@ -120,6 +120,36 @@ class QuizPostsController < ApplicationController
     render json: QuizSerializer.new(@quizzes)
   end
 
+  def generate_wrong_choices
+    question = params[:question]
+    correct_answer = params[:correct_answer]
+    
+    prompt = <<~PROMPT
+      以下の問題の不正解の選択肢を3つ生成してください。
+
+      【問題】
+      #{question}
+
+      【正解】
+      #{correct_answer}
+
+      生成する際の条件：
+      ・明らかに間違っているものは避ける
+      ・それっぽいが間違っている選択肢を作成
+      ・1行に1つの選択肢
+      ・余計な説明は不要
+    PROMPT
+
+    begin
+      response = ChatgptService.call(prompt)
+      wrong_choices = response.split("\n").map(&:strip).reject(&:empty?)
+      render json: { wrong_choices: wrong_choices, status: 'success' }
+    rescue => e
+      Rails.logger.error "ChatGPT API Error: #{e.message}"
+      render json: { error: e.message, status: 'error' }, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def set_common_variables
