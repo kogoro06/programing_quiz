@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       post :create
       get "search"
       get "autocomplete"
+      post :generate_wrong_choices
     end
   end
 
