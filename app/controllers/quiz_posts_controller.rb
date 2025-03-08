@@ -123,19 +123,19 @@ class QuizPostsController < ApplicationController
   def generate_wrong_choices
     question = params[:question].to_s.gsub(/<[^>]*>/, "") # HTMLタグを除去
     raise "Question is empty" if question.blank?
-    
+
     existing_choices = Array(params[:existing_choices])
-    remaining_count = [4 - existing_choices.length, 0].max
-  
+    remaining_count = [ 4 - existing_choices.length, 0 ].max
+
     prompt = <<~PROMPT
       以下のプログラミングに関する問題の選択肢を#{remaining_count}つ生成してください。
-  
+
       【問題】
       #{question}
-  
+
       【正解の選択肢】
       #{existing_choices.join("\n")}
-  
+
       生成する際の条件：
       ・必ず#{remaining_count}つの誤った選択肢を生成すること
       ・正解の選択肢と重複しない
@@ -147,26 +147,26 @@ class QuizPostsController < ApplicationController
       ・正解の選択肢と同じ文体・形式で記述
       ・文末はこちらが入力した語尾に合わせる
       ・1行に1つの選択肢
-  
+
       【出力形式】
       選択肢
     PROMPT
-  
+
     begin
       response = ChatgptService.call(prompt)
       raise "Received empty response from ChatGPT API" if response.blank?
-  
+
       choices = response.split("\n").map(&:strip).reject { |choice|
         choice.empty? ||
         choice.include?("選択肢") ||
         choice.match?(/^\d+\./) ||
         existing_choices.include?(choice)
       }
-  
+
       raise "No valid choices generated" if choices.empty?
-  
+
       choices = choices.first(remaining_count)
-  
+
       render json: { status: "success", choices: choices }
     rescue => e
       Rails.logger.error "ChatGPT API Error: #{e.message}"
@@ -174,7 +174,7 @@ class QuizPostsController < ApplicationController
       render json: { status: "error", message: e.message }, status: :unprocessable_entity
     end
   end
-  
+
 
   private
 
