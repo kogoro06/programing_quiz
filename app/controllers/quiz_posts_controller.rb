@@ -121,34 +121,60 @@ class QuizPostsController < ApplicationController
   end
 
   def generate_wrong_choices
-    question = params[:question]
-    correct_answer = params[:correct_answer]
+    question = params[:question].to_s.gsub(/<[^>]*>/, "") # HTMLタグを除去
+    raise "Question is empty" if question.blank?
     
+    existing_choices = Array(params[:existing_choices])
+    remaining_count = [4 - existing_choices.length, 0].max
+  
     prompt = <<~PROMPT
-      以下の問題の不正解の選択肢を3つ生成してください。
-
+      以下のプログラミングに関する問題の選択肢を#{remaining_count}つ生成してください。
+  
       【問題】
       #{question}
-
-      【正解】
-      #{correct_answer}
-
+  
+      【正解の選択肢】
+      #{existing_choices.join("\n")}
+  
       生成する際の条件：
-      ・明らかに間違っているものは避ける
-      ・それっぽいが間違っている選択肢を作成
+      ・必ず#{remaining_count}つの誤った選択肢を生成すること
+      ・正解の選択肢と重複しない
+      ・以下の点を考慮した誤った選択肢を作成：
+        - 明確に誤りとなる内容にする
+        - 初学者がよく間違える概念を含める
+        - 正解と似て非なる表現を使用
+        - 実際のプログラミングでよくある誤解を反映
+      ・正解の選択肢と同じ文体・形式で記述
+      ・文末はこちらが入力した語尾に合わせる
       ・1行に1つの選択肢
-      ・余計な説明は不要
+  
+      【出力形式】
+      選択肢
     PROMPT
-
+  
     begin
       response = ChatgptService.call(prompt)
-      wrong_choices = response.split("\n").map(&:strip).reject(&:empty?)
-      render json: { wrong_choices: wrong_choices, status: 'success' }
+      raise "Received empty response from ChatGPT API" if response.blank?
+  
+      choices = response.split("\n").map(&:strip).reject { |choice|
+        choice.empty? ||
+        choice.include?("選択肢") ||
+        choice.match?(/^\d+\./) ||
+        existing_choices.include?(choice)
+      }
+  
+      raise "No valid choices generated" if choices.empty?
+  
+      choices = choices.first(remaining_count)
+  
+      render json: { status: "success", choices: choices }
     rescue => e
       Rails.logger.error "ChatGPT API Error: #{e.message}"
-      render json: { error: e.message, status: 'error' }, status: :unprocessable_entity
+      Rails.logger.error "Response: #{response.inspect}"
+      render json: { status: "error", message: e.message }, status: :unprocessable_entity
     end
   end
+  
 
   private
 
