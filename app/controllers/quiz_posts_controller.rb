@@ -42,7 +42,7 @@ class QuizPostsController < ApplicationController
         format.html { redirect_to quiz_post_path(@quiz), notice: "クイズを投稿しました！" }
       else
         flash.now[:alert] = "クイズの投稿に失敗しました"
-        format.turbo_stream { render 'turbo_stream/quiz_posts/create_failed', status: :unprocessable_entity }
+        format.turbo_stream { render "turbo_stream/quiz_posts/create_failed", status: :unprocessable_entity }
       end
     end
     Rails.logger.info "Received tag_ids: #{params[:quiz][:tag_ids]}"
