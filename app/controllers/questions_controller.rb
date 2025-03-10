@@ -171,9 +171,9 @@ end
     @has_next_question = session[:current_question_index] < quiz_ids.length
     @next_question_path = random_show_questions_path if @has_next_question
   end
-  
-  
-  
+
+
+
   private
 
   def page_title(title = "")
