@@ -2,7 +2,7 @@ class QuizPostsController < ApplicationController
   # 設定したprepare_meta_tagsをprivateにあってもpostコントローラー以外にも使えるようにする
   helper_method :prepare_meta_tags
   before_action :authenticate_user!
-  skip_before_action :authenticate_user!, only: [ :index, :search, :autocomplete ]
+  skip_before_action :authenticate_user!, only: [ :index, :search, :autocomplete, :show ]
 
   def index
     @quizzes = Quiz.eager_load(:user, :tags).all
