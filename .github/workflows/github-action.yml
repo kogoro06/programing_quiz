@@ -5,7 +5,7 @@ on:
   push:
 
 jobs:
-  Run rspec and rubocop:
+  Run-rspec-and-rubocop:
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -66,4 +66,4 @@ jobs:
         run: bundle exec rspec
 
       - name: Run rubocop
-        run: bundle exec rubocop -A
+        run: bundle exec rubocop

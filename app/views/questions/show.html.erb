@@ -1,79 +1,78 @@
+<% content_for(:title, "クイズに回答中: #{@quiz.title}") %>
 <div class="bg-white min-h-screen overflow-auto">
-  <div class="flex flex-col justify-center items-center mt-8 mb-8 mx-4 md:mx-24 lg:mx-72">
-    <h1 class="text-3xl md:text-3xl lg:text-4xl font-bold text-accent text-center">
-      <% content_for(:title, "クイズに回答中: #{@quiz.title}") %>
-    </h1>
-  </div>
-
-<div class="bg-secondary m-12 rounded-lg p-6 max-w-3xl mx-auto">
-  <div class="bg-base-100 p-8 rounded-lg max-w-3xl mx-auto">
-    <div class="flex items-center">
-      <h1 class="text-xl md:text-3xl text-accent mr-4"><%= @quiz.title %></h1>
-    </div>
-    <div class="flex gap-2 mt-2">
-      <% @quiz.tags.each do |tag| %>
-        <span class="btn btn-sm <%= tag.data_color %> text-sm text-white font-bold text-center text-nowrap">
-          <%= tag.name %>
-        </span>
-      <% end %>
-    </div>
-
-    <h2 class="mt-12 text-accent">問題</h2>
-    <p class="text-sm max-w-2xl mx-auto">
-      <%= @question.question %>
-    </p>
-
-    <%= form_with url: create_result_question_path(@question), method: :post, local: true,id: "quiz-form",remote: true, data: { turbo: false } do |form| %>
-    <%= form.hidden_field :question_id, value: @question.id %>
-      <% @choices.each_with_index do |choice, index| %>
-      <div class="md:flex flex-wrap">
-        <div class="mt-2 flex gap-2 justify-center max-w-2xl mx-auto md:w-[49%]">
-          <!-- Choice 1 -->
-          <input type="radio" name="answer" id="choice_1_<%= index %>" value="1" class="hidden peer" required>
-          <label for="choice_1_<%= index %>" class="flex-1 bg-secondary text-sm font-bold text-center mt-2 py-2 px-4 cursor-pointer peer-checked:border-2 peer-checked:border-blue-500" id="1">
-            <%= choice.choice1 %>
-          </label>
+  <div class="flex justify-center m-6 md:m-12">
+    <div class="bg-secondary rounded-lg p-6 mx-auto max-w-3xl w-full">
+      <div class="bg-base-100 p-4 md:p-8 rounded-lg">
+        <div class="flex justify-between items-center">
+          <h1 class="text-xl md:text-3xl text-accent mr-4"><%= @quiz.title %></h1>
         </div>
-        <div class="mt-2 flex gap-2 justify-center max-w-2xl mx-auto md:w-[49%]">
-          <!-- Choice 2 -->
-          <input type="radio" name="answer" id="choice_2_<%= index %>" value="2" class="hidden peer">
-          <label for="choice_2_<%= index %>" class="flex-1 bg-secondary text-sm font-bold text-center mt-2 py-2 px-4 cursor-pointer peer-checked:border-2 peer-checked:border-blue-500" id="2">
-            <%= choice.choice2 %>
-          </label>
+        <div class="flex gap-2 mt-2">
+          <% @quiz.tags.each do |tag| %>
+            <span class="btn btn-sm <%= tag.data_color %> text-sm text-white font-bold text-center text-nowrap">
+              <%= tag.name %>
+            </span>
+          <% end %>
         </div>
-        <div class="mt-2 flex gap-2 justify-center max-w-2xl mx-auto md:w-[49%]">
-          <!-- Choice 3 -->
-          <input type="radio" name="answer" id="choice_3_<%= index %>" value="3" class="hidden peer">
-          <label for="choice_3_<%= index %>" class="flex-1 bg-secondary text-sm font-bold text-center mt-2 py-2 px-4 cursor-pointer peer-checked:border-2 peer-checked:border-blue-500" id="3">
-            <%= choice.choice3 %>
-          </label>
+        <div>
+          <h2 class="mt-12 text-accent">問題</h2>
+          <p class="text-sm max-w-2xl mx-auto">
+            <%= @question.question %>
+          </p>
         </div>
-        <div class="mt-2 flex gap-2 justify-center max-w-2xl mx-auto md:w-[49%]">
-          <!-- Choice 4 -->
-          <input type="radio" name="answer" id="choice_4_<%= index %>" value="4" class="hidden peer">
-          <label for="choice_4_<%= index %>" class="flex-1 bg-secondary text-sm font-bold text-center mt-2 py-2 px-4 cursor-pointer peer-checked:border-2 peer-checked:border-blue-500" id="4">
-            <%= choice.choice4 %>
-          </label>
-        </div>
-      </div>
-      <% end %>
 
-      <div>
-        <% if @question.question_image.attached? %>
-        <h2 class="mt-12 text-accent">問題画像</h2>
-          <%= image_tag @question.question_image, class: 'w-full h-auto rounded mt-2' %>
+        <%= form_with url: create_result_question_path(@question), method: :post, local: true,id: "quiz-form",remote: true, data: { turbo: false } do |form| %>
+        <%= form.hidden_field :question_id, value: @question.id %>
+          <% @choices.each_with_index do |choice, index| %>
+          <div class="md:flex flex-wrap">
+            <div class="mt-2 flex gap-2 justify-center max-w-2xl mx-auto md:w-[49%]">
+              <!-- Choice 1 -->
+              <input type="radio" name="answer" id="choice_1_<%= index %>" value="1" class="hidden peer" required>
+              <label for="choice_1_<%= index %>" class="flex-1 bg-secondary text-sm font-bold text-center mt-2 py-2 px-4 cursor-pointer peer-checked:border-2 peer-checked:border-blue-500" id="1">
+                <%= choice.choice1 %>
+              </label>
+            </div>
+            <div class="mt-2 flex gap-2 justify-center max-w-2xl mx-auto md:w-[49%]">
+              <!-- Choice 2 -->
+              <input type="radio" name="answer" id="choice_2_<%= index %>" value="2" class="hidden peer">
+              <label for="choice_2_<%= index %>" class="flex-1 bg-secondary text-sm font-bold text-center mt-2 py-2 px-4 cursor-pointer peer-checked:border-2 peer-checked:border-blue-500" id="2">
+                <%= choice.choice2 %>
+              </label>
+            </div>
+            <div class="mt-2 flex gap-2 justify-center max-w-2xl mx-auto md:w-[49%]">
+              <!-- Choice 3 -->
+              <input type="radio" name="answer" id="choice_3_<%= index %>" value="3" class="hidden peer">
+              <label for="choice_3_<%= index %>" class="flex-1 bg-secondary text-sm font-bold text-center mt-2 py-2 px-4 cursor-pointer peer-checked:border-2 peer-checked:border-blue-500" id="3">
+                <%= choice.choice3 %>
+              </label>
+            </div>
+            <div class="mt-2 flex gap-2 justify-center max-w-2xl mx-auto md:w-[49%]">
+              <!-- Choice 4 -->
+              <input type="radio" name="answer" id="choice_4_<%= index %>" value="4" class="hidden peer">
+              <label for="choice_4_<%= index %>" class="flex-1 bg-secondary text-sm font-bold text-center mt-2 py-2 px-4 cursor-pointer peer-checked:border-2 peer-checked:border-blue-500" id="4">
+                <%= choice.choice4 %>
+              </label>
+            </div>
+          </div>
+          <% end %>
+
+          <div>
+            <% if @question.question_image.attached? %>
+            <h2 class="mt-12 text-accent">問題画像</h2>
+              <%= image_tag @question.question_image, class: 'w-full h-auto rounded mt-2' %>
+            <% end %>
+          </div>
+
+          <div class="flex justify-center items-center w-full mt-8 md:mt-12 mb-6">
+            <div id="result-container">
+              <%= form.submit "回答する",id: "submit-btn", class: "text-white bg-accent hover:opacity-70 rounded-lg text-lg px-5 py-2.5 flex items-center justify-center gap-2" %>
+            </div>
+          </div>
         <% end %>
       </div>
-
-      <div class="relative flex items-center w-full mt-16 mb-8">
-        <div class="absolute left-1/2 transform -translate-x-1/2" id="result-container">
-          <%= form.submit "回答する",id: "submit-btn", class: "text-white bg-accent hover:opacity-70 rounded-lg text-lg px-5 py-2.5 flex items-center justify-center gap-2" %>
-        </div>
-      </div>
-    <% end %>
+    </div>
+    <p id="correct_answer" style="display: none;"><%= @question.correct_answer %></p>
   </div>
 </div>
-<p id="correct_answer" style="display: none;"><%= @question.correct_answer %></p>
 
 <script>
   document.addEventListener("turbo:load", () => {
