@@ -15,9 +15,30 @@
       <p><%= quiz.user&.name || "作者不明" %></p>
     <% end %>
   </div>
-  <!-- タグと日付 -->
-  <div class="mt-2 flex items-center">
-    <%= render partial: "tags/buttons/tags", locals: { tags: quiz.tags } %>
-    <p class="ml-2 text-sm md:text-md"><%= quiz.created_at.strftime('%Y/%m/%d') %></p>
+  <div class="flex flex-col space-y-2 md:flex md:flex-row md:justify-between ">
+    <!-- タグと日付 -->
+    <div class="mt-2 flex items-center">
+      <%= render partial: "tags/buttons/tags", locals: { tags: quiz.tags } %>
+      <p class="ml-2 text-sm md:text-md"><%= quiz.created_at.strftime('%Y/%m/%d') %></p>
+    </div>
+    <!-- 評価 -->
+    <div class="flex flex-col md:items-center">
+      <div class="flex">
+        <% @average_rating = quiz.reviews.average(:rating).to_f.round(1) %>
+        <% @total_reviews = quiz.reviews.count %>
+        <% 5.times do |i| %>
+          <% if i < @average_rating.to_i %>
+            <svg class="star w-6 h-6 mx-0.5" xmlns="http://www.w3.org/2000/svg" fill="#ffd700" viewBox="0 0 22 20">
+              <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+            </svg>
+          <% else %>
+            <svg class="star w-6 h-6 mx-0.5" xmlns="http://www.w3.org/2000/svg" fill="#a9a9a9" viewBox="0 0 22 20">
+              <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+            </svg>
+          <% end %>
+        <% end %>
+      </div>
+      <p class="text-sm font-medium text-gray-500"><%= @total_reviews %> 件の評価</p>
+    </div>
   </div>
 </div>

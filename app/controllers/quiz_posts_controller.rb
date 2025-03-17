@@ -14,8 +14,6 @@ class QuizPostsController < ApplicationController
     @tags = Tag.all
     @total_reviews = @quiz.reviews.count
     @average_rating = @quiz.reviews.average(:rating).to_f.round(1)
-    p @total_reviews
-    p @average_rating
     prepare_meta_tags(@quiz)
   end
 
