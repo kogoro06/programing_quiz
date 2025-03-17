@@ -126,7 +126,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_20_104037) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.integer "score", null: false
+    t.integer "rating", null: false
     t.bigint "user_id", null: false
     t.bigint "quiz_id", null: false
     t.datetime "created_at", null: false

@@ -5,6 +5,7 @@ class Quiz < ApplicationRecord
 
   has_many :tag_quizzes, dependent: :destroy
   has_many :tags, through: :tag_quizzes
+  has_many :reviews, dependent: :destroy
 
   validates :title, presence: true
   validate :at_least_one_question

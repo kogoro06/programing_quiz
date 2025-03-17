@@ -105,38 +105,8 @@
           </div>
         <% else %>
           <div class="mt-12">
-          <!-- （本リリース）レビュー機能
-          <div class="p-8 bg-accent bg-opacity-30 rounded">
-            <p class="text-primary text-xl">この問題はどうでしたか？</p>
-            <p class="text-xs">レビュー投稿しても自身のユーザーネームは公開されません！</p>
-            <div class="mt-6 rating rating-lg rating-half flex justify-center items-center">
-              <input type="radio" name="rating-10" class="rating-hidden" />
-              <input type="radio" name="rating-10" class="mask mask-star mask-half-1 bg-primary" />
-              <input type="radio" name="rating-10" class="mask mask-star mask-half-2 bg-primary" />
-              <input type="radio" name="rating-10" class="mask mask-star mask-half-1 bg-primary" checked="checked" />
-              <input type="radio" name="rating-10" class="mask mask-star mask-half-2 bg-primary" />
-              <input type="radio" name="rating-10" class="mask mask-star mask-half-1 bg-primary" />
-              <input type="radio" name="rating-10" class="mask mask-star mask-half-2 bg-primary" />
-              <input type="radio" name="rating-10" class="mask mask-star mask-half-1 bg-primary" />
-              <input type="radio" name="rating-10" class="mask mask-star mask-half-2 bg-primary" />
-              <input type="radio" name="rating-10" class="mask mask-star mask-half-1 bg-primary" />
-              <input type="radio" name="rating-10" class="mask mask-star mask-half-2 bg-primary" />
-            </div>
-
-            <div class="mt-6 flex justify-center items-center">
-              <button type="submit"
-                class="text-white bg-primary hover:opacity-70 font-medium rounded-lg w-full sm:w-auto px-3 py-1.5 text-center">レビューを投稿する
-              </button>
-            </div>
-            -->
-
-            <div class="flex justify-center items-center mt-12 space-x-4">
-              <%= link_to "/", class: "text-white bg-accent hover:opacity-70 rounded-lg text-lg px-5 py-2.5 flex items-center justify-center gap-2 w-64" do %>
-                <span class="material-icons">chevron_right</span>
-                TOPページに戻る
-              <% end %>
-            </div>
-            <div class="flex justify-center items-center mt-4 space-x-4">
+          
+          <div class="flex justify-center items-center mt-4 space-x-4">
               <% twitter_share_url = "https://twitter.com/share?url=#{CGI.escape(quiz_post_url(@quiz))}&text=#{@quiz.title}の問題を解きました!%0A%0A&hashtags=ProgramingQuestion" %>
               <%= link_to twitter_share_url, target: "_blank", data: { toggle: "tooltip", placement: "bottom" }, title: "Xでシェア" do %>
                 <button class="bg-secondary hover:opacity-70 rounded-lg text-lg px-5 py-2.5 flex items-center justify-center gap-2 w-64">
@@ -144,6 +114,66 @@
                 </button>
               <% end %>
             </div>
+          <div class="p-8 bg-accent bg-opacity-30 rounded">
+            <p class="text-primary text-xl">この問題はどうでしたか？</p>
+            <p class="text-xs">レビューしても自身のユーザーネームは公開されません！</p>
+            
+            <%= form_with(url: review_path, method: :post, data: { turbo: false }) do |f| %>
+              <div class="mt-6 rating rating-lg rating-half flex justify-center items-center">
+                <div id="starRating" class="flex space-x-1">
+                  <% 5.times do |i| %>
+                    <svg data-rating="<%= i + 1 %>" class="star w-6 h-6 text-gray-300 cursor-pointer hover:text-yellow-400 transition duration-200" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                    </svg>
+                  <% end %>
+                </div>
+                <%= f.hidden_field :rating, id: "rating" %>
+                <%= f.hidden_field :quiz_id, value: @quiz.id %>
+                <%= f.hidden_field :user_id, value: current_user.id %>
+              </div>
+
+              <script>
+                document.addEventListener("turbo:load", function() {
+                  const stars = document.querySelectorAll("#starRating .star");
+                  const ratingInput = document.getElementById("rating");
+                  
+                  if (stars.length > 0) {
+                  
+                      // デフォルト値（最低1）を設定
+                      if (!ratingInput.value) {
+                        ratingInput.value = 1;
+                        stars[0].classList.add("text-yellow-400");
+                      }
+                  
+                      stars.forEach((star) => {
+                        star.addEventListener("click", function() {
+                          const rating = this.getAttribute("data-rating");
+                          ratingInput.value = rating;
+                          stars.forEach((s, index) => {
+                            s.classList.toggle("text-yellow-400", index < rating);
+                            s.classList.toggle("text-gray-300", index >= rating);
+                          });
+                        });
+                      });
+                    }
+                });
+                
+                document.addEventListener("turbo:load", initializeStarRating);
+              
+              </script>
+              
+              <div class="mt-6 flex justify-center items-center">
+                <%= f.submit "レビューを保存する", class: "text-white bg-primary hover:opacity-70 font-medium rounded-lg w-full sm:w-auto px-3 py-1.5 text-center" %>
+              </div>
+            <% end %>
+
+            <div class="flex justify-center items-center mt-12 space-x-4">
+              <%= link_to "/", class: "text-white bg-accent hover:opacity-70 rounded-lg text-lg px-5 py-2.5 flex items-center justify-center gap-2 w-64" do %>
+                <span class="material-icons">chevron_right</span>
+                TOPページに戻る
+              <% end %>
+            </div>
+            
           </div>
         <% end %>
       </div>
