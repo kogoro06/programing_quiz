@@ -69,9 +69,7 @@
                       <%= q_form.label :question, t('.question'), class: "block mb-2 text-base md:text-lg text-nowrap font-medium text-primary" %>
                       <span class="text-accent ml-1">*</span>
                     </div>
-                    <div>
-                    <%= q_form.rich_text_area :question, class: "bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5" %>
-                  </div>
+                    <%= q_form.rich_text_area :question, class: "bg-white border border-gray-300 text-sm w-full rounded-lg forcus:ring-primary focus:border-primary block p-2.5 h-20" %>
                   </div>
                   <div class="bg-white rounded">
                     <div class="flex flex-col md:flex-row justify-between md:space-x-4 p-2 md:p-6 w-full">
@@ -113,20 +111,10 @@
                         <h2 class="block mb-2 text-base md:text-lg text-nowrap font-medium text-primary"><%= t('.answer') %></h2>
                         <span class="text-accent ml-1">*</span>
                       </div>
-                      <div class="flex flex-col md:flex-row gap-4">
-                        <%= q_form.select :correct_answer,
-                          [[t('.choices.1'), 1], [t('.choices.2'), 2], [t('.choices.3'), 3], [t('.choices.4'), 4]],
-                          { prompt: t('.choice_corrected_answer') },
-                          { class: "select select-bordered md:w-1/2" } %>
-                        <button type="button" 
-                                class="btn btn-primary md:w-1/2" 
-                                data-controller="quiz-form"
-                                data-action="click->quiz-form#generateWrongChoices"
-                                data-question-index="<%= q_form.index %>">
-                          <span class="material-icons mr-2">auto_fix_high</span>
-                          残りの選択肢を生成
-                        </button>
-                      </div>
+                      <%= q_form.select :correct_answer,
+                        [[t('.choices.1'), 1], [t('.choices.2'), 2], [t('.choices.3'), 3], [t('.choices.4'), 4]],
+                        { prompt: t('.choice_corrected_answer') },
+                        { class: "select select-bordered md:w-1/2" } %>
                     </div>
                   </div>
                   <div class="flex flex-col bg-white rounded p-2 md:p-6">
