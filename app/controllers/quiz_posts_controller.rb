@@ -120,6 +120,67 @@ class QuizPostsController < ApplicationController
     render json: QuizSerializer.new(@quizzes)
   end
 
+  def generate_wrong_choices
+    question = params[:question].to_s.gsub(/<[^>]*>/, "") # HTMLタグを除去
+    raise "Question is empty" if question.blank?
+
+    existing_choices = Array(params[:existing_choices])
+    remaining_count = [ 4 - existing_choices.length, 0 ].max
+
+    prompt = <<~PROMPT
+      以下の問題の選択肢を#{remaining_count}つ生成してください。
+
+      【問題】
+      #{question}
+
+      【正解の選択肢】
+      #{existing_choices.join("\n")}
+
+      【プログラミング言語】
+      {programming_language}（該当する場合）
+
+      生成する際の条件：
+      ・必ず#{remaining_count}つの誤った選択肢を生成すること
+      ・正解の選択肢と重複しない
+      ・生成した選択肢同士も重複しないこと
+      ・以下の点を考慮した誤った選択肢を作成：
+        - 明確に誤りとなる内容にする
+        - 初学者がよく間違える概念を含める
+        - 正解と似て非なる表現を使用
+        - 実際のプログラミングでよくある誤解を反映
+      ・正解の選択肢と同じ形式で記述すること
+        - 正解が数値なら数値で回答
+        - 正解が文章なら同じような文体で回答
+      ・文末はこちらが入力した語尾に合わせる
+      ・1行に1つの選択肢
+      ・番号や箇条書きは付けないでください
+    PROMPT
+
+    begin
+      response = ChatgptService.call(prompt)
+      raise "Received empty response from ChatGPT API" if response.blank?
+
+      choices = response.split("\n").map(&:strip).map { |choice|
+        # 先頭の番号を除去
+        choice.sub(/^\d+\.\s*/, "")
+      }.reject { |choice|
+        choice.empty? ||
+        choice.include?("選択肢") ||
+        existing_choices.include?(choice)
+      }.uniq  # 重複を除去
+
+      raise "No valid choices generated" if choices.empty?
+
+      choices = choices.first(remaining_count)
+      render json: { status: "success", choices: choices }
+    rescue => e
+      Rails.logger.error "ChatGPT API Error: #{e.message}"
+      Rails.logger.error "Response: #{response.inspect}"
+      render json: { status: "error", message: e.message }, status: :unprocessable_entity
+    end
+  end
+
+
   private
 
   def set_common_variables

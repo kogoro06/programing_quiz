@@ -9,3 +9,6 @@ application.register("autocomplete", AutocompleteController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import QuizFormController from "./quiz_form_controller"
+application.register("quiz-form", QuizFormController)

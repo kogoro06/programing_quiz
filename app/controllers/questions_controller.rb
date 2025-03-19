@@ -10,7 +10,7 @@ class QuestionsController < ApplicationController
       puts params[:id]
       @quiz = @question.quiz
       @choices = Choice.where(question_id: @question.id)
-      choices_adjust(@choices)
+      shuffle_and_adjust_choices(@choices)
       @quiz = @question.quiz
     rescue ActiveRecord::RecordNotFound => e
       Rails.logger.error("Question not found: #{e.message}")
@@ -113,20 +113,26 @@ end
     end
   end
 
-  def choices_adjust(choices)
+  def shuffle_and_adjust_choices(choices)
     choices.each do |choice|
-      if choice.choice1.include?("<")
-        choice.choice1.gsub!("<", "＜").gsub!(">", "＞")
-      end
-      if choice.choice2.include?("<")
-        choice.choice2.gsub!("<", "＜").gsub!(">", "＞")
-      end
-      if choice.choice3.include?("<")
-        choice.choice3.gsub!("<", "＜").gsub!(">", "＞")
-      end
-      if choice.choice4.include?("<")
-        choice.choice4.gsub!("<", "＜").gsub!(">", "＞")
-      end
+      # 全ての選択肢を配列に入れる
+      all_choices = [
+        choice.choice1,
+        choice.choice2,
+        choice.choice3,
+        choice.choice4
+      ]
+
+      # シャッフルして各属性に再代入
+      shuffled = all_choices.shuffle
+      choice.choice1 = shuffled[0]
+      choice.choice2 = shuffled[1]
+      choice.choice3 = shuffled[2]
+      choice.choice4 = shuffled[3]
+
+      # 正解の位置を記録（1-4の番号）
+      @correct_answer = shuffled.index(all_choices[0]) + 1
+      @question.update(correct_answer: @correct_answer)
     end
   end
 end
