@@ -1,0 +1,16 @@
+<div class="bg-base-100 rounded-lg p-4 flex items-center shadow" style="height: 120px;">
+  <div class="flex items-center gap-4">
+    <%= render partial: "rankings/medal", locals: { index: index + 1 } %>
+    <!-- プロフィール画像 -->
+    <div class="w-6 h-6">
+      <%= render partial: "users/icon", locals: { user: user } %>
+    </div>
+    <div class="flex-grow">
+      <%= link_to user_profile_path(user) do %>
+        <p class="text-accent text-lg font-bold">
+          <%= user.name %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+</div>
