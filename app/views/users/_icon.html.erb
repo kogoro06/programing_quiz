@@ -1,7 +1,3 @@
-<%= link_to user_path(user) do %>
-  <% if user.profile.user_icon.attached? %>
-    <%= image_tag user.profile.user_icon, class: 'w-full h-full rounded-full object-cover border border-primary border-300' %>
-  <% else %>
-    <%= image_tag 'profile_sample.png', class: 'w-full h-full rounded-full object-cover border border-primary border-300' %>
-  <% end %>
+<%= link_to user_profile_path(user.id) do %>
+  <%= image_tag user.profile&.user_icon&.attached? ? user.profile.user_icon : 'profile_sample.png', class: 'w-full h-full rounded-full object-cover border border-primary' %>
 <% end %>
