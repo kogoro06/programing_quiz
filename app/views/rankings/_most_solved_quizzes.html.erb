@@ -1,0 +1,6 @@
+<% if quizzes.empty? %>
+  <p>今週解かれたクイズはありません。</p>
+<% end %>
+<% quizzes.each_with_index do |quiz, index| %>
+  <%= render partial: "solved_quiz_item", locals: {quiz: quiz, index: index} %>
+<% end %>

@@ -1,0 +1,27 @@
+<div class="bg-base-100 rounded-lg p-4 flex items-center shadow" style="height: 120px;">
+  <div class="flex items-center gap-4">
+    <span class="material-icons md-48 bg-gradient-to-r from-yellow-300 via-yellow-500 to-yellow-600 text-gradient">
+      military_tech
+    </span>
+    <div class="flex-grow">
+      <p class="text-accent text-lg font-bold">
+        <%= link_to quiz_path(quiz.id) do %>
+          <%= quiz.title %>
+        <% end %>
+      </p>
+      <div class="flex items-center gap-2">
+        <div class="w-6 h-6">
+          <%= render partial: "users/icon", locals: { user: quiz.user } %>
+        </div>
+        <p class="text-sm">
+          <%= link_to user_profile_path(quiz.user) do %>
+            <%= quiz.user.name %>
+          <% end %>
+        </p>
+      </div>
+      <div class="mt-2">
+        <%= render partial: "tags/buttons/tags", locals: { tags: quiz.tags } %>
+      </div>
+    </div>
+  </div>
+</div>
