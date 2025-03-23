@@ -128,6 +128,15 @@
           <a href="/tags/5" class="btn btn-sm bg-git flex-1 text-sm text-white text-bold text-center text-nowrap mt-2">Git</a>
           <a href="/tags/6" class="btn btn-sm bg-error flex-1 text-sm text-white text-bold text-center text-nowrap mt-2">エラー</a>
         </div>
+
+        <%= link_to rankings_path, class: "p-4 mt-12" do %>
+          <h2 class="text-primary sm:text-lg md:text-xl font-bold p-4 flex items-center justify-center">
+            <span class="material-icons mr-2">
+              emoji_events
+            </span>
+            もっと見る
+          </h2>
+        <% end %>
       </div>
 
       <div class="mt-4 flex justify-center hidden md:block">
