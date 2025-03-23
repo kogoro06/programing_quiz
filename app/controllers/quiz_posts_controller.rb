@@ -174,6 +174,4 @@ class QuizPostsController < ApplicationController
       ]
     )
   end
-
-
 end
