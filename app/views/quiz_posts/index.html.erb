@@ -104,7 +104,7 @@
               <div class="w-6 h-6">
                 <%= render partial: "users/icon", locals: { user: @most_engaged_user } %>
               </div>
-              <%= link_to user_path(@most_engaged_user) do %>
+              <%= link_to user_profile_path(@most_engaged_user) do %>
                 <p class="text-sm"><%= @most_engaged_user.name %></p>
               <% end %>
             </div>
