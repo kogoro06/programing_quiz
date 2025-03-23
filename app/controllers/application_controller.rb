@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  def get_popular_quizzes
+  def get_most_solved_quizzes
     popular_quizzes_ids = PastAnswer.joins(question: :quiz).where(created_at: 1.week.ago..Time.current).group(:quiz_id).count.sort_by { |_, v| -v }.first(5).map(&:first)
     popular_quizzes = Quiz.eager_load(:user, :tags).where(id: popular_quizzes_ids)
     return popular_quizzes
