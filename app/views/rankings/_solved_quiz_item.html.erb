@@ -1,8 +1,6 @@
 <div class="bg-base-100 rounded-lg p-4 flex items-center shadow" style="height: 120px;">
   <div class="flex items-center gap-4">
-    <span class="material-icons md-48 bg-gradient-to-r from-yellow-300 via-yellow-500 to-yellow-600 text-gradient">
-      military_tech
-    </span>
+    <%= render partial: "rankings/medal", locals: { index: index + 1 } %>
     <div class="flex-grow">
       <p class="text-accent text-lg font-bold">
         <%= link_to quiz_path(quiz.id) do %>
