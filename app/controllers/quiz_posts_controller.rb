@@ -7,6 +7,8 @@ class QuizPostsController < ApplicationController
   def index
     @quizzes = Quiz.eager_load(:user, :tags).all
     set_common_variables
+    @most_solved_quiz = get_popular_quizzes.first
+    # @most_engaged_user = set_engaged_users.first
   end
 
   def show
@@ -171,5 +173,11 @@ class QuizPostsController < ApplicationController
         ]
       ]
     )
+  end
+
+  def get_popular_quizzes
+    popular_quizzes_ids = PastAnswer.joins(question: :quiz).where(created_at: 1.week.ago..Time.current).group(:quiz_id).count.sort_by { |_, v| -v }.first(5).map(&:first)
+    popular_quizzes = Quiz.eager_load(:user, :tags).where(id: popular_quizzes_ids)
+    return popular_quizzes
   end
 end
