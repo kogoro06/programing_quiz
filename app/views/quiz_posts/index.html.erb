@@ -99,10 +99,18 @@
           クイズを解いた数が多いユーザー
         </h4>
         <div class="bg-base-100 rounded p-6">
-          <div class="flex gap-1 items-center">
-            <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary border--300' %>
-            <p class="text-accent text-lg">ユーザーネーム</p>
-          </div>
+          <% if @most_engaged_user.present? %>
+            <div class="flex gap-1 items-center">
+              <div class="w-6 h-6">
+                <%= render partial: "users/icon", locals: { user: @most_engaged_user } %>
+              </div>
+              <%= link_to user_path(@most_engaged_user) do %>
+                <p class="text-sm"><%= @most_engaged_user.name %></p>
+              <% end %>
+            </div>
+          <% else %>
+            <p class="text-accent text-lg">まだユーザーがいません。</p>
+          <% end %>
         </div>
 
         <h4 class="text-primary mt-4 mb-2 flex items-center">
