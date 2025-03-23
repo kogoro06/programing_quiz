@@ -84,15 +84,13 @@
             たくさん解かれたクイズ
           </h4>
         </div>
-        <div class="bg-base-100 rounded p-6">
-          <p class="text-accent text-lg">クイズタイトル</p>
-          <div class="flex gap-1 items-center">
-            <%= image_tag 'profile_sample.png', class: 'w-6 h-6 rounded-full object-cover border border-primary border--300' %>
-            <p>作者のユーザーネーム</p>
+        <% if @most_solved_quiz.present? %>
+          <%= render partial: "quizzes/lg_card", locals: { quiz: @most_solved_quiz } %>
+        <% else %>
+          <div class="bg-base-100 rounded p-6">
+            <p class="text-accent text-lg">まだクイズがありません。</p>
           </div>
-          <a href="/tags/1" class="btn btn-sm bg-html flex-1 text-sm text-white text-bold text-center text-nowrap mt-2">HTML</a>
-          <a href="/tags/2" class="btn btn-sm bg-css flex-1 text-sm text-white text-bold text-center text-nowrap mt-2">CSS</a>
-        </div>
+        <% end %>
 
         <h4 class="text-primary mt-4 mb-2 flex items-center">
           <span class="material-icons md-36 bg-gradient-to-r from-yellow-300 via-yellow-500 to-yellow-600 text-gradient">
