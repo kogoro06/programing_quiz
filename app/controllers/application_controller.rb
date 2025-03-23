@@ -12,6 +12,12 @@ class ApplicationController < ActionController::Base
     return popular_quizzes
   end
 
+  def set_engaged_users
+    engaged_users_ids = PastAnswer.joins(:user).where(created_at: 1.week.ago..Time.current).group(:user_id).count.sort_by { |_, v| -v }.first(5).map(&:first)
+    engaged_users = User.where(id: engaged_users_ids)
+    return engaged_users
+  end
+
   private
 
   def page_title(title = "")

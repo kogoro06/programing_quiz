@@ -8,7 +8,7 @@ class QuizPostsController < ApplicationController
     @quizzes = Quiz.eager_load(:user, :tags).all
     set_common_variables
     @most_solved_quiz = get_popular_quizzes.first
-    # @most_engaged_user = set_engaged_users.first
+    @most_engaged_user = set_engaged_users.first
   end
 
   def show
