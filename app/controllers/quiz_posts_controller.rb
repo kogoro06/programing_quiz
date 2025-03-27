@@ -37,21 +37,13 @@ class QuizPostsController < ApplicationController
 
     @quiz.questions = @quiz.questions.select { |q| q.question.present? }
 
-    if @quiz.save
-      redirect_to quiz_post_path(@quiz), notice: "クイズを投稿しました！"
-    else
-      if current_user.admin?
-        30.times do
-          question = @quiz.questions.build
-          question.choices.build # 1回だけchoicesを作成
-        end
+    respond_to do |format|
+      if @quiz.save
+        format.html { redirect_to quiz_post_path(@quiz), notice: "クイズを投稿しました！" }
       else
-        10.times do
-          question = @quiz.questions.build
-          question.choices.build # 1回だけchoicesを作成
-        end
+        flash.now[:alert] = "クイズの投稿に失敗しました"
+        format.turbo_stream { render "turbo_stream/quiz_posts/create_failed", status: :unprocessable_entity }
       end
-      render :new, status: :unprocessable_entity
     end
     Rails.logger.info "Received tag_ids: #{params[:quiz][:tag_ids]}"
   end
