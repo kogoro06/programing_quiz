@@ -32,6 +32,13 @@ Rails.application.routes.draw do
       post "create_result"
       get "result"
     end
+
+    collection do
+      get :random           # /questions/random → ランダムクイズを開始
+      get :random_show      # /questions/random_show → ランダムな問題を表示
+      post :random_create_result  # /questions/random_create_result → 回答を処理
+      get :random_result    # /questions/random_result → 結果を表示
+    end
   end
 
   # ogp確認用

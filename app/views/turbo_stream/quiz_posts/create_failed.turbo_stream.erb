@@ -1,0 +1,7 @@
+<%= turbo_stream.update "error_messages" do %>
+  <%= render partial: "shared/error_messages", locals: { model: @quiz } %>
+<% end %>
+
+<%= turbo_stream.update "flash_messages" do %>
+  <%= render partial: "devise/shared/flash_messages" %>
+<% end %>
