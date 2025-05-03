@@ -12,6 +12,8 @@ class QuizPostsController < ApplicationController
   def show
     @quiz = Quiz.includes(:tags, :questions).find(params[:id])
     @tags = Tag.all
+    @total_reviews = @quiz.reviews.count
+    @average_rating = @quiz.reviews.average(:score).to_f.round(1)
     prepare_meta_tags(@quiz)
   end
 

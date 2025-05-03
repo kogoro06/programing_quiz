@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   has_many :quizzes
   has_many :questions, through: :quizzes
+  has_many :reviews, dependent: :destroy
 
   validates :name, presence: true, length: { in: 1..20 }
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }, uniqueness: true

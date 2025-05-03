@@ -52,6 +52,7 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
+  post "review" => "review#create", as: :review
 
   # Defines the root path route ("/")
   root "quiz_posts#index"
