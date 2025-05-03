@@ -15,6 +15,6 @@ class ReviewController < ApplicationController
 
   def review_params
     p "params = #{params}"
-    params.permit(:user_id, :quiz_id, :rating)
+    params.permit(:user_id, :quiz_id, :score)
   end
 end
