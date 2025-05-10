@@ -6,7 +6,17 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def get_most_solved_quizzes
+    popular_quizzes_ids = PastAnswer.joins(question: :quiz).where(created_at: 1.week.ago..Time.current).group(:quiz_id).count.sort_by { |_, v| -v }.first(5).map(&:first)
+    popular_quizzes = Quiz.eager_load(:user, :tags).where(id: popular_quizzes_ids)
+    popular_quizzes
+  end
 
+  def set_engaged_users
+    engaged_users_ids = PastAnswer.joins(:user).where(created_at: 1.week.ago..Time.current).group(:user_id).count.sort_by { |_, v| -v }.first(5).map(&:first)
+    engaged_users = User.where(id: engaged_users_ids)
+    engaged_users
+  end
 
   private
 

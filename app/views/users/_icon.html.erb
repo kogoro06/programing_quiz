@@ -1,0 +1,3 @@
+<%= link_to user_profile_path(user.id) do %>
+  <%= image_tag user.profile&.user_icon&.attached? ? user.profile.user_icon : 'profile_sample.png', class: 'w-full h-full rounded-full object-cover border border-primary' %>
+<% end %>

@@ -7,6 +7,8 @@ class QuizPostsController < ApplicationController
   def index
     @quizzes = Quiz.eager_load(:user, :tags).all
     set_common_variables
+    @most_solved_quiz = get_most_solved_quizzes.first
+    @most_engaged_user = set_engaged_users.first
   end
 
   def show

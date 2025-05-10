@@ -1,0 +1,6 @@
+<% if engaged_users.empty? %>
+  <p class="text-accent text-lg">今週クイズを解いたユーザーはいません。</p>
+<% end %>
+<% engaged_users.each_with_index do |user, index| %>
+  <%= render partial: "engaged_user_item", locals: { user: user, index: index } %>
+<% end %>
